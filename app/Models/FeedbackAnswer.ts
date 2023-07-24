@@ -24,6 +24,8 @@ export default class FeedbackAnswer extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
 
-  @belongsTo(() => Feedback)
-  public feedbacks: BelongsTo<typeof Feedback>;
+  @belongsTo(() => Feedback, {
+    foreignKey: "feedback_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
+  })
+  public feedback: BelongsTo<typeof Feedback>;
 }

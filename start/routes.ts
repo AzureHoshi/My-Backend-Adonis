@@ -35,8 +35,8 @@ Route.group(() => {
   Route.resource("subjects", "SubjectsController").apiOnly(); //done
   Route.resource("collegians", "CollegiansController").apiOnly(); //done
   Route.resource("study-records", "StudyRecordsController").apiOnly(); //done
-  Route.resource("feedback-answers", "FeedbackAnswersController").apiOnly();
-  Route.resource("feedbacks", "FeedbacksController").apiOnly();
+  Route.resource("feedback-answers", "FeedbackAnswersController").apiOnly(); //done
+  Route.resource("feedbacks", "FeedbacksController").apiOnly(); //done
   Route.resource(
     "collegian-feedbacks",
     "CollegianFeedbacksController"
