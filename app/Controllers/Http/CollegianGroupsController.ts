@@ -75,9 +75,10 @@ export default class CollegianGroupsController {
     } else {
       collegianGroup.is_deleted = 1;
       await collegianGroup.save();
-      return response
-        .status(200)
-        .json({ message: "CollegianGroup deleted success", status: 200 });
+      return response.status(200).json({
+        message: `CollegianGroup deleted byId ${id} success`,
+        status: 200,
+      });
     }
   }
 }

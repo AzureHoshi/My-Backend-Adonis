@@ -15,6 +15,8 @@ import CollegianFeedback from "./CollegianFeedback";
 import InterestSurvey from "./InterestSurvey";
 
 export default class Curriculum extends BaseModel {
+  public static table = "curriculums";
+
   @column({ isPrimary: true })
   public curriculum_id: number;
 
@@ -29,6 +31,12 @@ export default class Curriculum extends BaseModel {
 
   @column()
   public curriculum_name_en: string;
+
+  @column()
+  public curriculum_short_name_th: string;
+
+  @column()
+  public curriculum_short_name_en: string;
 
   @column()
   public curriculum_year: number;

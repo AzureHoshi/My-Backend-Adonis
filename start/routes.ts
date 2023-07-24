@@ -25,9 +25,9 @@ import Route from "@ioc:Adonis/Core/Route";
 // })
 
 Route.group(() => {
-  Route.resource("curriculums", "CurriculumsController").apiOnly(); //done
+  Route.resource("curriculums", "CurriculumsController").apiOnly(); // done
   Route.resource("faculties", "FacultiesController").apiOnly(); // done
-  Route.resource("collegian-groups", "CollegianGroupsController").apiOnly();
+  Route.resource("collegian-groups", "CollegianGroupsController").apiOnly(); //done
   Route.resource("study-plans", "StudyPlansController").apiOnly();
   Route.resource("subject-categories", "SubjectCategoriesController").apiOnly();
   Route.resource("subject-types", "SubjectTypesController").apiOnly();
