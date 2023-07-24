@@ -7,7 +7,9 @@ const subjectCategorySchema = schema.create({
 });
 export default class SubjectCategoriesController {
   public async index({ response }: HttpContextContract) {
-    const subjectCategories = await SubjectCategory.all();
+    const subjectCategories = await SubjectCategory.query()
+      .where("is_deleted", 0)
+      .orderBy("updatedAt", "desc");
     return response.status(200).json({ data: subjectCategories, status: 200 });
   }
 
