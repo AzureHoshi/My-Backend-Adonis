@@ -31,9 +31,13 @@ export default class StudyRecord extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
 
-  @belongsTo(() => Collegian)
+  @belongsTo(() => Collegian, {
+    foreignKey: "collegian_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
+  })
   public collegians: BelongsTo<typeof Collegian>;
 
-  @belongsTo(() => Subject)
+  @belongsTo(() => Subject, {
+    foreignKey: "subject_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
+  })
   public subjects: BelongsTo<typeof Subject>;
 }

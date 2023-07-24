@@ -22,7 +22,7 @@ export default class extends BaseSchema {
         .onDelete("CASCADE");
       table.integer("study_record_semester").notNullable();
       table.integer("study_record_year").notNullable();
-      table.string("study_record_grade").notNullable();
+      table.string("study_record_grade", 1).notNullable();
       table.boolean("is_deleted").notNullable().defaultTo(false);
 
       /**
