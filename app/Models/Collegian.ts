@@ -49,7 +49,9 @@ export default class Collegian extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
 
-  @belongsTo(() => CollegianGroup)
+  @belongsTo(() => CollegianGroup, {
+    foreignKey: "collegian_group_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
+  })
   public collegian_groups: BelongsTo<typeof CollegianGroup>;
 
   @hasMany(() => StudyRecord)
