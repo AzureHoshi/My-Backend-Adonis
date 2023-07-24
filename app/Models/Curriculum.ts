@@ -50,10 +50,14 @@ export default class Curriculum extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
 
-  @belongsTo(() => Faculty)
+  @belongsTo(() => Faculty, {
+    foreignKey: "faculty_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
+  })
   public faculty: BelongsTo<typeof Faculty>;
 
-  @belongsTo(() => CollegianGroup)
+  @belongsTo(() => CollegianGroup, {
+    foreignKey: "collegian_group_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
+  })
   public collegian_groups: BelongsTo<typeof CollegianGroup>;
 
   @hasMany(() => StudyPlan)
