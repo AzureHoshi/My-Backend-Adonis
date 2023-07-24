@@ -12,7 +12,8 @@ const studyPlanSchema = schema.create({
 export default class StudyPlansController {
   public async index({ response }: HttpContextContract) {
     const studyPlans = await StudyPlan.query()
-      .where("is_deleted", false)
+      .where("study_plans.is_deleted", false)
+      .preload("curriculums")
       .orderBy("study_plans.updated_at", "desc");
     return response.json({ data: studyPlans, status: 200 });
   }
@@ -67,12 +68,10 @@ export default class StudyPlansController {
     } else {
       studyPlan.is_deleted = true;
       await studyPlan.save();
-      return response
-        .status(200)
-        .json({
-          message: `Study Plan deleted byId ${id} success`,
-          status: 200,
-        });
+      return response.status(200).json({
+        message: `Study Plan deleted byId ${id} success`,
+        status: 200,
+      });
     }
   }
 }

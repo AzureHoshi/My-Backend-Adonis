@@ -27,6 +27,8 @@ export default class StudyPlan extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
 
-  @belongsTo(() => Curriculum)
+  @belongsTo(() => Curriculum, {
+    foreignKey: "curriculum_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
+  })
   public curriculums: BelongsTo<typeof Curriculum>;
 }
