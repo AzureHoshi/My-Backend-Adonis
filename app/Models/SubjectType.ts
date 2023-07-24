@@ -29,7 +29,9 @@ export default class SubjectType extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
 
-  @belongsTo(() => SubjectCategory)
+  @belongsTo(() => SubjectCategory, {
+    foreignKey: "subject_category_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
+  })
   public subject_categories: BelongsTo<typeof SubjectCategory>;
 
   @hasMany(() => SubjectGroup)
