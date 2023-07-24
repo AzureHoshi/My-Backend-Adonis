@@ -29,10 +29,10 @@ export default class SubjectGroupsController {
   }
 
   public async update({ params, request, response }: HttpContextContract) {
-    const id = params.id;
-    const payload = await request.validate({ schema: subjectGroupSchema });
-    const subjectGroup: any = await SubjectGroup.find(id);
     try {
+      const id = params.id;
+      const payload = await request.validate({ schema: subjectGroupSchema });
+      const subjectGroup: any = await SubjectGroup.find(id);
       if (!subjectGroup) {
         return response
           .status(404)
@@ -54,9 +54,9 @@ export default class SubjectGroupsController {
   }
 
   public async destroy({ params, response }: HttpContextContract) {
-    const id = params.id;
-    const subjectGroup: any = await SubjectGroup.find(id);
     try {
+      const id = params.id;
+      const subjectGroup: any = await SubjectGroup.find(id);
       if (!subjectGroup) {
         return response
           .status(404)

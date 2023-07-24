@@ -16,15 +16,16 @@ export default class FacultiesController {
   }
 
   public async store({ request, response }: HttpContextContract) {
-    const payload = await request.validate({ schema: facultySchema });
-    const faculty: Faculty = await Faculty.create(payload);
-    return response.status(201).json({ data: faculty, status: 201 });
+    try {
+      const payload = await request.validate({ schema: facultySchema });
+      const faculty: Faculty = await Faculty.create(payload);
+      return response.status(201).json({ data: faculty, status: 201 });
+    } catch (error) {
+      return response
+        .status(400)
+        .json({ error: "Incorrect or incomplete information", status: 400 });
+    }
   }
-
-  // ? สำหรับ show ใช้ได้เฉพาะ id ที่เป็น integer เท่านั้น
-  // public async show({ params, response }: HttpContextContract) {
-  //   return response.json({ test: "test" });
-  // }
 
   public async update({ params, request, response }: HttpContextContract) {
     try {
@@ -51,9 +52,9 @@ export default class FacultiesController {
   }
 
   public async destroy({ params, response }: HttpContextContract) {
-    const id = params.id;
-    const faculty: any = await Faculty.find(id);
     try {
+      const id = params.id;
+      const faculty: any = await Faculty.find(id);
       if (!faculty) {
         return response
           .status(404)

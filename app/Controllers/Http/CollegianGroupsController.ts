@@ -62,9 +62,9 @@ export default class CollegianGroupsController {
   }
 
   public async destroy({ params, response }: HttpContextContract) {
-    const id = params.id;
-    const collegianGroup: any = await CollegianGroup.find(id);
     try {
+      const id = params.id;
+      const collegianGroup: any = await CollegianGroup.find(id);
       if (!collegianGroup) {
         return response
           .status(404)

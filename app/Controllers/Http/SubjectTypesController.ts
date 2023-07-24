@@ -28,8 +28,8 @@ export default class SubjectTypesController {
   }
 
   public async update({ params, request, response }: HttpContextContract) {
-    const id = params.id;
     try {
+      const id = params.id;
       const subjectTypes = await request.validate({
         schema: subjectTypeSchema,
       });
@@ -54,9 +54,9 @@ export default class SubjectTypesController {
   }
 
   public async destroy({ params, response }: HttpContextContract) {
-    const id = params.id;
-    const subjectType: any = await SubjectType.find(id);
     try {
+      const id = params.id;
+      const subjectType: any = await SubjectType.find(id);
       if (!subjectType) {
         return response
           .status(404)

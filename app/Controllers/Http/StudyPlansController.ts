@@ -31,8 +31,8 @@ export default class StudyPlansController {
   }
 
   public async update({ params, request, response }: HttpContextContract) {
-    const id = params.id;
     try {
+      const id = params.id;
       const payload = await request.validate({ schema: studyPlanSchema });
       const studyPlan: any = await StudyPlan.find(id);
       if (!studyPlan) {
@@ -55,9 +55,9 @@ export default class StudyPlansController {
   }
 
   public async destroy({ params, response }: HttpContextContract) {
-    const id = params.id;
-    const studyPlan: any = await StudyPlan.find(id);
     try {
+      const id = params.id;
+      const studyPlan: any = await StudyPlan.find(id);
       if (!studyPlan) {
         return response
           .status(404)

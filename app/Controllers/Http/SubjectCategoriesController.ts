@@ -26,8 +26,8 @@ export default class SubjectCategoriesController {
   }
 
   public async update({ params, request, response }: HttpContextContract) {
-    const id = params.id;
     try {
+      const id = params.id;
       const payload = await request.validate({ schema: subjectCategorySchema });
       const subjectCategory: any = await SubjectCategory.find(id);
       if (!subjectCategory) {
@@ -51,8 +51,8 @@ export default class SubjectCategoriesController {
   }
 
   public async destroy({ params, response }: HttpContextContract) {
-    const id = params.id;
     try {
+      const id = params.id;
       const subjectCategory: any = await SubjectCategory.find(id);
       if (!subjectCategory) {
         return response

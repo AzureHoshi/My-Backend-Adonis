@@ -67,9 +67,9 @@ export default class CurriculumsController {
   }
 
   public async destroy({ params, response }: HttpContextContract) {
-    const id = params.id;
-    const curriculum: any = await Curriculum.find(id);
     try {
+      const id = params.id;
+      const curriculum: any = await Curriculum.find(id);
       if (!curriculum) {
         return response
           .status(404)
@@ -88,7 +88,9 @@ export default class CurriculumsController {
         });
       }
     } catch (error) {
-      return response.status(400).json({ error: error, status: 400 });
+      return response
+        .status(400)
+        .json({ error: "Incorrect or incomplete information", status: 400 });
     }
   }
 }
