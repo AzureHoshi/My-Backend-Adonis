@@ -9,8 +9,10 @@ const facultySchema = schema.create({
 
 export default class FacultiesController {
   public async index({ response }: HttpContextContract) {
-    const faculties = await Faculty.all();
-    return response.status(200).json({ data: faculties, status: 200 });
+    const faculty = await Faculty.query()
+      .where("is_deleted", 0)
+      .orderBy("updatedAt", "desc");
+    return response.status(200).json({ data: faculty, status: 200 });
   }
 
   public async store({ request, response }: HttpContextContract) {
@@ -19,26 +21,33 @@ export default class FacultiesController {
     return response.status(201).json({ data: faculty, status: 201 });
   }
 
-  public async show({ params, response }: HttpContextContract) {
-    return response.json({ test: "test" });
-  }
+  // ? สำหรับ show ใช้ได้เฉพาะ id ที่เป็น integer เท่านั้น
+  // public async show({ params, response }: HttpContextContract) {
+  //   return response.json({ test: "test" });
+  // }
 
   public async update({ params, request, response }: HttpContextContract) {
-    const id = params.id;
-    const payload = await request.validate({ schema: facultySchema });
-    const faculty: any = await Faculty.find(id);
-    if (!faculty) {
+    try {
+      const id = params.id;
+      const payload = await request.validate({ schema: facultySchema });
+      const faculty: any = await Faculty.find(id);
+      if (!faculty) {
+        return response
+          .status(404)
+          .json({ message: "Faculty not found", status: 404 });
+      }
+      faculty.merge(payload);
+      await faculty.save();
+      return response.status(200).json({
+        data: faculty,
+        status: 200,
+        message: `Faculty updated byId ${id} success`,
+      });
+    } catch (error) {
       return response
-        .status(404)
-        .json({ message: "Faculty not found", status: 404 });
+        .status(400)
+        .json({ error: "Incorrect or incomplete information", status: 400 });
     }
-    faculty.merge(payload);
-    await faculty.save();
-    return response.status(200).json({
-      data: faculty,
-      status: 200,
-      message: `Faculty updated byId ${id} success`,
-    });
   }
 
   public async destroy({ params, response }: HttpContextContract) {
