@@ -68,8 +68,8 @@ export default class CurriculumsController {
 
   public async destroy({ params, response }: HttpContextContract) {
     const id = params.id;
+    const curriculum: any = await Curriculum.find(id);
     try {
-      const curriculum: any = await Curriculum.find(id);
       if (!curriculum) {
         return response
           .status(404)

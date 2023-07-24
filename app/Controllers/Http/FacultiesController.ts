@@ -53,22 +53,28 @@ export default class FacultiesController {
   public async destroy({ params, response }: HttpContextContract) {
     const id = params.id;
     const faculty: any = await Faculty.find(id);
-    if (!faculty) {
+    try {
+      if (!faculty) {
+        return response
+          .status(404)
+          .json({ message: "Faculty not found", status: 404 });
+      } else if (faculty.is_deleted === 1) {
+        return response
+          .status(404)
+          .json({ message: "Faculty already deleted", status: 404 });
+      } else {
+        faculty.is_deleted = 1;
+        await faculty.save();
+        return response.status(200).json({
+          data: faculty,
+          status: 200,
+          message: `Faculty deleted byId ${id} success`,
+        });
+      }
+    } catch (error) {
       return response
-        .status(404)
-        .json({ message: "Faculty not found", status: 404 });
-    } else if (faculty.is_deleted === 1) {
-      return response
-        .status(404)
-        .json({ message: "Faculty already deleted", status: 404 });
-    } else {
-      faculty.is_deleted = 1;
-      await faculty.save();
-      return response.status(200).json({
-        data: faculty,
-        status: 200,
-        message: `Faculty deleted byId ${id} success`,
-      });
+        .status(400)
+        .json({ error: "Incorrect or incomplete information", status: 400 });
     }
   }
 }

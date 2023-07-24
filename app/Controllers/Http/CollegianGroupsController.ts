@@ -64,21 +64,27 @@ export default class CollegianGroupsController {
   public async destroy({ params, response }: HttpContextContract) {
     const id = params.id;
     const collegianGroup: any = await CollegianGroup.find(id);
-    if (!collegianGroup) {
-      return response
-        .status(404)
-        .json({ message: "CollegianGroup not found", status: 404 });
-    } else if (collegianGroup.is_deleted === 1) {
+    try {
+      if (!collegianGroup) {
+        return response
+          .status(404)
+          .json({ message: "CollegianGroup not found", status: 404 });
+      } else if (collegianGroup.is_deleted === 1) {
+        return response
+          .status(400)
+          .json({ message: "CollegianGroup already deleted", status: 400 });
+      } else {
+        collegianGroup.is_deleted = 1;
+        await collegianGroup.save();
+        return response.status(200).json({
+          message: `CollegianGroup deleted byId ${id} success`,
+          status: 200,
+        });
+      }
+    } catch (error) {
       return response
         .status(400)
-        .json({ message: "CollegianGroup already deleted", status: 400 });
-    } else {
-      collegianGroup.is_deleted = 1;
-      await collegianGroup.save();
-      return response.status(200).json({
-        message: `CollegianGroup deleted byId ${id} success`,
-        status: 200,
-      });
+        .json({ error: "Incorrect or incomplete information", status: 400 });
     }
   }
 }

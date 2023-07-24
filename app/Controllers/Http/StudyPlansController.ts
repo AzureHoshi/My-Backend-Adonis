@@ -57,21 +57,27 @@ export default class StudyPlansController {
   public async destroy({ params, response }: HttpContextContract) {
     const id = params.id;
     const studyPlan: any = await StudyPlan.find(id);
-    if (!studyPlan) {
+    try {
+      if (!studyPlan) {
+        return response
+          .status(404)
+          .json({ message: "Study Plan not found", status: 404 });
+      } else if (studyPlan.is_deleted) {
+        return response
+          .status(404)
+          .json({ message: "Study Plan already deleted", status: 404 });
+      } else {
+        studyPlan.is_deleted = true;
+        await studyPlan.save();
+        return response.status(200).json({
+          message: `Study Plan deleted byId ${id} success`,
+          status: 200,
+        });
+      }
+    } catch (error) {
       return response
-        .status(404)
-        .json({ message: "Study Plan not found", status: 404 });
-    } else if (studyPlan.is_deleted) {
-      return response
-        .status(404)
-        .json({ message: "Study Plan already deleted", status: 404 });
-    } else {
-      studyPlan.is_deleted = true;
-      await studyPlan.save();
-      return response.status(200).json({
-        message: `Study Plan deleted byId ${id} success`,
-        status: 200,
-      });
+        .status(400)
+        .json({ error: "Incorrect or incomplete information", status: 400 });
     }
   }
 }
