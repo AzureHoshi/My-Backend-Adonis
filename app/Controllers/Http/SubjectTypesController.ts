@@ -61,7 +61,7 @@ export default class SubjectTypesController {
         return response
           .status(404)
           .json({ message: "SubjectType not found", status: 404 });
-      } else if (subjectType.is_deleted == 1) {
+      } else if (subjectType.is_deleted) {
         return response
           .status(404)
           .json({ message: "SubjectType already deleted", status: 404 });

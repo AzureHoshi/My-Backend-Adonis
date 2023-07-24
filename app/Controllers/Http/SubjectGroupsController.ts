@@ -61,7 +61,7 @@ export default class SubjectGroupsController {
         return response
           .status(404)
           .json({ message: "SubjectGroup not found", status: 404 });
-      } else if (subjectGroup.is_deleted === 1) {
+      } else if (subjectGroup.is_deleted) {
         return response
           .status(200)
           .json({ message: "SubjectGroup already deleted", status: 200 });
