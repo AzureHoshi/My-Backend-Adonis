@@ -61,7 +61,7 @@ export default class SubjectTypesController {
         return response
           .status(404)
           .json({ message: "SubjectType not found", status: 404 });
-      } else if (subjectType.is_deleted == true) {
+      } else if (subjectType.is_deleted == 1) {
         return response
           .status(404)
           .json({ message: "SubjectType already deleted", status: 404 });
@@ -74,7 +74,9 @@ export default class SubjectTypesController {
         });
       }
     } catch (error) {
-      return response.status(400).json({ error: error.message, status: 400 });
+      return response
+        .status(400)
+        .json({ error: "Incorrect or incomplete information", status: 400 });
     }
   }
 }

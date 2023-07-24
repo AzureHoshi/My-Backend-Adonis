@@ -58,7 +58,7 @@ export default class SubjectCategoriesController {
         return response
           .status(404)
           .json({ message: "SubjectCategory not found", status: 404 });
-      } else if (subjectCategory.is_deleted == true) {
+      } else if (subjectCategory.is_deleted == 1) {
         return response
           .status(400)
           .json({ message: "SubjectCategory already deleted", status: 400 });
