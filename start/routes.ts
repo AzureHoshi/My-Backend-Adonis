@@ -43,6 +43,6 @@ Route.group(() => {
   ).apiOnly(); //done
   Route.resource("interest-surveys", "InterestSurveysController").apiOnly(); // ? done 75%
   Route.resource("interest-questions", "InterestQuestionsController").apiOnly(); // done
-  Route.resource("interest-answers", "InterestAnswersController").apiOnly();
+  Route.resource("interest-answers", "InterestAnswersController").apiOnly(); // done
   Route.resource("interest-records", "InterestRecordsController").apiOnly();
 }).prefix("/api/v1");

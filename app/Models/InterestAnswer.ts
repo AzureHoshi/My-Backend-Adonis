@@ -32,8 +32,10 @@ export default class InterestAnswer extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
 
-  @belongsTo(() => InterestQuestion)
-  public interest_questions: BelongsTo<typeof InterestQuestion>;
+  @belongsTo(() => InterestQuestion, {
+    foreignKey: "interest_question_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
+  })
+  public interestQuestion: BelongsTo<typeof InterestQuestion>;
 
   @hasMany(() => InterestRecord)
   public feedback_answers: HasMany<typeof InterestRecord>;
