@@ -40,7 +40,7 @@ Route.group(() => {
   Route.resource(
     "collegian-feedbacks",
     "CollegianFeedbacksController"
-  ).apiOnly();
+  ).apiOnly(); //done
   Route.resource("interest-surveys", "InterestSurveysController").apiOnly();
   Route.resource("interest-questions", "InterestQuestionsController").apiOnly();
   Route.resource("interest-answers", "InterestAnswersController").apiOnly();

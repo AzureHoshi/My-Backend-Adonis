@@ -2,6 +2,7 @@ import { DateTime } from "luxon";
 import { BaseModel, BelongsTo, belongsTo, column } from "@ioc:Adonis/Lucid/Orm";
 import Collegian from "./Collegian";
 import Feedback from "./Feedback";
+import FeedbackAnswer from "./FeedbackAnswer";
 
 export default class CollegianFeedback extends BaseModel {
   @column({ isPrimary: true })
@@ -25,9 +26,18 @@ export default class CollegianFeedback extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
 
-  @belongsTo(() => Collegian)
-  public collegians: BelongsTo<typeof Collegian>;
+  @belongsTo(() => Collegian, {
+    foreignKey: "collegian_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
+  })
+  public collegian: BelongsTo<typeof Collegian>;
 
-  @belongsTo(() => Feedback)
-  public feedbacks: BelongsTo<typeof Feedback>;
+  @belongsTo(() => Feedback, {
+    foreignKey: "feedback_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
+  })
+  public feedback: BelongsTo<typeof Feedback>;
+
+  @belongsTo(() => FeedbackAnswer, {
+    foreignKey: "feedback_answer_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
+  })
+  public feedbackAnswer: BelongsTo<typeof FeedbackAnswer>;
 }
