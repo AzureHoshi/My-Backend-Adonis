@@ -21,6 +21,8 @@ export default class InterestSurvey extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
 
-  @belongsTo(() => Curriculum)
-  public feedbacks: BelongsTo<typeof Curriculum>;
+  @belongsTo(() => Curriculum, {
+    foreignKey: "curriculum_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
+  })
+  public curriculum: BelongsTo<typeof Curriculum>;
 }
