@@ -6,6 +6,7 @@ const interestSurveySchema = schema.create({
   curriculum_id: schema.number(),
   interest_survey_version: schema.number(),
 });
+
 export default class InterestSurveysController {
   public async index({ response }: HttpContextContract) {
     const interestSurveys = await InterestSurvey.query()
@@ -18,53 +19,16 @@ export default class InterestSurveysController {
   public async store({ request, response }: HttpContextContract) {
     try {
       const payload = await request.validate({ schema: interestSurveySchema });
-      const curriculumId = payload.curriculum_id;
-
-      // ตรวจสอบว่ามี curriculum_id ในฐานข้อมูลหรือไม่
-      const existingInterestSurvey = await InterestSurvey.query().where(
-        "curriculum_id",
-        curriculumId
+      const interestSurvey: InterestSurvey = await InterestSurvey.create(
+        payload
       );
-
-      // asd
-      console.log(existingInterestSurvey);
-
-      if (existingInterestSurvey && existingInterestSurvey.length > 0) {
-        // มี curriculum_id ในฐานข้อมูลอยู่แล้ว
-        // กำหนด is_deleted เป็น 1 แล้วค่อยเพิ่ม curriculum_id ตัวใหม่
-        await InterestSurvey.query()
-          .where("curriculum_id", curriculumId)
-          .update({ is_deleted: true });
-
-        // สร้าง row ใหม่
-        const newInterestSurvey = await InterestSurvey.create(
-          payload
-          // ข้อมูลอื่น ๆ ที่คุณต้องการเพิ่มใน row ใหม่
-        );
-
-        return response.status(201).json({
-          data: newInterestSurvey,
-          status: 201,
-          message: `Interest survey created successfully && updated version`,
-        });
-      } else {
-        // ไม่มี curriculum_id ในฐานข้อมูล
-        // สร้าง row ใหม่โดยให้ is_deleted เป็น 0
-        const newInterestSurvey = await InterestSurvey.create(
-          payload
-          // ข้อมูลอื่น ๆ ที่คุณต้องการเพิ่มใน row ใหม่
-        );
-
-        return response.status(201).json({
-          data: newInterestSurvey,
-          status: 201,
-          message: `Interest survey created successfully`,
-        });
-      }
+      return response.status(201).json({ data: interestSurvey, status: 201 });
     } catch (error) {
-      return response
-        .status(400)
-        .json({ message: "Incorrect or incomplete information", status: 400 });
+      return response.status(400).json({
+        message: "Incorrect or incomplete information",
+        status: 400,
+        error: error.message,
+      });
     }
   }
 

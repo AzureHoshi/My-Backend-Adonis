@@ -44,5 +44,5 @@ Route.group(() => {
   Route.resource("interest-surveys", "InterestSurveysController").apiOnly(); // ? done 75%
   Route.resource("interest-questions", "InterestQuestionsController").apiOnly(); // done
   Route.resource("interest-answers", "InterestAnswersController").apiOnly(); // done
-  Route.resource("interest-records", "InterestRecordsController").apiOnly();
+  Route.resource("interest-records", "InterestRecordsController").apiOnly(); // done
 }).prefix("/api/v1");

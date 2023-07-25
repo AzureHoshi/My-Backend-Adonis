@@ -21,17 +21,23 @@ export default class InterestRecord extends BaseModel {
   public is_deleted: boolean;
 
   @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime;
+  public created_at: DateTime;
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime;
+  public updated_at: DateTime;
 
-  @belongsTo(() => Collegian)
-  public collegians: BelongsTo<typeof Collegian>;
+  @belongsTo(() => Collegian, {
+    foreignKey: "collegian_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
+  })
+  public collegian: BelongsTo<typeof Collegian>;
 
-  @belongsTo(() => InterestQuestion)
-  public interest_questions: BelongsTo<typeof InterestQuestion>;
+  @belongsTo(() => InterestQuestion, {
+    foreignKey: "interest_question_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
+  })
+  public interestQuestion: BelongsTo<typeof InterestQuestion>;
 
-  @belongsTo(() => InterestAnswer)
-  public interest_answers: BelongsTo<typeof InterestAnswer>;
+  @belongsTo(() => InterestAnswer, {
+    foreignKey: "interest_answer_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
+  })
+  public interestAnswer: BelongsTo<typeof InterestAnswer>;
 }
