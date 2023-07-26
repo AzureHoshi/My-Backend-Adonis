@@ -45,4 +45,10 @@ Route.group(() => {
   Route.resource("interest-questions", "InterestQuestionsController").apiOnly(); // done
   Route.resource("interest-answers", "InterestAnswersController").apiOnly(); // done
   Route.resource("interest-records", "InterestRecordsController").apiOnly(); // done
+
+  // ? สำหรับทดสอบการอัพโหลดไฟล์
+  Route.group(() => {
+    Route.get("download", "FileUploadsController.download");
+    Route.post("upload", "FileUploadsController.upload");
+  }).prefix("/test");
 }).prefix("/api/v1");
