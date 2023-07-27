@@ -8,6 +8,10 @@
     "build"
   ],
   "compilerOptions": {
+    "target": "es2020",
+    "module": "commonjs",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
     "outDir": "build",
     "rootDir": "./",
     "sourceMap": true,
