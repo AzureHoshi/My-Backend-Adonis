@@ -30,7 +30,7 @@ export default class FileUploadsController {
     }
 
     file.clientName = "test.docx";
-    const fileUpload = await TestUploadFile.create({
+    await TestUploadFile.create({
       fileName: file.clientName,
       filePath: Application.tmpPath("files-upload"),
       fileType: file.extname,
