@@ -18,16 +18,12 @@ const curriculumSchema = schema.create({
 
 export default class CurriculumsController {
   public async index({ response }: HttpContextContract) {
-    try {
-      const curriculums = await Curriculum.query()
-        .preload("faculty") // แสดงข้อมูลของ faculties ที่เกี่ยวข้อง
-        .preload("collegian_groups") // แสดงข้อมูลของ collegian_groups ที่เกี่ยวข้อง
-        .where("curriculums.is_deleted", false)
-        .orderBy("curriculums.updated_at", "desc");
-      return response.status(200).json({ data: curriculums, status: 200 });
-    } catch (error) {
-      return response.status(400).json({ error: error.message, status: 400 });
-    }
+    const curriculums = await Curriculum.query()
+      .preload("faculty") // แสดงข้อมูลของ faculties ที่เกี่ยวข้อง
+      .preload("collegian_groups") // แสดงข้อมูลของ collegian_groups ที่เกี่ยวข้อง
+      .where("curriculums.is_deleted", false)
+      .orderBy("curriculums.updated_at", "desc");
+    return response.status(200).json({ data: curriculums, status: 200 });
   }
 
   public async store({ request, response }: HttpContextContract) {
