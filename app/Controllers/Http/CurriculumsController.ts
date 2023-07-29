@@ -1,6 +1,7 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import Curriculum from "App/Models/Curriculum";
+import Subject from "App/Models/Subject";
 
 const curriculumSchema = schema.create({
   faculty_id: schema.number(),
@@ -28,10 +29,51 @@ export default class CurriculumsController {
 
   public async store({ request, response }: HttpContextContract) {
     try {
+      const { ref_curriculum_id } = request.all();
       const payload = await request.validate({ schema: curriculumSchema });
-      const curriculum: Curriculum = await Curriculum.create(payload);
-      return response.status(201).json({ data: curriculum, status: 201 });
+      console.log(ref_curriculum_id);
+
+      if (!ref_curriculum_id) {
+        const curriculum: Curriculum = await Curriculum.create(payload);
+        return response.status(201).json({ data: curriculum, status: 201 });
+      } else {
+        // const ref_curriculum: any = await Curriculum.find(
+        //   payload.ref_curriculum_id
+        // );
+
+        const subjectsWithCurriculumId = await Subject.query().where(
+          "curriculum_id",
+          ref_curriculum_id
+        );
+        console.log(subjectsWithCurriculumId);
+
+        if (
+          !subjectsWithCurriculumId ||
+          subjectsWithCurriculumId.length === 0
+        ) {
+          return response
+            .status(404)
+            .json({ message: "Ref curriculum not found", status: 404 });
+        } else {
+          const curriculum: Curriculum = await Curriculum.create(payload);
+          const subjectsWithNewCurriculumId = subjectsWithCurriculumId.map(
+            (subject) => {
+              const subjectData = subject.toJSON();
+              subjectData.curriculum_id = ref_curriculum_id; // เปลี่ยน curriculum_id เป็น 4
+              delete subjectData.subject_id; // ลบ subject_id เพื่อให้สร้างข้อมูลใหม่
+              return subjectData;
+            }
+          );
+          await Subject.createMany(subjectsWithNewCurriculumId);
+          return response.status(201).json({
+            data: curriculum,
+            subjectData: subjectsWithNewCurriculumId,
+            status: 201,
+          });
+        }
+      }
     } catch (error) {
+      console.log(error.message);
       return response
         .status(400)
         .json({ error: "Incorrect or incomplete information", status: 400 });
