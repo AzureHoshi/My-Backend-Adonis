@@ -18,7 +18,7 @@ const curriculumSchema = schema.create({
 
 export default class CurriculumsController {
   public async index({ response }: HttpContextContract) {
-    const curriculums = await Curriculum.query().where("is_deleted", false);
+    const curriculums = await Curriculum.query()
       .preload("faculty") // แสดงข้อมูลของ faculties ที่เกี่ยวข้อง
       .preload("collegian_groups") // แสดงข้อมูลของ collegian_groups ที่เกี่ยวข้อง
       .where("curriculums.is_deleted", false)
