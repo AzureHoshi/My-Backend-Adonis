@@ -34,6 +34,22 @@ export default class SubjectsController {
     }
   }
 
+  public async show({ params, response }: HttpContextContract) {
+    try {
+      const id = params.id;
+      const subject: any = await Subject.query()
+        .where("curriculum_id", id)
+        .where("is_deleted", false);
+      if (!subject) {
+        return response
+          .status(404)
+          .json({ message: "Subject not found", status: 404 });
+      } else {
+        return response.status(200).json({ data: subject, status: 200 });
+      }
+    } catch (error) {}
+  }
+
   public async update({ params, request, response }: HttpContextContract) {
     try {
       const id = params.id;
