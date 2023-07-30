@@ -22,7 +22,7 @@ export default class extends BaseSchema {
       table.string("curriculum_name_en").notNullable();
       table.string("curriculum_short_name_th");
       table.string("curriculum_short_name_en");
-      table.string("curriculum_year").notNullable();
+      table.integer("curriculum_year").notNullable();
       table.boolean("is_deleted").notNullable().defaultTo(false);
 
       /**
