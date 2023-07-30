@@ -53,9 +53,10 @@ export default class CurriculumsController {
         ) {
           console.log("test1: ", subjectsWithCurriculumId);
 
-          return response
-            .status(404)
-            .json({ message: "Ref curriculum not found", status: 404 });
+          return response.status(404).json({
+            message: `subjects have curriculum_id ${ref_curriculum_id}, not found`,
+            status: 404,
+          });
         } else {
           console.log("test2: ", subjectsWithCurriculumId);
 
@@ -77,7 +78,7 @@ export default class CurriculumsController {
         }
       }
     } catch (error) {
-      console.log(error.message);
+      console.log("error: ", error.message);
       return response
         .status(400)
         .json({ error: "Incorrect or incomplete information", status: 400 });
