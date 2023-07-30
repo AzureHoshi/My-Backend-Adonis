@@ -50,7 +50,7 @@ export default class CurriculumsController {
           subjectsWithCurriculumId.length === 0
         ) {
           return response.status(404).json({
-            message: `subjects have curriculum_id ${ref_curriculum_id}, not found`,
+            message: "curriculum have not any subject to duplicate!",
             status: 404,
           });
         } else {
