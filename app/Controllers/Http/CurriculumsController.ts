@@ -51,10 +51,14 @@ export default class CurriculumsController {
           !subjectsWithCurriculumId ||
           subjectsWithCurriculumId.length === 0
         ) {
+          console.log("test1: ", subjectsWithCurriculumId);
+
           return response
             .status(404)
             .json({ message: "Ref curriculum not found", status: 404 });
         } else {
+          console.log("test2: ", subjectsWithCurriculumId);
+
           const curriculum: Curriculum = await Curriculum.create(payload);
           const subjectsWithNewCurriculumId = subjectsWithCurriculumId.map(
             (subject) => {
