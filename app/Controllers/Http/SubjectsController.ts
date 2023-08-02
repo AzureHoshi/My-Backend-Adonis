@@ -38,6 +38,8 @@ export default class SubjectsController {
     try {
       const id = params.id;
       const subject: any = await Subject.query()
+        .preload("curriculums")
+        .preload("subject_groups")
         .where("curriculum_id", id)
         .where("is_deleted", false);
       if (!subject) {
