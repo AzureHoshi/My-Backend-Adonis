@@ -36,7 +36,7 @@ export default class SubjectsController {
 
   public async show({ params, response }: HttpContextContract) {
     try {
-      const id = params.id;
+      const id: any = params.id;
       const subject: any = await Subject.query()
         .preload("curriculums")
         .preload("subject_groups")
@@ -54,7 +54,7 @@ export default class SubjectsController {
 
   public async update({ params, request, response }: HttpContextContract) {
     try {
-      const id = params.id;
+      const id: any = params.id;
       const payload = await request.validate({ schema: subjectSchema });
       const subject: any = await Subject.find(id);
       if (!subject) {
@@ -79,7 +79,7 @@ export default class SubjectsController {
 
   public async destroy({ params, response }: HttpContextContract) {
     try {
-      const id = params.id;
+      const id: any = params.id;
       const subject: any = await Subject.find(id);
       if (!subject) {
         return response
