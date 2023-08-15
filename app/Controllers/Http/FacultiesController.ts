@@ -39,7 +39,24 @@ export default class FacultiesController {
           .status(404)
           .json({ message: "Faculty not found", status: 404 });
       } else {
-        return response.status(200).json({ data: faculty, status: 200 });
+        const formattedData = {
+          faculty_id: faculty.faculty_id,
+          faculty_name_th: faculty.faculty_name_th,
+          faculty_name_en: faculty.faculty_name_en,
+          is_deleted: faculty.is_deleted,
+          created_at: faculty.created_at,
+          updated_at: faculty.updated_at,
+          curriculum: {
+            curriculum_id: faculty.curriculum_id,
+            collegian_group_id: faculty.collegian_group_id,
+            curriculum_name_th: faculty.curriculum_name_th,
+            curriculum_name_en: faculty.curriculum_name_en,
+            curriculum_short_name_th: faculty.curriculum_short_name_th,
+            curriculum_short_name_en: faculty.curriculum_short_name_en,
+            curriculum_year: faculty.curriculum_year,
+          },
+        };
+        return response.status(200).json({ data: formattedData, status: 200 });
       }
     } catch (error) {
       return response
