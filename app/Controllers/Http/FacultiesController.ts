@@ -15,6 +15,26 @@ export default class FacultiesController {
     return response.status(200).json({ data: faculty, status: 200 });
   }
 
+  public async show({ params, response }: HttpContextContract) {
+    try {
+      const id = params.id;
+      const faculty: any = await Faculty.query()
+        .where("faculty_id", id)
+        .where("is_deleted", 0)
+        .preload("curriculums");
+      if (!faculty) {
+        return response
+          .status(404)
+          .json({ message: "Faculty not found", status: 404 });
+      }
+      return response.status(200).json({ data: faculty, status: 200 });
+    } catch (error) {
+      return response
+        .status(400)
+        .json({ error: "Incorrect or incomplete information", status: 400 });
+    }
+  }
+
   public async store({ request, response }: HttpContextContract) {
     try {
       const payload = await request.validate({ schema: facultySchema });
