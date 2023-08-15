@@ -22,9 +22,9 @@ export default class FacultiesController {
     try {
       const id = params.id;
       const faculty: any = await Database.from("faculties")
-        .join("curriculums", "faculties.faculty_id", "curriculums.faculty_id")
-        .select("Faculty.*")
-        .select("Curriculum.*");
+        .join("curriculums", "faculty_id", "curriculums.faculty_id")
+        .select("faculty.*")
+        .select("curriculum.*");
 
       console.log("test: ", faculty);
 
