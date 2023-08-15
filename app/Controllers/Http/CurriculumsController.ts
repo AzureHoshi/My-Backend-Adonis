@@ -30,12 +30,16 @@ export default class CurriculumsController {
   public async show({ params, response }: HttpContextContract) {
     try {
       const id = params.id;
+      console.log("id: ", id);
+
       const curriculum = await Curriculum.query()
         .preload("faculty") // แสดงข้อมูลของ faculties ที่เกี่ยวข้อง
         .preload("collegian_groups") // แสดงข้อมูลของ collegian_groups ที่เกี่ยวข้อง
         .where("curriculums.is_deleted", false)
-        .where("curriculums.id", id)
+        .where("faculty.id", id)
         .firstOrFail();
+
+      console.log("curriculum: ", curriculum);
 
       if (!curriculum) {
         return response
