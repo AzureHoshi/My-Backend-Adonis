@@ -24,6 +24,8 @@ export default class FacultiesController {
         .where("faculties.id", id)
         .where("is_deleted", 0);
 
+      console.log("test: ", faculty);
+
       if (!faculty) {
         return response
           .status(404)
