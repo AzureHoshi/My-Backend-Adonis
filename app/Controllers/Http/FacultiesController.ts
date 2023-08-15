@@ -21,10 +21,12 @@ export default class FacultiesController {
 
     try {
       const id = params.id;
-      const faculty: any = await Database.from("faculties").console.log(
-        "test: ",
-        faculty
-      );
+      const faculty: any = await Database.from("faculties")
+        .join("curriculums", "faculties.faculty_id", "curriculums.faculty_id")
+        .select("Faculty.*")
+        .select("Curriculum.*");
+
+      console.log("test: ", faculty);
 
       if (!faculty) {
         return response
