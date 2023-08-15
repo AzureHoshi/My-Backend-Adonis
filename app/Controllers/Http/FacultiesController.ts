@@ -20,8 +20,9 @@ export default class FacultiesController {
       const id = params.id;
       const faculty: any = await Faculty.query()
         .preload("curriculums")
-        .where("faculty_id", id)
-        .where("is_deleted", false);
+        .join("curriculums", "faculties.id", "curriculums.faculty_id")
+        .where("faculties.id", id)
+        .where("is_deleted", 0);
 
       if (!faculty) {
         return response
