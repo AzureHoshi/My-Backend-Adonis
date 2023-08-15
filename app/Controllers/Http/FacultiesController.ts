@@ -22,9 +22,15 @@ export default class FacultiesController {
     try {
       const id = params.id;
       const faculty: any = await Database.from("faculties")
-        .join("curriculums", "faculty_id", "curriculums.faculty_id")
-        .select("faculty.*")
-        .select("curriculum.*");
+        .leftJoin(
+          "curriculums",
+          "faculties.faculty_id",
+          "curriculums.faculty_id"
+        )
+        .select("faculties.*", "curriculums.*")
+        .where("faculties.faculty_id", id)
+        .where("faculties.is_deleted", false)
+        .first();
 
       console.log("test: ", faculty);
 
