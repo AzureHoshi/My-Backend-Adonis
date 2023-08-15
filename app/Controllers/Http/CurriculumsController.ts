@@ -27,33 +27,6 @@ export default class CurriculumsController {
     return response.status(200).json({ data: curriculums, status: 200 });
   }
 
-  public async show({ params, response }: HttpContextContract) {
-    try {
-      const id = params.id;
-      console.log("id: ", id);
-
-      const curriculum = await Curriculum.query()
-        .preload("faculty") // แสดงข้อมูลของ faculties ที่เกี่ยวข้อง
-        .preload("collegian_groups") // แสดงข้อมูลของ collegian_groups ที่เกี่ยวข้อง
-        .where("curriculums.is_deleted", false)
-        .where("faculty_id", id);
-
-      console.log("curriculum: ", curriculum);
-
-      if (!curriculum) {
-        return response
-          .status(404)
-          .json({ message: "Curriculum not found", status: 404 });
-      } else {
-        return response.status(200).json({ data: curriculum, status: 200 });
-      }
-    } catch (error) {
-      return response
-        .status(400)
-        .json({ error: "Incorrect or incomplete information", status: 400 });
-    }
-  }
-
   public async store({ request, response }: HttpContextContract) {
     try {
       const { ref_curriculum_id } = request.all();
