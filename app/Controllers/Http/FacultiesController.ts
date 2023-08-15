@@ -16,12 +16,14 @@ export default class FacultiesController {
   }
 
   public async show({ params, response }: HttpContextContract) {
+    console.log("testId: ", params.id);
+
     try {
       const id = params.id;
       const faculty: any = await Faculty.query()
         .preload("curriculums")
         .join("curriculums", "faculties.id", "curriculums.faculty_id")
-        .where("faculties.id", id)
+        .where("faculty_id", id)
         .where("is_deleted", 0);
 
       console.log("test: ", faculty);
