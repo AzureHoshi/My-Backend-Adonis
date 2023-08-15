@@ -36,7 +36,7 @@ export default class CurriculumsController {
         .preload("faculty") // แสดงข้อมูลของ faculties ที่เกี่ยวข้อง
         .preload("collegian_groups") // แสดงข้อมูลของ collegian_groups ที่เกี่ยวข้อง
         .where("curriculums.is_deleted", false)
-        .where("faculty.id", id)
+        .where("Faculty_id", id)
         .firstOrFail();
 
       console.log("curriculum: ", curriculum);
