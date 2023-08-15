@@ -19,15 +19,17 @@ export default class FacultiesController {
     try {
       const id = params.id;
       const faculty: any = await Faculty.query()
+        .preload("curriculums")
         .where("faculty_id", id)
-        .where("is_deleted", 0)
-        .preload("curriculums");
+        .where("is_deleted", false);
+
       if (!faculty) {
         return response
           .status(404)
           .json({ message: "Faculty not found", status: 404 });
+      } else {
+        return response.status(200).json({ data: faculty, status: 200 });
       }
-      return response.status(200).json({ data: faculty, status: 200 });
     } catch (error) {
       return response
         .status(400)
