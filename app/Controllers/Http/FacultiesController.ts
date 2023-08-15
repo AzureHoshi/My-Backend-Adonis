@@ -1,5 +1,6 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
+import Database from "@ioc:Adonis/Lucid/Database";
 import Faculty from "App/Models/Faculty";
 
 const facultySchema = schema.create({
@@ -20,13 +21,10 @@ export default class FacultiesController {
 
     try {
       const id = params.id;
-      const faculty: any = await Faculty.query()
-        .preload("curriculums")
-        .join("curriculums", "faculty_id", "curriculums.faculty_id")
-        .where("faculty_id", id)
-        .where("is_deleted", 0);
-
-      console.log("test: ", faculty);
+      const faculty: any = await Database.from("faculties").console.log(
+        "test: ",
+        faculty
+      );
 
       if (!faculty) {
         return response
