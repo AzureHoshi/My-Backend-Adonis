@@ -1,6 +1,7 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import Feedback from "App/Models/Feedback";
+import FeedbackAnswer from "App/Models/FeedbackAnswer";
 
 const feedbackSchema = schema.create({
   feedback_question: schema.string([rules.maxLength(255)]),
@@ -8,21 +9,33 @@ const feedbackSchema = schema.create({
 });
 export default class FeedbacksController {
   public async index({ response }: HttpContextContract) {
-    // const feedbacks = await Feedback.query()
-    //   .innerJoin(
-    //     "feedback_answers",
-    //     "feedback_answers.feedback_id",
-    //     "feedbacks.id"
-    //   )
-    //   .where("is_deleted", false)
-    //   .orderBy("feedbacks.createdAt", "asc");
+    try {
+      const feedbacks = await Feedback.query().where("is_deleted", false);
 
-    const feedbacks = await Feedback.query()
-      .preload("feedback_answers")
-      .where("is_deleted", false)
-      .orderBy("feedbacks.createdAt", "asc");
+      const feedbackAddAnswer = await Promise.all(
+        feedbacks.map(async (feedback) => {
+          const feedbackAnswer = await FeedbackAnswer.query()
+            .where("feedback_id", feedback.feedback_id)
+            .where("is_deleted", false);
 
-    return response.status(200).json({ data: feedbacks, status: 200 });
+          return {
+            feedback_id: feedback.feedback_id,
+            feedback_question: feedback.feedback_question,
+            feedback_type: feedback.feedback_type,
+            createdAt: feedback.createdAt,
+            updatedAt: feedback.updatedAt,
+            feedback_answer: feedbackAnswer,
+          };
+        })
+      );
+
+      return response
+        .status(200)
+        .json({ data: feedbackAddAnswer, status: 200 });
+    } catch (error) {
+      console.error(error);
+      return response.status(500).json({ error: "Internal Server Error" });
+    }
   }
 
   public async store({ request, response }: HttpContextContract) {
