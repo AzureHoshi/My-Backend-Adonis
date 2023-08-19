@@ -1,6 +1,7 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import Feedback from "App/Models/Feedback";
+import FeedbackAnswer from "App/Models/FeedbackAnswer";
 
 const feedbackSchema = schema.create({
   feedback_question: schema.string([rules.maxLength(255)]),
