@@ -8,9 +8,20 @@ const feedbackSchema = schema.create({
 });
 export default class FeedbacksController {
   public async index({ response }: HttpContextContract) {
+    // const feedbacks = await Feedback.query()
+    //   .innerJoin(
+    //     "feedback_answers",
+    //     "feedback_answers.feedback_id",
+    //     "feedbacks.id"
+    //   )
+    //   .where("is_deleted", false)
+    //   .orderBy("feedbacks.createdAt", "asc");
+
     const feedbacks = await Feedback.query()
+      .preload("feedback_answers")
       .where("is_deleted", false)
-      .orderBy("updated_at", "desc");
+      .orderBy("feedbacks.createdAt", "asc");
+
     return response.status(200).json({ data: feedbacks, status: 200 });
   }
 
