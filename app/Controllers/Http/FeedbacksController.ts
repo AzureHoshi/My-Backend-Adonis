@@ -22,6 +22,7 @@ export default class FeedbacksController {
             feedback_id: feedback.feedback_id,
             feedback_question: feedback.feedback_question,
             feedback_type: feedback.feedback_type,
+            feedback_is_deleted: feedback.is_deleted,
             createdAt: feedback.createdAt,
             updatedAt: feedback.updatedAt,
             feedback_answer: feedbackAnswer,
