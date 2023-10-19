@@ -9,26 +9,19 @@ const feedbackSchema = schema.create({
 });
 export default class FeedbacksController {
   public async index({ response }: HttpContextContract) {
-    try {
-      const feedbacks = await Feedback.query().where("is_deleted", false);
+    // const feedbacks = await Feedback.query()
+    //   .innerJoin(
+    //     "feedback_answers",
+    //     "feedback_answers.feedback_id",
+    //     "feedbacks.id"
+    //   )
+    //   .where("is_deleted", false)
+    //   .orderBy("feedbacks.createdAt", "asc");
 
-      const feedbackAddAnswer = await Promise.all(
-        feedbacks.map(async (feedback) => {
-          const feedbackAnswer = await FeedbackAnswer.query()
-            .where("feedback_id", feedback.feedback_id)
-            .where("is_deleted", false);
-
-          return {
-            feedback_id: feedback.feedback_id,
-            feedback_question: feedback.feedback_question,
-            feedback_type: feedback.feedback_type,
-            feedback_is_deleted: feedback.is_deleted,
-            createdAt: feedback.createdAt,
-            updatedAt: feedback.updatedAt,
-            feedback_answer: feedbackAnswer,
-          };
-        })
-      );
+    const feedbacks = await Feedback.query()
+      .preload("feedback_answers")
+      .where("is_deleted", false)
+      .orderBy("feedbacks.createdAt", "asc");
 
       return response
         .status(200)
