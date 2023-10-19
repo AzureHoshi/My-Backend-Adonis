@@ -1,8 +1,6 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import SubjectGroup from "App/Models/SubjectGroup";
-import SubjectType from "App/Models/SubjectType";
-import SubjectCategory from "App/Models/SubjectCategory";
 
 const subjectGroupSchema = schema.create({
   subject_type_id: schema.number(),
@@ -11,21 +9,11 @@ const subjectGroupSchema = schema.create({
 
 export default class SubjectGroupsController {
   public async index({ response }: HttpContextContract) {
-    try {
-      const subjectGroups = await SubjectGroup.query()
-        .preload("subject_types", (query) => {
-          query.preload("subject_categories");
-        })
-        .where("is_deleted", false)
-        .orderBy("subject_group_id", "desc");
-
-      return response.status(200).json({ data: subjectGroups, status: 200 });
-    } catch (error) {
-      // Handle any errors that occur during the query execution
-      return response
-        .status(500)
-        .json({ error: "Internal Server Error", status: 500 });
-    }
+    const subjectGroups = await SubjectGroup.query()
+      .preload("subject_types")
+      .where("is_deleted", false)
+      .orderBy("updatedAt", "desc");
+    return response.status(200).json({ data: subjectGroups, status: 200 });
   }
 
   public async store({ request, response }: HttpContextContract) {
