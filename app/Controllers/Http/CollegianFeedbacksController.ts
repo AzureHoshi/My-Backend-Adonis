@@ -14,7 +14,7 @@ export default class CollegianFeedbacksController {
   public async store({ request, response }: HttpContextContract) {
     try {
       const rawData = request.raw();
-      const { data } = JSON.parse(rawData);
+      const { data } = rawData ? JSON.parse(rawData as string) : { data: [] };
 
       const collegianFeedbacks = await Promise.all(
         data.map(async (collegianFeedback) => {
