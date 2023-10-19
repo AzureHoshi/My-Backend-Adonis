@@ -10,7 +10,7 @@ const subjectGroupSchema = schema.create({
 export default class SubjectGroupsController {
   public async index({ response }: HttpContextContract) {
     const subjectGroups = await SubjectGroup.query()
-      .preload("subject_types", (query) => {
+      .whereHas("subject_types", (query) => {
         query.where("is_deleted", false);
       })
       .where("is_deleted", false)
