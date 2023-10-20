@@ -1,5 +1,6 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
+import Database from "@ioc:Adonis/Lucid/Database";
 import Curriculum from "App/Models/Curriculum";
 import Faculty from "App/Models/Faculty";
 
@@ -21,7 +22,10 @@ export default class FacultiesController {
 
     try {
       const id = params.id;
-      const faculty = await Faculty.find(id);
+      const faculty = await Faculty.query()
+        .where("is_deleted", 0)
+        .where("faculty_id", id)
+        .orderBy("updatedAt", "desc");
 
       console.log("test: ", faculty);
 
