@@ -1,6 +1,5 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
-import Database from "@ioc:Adonis/Lucid/Database";
 import Curriculum from "App/Models/Curriculum";
 import Faculty from "App/Models/Faculty";
 
@@ -36,8 +35,13 @@ export default class FacultiesController {
 
         // สร้างข้อมูลที่จะส่งกลับ
         const formattedData = {
-          faculty: faculty, // แปลงเป็น JSON
-          curriculums: curriculums, // แปลงเป็น JSON
+          faculty_id: faculty.faculty_id,
+          faculty_name_th: faculty.faculty_name_th,
+          faculty_name_en: faculty.faculty_name_en,
+          is_deleted: faculty.is_deleted,
+          created_at: faculty.createdAt,
+          updated_at: faculty.updatedAt,
+          curriculums: curriculums,
         };
 
         return response.status(200).json({ data: formattedData, status: 200 });
