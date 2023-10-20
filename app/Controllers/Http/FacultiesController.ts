@@ -34,7 +34,10 @@ export default class FacultiesController {
           .json({ message: "Faculty not found", status: 404 });
       } else {
         // ค้นหาหลักสูตรที่เกี่ยวข้องกับคณะนั้น
-        const curriculums = await Curriculum.query().where("faculty_id", id);
+        const curriculums = await Curriculum.query()
+          .where("faculty_id", id)
+          .where("is_deleted", 0)
+          .orderBy("curriculum_year", "desc");
 
         // สร้างข้อมูลที่จะส่งกลับ
         const formattedData = {
