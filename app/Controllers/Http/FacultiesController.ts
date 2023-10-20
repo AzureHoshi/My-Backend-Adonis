@@ -1,6 +1,7 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import Database from "@ioc:Adonis/Lucid/Database";
+import Curriculum from "App/Models/Curriculum";
 import Faculty from "App/Models/Faculty";
 
 const facultySchema = schema.create({
@@ -21,16 +22,10 @@ export default class FacultiesController {
 
     try {
       const id = params.id;
-      const faculty: any = await Database.from("faculties")
-        .leftJoin(
-          "curriculums",
-          "faculties.faculty_id",
-          "curriculums.faculty_id"
-        )
-        .select("faculties.*", "curriculums.*")
-        .where("faculties.faculty_id", id)
-        .where("faculties.is_deleted", false)
-        .first();
+      const faculty = await Faculty.query()
+        .where("is_deleted", 0)
+        .where("faculty_id", id)
+        .orderBy("updatedAt", "desc");
 
       console.log("test: ", faculty);
 
@@ -39,23 +34,8 @@ export default class FacultiesController {
           .status(404)
           .json({ message: "Faculty not found", status: 404 });
       } else {
-        const formattedData = {
-          faculty_id: faculty.faculty_id,
-          faculty_name_th: faculty.faculty_name_th,
-          faculty_name_en: faculty.faculty_name_en,
-          is_deleted: faculty.is_deleted,
-          created_at: faculty.created_at,
-          updated_at: faculty.updated_at,
-          curriculum: {
-            curriculum_id: faculty.curriculum_id,
-            collegian_group_id: faculty.collegian_group_id,
-            curriculum_name_th: faculty.curriculum_name_th,
-            curriculum_name_en: faculty.curriculum_name_en,
-            curriculum_short_name_th: faculty.curriculum_short_name_th,
-            curriculum_short_name_en: faculty.curriculum_short_name_en,
-            curriculum_year: faculty.curriculum_year,
-          },
-        };
+        const curriculums = await Curriculum.query().where("faculty_id", id);
+        const formattedData = { ...faculty, curriculums: curriculums };
         return response.status(200).json({ data: formattedData, status: 200 });
       }
     } catch (error) {
