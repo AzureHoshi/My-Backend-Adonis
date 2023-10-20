@@ -22,10 +22,7 @@ export default class FacultiesController {
 
     try {
       const id = params.id;
-      const faculty = await Faculty.query()
-        .where("is_deleted", 0)
-        .where("faculty_id", id)
-        .orderBy("updatedAt", "desc");
+      const faculty = await Faculty.find(id);
 
       console.log("test: ", faculty);
 
@@ -34,8 +31,15 @@ export default class FacultiesController {
           .status(404)
           .json({ message: "Faculty not found", status: 404 });
       } else {
+        // ค้นหาหลักสูตรที่เกี่ยวข้องกับคณะนั้น
         const curriculums = await Curriculum.query().where("faculty_id", id);
-        const formattedData = { ...faculty, curriculums: curriculums };
+
+        // สร้างข้อมูลที่จะส่งกลับ
+        const formattedData = {
+          faculty: faculty, // แปลงเป็น JSON
+          curriculums: curriculums, // แปลงเป็น JSON
+        };
+
         return response.status(200).json({ data: formattedData, status: 200 });
       }
     } catch (error) {
