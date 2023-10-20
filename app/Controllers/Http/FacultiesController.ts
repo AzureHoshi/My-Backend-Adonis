@@ -17,11 +17,14 @@ export default class FacultiesController {
   }
 
   public async show({ params, response }: HttpContextContract) {
-    console.log("testId: ", params.id);
+    console.log("test: ", params.id);
 
     try {
       const id = params.id;
-      const faculty = await Faculty.find(id);
+      const faculty = await Faculty.query()
+        .where("faculty_id", id)
+        .where("is_deleted", 0)
+        .first();
 
       console.log("test: ", faculty);
 
