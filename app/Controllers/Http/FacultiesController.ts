@@ -22,10 +22,7 @@ export default class FacultiesController {
 
     try {
       const id = params.id;
-      const faculty = await Faculty.query()
-        .where("is_deleted", 0)
-        .where("faculty_id", id)
-        .orderBy("updatedAt", "desc");
+      const faculty = await Faculty.find(id);
 
       console.log("test: ", faculty);
 
