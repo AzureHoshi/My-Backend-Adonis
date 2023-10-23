@@ -14,12 +14,18 @@ const subjectSchema = schema.create({
 
 export default class SubjectsController {
   public async index({ response }: HttpContextContract) {
-    const subject = await Subject.query()
-      .preload("curriculums")
-      .preload("subject_groups")
-      .where("is_deleted", false)
-      .orderBy("updatedAt", "desc");
-    return response.status(200).json({ data: subject, status: 200 });
+    try {
+      const subjects = await Subject.query()
+        .preload("curriculums")
+        .preload("subject_groups")
+        .preload("competencies")
+        .where("is_deleted", false)
+        .orderBy("updatedAt", "desc");
+
+      return response.status(200).json({ data: subjects });
+    } catch (error) {
+      return response.status(500).json({ message: "Internal Server Error" });
+    }
   }
 
   public async store({ request, response }: HttpContextContract) {

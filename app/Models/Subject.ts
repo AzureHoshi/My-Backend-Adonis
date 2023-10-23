@@ -9,6 +9,7 @@ import {
 } from "@ioc:Adonis/Lucid/Orm";
 import SubjectGroup from "./SubjectGroup";
 import Curriculum from "./Curriculum";
+import Competency from "./Competency";
 
 export default class Subject extends BaseModel {
   @column({ isPrimary: true })
@@ -53,6 +54,11 @@ export default class Subject extends BaseModel {
     foreignKey: "subject_group_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
   })
   public subject_groups: BelongsTo<typeof SubjectGroup>;
+
+  @belongsTo(() => Competency, {
+    foreignKey: "subject_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
+  })
+  public competencies: BelongsTo<typeof Competency>;
 
   @hasMany(() => Subject)
   public subjects: HasMany<typeof Subject>;
