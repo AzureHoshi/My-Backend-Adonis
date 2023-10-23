@@ -56,10 +56,7 @@ export default class Subject extends BaseModel {
   public subject_groups: BelongsTo<typeof SubjectGroup>;
 
   @belongsTo(() => Competency, {
-    foreignKey: "subject_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
+    foreignKey: "subject_id",
   })
-  public competencies: BelongsTo<typeof Competency>;
-
-  @hasMany(() => Subject)
-  public subjects: HasMany<typeof Subject>;
+  public competency: BelongsTo<typeof Competency>;
 }

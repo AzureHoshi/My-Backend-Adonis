@@ -1,5 +1,6 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
+import Competency from "App/Models/Competency";
 import Subject from "App/Models/Subject";
 
 const subjectSchema = schema.create({
@@ -15,14 +16,27 @@ const subjectSchema = schema.create({
 export default class SubjectsController {
   public async index({ response }: HttpContextContract) {
     try {
+      // ดึงข้อมูล subjects
       const subjects = await Subject.query()
         .preload("curriculums")
         .preload("subject_groups")
-        .preload("competencies")
         .where("is_deleted", false)
         .orderBy("updatedAt", "desc");
 
-      return response.status(200).json({ data: subjects });
+      // ดึงข้อมูล competencies โดยเช็ค subject_id ของแต่ละ subject
+      const subjectWithCompetency = await Promise.all(
+        subjects.map(async (subject) => {
+          const competencies = await Competency.query()
+            .where("subject_id", subject.subject_id)
+            .where("is_deleted", false);
+          return {
+            ...subject.toJSON(),
+            competencies: competencies,
+          };
+        })
+      );
+
+      return response.status(200).json({ data: subjectWithCompetency });
     } catch (error) {
       return response.status(500).json({ message: "Internal Server Error" });
     }
