@@ -1,6 +1,14 @@
 import { DateTime } from "luxon";
-import { BaseModel, HasMany, column, hasMany } from "@ioc:Adonis/Lucid/Orm";
+import {
+  BaseModel,
+  HasMany,
+  HasManyThrough,
+  column,
+  hasMany,
+  hasManyThrough,
+} from "@ioc:Adonis/Lucid/Orm";
 import SubjectType from "./SubjectType";
+import SubjectGroup from "./SubjectGroup";
 
 export default class SubjectCategory extends BaseModel {
   @column({ isPrimary: true })
@@ -18,6 +26,7 @@ export default class SubjectCategory extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
 
-  @hasMany(() => SubjectType)
-  public subject_types: HasMany<typeof SubjectType>;
+  @hasManyThrough([() => SubjectType, () => SubjectGroup])
+  public subject_types: HasManyThrough<typeof SubjectType>;
+  public subject_groups: HasManyThrough<typeof SubjectGroup>;
 }

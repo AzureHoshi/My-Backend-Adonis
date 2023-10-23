@@ -13,7 +13,9 @@ export default class SubjectGroupsController {
       .whereHas("subject_types", (query) => {
         query.where("is_deleted", false);
       })
-      .preload("subject_types")
+      .preload("subject_types", (query) => {
+        query.preload("subject_categories");
+      })
       .where("is_deleted", false)
       .orderBy("updatedAt", "desc");
     return response.status(200).json({ data: subjectGroups, status: 200 });
