@@ -4,13 +4,16 @@ import Subject from "./Subject";
 
 export default class Competency extends BaseModel {
   @column({ isPrimary: true })
-  public id: number;
+  public competency_id: number;
 
   @column()
   public subject_id: number;
 
   @column()
-  public competencie_name: string;
+  public competency_name: string;
+
+  @column()
+  public is_deleted: boolean;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;

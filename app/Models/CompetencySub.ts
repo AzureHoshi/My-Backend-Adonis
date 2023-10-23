@@ -1,8 +1,12 @@
 import { DateTime } from "luxon";
 import {
   BaseModel,
+  BelongsTo,
+  HasMany,
   HasManyThrough,
+  belongsTo,
   column,
+  hasMany,
   hasManyThrough,
 } from "@ioc:Adonis/Lucid/Orm";
 import Competency from "./Competency";
@@ -10,16 +14,19 @@ import Subject from "./Subject";
 
 export default class CompetencySub extends BaseModel {
   @column({ isPrimary: true })
-  public id: number;
+  public competency_sub_id: number;
 
   @column()
-  public competencie_id: number;
+  public competency_id: number;
 
   @column()
-  public sub_competencie_name: string;
+  public competency_sub_name: string;
 
   @column()
-  public sub_competencie_description: string;
+  public competency_sub_description: string;
+
+  @column()
+  public is_deleted: boolean;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;
@@ -27,7 +34,11 @@ export default class CompetencySub extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
 
-  @hasManyThrough([() => Competency, () => Subject])
-  public competencies: HasManyThrough<typeof Competency>;
-  public subjects: HasManyThrough<typeof Subject>;
+  @belongsTo(() => Competency, {
+    foreignKey: "competency_id",
+  })
+  public competency: BelongsTo<typeof Competency>;
+
+  @hasMany(() => Subject)
+  public subjects: HasMany<typeof Subject>;
 }

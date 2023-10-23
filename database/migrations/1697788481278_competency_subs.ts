@@ -5,15 +5,16 @@ export default class extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments("sub_competencies_id");
+      table.increments("competency_sub_id");
       table
-        .integer("competencie_id")
+        .integer("competency_id")
         .unsigned()
-        .references("competencie_id")
+        .references("competency_id")
         .inTable("competencies")
         .onDelete("CASCADE");
-      table.string("sub_competencies_name", 255).notNullable();
-      table.string("sub_competencies_description", 255);
+      table.string("competency_sub_name", 255).notNullable();
+      table.string("competency_sub_description", 255);
+      table.boolean("is_deleted").notNullable().defaultTo(false);
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

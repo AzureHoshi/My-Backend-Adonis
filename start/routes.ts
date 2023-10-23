@@ -45,6 +45,8 @@ Route.group(() => {
   Route.resource("interest-questions", "InterestQuestionsController").apiOnly(); // done
   Route.resource("interest-answers", "InterestAnswersController").apiOnly(); // done
   Route.resource("interest-records", "InterestRecordsController").apiOnly(); // done
+  Route.resource("competencies", "CompetenciesController").apiOnly(); // done
+  Route.resource("competency-subs", "CompetencySubsController").apiOnly(); // done
 
   // ? สำหรับทดสอบการอัพโหลดไฟล์
   Route.group(() => {
