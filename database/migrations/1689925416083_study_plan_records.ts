@@ -1,11 +1,11 @@
 import BaseSchema from "@ioc:Adonis/Lucid/Schema";
 
 export default class extends BaseSchema {
-  protected tableName = "studyplan_records";
+  protected tableName = "study_plan_records";
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments("studyplan_record_id").primary().unsigned();
+      table.increments("study_plan_record_id").primary().unsigned();
       table
         .integer("study_plan_id")
         .unsigned()
@@ -18,8 +18,9 @@ export default class extends BaseSchema {
         .references("subject_id")
         .inTable("subjects")
         .onDelete("CASCADE");
-      table.integer("studyplan_record_semester").notNullable();
-      table.integer("studyplan_record_year").notNullable();
+      table.string("study_plan_record_elective_course", 255);
+      table.integer("study_plan_record_semester").notNullable();
+      table.integer("study_plan_record_year").notNullable();
       table.boolean("is_deleted").notNullable().defaultTo(false);
 
       /**
