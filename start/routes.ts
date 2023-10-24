@@ -48,6 +48,12 @@ Route.group(() => {
   Route.resource("competencies", "CompetenciesController").apiOnly(); // done
   Route.resource("competency-subs", "CompetencySubsController").apiOnly(); // done
 
+  // ? custom route
+  Route.get(
+    "subjects-by-curriculum/:id",
+    "SubjectsController.showByCurriculum"
+  ); // done
+
   // ? สำหรับทดสอบการอัพโหลดไฟล์
   Route.group(() => {
     Route.get("download", "FileUploadsController.download");

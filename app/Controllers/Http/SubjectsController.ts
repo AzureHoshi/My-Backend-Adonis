@@ -42,6 +42,67 @@ export default class SubjectsController {
     }
   }
 
+  public async show({ params, response }: HttpContextContract) {
+    try {
+      const id: any = params.id;
+
+      // ดึงข้อมูล subjects
+      const subject = await Subject.find(id);
+
+      // ถ้าไม่พบข้อมูล subjects
+      if (!subject) {
+        return response
+          .status(404)
+          .json({ message: "Subject not found", status: 404 });
+      }
+
+      // ดึงข้อมูล competencies โดยเช็ค subject_id ของแต่ละ subject
+      const competencies = await Competency.query()
+        .where("subject_id", subject.id)
+        .where("is_deleted", false);
+
+      // สร้างข้อมูลที่รวมทั้ง subjects และ competencies
+      const subjectWithCompetency = {
+        ...subject.toJSON(),
+        competencies: competencies,
+      };
+
+      return response.status(200).json({ data: subjectWithCompetency });
+    } catch (error) {
+      return response.status(500).json({ message: "Internal Server Error" });
+    }
+  }
+
+  public async showByCurriculum({ params, response }: HttpContextContract) {
+    try {
+      // ดึงข้อมูล subjects
+      const id: any = params.id;
+      const subjects = await Subject.query()
+        .preload("curriculums")
+        .preload("subject_groups")
+        .where("is_deleted", false)
+        .where("curriculum_id", id)
+        .orderBy("updatedAt", "desc");
+
+      // ดึงข้อมูล competencies โดยเช็ค subject_id ของแต่ละ subject
+      const subjectWithCompetency = await Promise.all(
+        subjects.map(async (subject) => {
+          const competencies = await Competency.query()
+            .where("subject_id", subject.subject_id)
+            .where("is_deleted", false);
+          return {
+            ...subject.toJSON(),
+            competencies: competencies,
+          };
+        })
+      );
+
+      return response.status(200).json({ data: subjectWithCompetency });
+    } catch (error) {
+      return response.status(500).json({ message: "Internal Server Error" });
+    }
+  }
+
   public async store({ request, response }: HttpContextContract) {
     try {
       const payload = await request.validate({ schema: subjectSchema });
@@ -52,24 +113,6 @@ export default class SubjectsController {
         .status(400)
         .json({ error: "Incorrect or incomplete information", status: 400 });
     }
-  }
-
-  public async show({ params, response }: HttpContextContract) {
-    try {
-      const id: any = params.id;
-      const subject: any = await Subject.query()
-        .preload("curriculums")
-        .preload("subject_groups")
-        .where("curriculum_id", id)
-        .where("is_deleted", false);
-      if (!subject) {
-        return response
-          .status(404)
-          .json({ message: "Subject not found", status: 404 });
-      } else {
-        return response.status(200).json({ data: subject, status: 200 });
-      }
-    } catch (error) {}
   }
 
   public async update({ params, request, response }: HttpContextContract) {
