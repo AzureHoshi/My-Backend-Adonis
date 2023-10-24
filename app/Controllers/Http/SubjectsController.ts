@@ -58,7 +58,7 @@ export default class SubjectsController {
 
       // ดึงข้อมูล competencies โดยเช็ค subject_id ของแต่ละ subject
       const competencies = await Competency.query()
-        .where("subject_id", subject.id)
+        .where("subject_id", subject.subject_id)
         .where("is_deleted", false);
 
       // สร้างข้อมูลที่รวมทั้ง subjects และ competencies
