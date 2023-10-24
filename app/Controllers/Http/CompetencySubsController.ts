@@ -19,8 +19,15 @@ const competencySubUpdateSchema = schema.create({
 
 export default class CompetencySubsController {
   public async index({ response }: HttpContextContract) {
-    const competencySubs = await CompetencySub.query().preload("competency");
-    return response.status(200).json({ data: competencySubs, status: 200 });
+    try {
+      const competencySubs = await CompetencySub.query()
+        .preload("competency")
+        .where("is_deleted", false);
+
+      return response.status(200).json({ data: competencySubs, status: 200 });
+    } catch (error) {
+      return response.status(500).json({ message: "Internal Server Error" });
+    }
   }
 
   public async store({ request, response }: HttpContextContract) {
