@@ -5,7 +5,7 @@ import FeedbackRecord from "App/Models/FeedbackRecord";
 const feedbackRecordStoreSchema = schema.create({
   feedback_id: schema.number(),
   collegian_id: schema.number(),
-  feedback_answer: schema.string.optional({ trim: true }, [
+  feedback_record_answer: schema.string.optional({ trim: true }, [
     rules.maxLength(255),
   ]),
 });
@@ -22,6 +22,9 @@ export default class FeedbackRecordsController {
   }
 
   public async store({ request, response }: HttpContextContract) {
+    console.log("feedback record");
+    console.log(request.body());
+
     try {
       const payload = await request.validate({
         schema: feedbackRecordStoreSchema,

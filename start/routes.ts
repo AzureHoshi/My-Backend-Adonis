@@ -46,7 +46,7 @@ Route.group(() => {
   Route.resource("competencies", "CompetenciesController").apiOnly();
   Route.resource("competency-subs", "CompetencySubsController").apiOnly();
   Route.resource("feedbacks", "FeedbacksController").apiOnly();
-  Route.resource("feedbacks-records", "FeedbackRecordsController").apiOnly();
+  Route.resource("feedback-records", "FeedbackRecordsController").apiOnly();
 
   // ? custom route
   Route.get(
