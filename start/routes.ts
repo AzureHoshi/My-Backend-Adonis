@@ -25,27 +25,28 @@ Route.get("/", async () => {
 });
 
 Route.group(() => {
-  Route.resource("curriculums", "CurriculumsController").apiOnly(); // done
-  Route.resource("faculties", "FacultiesController").apiOnly(); // done
-  Route.resource("collegian-groups", "CollegianGroupsController").apiOnly(); //done
-  Route.resource("study-plans", "StudyPlansController").apiOnly(); //done
-  Route.resource("subject-categories", "SubjectCategoriesController").apiOnly(); //done
-  Route.resource("subject-types", "SubjectTypesController").apiOnly(); //done
-  Route.resource("subject-groups", "SubjectGroupsController").apiOnly(); //done
-  Route.resource("subjects", "SubjectsController").apiOnly(); //done
-  Route.resource("collegians", "CollegiansController").apiOnly(); //done
-  Route.resource("study-records", "StudyRecordsController").apiOnly(); //done
-  Route.resource("feedbacks", "FeedbacksController").apiOnly(); //done
+  Route.resource("curriculums", "CurriculumsController").apiOnly();
+  Route.resource("faculties", "FacultiesController").apiOnly();
+  Route.resource("collegian-groups", "CollegianGroupsController").apiOnly();
+  Route.resource("study-plans", "StudyPlansController").apiOnly();
+  Route.resource("subject-categories", "SubjectCategoriesController").apiOnly();
+  Route.resource("subject-types", "SubjectTypesController").apiOnly();
+  Route.resource("subject-groups", "SubjectGroupsController").apiOnly();
+  Route.resource("subjects", "SubjectsController").apiOnly();
+  Route.resource("collegians", "CollegiansController").apiOnly();
+  Route.resource("study-records", "StudyRecordsController").apiOnly();
   Route.resource(
     "collegian-feedbacks",
     "CollegianFeedbacksController"
   ).apiOnly(); //done
-  Route.resource("interest-surveys", "InterestSurveysController").apiOnly(); // ? done 75%
-  Route.resource("interest-questions", "InterestQuestionsController").apiOnly(); // done
-  Route.resource("interest-answers", "InterestAnswersController").apiOnly(); // done
-  Route.resource("interest-records", "InterestRecordsController").apiOnly(); // done
-  Route.resource("competencies", "CompetenciesController").apiOnly(); // done
-  Route.resource("competency-subs", "CompetencySubsController").apiOnly(); // done
+  Route.resource("interest-surveys", "InterestSurveysController").apiOnly();
+  Route.resource("interest-questions", "InterestQuestionsController").apiOnly();
+  Route.resource("interest-answers", "InterestAnswersController").apiOnly();
+  Route.resource("interest-records", "InterestRecordsController").apiOnly();
+  Route.resource("competencies", "CompetenciesController").apiOnly();
+  Route.resource("competency-subs", "CompetencySubsController").apiOnly();
+  Route.resource("feedbacks", "FeedbacksController").apiOnly();
+  Route.resource("feedbacks-records", "FeedbackRecordsController").apiOnly();
 
   // ? custom route
   Route.get(

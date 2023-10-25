@@ -7,6 +7,7 @@ export default class FeedbacksController {
       const feedbacks = await Feedback.query()
         .where("is_deleted", false)
         .orderBy("feedback_id ", "asc");
+
       return response.status(200).json({ data: feedbacks, status: 200 });
     } catch (error) {
       return response.status(500).json({ message: error.message, status: 500 });

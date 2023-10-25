@@ -6,14 +6,14 @@ const competencySubStoreSchema = schema.create({
   competency_id: schema.number(),
   competency_sub_name: schema.string({ trim: true }, [rules.maxLength(255)]),
   competency_sub_description: schema.string({ trim: true }, [
-    rules.maxLength(255),
+    rules.maxLength(255).options({ nullable: true }),
   ]),
 });
 
 const competencySubUpdateSchema = schema.create({
   competency_sub_name: schema.string({ trim: true }, [rules.maxLength(255)]),
   competency_sub_description: schema.string({ trim: true }, [
-    rules.maxLength(255),
+    rules.maxLength(255).options({ nullable: true }),
   ]),
 });
 
