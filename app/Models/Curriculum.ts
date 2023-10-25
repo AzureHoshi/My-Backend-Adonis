@@ -11,7 +11,6 @@ import Faculty from "./Faculty";
 import CollegianGroup from "./CollegianGroup";
 import StudyPlan from "./StudyPlan";
 import Subject from "./Subject";
-import CollegianFeedback from "./CollegianFeedback";
 import InterestSurvey from "./InterestSurvey";
 
 export default class Curriculum extends BaseModel {
@@ -65,9 +64,6 @@ export default class Curriculum extends BaseModel {
 
   @hasMany(() => Subject)
   public subjects: HasMany<typeof Subject>;
-
-  @hasMany(() => CollegianFeedback)
-  public collegian_feedbacks: HasMany<typeof CollegianFeedback>;
 
   @hasMany(() => InterestSurvey)
   public interest_surveys: HasMany<typeof InterestSurvey>;

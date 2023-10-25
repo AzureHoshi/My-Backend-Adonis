@@ -1,6 +1,7 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import Competency from "App/Models/Competency";
+import CompetencySub from "App/Models/CompetencySub";
 import Subject from "App/Models/Subject";
 
 const subjectSchema = schema.create({
@@ -29,9 +30,23 @@ export default class SubjectsController {
           const competencies = await Competency.query()
             .where("subject_id", subject.subject_id)
             .where("is_deleted", false);
+
+          // เพิ่มการดึงข้อมูล competency_sub จาก CompetencySub
+          const competenciesWithSub = await Promise.all(
+            competencies.map(async (competency) => {
+              const competencySub = await CompetencySub.query()
+                .where("competency_id", competency.competency_id)
+                .where("is_deleted", false);
+              return {
+                ...competency.toJSON(),
+                competency_sub: competencySub,
+              };
+            })
+          );
+
           return {
             ...subject.toJSON(),
-            competencies: competencies,
+            competencies: competenciesWithSub,
           };
         })
       );
@@ -61,10 +76,22 @@ export default class SubjectsController {
         .where("subject_id", subject.subject_id)
         .where("is_deleted", false);
 
+      const competenciesWithSub = await Promise.all(
+        competencies.map(async (competency) => {
+          const competencySub = await CompetencySub.query()
+            .where("competency_id", competency.competency_id)
+            .where("is_deleted", false);
+          return {
+            ...competency.toJSON(),
+            competency_sub: competencySub,
+          };
+        })
+      );
+
       // สร้างข้อมูลที่รวมทั้ง subjects และ competencies
       const subjectWithCompetency = {
         ...subject.toJSON(),
-        competencies: competencies,
+        competencies: competenciesWithSub,
       };
 
       return response.status(200).json({ data: subjectWithCompetency });
@@ -90,9 +117,23 @@ export default class SubjectsController {
           const competencies = await Competency.query()
             .where("subject_id", subject.subject_id)
             .where("is_deleted", false);
+
+          // เพิ่มการดึงข้อมูล competency_sub จาก CompetencySub
+          const competenciesWithSub = await Promise.all(
+            competencies.map(async (competency) => {
+              const competencySub = await CompetencySub.query()
+                .where("competency_id", competency.competency_id)
+                .where("is_deleted", false);
+              return {
+                ...competency.toJSON(),
+                competency_sub: competencySub,
+              };
+            })
+          );
+
           return {
             ...subject.toJSON(),
-            competencies: competencies,
+            competencies: competenciesWithSub,
           };
         })
       );
