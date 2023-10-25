@@ -7,7 +7,7 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments("feedback_id").primary().unsigned();
       table.string("feedback_question").notNullable();
-      table.boolean("feedback_type").notNullable();
+      table.integer("feedback_type").notNullable();
       table.boolean("is_deleted").notNullable().defaultTo(false);
 
       /**

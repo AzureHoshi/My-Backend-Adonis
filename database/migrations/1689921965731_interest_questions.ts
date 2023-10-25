@@ -13,7 +13,7 @@ export default class extends BaseSchema {
         .inTable("interest_surveys")
         .onDelete("CASCADE");
       table.string("interest_question_title").notNullable();
-      table.integer("interest_question_number").notNullable();
+      table.integer("interest_question_number");
       table.boolean("is_deleted").notNullable().defaultTo(false);
 
       /**
