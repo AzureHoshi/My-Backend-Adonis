@@ -4,6 +4,10 @@ import Competency from "App/Models/Competency";
 import CompetencySub from "App/Models/CompetencySub";
 import Curriculum from "App/Models/Curriculum";
 import Faculty from "App/Models/Faculty";
+import Feedback from "App/Models/Feedback";
+import InterestAnswer from "App/Models/InterestAnswer";
+import InterestQuestion from "App/Models/InterestQuestion";
+import InterestSurvey from "App/Models/InterestSurvey";
 import StudyPlan from "App/Models/StudyPlan";
 import StudyPlanRecord from "App/Models/StudyPlanRecord";
 import Subject from "App/Models/Subject";
@@ -1698,6 +1702,147 @@ export default class extends BaseSeeder {
         study_plan_record_semester: 2,
       },
     ];
+    const feedbackData = [
+      {
+        feedback_question: "ด้านการออกแบบ Design และการจัดรูปแบบของ Website",
+        feedback_type: 1,
+      },
+      {
+        feedback_question: "การจัดรูปแบบ Website ง่ายต่อการอ่านและใช้งาน",
+        feedback_type: 1,
+      },
+      {
+        feedback_question: "สีสันในการออกแบบ Website มีความเหมาะสม",
+        feedback_type: 1,
+      },
+      {
+        feedback_question: "ความเหมาะสมในการใช้สัญลักษณ์ในการสื่อสารความหมาย",
+        feedback_type: 1,
+      },
+      {
+        feedback_question: "ความรวดเร็วในการแสดงผล",
+        feedback_type: 1,
+      },
+      {
+        feedback_question: "ความถูกต้องของเนื้อหาบน Website",
+        feedback_type: 1,
+      },
+      {
+        feedback_question: "ผลลัพธ์ที่ได้ตรงกับความต้องการ",
+        feedback_type: 1,
+      },
+      {
+        feedback_question: "เนื้อหามีประโยชน์ต่อผู้ใช้งาน",
+        feedback_type: 1,
+      },
+      {
+        feedback_question: "Website สามารถเป็นแหล่งความรู้ได้",
+        feedback_type: 1,
+      },
+      {
+        feedback_question: "เป็นแหล่งข้อมูลที่ตรงกับความต้องการของผู้ใช้งาน",
+        feedback_type: 1,
+      },
+      {
+        feedback_question: "ข้อเสนอแนะ เชิงคุณภาพ",
+        feedback_type: 2,
+      },
+    ];
+    const interestSurveyData = [
+      {
+        curriculum_id: 4,
+        interest_survey_version: 1,
+      },
+    ];
+    const interestQuestionsData = [
+      {
+        interest_survey_id: 1,
+        interest_question_number: 1,
+        interest_question_title: "ทำไมคุณเลือกเรียนวิศวกรรมคอมพิวเตอร์",
+      },
+      {
+        interest_survey_id: 1,
+        interest_question_number: 2,
+        interest_question_title: "สิ่งที่ ที่ทำให้คุณสนใจในสาขานี้",
+      },
+      {
+        interest_survey_id: 1,
+        interest_question_number: 3,
+        interest_question_title: "คุณมีประสบการณ์ในการเขียนโค้ดหรือไม่",
+      },
+    ];
+    const InterestAnswersData = [
+      {
+        // คำตอบของคำถามที่ 1
+        interest_question_id: 1,
+        interest_answer_number: 1,
+        interest_answer_choice:
+          "ความชื่นชอบในการเขียนโปรแกรมและแก้ปัญหาด้วยเทคโนโลยีคอมพิวเตอร์",
+      },
+      {
+        interest_question_id: 1,
+        interest_answer_number: 2,
+        interest_answer_choice:
+          "ความชื่นชอบในการใช้คอมพิวเตอร์ หรือ เทคโนโลยีใหม่คอมพิวเตอร์",
+      },
+      {
+        interest_question_id: 1,
+        interest_answer_number: 3,
+        interest_answer_choice:
+          "ความการเรียนต่อในระดับ ปริญญาตรี ในสายงานที่ชื่บชอบ",
+      },
+      {
+        interest_question_id: 1,
+        interest_answer_number: 4,
+        interest_answer_choice: "ความการเรียนต่อในระดับ ปริญญาตรี",
+      },
+      {
+        interest_question_id: 1,
+        interest_answer_number: 5,
+        interest_answer_choice: "ความต้องการของตลาดแรงงานที่สูงในสาขานี้",
+      },
+      {
+        // คำตอบของคำถามที่ 2
+        interest_question_id: 2,
+        interest_answer_number: 1,
+        interest_answer_choice:
+          "ต้องการประสบการณ์เรียนรู้ เฉพาะด้านของคอมพิวเตอร์",
+      },
+      {
+        interest_question_id: 2,
+        interest_answer_number: 2,
+        interest_answer_choice:
+          "ต้องการประสบการณ์เรียนรู้ การสร้างและพัฒนาเทคโนโลยี",
+      },
+      {
+        interest_question_id: 2,
+        interest_answer_number: 3,
+        interest_answer_choice:
+          "ความชื่นชอบในการใช้คอมพิวเตอร์ ทั้งทำงาน และ เล่นเกม",
+      },
+      {
+        interest_question_id: 2,
+        interest_answer_number: 4,
+        interest_answer_choice: "ต้องการเรียนรู้เกี่ยวกับสายงาน คอมพิวเตอร์",
+      },
+      {
+        // คำตอบของคำถามที่ 3
+        interest_question_id: 3,
+        interest_answer_number: 1,
+        interest_answer_choice:
+          "มี สามารถแก้ไขปัญหาได้ และ สามารถประยุกต์การใช้ได้ ",
+      },
+      {
+        interest_question_id: 3,
+        interest_answer_number: 2,
+        interest_answer_choice: "มี สามารถเขียนเงื่อนไขได้เบื้องต้น",
+      },
+      {
+        interest_question_id: 3,
+        interest_answer_number: 3,
+        interest_answer_choice: "ไม่มี ประสบการณ์เลย",
+      },
+    ];
 
     await Faculty.createMany(facultyData);
     await CollegianGroup.createMany(collegianGroupData);
@@ -1710,5 +1855,9 @@ export default class extends BaseSeeder {
     await CompetencySub.createMany(competencySubData);
     await StudyPlan.createMany(studyPlanData);
     await StudyPlanRecord.createMany(studyPlanRecordData);
+    await Feedback.createMany(feedbackData);
+    await InterestSurvey.createMany(interestSurveyData);
+    await InterestQuestion.createMany(interestQuestionsData);
+    await InterestAnswer.createMany(InterestAnswersData);
   }
 }

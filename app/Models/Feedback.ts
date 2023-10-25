@@ -9,7 +9,7 @@ export default class Feedback extends BaseModel {
   public feedback_question: string;
 
   @column()
-  public feedback_type: boolean;
+  public feedback_type: number;
 
   @column()
   public is_deleted: boolean;
