@@ -62,7 +62,11 @@ export default class SubjectsController {
       const id: any = params.id;
 
       // ดึงข้อมูล subjects
-      const subject = await Subject.find(id);
+      const subject = await Subject.query()
+        .where("subject_id", id)
+        .preload("curriculums")
+        .preload("subject_groups")
+        .firstOrFail();
 
       // ถ้าไม่พบข้อมูล subjects
       if (!subject) {
