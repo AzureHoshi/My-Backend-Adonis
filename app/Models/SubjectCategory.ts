@@ -1,10 +1,8 @@
 import { DateTime } from "luxon";
 import {
   BaseModel,
-  HasMany,
   HasManyThrough,
   column,
-  hasMany,
   hasManyThrough,
 } from "@ioc:Adonis/Lucid/Orm";
 import SubjectType from "./SubjectType";
