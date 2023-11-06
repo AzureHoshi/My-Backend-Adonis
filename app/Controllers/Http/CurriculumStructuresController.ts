@@ -13,19 +13,17 @@ export default class CurriculumStructuresController {
         false
       );
 
-      const transformedData = await curriculumStructures.map(
+      const transformedCurriculumStructures = curriculumStructures.map(
         async (curriculumStructure) => {
-          const subjectGroup = await SubjectGroup.query()
-            .where("subject_group_id", curriculumStructure.subject_group_id)
-            .first();
-
-          const subjectType = await SubjectType.query()
-            .where("subject_type_id", subjectGroup!.subject_type_id)
-            .first();
-
-          const subjectCategory = await SubjectCategory.query()
-            .where("subject_category_id", subjectType!.subject_category_id)
-            .first();
+          const subjectGroup = await SubjectGroup.find(
+            curriculumStructure.subject_group_id
+          );
+          const subjectType = await SubjectType.find(
+            subjectGroup!.subject_type_id
+          );
+          const subjectCategory = await SubjectCategory.find(
+            subjectType!.subject_category_id
+          );
 
           return {
             curriculum_structure_id:
@@ -45,9 +43,10 @@ export default class CurriculumStructuresController {
         }
       );
 
-      console.log(transformedData);
-
-      return response.status(200).json({ data: transformedData, status: 200 });
+      return response.status(200).json({
+        data: await Promise.all(transformedCurriculumStructures),
+        status: 200,
+      });
     } catch (error) {
       return response.status(500).json({ message: "Internal Server Error" });
     }
