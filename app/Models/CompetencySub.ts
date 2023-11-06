@@ -3,11 +3,9 @@ import {
   BaseModel,
   BelongsTo,
   HasMany,
-  HasManyThrough,
   belongsTo,
   column,
   hasMany,
-  hasManyThrough,
 } from "@ioc:Adonis/Lucid/Orm";
 import Competency from "./Competency";
 import Subject from "./Subject";

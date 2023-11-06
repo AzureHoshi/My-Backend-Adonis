@@ -47,6 +47,10 @@ Route.group(() => {
   Route.resource("competency-subs", "CompetencySubsController").apiOnly();
   Route.resource("feedbacks", "FeedbacksController").apiOnly();
   Route.resource("feedback-records", "FeedbackRecordsController").apiOnly();
+  Route.resource(
+    "curriculum-structures",
+    "CurriculumStructuresController"
+  ).apiOnly();
 
   // ? custom route
   Route.get(
