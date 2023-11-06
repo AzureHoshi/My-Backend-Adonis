@@ -13,8 +13,8 @@ export default class CurriculumStructuresController {
         false
       );
 
-      const transformedData = await Promise.all(
-        curriculumStructures.map(async (curriculumStructure) => {
+      const transformedData = await curriculumStructures.map(
+        async (curriculumStructure) => {
           const subjectGroup = await SubjectGroup.query()
             .where("subject_group_id", curriculumStructure.subject_group_id)
             .first();
@@ -42,7 +42,7 @@ export default class CurriculumStructuresController {
             created_at: curriculumStructure.createdAt,
             updated_at: curriculumStructure.updatedAt,
           };
-        })
+        }
       );
 
       console.log(transformedData);
