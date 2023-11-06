@@ -54,48 +54,44 @@ export default class CurriculumStructuresController {
 
   public async show({ params, response }: HttpContextContract) {
     try {
-      const curriculumStructures = await CurriculumStructure.find(params.id);
+      const curriculumStructures = await CurriculumStructure.query()
+        .where("is_deleted", false)
+        .where("curriculum_id", params.id);
 
-      if (!curriculumStructures) {
-        return response.status(404).json({
-          message: "CurriculumStructure not found",
-          status: 404,
-        });
-      } else if (curriculumStructures.is_deleted) {
-        return response.status(404).json({
-          message: "CurriculumStructure already deleted",
-          status: 404,
-        });
-      } else {
-        const subjectGroup = await SubjectGroup.find(
-          curriculumStructures.subject_group_id
-        );
-        const subjectType = await SubjectType.find(
-          subjectGroup!.subject_type_id
-        );
-        const subjectCategory = await SubjectCategory.find(
-          subjectType!.subject_category_id
-        );
+      const transformedCurriculumStructures = curriculumStructures.map(
+        async (curriculumStructure) => {
+          const subjectGroup = await SubjectGroup.find(
+            curriculumStructure.subject_group_id
+          );
+          const subjectType = await SubjectType.find(
+            subjectGroup!.subject_type_id
+          );
+          const subjectCategory = await SubjectCategory.find(
+            subjectType!.subject_category_id
+          );
 
-        return response.status(200).json({
-          data: {
+          return {
             curriculum_structure_id:
-              curriculumStructures.curriculum_structure_id,
-            curriculum_id: curriculumStructures.curriculum_id,
-            subject_group_id: curriculumStructures.subject_group_id,
+              curriculumStructure.curriculum_structure_id,
+            curriculum_id: curriculumStructure.curriculum_id,
+            subject_group_id: curriculumStructure.subject_group_id,
             subject_group_name: subjectGroup?.subject_group_name,
             subject_type_id: subjectType?.subject_type_id,
             subject_type_name: subjectType?.subject_type_name,
             subject_category_id: subjectCategory?.subject_category_id,
             subject_category_name: subjectCategory?.subject_category_name,
-            credit_total: curriculumStructures.credit_total,
-            is_deleted: curriculumStructures.is_deleted,
-            created_at: curriculumStructures.createdAt,
-            updated_at: curriculumStructures.updatedAt,
-          },
-          status: 200,
-        });
-      }
+            credit_total: curriculumStructure.credit_total,
+            is_deleted: curriculumStructure.is_deleted,
+            created_at: curriculumStructure.createdAt,
+            updated_at: curriculumStructure.updatedAt,
+          };
+        }
+      );
+
+      return response.status(200).json({
+        data: await Promise.all(transformedCurriculumStructures),
+        status: 200,
+      });
     } catch (error) {
       return response.status(500).json({ message: "Internal Server Error" });
     }
