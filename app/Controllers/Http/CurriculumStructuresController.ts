@@ -1,34 +1,86 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema } from "@ioc:Adonis/Core/Validator";
 import CurriculumStructure from "App/Models/CurriculumStructure";
+import SubjectGroup from "App/Models/SubjectGroup";
 import SubjectType from "App/Models/SubjectType";
 
 export default class CurriculumStructuresController {
   public async index({ response }: HttpContextContract) {
     try {
-      const curriculumStructures = await CurriculumStructure.query()
-        .preload("curriculum")
-        .preload("subject_group")
-        .where("is_deleted", false);
+      const curriculumStructures = await CurriculumStructure.query().where(
+        "is_deleted",
+        false
+      );
+
+      const curriculumStructuresWithSubjectGroup = await Promise.all(
+        curriculumStructures.map(async (curriculumStructure) => {
+          const subjectGroup = await SubjectGroup.find(
+            curriculumStructure.subject_group_id
+          );
+
+          if (!subjectGroup) {
+            return {
+              ...curriculumStructure.serialize(),
+              subject_group_name: "",
+              subject_type_id: 0,
+            };
+          } else {
+            return {
+              ...curriculumStructure.serialize(),
+              subject_group_name: subjectGroup.subject_group_name,
+              subject_type_id: subjectGroup.subject_type_id,
+            };
+          }
+        })
+      );
 
       const curriculumStructuresWithSubjectType = await Promise.all(
-        curriculumStructures.map(async (curriculumStructure) => {
-          const subjectType = await SubjectType.query()
-            .where(
-              "subject_type_id",
-              curriculumStructure.subject_group.subject_type_id
-            )
-            .firstOrFail();
-          return {
-            ...curriculumStructure.serialize(),
-            subject_type: subjectType,
-          };
+        curriculumStructuresWithSubjectGroup.map(
+          async (curriculumStructure) => {
+            const subjectType = await SubjectType.find(
+              curriculumStructure.subject_type_id
+            );
+
+            if (!subjectType) {
+              return {
+                ...curriculumStructure,
+                subject_type_name: "",
+                subject_category_id: 0,
+              };
+            } else {
+              return {
+                ...curriculumStructure,
+                subject_type_name: subjectType.subject_type_name,
+                subject_category_id: subjectType.subject_category_id,
+              };
+            }
+          }
+        )
+      );
+
+      const curriculumStructuresWithSubjectCategory = await Promise.all(
+        curriculumStructuresWithSubjectType.map(async (curriculumStructure) => {
+          const subjectCategory = await SubjectType.find(
+            curriculumStructure.subject_category_id
+          );
+
+          if (!subjectCategory) {
+            return {
+              ...curriculumStructure,
+              subject_category_name: "",
+            };
+          } else {
+            return {
+              ...curriculumStructure,
+              subject_category_name: subjectCategory.subject_type_name,
+            };
+          }
         })
       );
 
       return response
         .status(200)
-        .json({ data: curriculumStructuresWithSubjectType, status: 200 });
+        .json({ data: curriculumStructuresWithSubjectCategory, status: 200 });
     } catch (error) {
       return response.status(500).json({ message: "Internal Server Error" });
     }
@@ -41,13 +93,15 @@ export default class CurriculumStructuresController {
         .preload("curriculum")
         .preload("subject_group")
         .where("curriculum_id", id)
-        .firstOrFail();
+        .first();
+
+      console.log(curriculumStructure);
 
       if (!curriculumStructure) {
         return response
           .status(404)
           .json({ message: "CurriculumStructure not found", status: 404 });
-      } else if (curriculumStructure.is_deleted === true || 1) {
+      } else if (curriculumStructure.is_deleted) {
         return response.status(404).json({
           message: "CurriculumStructure already deleted",
           status: 404,

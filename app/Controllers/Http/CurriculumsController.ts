@@ -33,6 +33,37 @@ export default class CurriculumsController {
     return response.status(200).json({ data: curriculums, status: 200 });
   }
 
+  public async show({ params, response }: HttpContextContract) {
+    try {
+      const id = params.id;
+
+      const curriculum = await Curriculum.query()
+        .preload("faculty") // แสดงข้อมูลของ faculties ที่เกี่ยวข้อง
+        .whereHas("faculty", (facultyQuery) => {
+          facultyQuery.where("is_deleted", false);
+        })
+        .preload("collegian_groups") // แสดงข้อมูลของ collegian_groups ที่เกี่ยวข้อง
+        .whereHas("collegian_groups", (collegianGroupsQuery) => {
+          collegianGroupsQuery.where("is_deleted", false);
+        })
+        .where("curriculums.is_deleted", false)
+        .where("curriculums.curriculum_id", id)
+        .first();
+
+      if (!curriculum) {
+        return response
+          .status(404)
+          .json({ message: "Curriculum not found", status: 404 });
+      } else {
+        return response.status(200).json({ data: curriculum, status: 200 });
+      }
+    } catch (error) {
+      return response
+        .status(500)
+        .json({ message: "Internal Server Error", status: 500 });
+    }
+  }
+
   public async store({ request, response }: HttpContextContract) {
     try {
       const { ref_curriculum_id } = request.all();
