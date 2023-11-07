@@ -193,19 +193,22 @@ export default class SubjectsController {
         return response
           .status(404)
           .json({ message: "Subject not found", status: 404 });
-      } else if (subject.is_deleted) {
-        return response
-          .status(200)
-          .json({ message: "Subject already deleted", status: 200 });
-      } else {
-        subject.is_deleted = true;
-        await subject.save();
+      }
+
+      if (subject.is_deleted) {
         return response.status(200).json({
-          data: subject,
+          message: "Subject already deleted",
           status: 200,
-          message: `Subject deleted byId ${id} success`,
         });
       }
+
+      subject.merge({ is_deleted: true });
+      await subject.save();
+      return response.status(200).json({
+        data: subject,
+        status: 200,
+        message: `Subject deleted byId ${id} success`,
+      });
     } catch (error) {
       return response
         .status(400)

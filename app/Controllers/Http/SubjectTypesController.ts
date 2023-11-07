@@ -61,18 +61,21 @@ export default class SubjectTypesController {
         return response
           .status(404)
           .json({ message: "SubjectType not found", status: 404 });
-      } else if (subjectType.is_deleted) {
+      }
+
+      if (subjectType.is_deleted) {
         return response
           .status(404)
-          .json({ message: "SubjectType already deleted", status: 404 });
-      } else {
-        subjectType.is_deleted = true;
-        await subjectType.save();
-        return response.status(200).json({
-          message: `SubjectType deleted byId ${id} success`,
-          status: 200,
-        });
+          .json({ message: "SubjectType not found", status: 404 });
       }
+
+      subjectType.merge({ is_deleted: true });
+      await subjectType.save();
+      return response.status(200).json({
+        data: subjectType,
+        status: 200,
+        message: `SubjectType deleted byId ${id} success`,
+      });
     } catch (error) {
       return response
         .status(400)

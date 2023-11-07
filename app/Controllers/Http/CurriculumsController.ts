@@ -144,23 +144,27 @@ export default class CurriculumsController {
     try {
       const id = params.id;
       const curriculum: any = await Curriculum.find(id);
+
       if (!curriculum) {
         return response
           .status(404)
           .json({ message: "Curriculum not found", status: 404 });
-      } else if (curriculum.is_deleted === 1) {
-        return response
-          .status(400)
-          .json({ message: "Curriculum already deleted", status: 400 });
-      } else {
-        curriculum.is_deleted = 1;
-        await curriculum.save();
+      }
+
+      if (curriculum.is_deleted) {
         return response.status(200).json({
-          data: curriculum,
+          message: "Curriculum already deleted",
           status: 200,
-          message: `Curriculum deleted byId ${id} success`,
         });
       }
+
+      curriculum.merge({ is_deleted: true });
+      await curriculum.save();
+      return response.status(200).json({
+        data: curriculum,
+        status: 200,
+        message: `Curriculum deleted byId ${id} success`,
+      });
     } catch (error) {
       return response
         .status(400)

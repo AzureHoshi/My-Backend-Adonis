@@ -62,18 +62,22 @@ export default class StudyPlansController {
         return response
           .status(404)
           .json({ message: "Study Plan not found", status: 404 });
-      } else if (studyPlan.is_deleted) {
-        return response
-          .status(404)
-          .json({ message: "Study Plan already deleted", status: 404 });
-      } else {
-        studyPlan.is_deleted = true;
-        await studyPlan.save();
+      }
+
+      if (studyPlan.is_deleted) {
         return response.status(200).json({
-          message: `Study Plan deleted byId ${id} success`,
+          message: "Study Plan already deleted",
           status: 200,
         });
       }
+
+      studyPlan.merge({ is_deleted: true });
+      await studyPlan.save();
+      return response.status(200).json({
+        data: studyPlan,
+        status: 200,
+        message: `Study Plan deleted byId ${id} success`,
+      });
     } catch (error) {
       return response
         .status(400)

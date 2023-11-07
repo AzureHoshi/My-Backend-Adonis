@@ -39,16 +39,22 @@ export default class InterestSurveysController {
       if (!interestSurvey) {
         return response
           .status(404)
-          .json({ message: "InterestSurvey not found", status: 404 });
-      } else {
-        interestSurvey.merge({ is_deleted: true });
-        await interestSurvey.save();
-        return response.status(200).json({
-          data: interestSurvey,
-          status: 200,
-          message: `InterestSurvey deleted byId ${id} success`,
-        });
+          .json({ message: "Interest Survey not found", status: 404 });
       }
+
+      if (interestSurvey.is_deleted) {
+        return response
+          .status(400)
+          .json({ message: "Interest Survey already deleted", status: 400 });
+      }
+
+      interestSurvey.merge({ is_deleted: true });
+      await interestSurvey.save();
+      return response.status(200).json({
+        data: interestSurvey,
+        status: 200,
+        message: `Interest Survey deleted byId ${id} success`,
+      });
     } catch (error) {
       return response
         .status(400)

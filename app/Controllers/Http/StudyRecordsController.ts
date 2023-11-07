@@ -65,19 +65,22 @@ export default class StudyRecordsController {
         return response
           .status(404)
           .json({ message: "StudyRecord not found", status: 404 });
-      } else if (studyRecord.is_deleted) {
-        return response
-          .status(404)
-          .json({ message: "StudyRecord already deleted", status: 404 });
-      } else {
-        studyRecord.merge({ is_deleted: true });
-        await studyRecord.save();
+      }
+
+      if (studyRecord.is_deleted) {
         return response.status(200).json({
-          data: studyRecord,
+          message: "StudyRecord already deleted",
           status: 200,
-          message: `StudyRecord deleted byId ${id} success`,
         });
       }
+
+      studyRecord.merge({ is_deleted: true });
+      await studyRecord.save();
+      return response.status(200).json({
+        data: studyRecord,
+        status: 200,
+        message: `StudyRecord deleted byId ${id} success`,
+      });
     } catch (error) {
       return response
         .status(400)

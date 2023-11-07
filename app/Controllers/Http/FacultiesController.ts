@@ -103,19 +103,22 @@ export default class FacultiesController {
         return response
           .status(404)
           .json({ message: "Faculty not found", status: 404 });
-      } else if (faculty.is_deleted === 1) {
-        return response
-          .status(404)
-          .json({ message: "Faculty already deleted", status: 404 });
-      } else {
-        faculty.is_deleted = 1;
-        await faculty.save();
+      }
+
+      if (faculty.is_deleted) {
         return response.status(200).json({
-          data: faculty,
+          message: "Faculty already deleted",
           status: 200,
-          message: `Faculty deleted byId ${id} success`,
         });
       }
+
+      faculty.merge({ is_deleted: true });
+      await faculty.save();
+      return response.status(200).json({
+        data: faculty,
+        status: 200,
+        message: `Faculty deleted byId ${id} success`,
+      });
     } catch (error) {
       return response
         .status(400)

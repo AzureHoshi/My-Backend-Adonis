@@ -58,18 +58,22 @@ export default class SubjectCategoriesController {
         return response
           .status(404)
           .json({ message: "SubjectCategory not found", status: 404 });
-      } else if (subjectCategory.is_deleted) {
-        return response
-          .status(400)
-          .json({ message: "SubjectCategory already deleted", status: 400 });
-      } else {
-        subjectCategory.is_deleted = true;
-        await subjectCategory.save();
+      }
+
+      if (subjectCategory.is_deleted) {
         return response.status(200).json({
-          message: `SubjectCategory deleted byId ${id} success`,
+          message: "SubjectCategory already deleted",
           status: 200,
         });
       }
+
+      subjectCategory.merge({ is_deleted: true });
+      await subjectCategory.save();
+      return response.status(200).json({
+        data: subjectCategory,
+        status: 200,
+        message: `SubjectCategory deleted byId ${id} success`,
+      });
     } catch {
       return response
         .status(400)

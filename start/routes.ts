@@ -28,7 +28,6 @@ Route.group(() => {
   Route.resource("curriculums", "CurriculumsController").apiOnly();
   Route.resource("faculties", "FacultiesController").apiOnly();
   Route.resource("collegian-groups", "CollegianGroupsController").apiOnly();
-  Route.resource("study-plans", "StudyPlansController").apiOnly();
   Route.resource("subject-categories", "SubjectCategoriesController").apiOnly();
   Route.resource("subject-types", "SubjectTypesController").apiOnly();
   Route.resource("subject-groups", "SubjectGroupsController").apiOnly();
@@ -51,6 +50,8 @@ Route.group(() => {
     "curriculum-structures",
     "CurriculumStructuresController"
   ).apiOnly();
+  Route.resource("study-plans", "StudyPlansController").apiOnly();
+  Route.resource("study-plan-records", "StudyPlanRecordsController").apiOnly();
 
   // ? custom route
   Route.get(

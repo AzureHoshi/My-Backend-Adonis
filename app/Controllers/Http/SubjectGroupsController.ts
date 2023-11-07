@@ -66,18 +66,22 @@ export default class SubjectGroupsController {
         return response
           .status(404)
           .json({ message: "SubjectGroup not found", status: 404 });
-      } else if (subjectGroup.is_deleted) {
-        return response
-          .status(200)
-          .json({ message: "SubjectGroup already deleted", status: 200 });
-      } else {
-        subjectGroup.is_deleted = true;
-        await subjectGroup.save();
+      }
+
+      if (subjectGroup.is_deleted) {
         return response.status(200).json({
-          message: `SubjectGroup deleted byId ${id} success`,
+          message: "SubjectGroup already deleted",
           status: 200,
         });
       }
+
+      subjectGroup.merge({ is_deleted: true });
+      await subjectGroup.save();
+      return response.status(200).json({
+        data: subjectGroup,
+        status: 200,
+        message: `SubjectGroup deleted byId ${id} success`,
+      });
     } catch (error) {
       return response
         .status(400)

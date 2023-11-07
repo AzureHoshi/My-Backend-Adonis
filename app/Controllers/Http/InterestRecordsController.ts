@@ -66,19 +66,22 @@ export default class InterestRecordsController {
         return response
           .status(404)
           .json({ message: "InterestRecord not found", status: 404 });
-      } else if (interestRecord.is_deleted) {
-        return response
-          .status(404)
-          .json({ message: "InterestRecord already deleted", status: 404 });
-      } else {
-        interestRecord.is_deleted = true;
-        await interestRecord.save();
+      }
+
+      if (interestRecord.is_deleted) {
         return response.status(200).json({
-          data: interestRecord,
+          message: "InterestRecord already deleted",
           status: 200,
-          message: `InterestRecord deleted byId ${id} success`,
         });
       }
+
+      interestRecord.merge({ is_deleted: true });
+      await interestRecord.save();
+      return response.status(200).json({
+        data: interestRecord,
+        status: 200,
+        message: `InterestRecord deleted byId ${id} success`,
+      });
     } catch (error) {
       return response
         .status(400)
