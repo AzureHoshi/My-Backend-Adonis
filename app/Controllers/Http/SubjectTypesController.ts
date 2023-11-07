@@ -65,8 +65,8 @@ export default class SubjectTypesController {
 
       if (subjectType.is_deleted) {
         return response
-          .status(404)
-          .json({ message: "SubjectType not found", status: 404 });
+          .status(200)
+          .json({ message: "SubjectType already deleted", status: 200 });
       }
 
       subjectType.merge({ is_deleted: true });

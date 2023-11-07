@@ -18,6 +18,30 @@ export default class StudyPlansController {
     return response.json({ data: studyPlans, status: 200 });
   }
 
+  public async show({ params, response }: HttpContextContract) {
+    try {
+      const id = params.id;
+      const studyPlan = await StudyPlan.query()
+        .where("study_plans.is_deleted", false)
+        .where("curriculum_id", id)
+        .preload("curriculums");
+
+      console.log("test");
+
+      if (!studyPlan) {
+        return response
+          .status(404)
+          .json({ message: "Study Plan not found", status: 404 });
+      }
+
+      return response.status(200).json({ data: studyPlan, status: 200 });
+    } catch (error) {
+      return response
+        .status(400)
+        .json({ error: "Incorrect or incomplete information", status: 400 });
+    }
+  }
+
   public async store({ request, response }: HttpContextContract) {
     try {
       const payload = await request.validate({ schema: studyPlanSchema });
