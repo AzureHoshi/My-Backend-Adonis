@@ -5,10 +5,16 @@ import StudyPlanRecord from "App/Models/StudyPlanRecord";
 export default class StudyPlanRecordsController {
   public async index({ response }: HttpContextContract) {
     try {
-      const studyPlanRecords = await StudyPlanRecord.query().where(
-        "is_deleted",
-        false
-      );
+      const studyPlanRecords = await StudyPlanRecord.query()
+        .where("is_deleted", false)
+        .preload("subjects", (query) => {
+          query.select([
+            "subject_id",
+            "subject_name_th",
+            "subject_name_en",
+            "subject_credit",
+          ]);
+        });
 
       console.log(studyPlanRecords);
 

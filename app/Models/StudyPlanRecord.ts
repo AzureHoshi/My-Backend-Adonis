@@ -39,5 +39,5 @@ export default class StudyPlanRecord extends BaseModel {
   @belongsTo(() => Subject, {
     foreignKey: "subject_id",
   })
-  public subject: BelongsTo<typeof Subject>;
+  public subjects: BelongsTo<typeof Subject>;
 }
