@@ -29,6 +29,39 @@ export default class StudyPlanRecordsController {
     }
   }
 
+  public async show({ params, response }: HttpContextContract) {
+    try {
+      const studyPlanRecords = await StudyPlanRecord.query()
+        .where("study_plan_id", params.id)
+        .where("is_deleted", false)
+        .preload("subjects", (query) => {
+          query.select([
+            "subject_id",
+            "subject_name_th",
+            "subject_name_en",
+            "subject_credit",
+          ]);
+        });
+
+      console.log(studyPlanRecords);
+
+      if (!studyPlanRecords || studyPlanRecords.length === 0) {
+        return response
+          .status(404)
+          .json({ message: "StudyPlanRecord not found", status: 404 });
+      } else {
+        return response.status(200).json({
+          data: studyPlanRecords,
+          status: 200,
+        });
+      }
+    } catch (error) {
+      return response
+        .status(500)
+        .json({ message: "Internal Server Error", status: 500 });
+    }
+  }
+
   public async store({ request, response }: HttpContextContract) {
     const storeSchema = schema.create({
       study_plan_id: schema.number(),
