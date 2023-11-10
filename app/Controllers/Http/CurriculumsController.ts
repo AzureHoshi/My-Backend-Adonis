@@ -2,6 +2,7 @@ import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import Curriculum from "App/Models/Curriculum";
 import Subject from "App/Models/Subject";
+import { logger } from "Config/app";
 
 const curriculumSchema = schema.create({
   faculty_id: schema.number(),
@@ -77,10 +78,12 @@ export default class CurriculumsController {
         //   payload.ref_curriculum_id
         // );
 
-        const subjectsWithCurriculumId = await Subject.query().where(
-          "curriculum_id",
-          ref_curriculum_id
-        );
+        const subjectsWithCurriculumId = await Subject.query()
+          .where("curriculum_id", ref_curriculum_id)
+          .where("is_deleted", false);
+
+        console.log("subjectsWithCurriculumId: ", subjectsWithCurriculumId);
+
         if (
           !subjectsWithCurriculumId ||
           subjectsWithCurriculumId.length === 0
@@ -91,11 +94,15 @@ export default class CurriculumsController {
           });
         } else {
           const curriculum: Curriculum = await Curriculum.create(payload);
+
+          console.log("curriculum: ", curriculum);
+
           const subjectsWithNewCurriculumId =
             await subjectsWithCurriculumId.map((subject) => {
               const subjectData = subject.toJSON();
-              subjectData.curriculum_id = ref_curriculum_id; // เปลี่ยน curriculum_id เป็น 4
+              subjectData.curriculum_id = curriculum.curriculum_id; // เปลี่ยน curriculum_id เป็น 4
               delete subjectData.subject_id; // ลบ subject_id เพื่อให้สร้างข้อมูลใหม่
+
               return subjectData;
             });
           await Subject.createMany(subjectsWithNewCurriculumId);
