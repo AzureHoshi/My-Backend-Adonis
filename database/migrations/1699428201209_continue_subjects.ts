@@ -12,7 +12,7 @@ export default class extends BaseSchema {
         .references("subjects.subject_id")
         .onDelete("CASCADE");
       table
-        .integer("child_id")
+        .integer("subject_id")
         .unsigned()
         .references("subjects.subject_id")
         .onDelete("CASCADE");

@@ -68,7 +68,6 @@ export default class CurriculumsController {
     try {
       const { ref_curriculum_id } = request.all();
       const payload = await request.validate({ schema: curriculumSchema });
-      console.log(ref_curriculum_id);
 
       if (!ref_curriculum_id) {
         const curriculum: Curriculum = await Curriculum.create(payload);
@@ -92,14 +91,13 @@ export default class CurriculumsController {
           });
         } else {
           const curriculum: Curriculum = await Curriculum.create(payload);
-          const subjectsWithNewCurriculumId = subjectsWithCurriculumId.map(
-            (subject) => {
+          const subjectsWithNewCurriculumId =
+            await subjectsWithCurriculumId.map((subject) => {
               const subjectData = subject.toJSON();
               subjectData.curriculum_id = ref_curriculum_id; // เปลี่ยน curriculum_id เป็น 4
               delete subjectData.subject_id; // ลบ subject_id เพื่อให้สร้างข้อมูลใหม่
               return subjectData;
-            }
-          );
+            });
           await Subject.createMany(subjectsWithNewCurriculumId);
           return response.status(201).json({
             data: curriculum,
