@@ -82,8 +82,6 @@ export default class CurriculumsController {
           .where("curriculum_id", ref_curriculum_id)
           .where("is_deleted", false);
 
-        console.log("subjectsWithCurriculumId: ", subjectsWithCurriculumId);
-
         if (
           !subjectsWithCurriculumId ||
           subjectsWithCurriculumId.length === 0
@@ -94,8 +92,6 @@ export default class CurriculumsController {
           });
         } else {
           const curriculum: Curriculum = await Curriculum.create(payload);
-
-          console.log("curriculum: ", curriculum);
 
           const subjectsWithNewCurriculumId =
             await subjectsWithCurriculumId.map((subject) => {
