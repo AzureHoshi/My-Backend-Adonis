@@ -37,6 +37,7 @@ export default class StudyPlanRecordsController {
         .preload("subjects", (query) => {
           query.select([
             "subject_id",
+            "subject_code",
             "subject_name_th",
             "subject_name_en",
             "subject_credit",
