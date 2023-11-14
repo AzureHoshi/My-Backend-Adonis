@@ -13,9 +13,6 @@ export default class StudyPlan extends BaseModel {
   public study_plan_name: string;
 
   @column()
-  public study_plan_version: number;
-
-  @column()
   public study_plan_total_credit: number;
 
   @column()

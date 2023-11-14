@@ -5,7 +5,6 @@ import StudyPlan from "App/Models/StudyPlan";
 const studyPlanSchema = schema.create({
   curriculum_id: schema.number(),
   study_plan_name: schema.string([rules.maxLength(255)]),
-  study_plan_version: schema.number(),
   study_plan_total_credit: schema.number.optional(),
 });
 
