@@ -78,7 +78,7 @@ export default class StudyPlanRecordsController {
       const checkStudyPlanRecord = await StudyPlanRecord.query()
         .where({
           study_plan_id: payload.study_plan_id,
-          subject_id: payload.subject_id,
+          subject_id: !payload.subject_id,
           study_plan_record_semester: payload.study_plan_record_semester,
           study_plan_record_year: payload.study_plan_record_year,
         })
