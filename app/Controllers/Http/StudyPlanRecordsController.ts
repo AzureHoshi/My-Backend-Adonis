@@ -74,6 +74,23 @@ export default class StudyPlanRecordsController {
 
     try {
       const payload = await request.validate({ schema: storeSchema });
+
+      const checkStudyPlanRecord = await StudyPlanRecord.query()
+        .where({
+          study_plan_id: payload.study_plan_id,
+          subject_id: payload.subject_id,
+          study_plan_record_semester: payload.study_plan_record_semester,
+          study_plan_record_year: payload.study_plan_record_year,
+        })
+        .first();
+
+      if (checkStudyPlanRecord) {
+        return response.status(400).json({
+          message: "StudyPlanRecord already exists",
+          status: 400,
+        });
+      }
+
       const studyPlanRecord: StudyPlanRecord = await StudyPlanRecord.create(
         payload
       );
@@ -84,8 +101,14 @@ export default class StudyPlanRecordsController {
           status: 500,
         });
       } else {
+        const result = await StudyPlanRecord.query()
+          .where("study_plan_record_id", studyPlanRecord.study_plan_record_id)
+          .where("is_deleted", false)
+          .preload("subjects")
+          .first();
+
         return response.status(201).json({
-          data: studyPlanRecord,
+          data: result,
           status: 201,
           message: `StudyPlanRecord created success`,
         });
