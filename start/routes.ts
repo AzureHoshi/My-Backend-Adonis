@@ -59,6 +59,8 @@ Route.group(() => {
     "subjects-by-curriculum/:id",
     "SubjectsController.showByCurriculum"
   ); // done
+  Route.post("csv-upload", "UploadDownloadCsvsController.upload");
+  Route.get("csv-download", "UploadDownloadCsvsController.download");
 
   // ? สำหรับทดสอบการอัพโหลดไฟล์
   Route.group(() => {

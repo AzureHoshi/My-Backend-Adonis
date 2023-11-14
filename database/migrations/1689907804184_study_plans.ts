@@ -13,7 +13,6 @@ export default class extends BaseSchema {
         .references("curriculum_id")
         .inTable("curriculums");
       table.string("study_plan_name").notNullable();
-      table.integer("study_plan_version").notNullable();
       table.integer("study_plan_total_credit").notNullable();
       table.boolean("is_deleted").notNullable().defaultTo(false);
 

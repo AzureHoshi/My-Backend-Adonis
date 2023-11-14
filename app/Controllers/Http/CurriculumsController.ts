@@ -2,7 +2,6 @@ import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import Curriculum from "App/Models/Curriculum";
 import Subject from "App/Models/Subject";
-import { logger } from "Config/app";
 
 const curriculumSchema = schema.create({
   faculty_id: schema.number(),

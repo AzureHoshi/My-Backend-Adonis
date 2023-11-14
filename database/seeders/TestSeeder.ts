@@ -1418,7 +1418,6 @@ export default class extends BaseSeeder {
       {
         curriculum_id: 4,
         study_plan_name: "แผนการศึกษาแนะนำ มคอ.2 หลักสูตร 2560",
-        study_plan_version: 1,
         study_plan_total_credit: 130,
       },
     ];

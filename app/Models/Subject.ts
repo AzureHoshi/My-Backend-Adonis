@@ -1,12 +1,5 @@
 import { DateTime } from "luxon";
-import {
-  BaseModel,
-  BelongsTo,
-  HasMany,
-  belongsTo,
-  column,
-  hasMany,
-} from "@ioc:Adonis/Lucid/Orm";
+import { BaseModel, BelongsTo, belongsTo, column } from "@ioc:Adonis/Lucid/Orm";
 import SubjectGroup from "./SubjectGroup";
 import Curriculum from "./Curriculum";
 import Competency from "./Competency";
