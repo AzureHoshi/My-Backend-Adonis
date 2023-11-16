@@ -116,6 +116,37 @@ export default class ContinueSubjectsController {
     }
   }
 
+  async showBySubjectId({ params, response }: HttpContextContract) {
+    try {
+      const data = await ContinueSubject.query()
+        .where("subject_id", params.id)
+        .where("is_deleted", false);
+
+      const dataWithChildren = await Promise.all(
+        data.map(async (item) => {
+          const children = await ContinueSubject.query()
+            .where("parent_id", item.subject_id)
+            .where("is_deleted", false);
+
+          if (children.length > 0) {
+            return {
+              ...item.$attributes,
+              children: children,
+            };
+          } else {
+            return {
+              ...item.$attributes,
+            };
+          }
+        })
+      );
+
+      return response.status(200).json({ data: dataWithChildren, status: 200 });
+    } catch (error) {
+      return response.status(500).json({ message: "Internal Server Error" });
+    }
+  }
+
   async store({ request, response }: HttpContextContract) {
     const storeSchema = schema.create({
       parent_id: schema.number.optional(),

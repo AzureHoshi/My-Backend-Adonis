@@ -61,6 +61,10 @@ Route.group(() => {
   ); // done
   Route.post("csv-upload", "UploadDownloadCsvsController.upload");
   Route.get("csv-download", "UploadDownloadCsvsController.download");
+  Route.get(
+    "continue-subjects-subject-id/:id",
+    "ContinueSubjectsController.showBySubjectId"
+  );
 
   // ? สำหรับทดสอบการอัพโหลดไฟล์
   Route.group(() => {
