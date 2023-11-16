@@ -81,6 +81,7 @@ export default class StudyPlanRecordsController {
           subject_id: !payload.subject_id,
           study_plan_record_semester: payload.study_plan_record_semester,
           study_plan_record_year: payload.study_plan_record_year,
+          is_deleted: false,
         })
         .first();
 
