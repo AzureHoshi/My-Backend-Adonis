@@ -193,7 +193,7 @@ export default class ContinueSubjectsController {
           status: 400,
         });
       } else {
-        await continueSubject.merge({ is_deleted: true });
+        await continueSubject.merge({ is_deleted: 1 });
         return response
           .status(200)
           .json({ message: "ContinueSubject deleted", status: 200 });
