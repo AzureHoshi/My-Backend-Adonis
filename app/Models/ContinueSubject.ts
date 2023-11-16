@@ -20,4 +20,9 @@ export default class ContinueSubject extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
+
+  @hasMany(() => Subject, {
+    foreignKey: "subject_id",
+  })
+  public subjects: HasMany<typeof Subject>;
 }

@@ -6,6 +6,7 @@ const tree = async (data: any, level: number) => {
   const result = await Promise.all(
     data.map(async (item: any) => {
       const children = await ContinueSubject.query()
+        .preload("subjects")
         .where("parent_id", item.subject_id)
         .where("is_deleted", false);
 
@@ -13,12 +14,14 @@ const tree = async (data: any, level: number) => {
         return {
           ...item.$attributes,
           level: level,
+          subjects: item.subjects,
           children: await tree(children, level + 1),
         };
       } else {
         return {
           ...item.$attributes,
           level: level,
+          subjects: item.subjects,
         };
       }
     })
@@ -35,6 +38,7 @@ interface ResultStructure {
   createdAt: string;
   updatedAt: string;
   level: number;
+  subjects: any[];
   children?: ResultStructure[];
 }
 
@@ -54,6 +58,7 @@ const getByContinueSubjectId = (
         createdAt: item.createdAt || "",
         updatedAt: item.updatedAt || "",
         level: item.level || 0,
+        subjects: item.subjects || [],
         children: [], // กำหนดให้ children เป็น Array เปล่าเพื่อให้เข้ากับ interface
       };
 
@@ -80,6 +85,7 @@ export default class ContinueSubjectsController {
   public async index({ response }: HttpContextContract) {
     try {
       const data = await ContinueSubject.query()
+        .preload("subjects")
         .whereNull("parent_id")
         .where("is_deleted", false);
 
@@ -95,6 +101,7 @@ export default class ContinueSubjectsController {
     try {
       // Retrieve root elements
       const dataParentNull = await ContinueSubject.query()
+        .preload("subjects")
         .whereNull("parent_id")
         .where("is_deleted", false);
 
@@ -119,23 +126,27 @@ export default class ContinueSubjectsController {
   async showBySubjectId({ params, response }: HttpContextContract) {
     try {
       const data = await ContinueSubject.query()
+        .preload("subjects")
         .where("subject_id", params.id)
         .where("is_deleted", false);
 
       const dataWithChildren = await Promise.all(
         data.map(async (item) => {
           const children = await ContinueSubject.query()
+            .preload("subjects")
             .where("parent_id", item.subject_id)
             .where("is_deleted", false);
 
           if (children.length > 0) {
             return {
               ...item.$attributes,
+              subjects: item.subjects,
               children: children,
             };
           } else {
             return {
               ...item.$attributes,
+              subjects: item.subjects,
               children: [],
             };
           }
