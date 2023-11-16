@@ -136,6 +136,7 @@ export default class ContinueSubjectsController {
           } else {
             return {
               ...item.$attributes,
+              children: [],
             };
           }
         })
