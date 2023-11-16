@@ -15,6 +15,12 @@ export default class FeedbackRecordsController {
     try {
       const feedbacks = await FeedbackRecord.query();
 
+      if (!feedbacks || feedbacks.length === 0) {
+        return response
+          .status(404)
+          .json({ message: "Feedback not found", status: 404 });
+      }
+
       return response.status(200).json({ data: feedbacks, status: 200 });
     } catch (error) {
       return response.status(500).json({ message: error.message, status: 500 });
@@ -37,4 +43,35 @@ export default class FeedbackRecordsController {
       return response.status(500).json({ message: error.message, status: 500 });
     }
   }
+
+  // public async storeMany({ request, response }: HttpContextContract) {
+  //   const validateFeedbackRecord = async (record: any) => {
+  //     try {
+  //       await schema
+  //         .create({
+  //           feedback_id: schema.number(),
+  //           collegian_id: schema.number(),
+  //           feedback_record_answer: schema.string.optional({ trim: true }, [
+  //             rules.maxLength(255),
+  //           ]),
+  //         })
+  //         .validateAsync(record);
+  //       return true;
+  //     } catch (error) {
+  //       return false;
+  //     }
+  //   };
+
+  //   try {
+  //     const payload = await Promise.all(
+  //       request.body().map(validateFeedbackRecord)
+  //     );
+
+  //     const feedback = await FeedbackRecord.createMany(payload);
+
+  //     return response.status(201).json({ data: feedback, status: 201 });
+  //   } catch (error) {
+  //     return response.status(500).json({ message: error.message, status: 500 });
+  //   }
+  // }
 }

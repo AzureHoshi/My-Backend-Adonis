@@ -1,6 +1,13 @@
 import { DateTime } from "luxon";
-import { BaseModel, column, hasMany, HasMany } from "@ioc:Adonis/Lucid/Orm";
+import {
+  BaseModel,
+  BelongsTo,
+  column,
+  hasMany,
+  HasMany,
+} from "@ioc:Adonis/Lucid/Orm";
 import Subject from "./Subject";
+import { belongsTo } from "@ioc:Adonis/Lucid/Orm";
 
 export default class ContinueSubject extends BaseModel {
   @column({ isPrimary: true })
@@ -21,8 +28,8 @@ export default class ContinueSubject extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
 
-  @hasMany(() => Subject, {
+  @belongsTo(() => Subject, {
     foreignKey: "subject_id",
   })
-  public subjects: HasMany<typeof Subject>;
+  public subjects: BelongsTo<typeof Subject>;
 }
