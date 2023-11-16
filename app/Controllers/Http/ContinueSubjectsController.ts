@@ -180,8 +180,11 @@ export default class ContinueSubjectsController {
   }
 
   async destroy({ params, response }: HttpContextContract) {
+    console.log(params.id);
     try {
       const continueSubject: any = await ContinueSubject.find(params.id);
+
+      console.log(continueSubject);
 
       if (!continueSubject) {
         return response
@@ -193,7 +196,7 @@ export default class ContinueSubjectsController {
           status: 400,
         });
       } else {
-        await continueSubject.merge({ is_deleted: 1 });
+        await continueSubject.merge({ is_deleted: true }).save();
         return response
           .status(200)
           .json({ message: "ContinueSubject deleted", status: 200 });

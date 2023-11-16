@@ -12,7 +12,7 @@ export default class extends BaseSchema {
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
-      table.boolean("is_deleted").defaultTo(false);
+      table.boolean("is_deleted").notNullable().defaultTo(false);
       table
         .timestamp("created_at", { useTz: true })
         .notNullable()
