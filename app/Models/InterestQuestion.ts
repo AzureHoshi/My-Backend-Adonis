@@ -43,4 +43,9 @@ export default class InterestQuestion extends BaseModel {
 
   @hasMany(() => InterestRecord)
   public interest_records: HasMany<typeof InterestRecord>;
+
+  @hasMany(() => InterestAnswer, {
+    foreignKey: "interest_question_id",
+  })
+  public interest_answers: HasMany<typeof InterestAnswer>;
 }
