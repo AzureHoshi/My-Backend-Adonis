@@ -27,6 +27,8 @@ export default class InterestSurveysController {
   public async show({ params, response }: HttpContextContract) {
     try {
       const interestSurveys = await InterestSurvey.query()
+        .preload("curriculum")
+        .preload("interestQuestions")
         .where("curriculum_id", params.id)
         .where("is_deleted", false)
         .orderBy("interest_survey_version", "desc")
