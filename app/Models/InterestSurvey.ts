@@ -1,6 +1,14 @@
 import { DateTime } from "luxon";
-import { BaseModel, BelongsTo, belongsTo, column } from "@ioc:Adonis/Lucid/Orm";
+import {
+  BaseModel,
+  BelongsTo,
+  HasMany,
+  belongsTo,
+  column,
+  hasMany,
+} from "@ioc:Adonis/Lucid/Orm";
 import Curriculum from "./Curriculum";
+import InterestQuestion from "./InterestQuestion";
 
 export default class InterestSurvey extends BaseModel {
   @column({ isPrimary: true })
@@ -25,4 +33,9 @@ export default class InterestSurvey extends BaseModel {
     foreignKey: "curriculum_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
   })
   public curriculum: BelongsTo<typeof Curriculum>;
+
+  @hasMany(() => InterestQuestion, {
+    foreignKey: "interest_survey_id",
+  })
+  public interestQuestions: HasMany<typeof InterestQuestion>;
 }

@@ -9,11 +9,43 @@ const interestSurveySchema = schema.create({
 
 export default class InterestSurveysController {
   public async index({ response }: HttpContextContract) {
-    const interestSurveys = await InterestSurvey.query()
-      .preload("curriculum")
-      .where("interest_surveys.is_deleted", false)
-      .orderBy("interest_surveys.updated_at", "desc");
-    return response.status(200).json({ data: interestSurveys, status: 200 });
+    try {
+      const interestSurveys = await InterestSurvey.query()
+        .preload("curriculum")
+        .preload("interestQuestions")
+        .where("interest_surveys.is_deleted", false)
+        .orderBy("interest_surveys.updated_at", "desc");
+
+      return response.status(200).json({ data: interestSurveys, status: 200 });
+    } catch (error) {
+      return response
+        .status(500)
+        .json({ message: "Internal server error", status: 500 });
+    }
+  }
+
+  public async show({ params, response }: HttpContextContract) {
+    try {
+      const interestSurveys = await InterestSurvey.query()
+        .where("curriculum_id", params.id)
+        .where("is_deleted", false)
+        .orderBy("interest_survey_version", "desc")
+        .limit(1);
+
+      if (interestSurveys.length === 0) {
+        return response
+          .status(404)
+          .json({ message: "Interest Survey not found", status: 404 });
+      } else {
+        return response
+          .status(200)
+          .json({ data: interestSurveys, status: 200 });
+      }
+    } catch (error) {
+      return response
+        .status(500)
+        .json({ message: "Internal server error", status: 500 });
+    }
   }
 
   public async store({ request, response }: HttpContextContract) {
