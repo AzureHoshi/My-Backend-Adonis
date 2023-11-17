@@ -4,7 +4,7 @@ import InterestAnswer from "App/Models/InterestAnswer";
 
 const interestAnswerSchema = schema.create({
   interest_question_id: schema.number(),
-  interest_answer_choice: schema.string({ trim: true }, [rules.maxLength(255)]),
+  interest_answer_title: schema.string({ trim: true }, [rules.maxLength(255)]),
   interest_answer_number: schema.number(),
 });
 export default class InterestAnswersController {

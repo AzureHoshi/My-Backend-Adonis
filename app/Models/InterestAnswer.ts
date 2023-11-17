@@ -18,7 +18,7 @@ export default class InterestAnswer extends BaseModel {
   public interest_question_id: number;
 
   @column()
-  public interest_answer_choice: string;
+  public interest_answer_title: string;
 
   @column()
   public interest_answer_number: number;
