@@ -191,7 +191,15 @@ export default class ContinueSubjectsController {
         })
       );
 
-      return response.status(200).json({ data: dataWithChildren, status: 200 });
+      if (dataWithChildren.length === 0) {
+        return response
+          .status(404)
+          .json({ message: "ContinueSubject not found", status: 404 });
+      } else {
+        return response
+          .status(200)
+          .json({ data: dataWithChildren, status: 200 });
+      }
     } catch (error) {
       return response.status(500).json({ message: "Internal Server Error" });
     }
