@@ -63,7 +63,7 @@ Route.group(() => {
   Route.get("csv-download", "UploadDownloadCsvsController.download");
   Route.get(
     "continue-subjects-subject/:id",
-    "ContinueSubjectsController.showBySubjectId"
+    "ContinueSubjectsController.showBySubject"
   );
   Route.get(
     "continue-subjects-curriculum/:id",

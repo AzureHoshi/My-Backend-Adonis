@@ -123,7 +123,7 @@ export default class ContinueSubjectsController {
     }
   }
 
-  public async showBySubjectId({ params, response }: HttpContextContract) {
+  public async showBySubject({ params, response }: HttpContextContract) {
     try {
       const data = await ContinueSubject.query()
         .preload("subjects")
@@ -153,7 +153,15 @@ export default class ContinueSubjectsController {
         })
       );
 
-      return response.status(200).json({ data: dataWithChildren, status: 200 });
+      if (!dataWithChildren) {
+        return response
+          .status(404)
+          .json({ message: "ContinueSubject not found", status: 404 });
+      } else {
+        return response
+          .status(200)
+          .json({ data: dataWithChildren, status: 200 });
+      }
     } catch (error) {
       return response.status(500).json({ message: "Internal Server Error" });
     }
@@ -191,7 +199,7 @@ export default class ContinueSubjectsController {
         })
       );
 
-      if (dataWithChildren.length === 0) {
+      if (!dataWithChildren) {
         return response
           .status(404)
           .json({ message: "ContinueSubject not found", status: 404 });
