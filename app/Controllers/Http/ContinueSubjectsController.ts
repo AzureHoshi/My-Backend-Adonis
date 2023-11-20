@@ -170,7 +170,9 @@ export default class ContinueSubjectsController {
   public async showByCurriculum({ params, response }: HttpContextContract) {
     try {
       const data = await ContinueSubject.query()
-        .where("curriculum_id", params.id)
+        .whereHas("subjects", (query) => {
+          query.where("curriculum_id", params.id);
+        })
         .preload("subjects")
         .whereNull("parent_id")
         .where("is_deleted", false);
