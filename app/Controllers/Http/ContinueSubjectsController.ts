@@ -97,7 +97,7 @@ export default class ContinueSubjectsController {
     }
   }
 
-  async show({ params, response }: HttpContextContract) {
+  public async show({ params, response }: HttpContextContract) {
     try {
       // Retrieve root elements
       const dataParentNull = await ContinueSubject.query()
@@ -123,7 +123,7 @@ export default class ContinueSubjectsController {
     }
   }
 
-  async showBySubjectId({ params, response }: HttpContextContract) {
+  public async showBySubjectId({ params, response }: HttpContextContract) {
     try {
       const data = await ContinueSubject.query()
         .preload("subjects")
@@ -159,7 +159,43 @@ export default class ContinueSubjectsController {
     }
   }
 
-  async store({ request, response }: HttpContextContract) {
+  public async showByCurriculum({ params, response }: HttpContextContract) {
+    try {
+      const data = await ContinueSubject.query()
+        .preload("subjects")
+        .where("curriculum_id", params.id)
+        .where("is_deleted", false);
+
+      const dataWithChildren = await Promise.all(
+        data.map(async (item) => {
+          const children = await ContinueSubject.query()
+            .preload("subjects")
+            .where("parent_id", item.subject_id)
+            .where("is_deleted", false);
+
+          if (children.length > 0) {
+            return {
+              ...item.$attributes,
+              subjects: item.subjects,
+              children: children,
+            };
+          } else {
+            return {
+              ...item.$attributes,
+              subjects: item.subjects,
+              children: [],
+            };
+          }
+        })
+      );
+
+      return response.status(200).json({ data: dataWithChildren, status: 200 });
+    } catch (error) {
+      return response.status(500).json({ message: "Internal Server Error" });
+    }
+  }
+
+  public async store({ request, response }: HttpContextContract) {
     const storeSchema = schema.create({
       parent_id: schema.number.optional(),
       subject_id: schema.number(),
@@ -190,7 +226,7 @@ export default class ContinueSubjectsController {
     }
   }
 
-  async destroy({ params, response }: HttpContextContract) {
+  public async destroy({ params, response }: HttpContextContract) {
     console.log(params.id);
     try {
       const continueSubject: any = await ContinueSubject.find(params.id);
