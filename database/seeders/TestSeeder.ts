@@ -1775,71 +1775,71 @@ export default class extends BaseSeeder {
         // คำตอบของคำถามที่ 1
         interest_question_id: 1,
         interest_answer_number: 1,
-        interest_answer_choice:
+        interest_answer_title:
           "ความชื่นชอบในการเขียนโปรแกรมและแก้ปัญหาด้วยเทคโนโลยีคอมพิวเตอร์",
       },
       {
         interest_question_id: 1,
         interest_answer_number: 2,
-        interest_answer_choice:
+        interest_answer_title:
           "ความชื่นชอบในการใช้คอมพิวเตอร์ หรือ เทคโนโลยีใหม่คอมพิวเตอร์",
       },
       {
         interest_question_id: 1,
         interest_answer_number: 3,
-        interest_answer_choice:
+        interest_answer_title:
           "ความการเรียนต่อในระดับ ปริญญาตรี ในสายงานที่ชื่บชอบ",
       },
       {
         interest_question_id: 1,
         interest_answer_number: 4,
-        interest_answer_choice: "ความการเรียนต่อในระดับ ปริญญาตรี",
+        interest_answer_title: "ความการเรียนต่อในระดับ ปริญญาตรี",
       },
       {
         interest_question_id: 1,
         interest_answer_number: 5,
-        interest_answer_choice: "ความต้องการของตลาดแรงงานที่สูงในสาขานี้",
+        interest_answer_title: "ความต้องการของตลาดแรงงานที่สูงในสาขานี้",
       },
       {
         // คำตอบของคำถามที่ 2
         interest_question_id: 2,
         interest_answer_number: 1,
-        interest_answer_choice:
+        interest_answer_title:
           "ต้องการประสบการณ์เรียนรู้ เฉพาะด้านของคอมพิวเตอร์",
       },
       {
         interest_question_id: 2,
         interest_answer_number: 2,
-        interest_answer_choice:
+        interest_answer_title:
           "ต้องการประสบการณ์เรียนรู้ การสร้างและพัฒนาเทคโนโลยี",
       },
       {
         interest_question_id: 2,
         interest_answer_number: 3,
-        interest_answer_choice:
+        interest_answer_title:
           "ความชื่นชอบในการใช้คอมพิวเตอร์ ทั้งทำงาน และ เล่นเกม",
       },
       {
         interest_question_id: 2,
         interest_answer_number: 4,
-        interest_answer_choice: "ต้องการเรียนรู้เกี่ยวกับสายงาน คอมพิวเตอร์",
+        interest_answer_title: "ต้องการเรียนรู้เกี่ยวกับสายงาน คอมพิวเตอร์",
       },
       {
         // คำตอบของคำถามที่ 3
         interest_question_id: 3,
         interest_answer_number: 1,
-        interest_answer_choice:
+        interest_answer_title:
           "มี สามารถแก้ไขปัญหาได้ และ สามารถประยุกต์การใช้ได้ ",
       },
       {
         interest_question_id: 3,
         interest_answer_number: 2,
-        interest_answer_choice: "มี สามารถเขียนเงื่อนไขได้เบื้องต้น",
+        interest_answer_title: "มี สามารถเขียนเงื่อนไขได้เบื้องต้น",
       },
       {
         interest_question_id: 3,
         interest_answer_number: 3,
-        interest_answer_choice: "ไม่มี ประสบการณ์เลย",
+        interest_answer_title: "ไม่มี ประสบการณ์เลย",
       },
     ];
 
