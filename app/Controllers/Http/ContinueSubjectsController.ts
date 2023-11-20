@@ -163,7 +163,9 @@ export default class ContinueSubjectsController {
     try {
       const data = await ContinueSubject.query()
         .preload("subjects")
-        .where("curriculum_id", params.id)
+        .whereHas("subjects", (query) => {
+          query.where("curriculum_id", params.id);
+        })
         .where("is_deleted", false);
 
       const dataWithChildren = await Promise.all(
