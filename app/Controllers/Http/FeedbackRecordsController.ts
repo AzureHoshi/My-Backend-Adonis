@@ -44,34 +44,29 @@ export default class FeedbackRecordsController {
     }
   }
 
-  // public async storeMany({ request, response }: HttpContextContract) {
-  //   const validateFeedbackRecord = async (record: any) => {
-  //     try {
-  //       await schema
-  //         .create({
-  //           feedback_id: schema.number(),
-  //           collegian_id: schema.number(),
-  //           feedback_record_answer: schema.string.optional({ trim: true }, [
-  //             rules.maxLength(255),
-  //           ]),
-  //         })
-  //         .validateAsync(record);
-  //       return true;
-  //     } catch (error) {
-  //       return false;
-  //     }
-  //   };
+  public async storeMany({ request, response }: HttpContextContract) {
+    const storeManySchema = schema.create({
+      feedback_records: schema.array().members(
+        schema.object().members({
+          feedback_id: schema.number(),
+          collegian_id: schema.number(),
+          feedback_record_answer: schema.string.optional({ trim: true }, [
+            rules.maxLength(255),
+          ]),
+        })
+      ),
+    });
 
-  //   try {
-  //     const payload = await Promise.all(
-  //       request.body().map(validateFeedbackRecord)
-  //     );
+    try {
+      const payload = await request.validate({ schema: storeManySchema });
 
-  //     const feedback = await FeedbackRecord.createMany(payload);
+      const feedbacks = await FeedbackRecord.createMany(
+        payload.feedback_records
+      );
 
-  //     return response.status(201).json({ data: feedback, status: 201 });
-  //   } catch (error) {
-  //     return response.status(500).json({ message: error.message, status: 500 });
-  //   }
-  // }
+      return response.status(201).json({ data: feedbacks, status: 201 });
+    } catch (error) {
+      return response.status(500).json({ message: error.message, status: 500 });
+    }
+  }
 }

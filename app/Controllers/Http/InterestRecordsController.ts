@@ -20,16 +20,26 @@ export default class InterestRecordsController {
   }
 
   public async store({ request, response }: HttpContextContract) {
+    const storeManySchema = schema.create({
+      interest_records: schema.array().members(
+        schema.object().members({
+          collegian_id: schema.number(),
+          interest_question_id: schema.number(),
+          interest_answer_id: schema.number(),
+        })
+      ),
+    });
+
     try {
-      const payload = await request.validate({
-        schema: interestRecordSchema,
-      });
-      const interestRecord = await InterestRecord.create(payload);
-      return response.status(201).json({ data: interestRecord, status: 201 });
+      const payload = await request.validate({ schema: storeManySchema });
+
+      const interestRecords = InterestRecord.createMany(
+        payload.interest_records
+      );
+
+      return response.status(201).json({ data: interestRecords, status: 201 });
     } catch (error) {
-      return response
-        .status(400)
-        .json({ message: "Incorrect or incomplete information", status: 400 });
+      return response.status(500).json({ message: error.message, status: 500 });
     }
   }
 

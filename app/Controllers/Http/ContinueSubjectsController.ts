@@ -170,44 +170,14 @@ export default class ContinueSubjectsController {
   public async showByCurriculum({ params, response }: HttpContextContract) {
     try {
       const data = await ContinueSubject.query()
+        .where("curriculum_id", params.id)
         .preload("subjects")
-        .whereHas("subjects", (query) => {
-          query.where("curriculum_id", params.id);
-        })
+        .whereNull("parent_id")
         .where("is_deleted", false);
 
-      const dataWithChildren = await Promise.all(
-        data.map(async (item) => {
-          const children = await ContinueSubject.query()
-            .preload("subjects")
-            .where("parent_id", item.subject_id)
-            .where("is_deleted", false);
+      const result = await tree(data, 1);
 
-          if (children.length > 0) {
-            return {
-              ...item.$attributes,
-              subjects: item.subjects,
-              children: children,
-            };
-          } else {
-            return {
-              ...item.$attributes,
-              subjects: item.subjects,
-              children: [],
-            };
-          }
-        })
-      );
-
-      if (!dataWithChildren) {
-        return response
-          .status(404)
-          .json({ message: "ContinueSubject not found", status: 404 });
-      } else {
-        return response
-          .status(200)
-          .json({ data: dataWithChildren, status: 200 });
-      }
+      return response.status(200).json({ data: result, status: 200 });
     } catch (error) {
       return response.status(500).json({ message: "Internal Server Error" });
     }
