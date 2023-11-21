@@ -7,6 +7,7 @@ const interestQuestionSchema = schema.create({
   interest_question_title: schema.string({ trim: true }, [
     rules.maxLength(255),
   ]),
+  interest_question_type: schema.number(),
 });
 export default class InterestQuestionsController {
   public async index({ response }: HttpContextContract) {
