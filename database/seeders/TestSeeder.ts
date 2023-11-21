@@ -1835,6 +1835,12 @@ export default class extends BaseSeeder {
         interest_question_title: "มีทักษะ หรือ เทคนิคด้านการบริหารและการจัดการ",
         interest_question_type: 1,
       },
+      {
+        //  คำถาม type 2 แบบ ทดสอบ
+        interest_survey_id: 1,
+        interest_question_title: "ลามะมีกี่ขา?",
+        interest_question_type: 2,
+      },
     ];
     const jobPositionData = [
       {
@@ -1861,6 +1867,9 @@ export default class extends BaseSeeder {
       {
         job_position_name:
           "ผู้ประกอบการด้านซอฟต์แวร์ (Software Entrepreneurship)",
+      },
+      {
+        job_position_name: "ลามะ",
       },
     ];
     const InterestAnswersData = [
@@ -1902,6 +1911,23 @@ export default class extends BaseSeeder {
       },
       {
         interest_question_id: 13,
+      },
+      {
+        //  คำตอบ type 2 แบบ ทดสอบ
+        interest_question_id: 14,
+        interest_answer_title: "2 ขา",
+      },
+      {
+        interest_question_id: 14,
+        interest_answer_title: "4 ขา",
+      },
+      {
+        interest_question_id: 14,
+        interest_answer_title: "6 ขา",
+      },
+      {
+        interest_question_id: 14,
+        interest_answer_title: "ลามะไม่มีขา",
       },
     ];
     const interestAnswersJobData = [
@@ -1960,6 +1986,10 @@ export default class extends BaseSeeder {
       {
         interest_answer_id: 13,
         job_position_id: 7,
+      },
+      {
+        interest_answer_id: 14,
+        job_position_id: 8,
       },
     ];
     const continueSubjectsData = [

@@ -9,7 +9,7 @@ const interestAnswerSchema = schema.create({
 export default class InterestAnswersController {
   public async index({ response }: HttpContextContract) {
     const interestAnswers = await InterestAnswer.query()
-      .preload("interestQuestion")
+      .preload("interest_answers_job")
       .where("is_deleted", false);
     return response.status(200).json({ data: interestAnswers, status: 200 });
   }

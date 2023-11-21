@@ -29,7 +29,11 @@ export default class InterestSurveysController {
       const interestSurveys = await InterestSurvey.query()
         .preload("curriculum")
         .preload("interestQuestions", (query) => {
-          query.where("is_deleted", false).preload("interest_answers");
+          query
+            .where("is_deleted", false)
+            .preload("interest_answers", (query) => {
+              query.where("is_deleted", false).preload("interest_answers_job");
+            });
         })
         .where("curriculum_id", params.id)
         .where("is_deleted", false)
