@@ -4,7 +4,9 @@ import InterestAnswer from "App/Models/InterestAnswer";
 
 const interestAnswerSchema = schema.create({
   interest_question_id: schema.number(),
-  interest_answer_title: schema.string({ trim: true }, [rules.maxLength(255)]),
+  interest_answer_title: schema.string.optional({ trim: true }, [
+    rules.maxLength(255),
+  ]),
 });
 export default class InterestAnswersController {
   public async index({ response }: HttpContextContract) {
