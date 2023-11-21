@@ -39,7 +39,10 @@ export default class InterestRecordsController {
 
       return response.status(201).json({ data: interestRecords, status: 201 });
     } catch (error) {
-      return response.status(500).json({ message: error.message, status: 500 });
+      return response.status(400).json({
+        message: "Incorrect or incomplete information",
+        status: 400,
+      });
     }
   }
 

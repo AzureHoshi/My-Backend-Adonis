@@ -21,7 +21,7 @@ export default class InterestAnswer extends BaseModel {
   public interest_answer_title: string;
 
   @column()
-  public interest_answer_number: number;
+  public interest_answer_type: number;
 
   @column()
   public is_deleted: boolean;

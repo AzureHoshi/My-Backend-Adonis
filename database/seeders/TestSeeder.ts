@@ -7,8 +7,10 @@ import Curriculum from "App/Models/Curriculum";
 import Faculty from "App/Models/Faculty";
 import Feedback from "App/Models/Feedback";
 import InterestAnswer from "App/Models/InterestAnswer";
+import InterestAnswerJob from "App/Models/InterestAnswersJob";
 import InterestQuestion from "App/Models/InterestQuestion";
 import InterestSurvey from "App/Models/InterestSurvey";
+import JobPosition from "App/Models/JobPosition";
 import StudyPlan from "App/Models/StudyPlan";
 import StudyPlanRecord from "App/Models/StudyPlanRecord";
 import Subject from "App/Models/Subject";
@@ -1756,91 +1758,209 @@ export default class extends BaseSeeder {
     ];
     const interestQuestionsData = [
       {
+        // อาชีพที่ 1
         interest_survey_id: 1,
-        interest_question_number: 1,
-        interest_question_title: "ทำไมคุณเลือกเรียนวิศวกรรมคอมพิวเตอร์",
+        interest_question_title: "มีความในชอบการศึกษาหรือหาเทคโนโลยีใหม่ ๆ",
       },
       {
         interest_survey_id: 1,
-        interest_question_number: 2,
-        interest_question_title: "สิ่งที่ ที่ทำให้คุณสนใจในสาขานี้",
+        interest_question_title:
+          "มีการจัดการความคิดเชิงวิศวกรรม 1. ระบุปัญหา 2. รวบรวมข้อมูลและแนวคิดที่เกี่ยวข้องกับปัญหา 3. ออกแบบวิธีการแก้ปัญหา 4. วางแผนและดำเนินการ 5. ทดสอบ ประเมิน ปรับปรุงแก้ไข 6. นำเสอนวิธีแก้ปัญหา",
+      },
+      {
+        // อาชีพที่ 2
+        interest_survey_id: 1,
+        interest_question_title:
+          "มีความชอบในการออกแบบ และ วางแผนการทำงานต่าง ๆ",
       },
       {
         interest_survey_id: 1,
-        interest_question_number: 3,
-        interest_question_title: "คุณมีประสบการณ์ในการเขียนโค้ดหรือไม่",
+        interest_question_title: "มีความชอบในการเขียนโค้ด การแก้ไขโจทย์ปัญหา",
+      },
+      {
+        // อาชีพที่ 3,4
+        interest_survey_id: 1,
+        interest_question_title: "มีทักษะ การวิเคราะห์ปัญหา และศึกษาปัญหา",
+      },
+      {
+        // อาชีพที่ 3
+        interest_survey_id: 1,
+        interest_question_title: "มีทักษะในการตรวจสอบและสังเกต ถึงข้อผิดพลาด",
+      },
+      {
+        // อาชีพที่ 4
+        interest_survey_id: 1,
+        interest_question_title:
+          "มีความชอบในการออกแบบ และ วางแผน เพื่อแก้ไขปัญหา",
+      },
+      {
+        // อาชีพที่ 5
+        interest_survey_id: 1,
+        interest_question_title: "มีทักษะในการตรวจสอบและสังเกต ถึงความบกพร่อง",
+      },
+      {
+        interest_survey_id: 1,
+        interest_question_title:
+          "มีทักษะในการวิเคราะห์ว่า ควรใช้อะไร เหมาะกับสิ่งไหน เพื่อให้ตรงกับวัตถุประสงค์",
+      },
+      {
+        // อาชีพที่ 6
+        interest_survey_id: 1,
+        interest_question_title:
+          "มีความชอบในการประกอบส่วนต่าง ๆ มารวมกันเป็นระบบเดียว",
+      },
+      {
+        interest_survey_id: 1,
+        interest_question_title:
+          "ชอบมองภาพรวม แต่ไม่สามารถระบุรายละเอียดทุกด้านของการทำงานได้",
+      },
+      {
+        // อาชีพที่ 7
+        interest_survey_id: 1,
+        interest_question_title: "มีความชอบเทคโนโลยีที่สามารถทำให้มีรายได้",
+      },
+      {
+        interest_survey_id: 1,
+        interest_question_title: "มีทักษะ หรือ เทคนิคด้านการบริหารและการจัดการ",
+      },
+    ];
+    const jobPositionData = [
+      {
+        job_position_name: "วิศวกรซอฟต์แวร์ (Software Engineer)",
+      },
+      {
+        job_position_name: "นักพัฒนาซอฟต์แวร์ (Developer/Programmer)",
+      },
+      {
+        job_position_name:
+          "นักวิเคราะห์ระบบสารสนเทศในงานอุตสาหกรรม (IT Analyst)",
+      },
+      {
+        job_position_name:
+          "นักวิเคราะห์และออกแบบระบบ (System Analyst and Designer)",
+      },
+      {
+        job_position_name:
+          "นักประกันคุณภาพซอฟต์แวร์ (Software Quality Assurance)",
+      },
+      {
+        job_position_name: "สถาปนิกซอฟต์แวร์ (Software Architect)",
+      },
+      {
+        job_position_name:
+          "ผู้ประกอบการด้านซอฟต์แวร์ (Software Entrepreneurship)",
       },
     ];
     const InterestAnswersData = [
       {
-        // คำตอบของคำถามที่ 1
         interest_question_id: 1,
-        interest_answer_number: 1,
-        interest_answer_title:
-          "ความชื่นชอบในการเขียนโปรแกรมและแก้ปัญหาด้วยเทคโนโลยีคอมพิวเตอร์",
-      },
-      {
-        interest_question_id: 1,
-        interest_answer_number: 2,
-        interest_answer_title:
-          "ความชื่นชอบในการใช้คอมพิวเตอร์ หรือ เทคโนโลยีใหม่คอมพิวเตอร์",
-      },
-      {
-        interest_question_id: 1,
-        interest_answer_number: 3,
-        interest_answer_title:
-          "ความการเรียนต่อในระดับ ปริญญาตรี ในสายงานที่ชื่บชอบ",
-      },
-      {
-        interest_question_id: 1,
-        interest_answer_number: 4,
-        interest_answer_title: "ความการเรียนต่อในระดับ ปริญญาตรี",
-      },
-      {
-        interest_question_id: 1,
-        interest_answer_number: 5,
-        interest_answer_title: "ความต้องการของตลาดแรงงานที่สูงในสาขานี้",
-      },
-      {
-        // คำตอบของคำถามที่ 2
-        interest_question_id: 2,
-        interest_answer_number: 1,
-        interest_answer_title:
-          "ต้องการประสบการณ์เรียนรู้ เฉพาะด้านของคอมพิวเตอร์",
+        interest_answer_type: 1,
       },
       {
         interest_question_id: 2,
-        interest_answer_number: 2,
-        interest_answer_title:
-          "ต้องการประสบการณ์เรียนรู้ การสร้างและพัฒนาเทคโนโลยี",
-      },
-      {
-        interest_question_id: 2,
-        interest_answer_number: 3,
-        interest_answer_title:
-          "ความชื่นชอบในการใช้คอมพิวเตอร์ ทั้งทำงาน และ เล่นเกม",
-      },
-      {
-        interest_question_id: 2,
-        interest_answer_number: 4,
-        interest_answer_title: "ต้องการเรียนรู้เกี่ยวกับสายงาน คอมพิวเตอร์",
-      },
-      {
-        // คำตอบของคำถามที่ 3
-        interest_question_id: 3,
-        interest_answer_number: 1,
-        interest_answer_title:
-          "มี สามารถแก้ไขปัญหาได้ และ สามารถประยุกต์การใช้ได้ ",
+        interest_answer_type: 1,
       },
       {
         interest_question_id: 3,
-        interest_answer_number: 2,
-        interest_answer_title: "มี สามารถเขียนเงื่อนไขได้เบื้องต้น",
+        interest_answer_type: 1,
       },
       {
-        interest_question_id: 3,
-        interest_answer_number: 3,
-        interest_answer_title: "ไม่มี ประสบการณ์เลย",
+        interest_question_id: 4,
+        interest_answer_type: 1,
+      },
+      {
+        interest_question_id: 5,
+        interest_answer_type: 1,
+      },
+      {
+        interest_question_id: 6,
+        interest_answer_type: 1,
+      },
+      {
+        interest_question_id: 7,
+        interest_answer_type: 1,
+      },
+      {
+        interest_question_id: 8,
+        interest_answer_type: 1,
+      },
+      {
+        interest_question_id: 9,
+        interest_answer_type: 1,
+      },
+      {
+        interest_question_id: 10,
+        interest_answer_type: 1,
+      },
+      {
+        interest_question_id: 11,
+        interest_answer_type: 1,
+      },
+      {
+        interest_question_id: 12,
+        interest_answer_type: 1,
+      },
+      {
+        interest_question_id: 13,
+        interest_answer_type: 1,
+      },
+    ];
+    const interestAnswersJobData = [
+      {
+        interest_answer_id: 1,
+        job_position_id: 1,
+      },
+      {
+        interest_answer_id: 2,
+        job_position_id: 1,
+      },
+      {
+        interest_answer_id: 3,
+        job_position_id: 2,
+      },
+      {
+        interest_answer_id: 4,
+        job_position_id: 2,
+      },
+      {
+        interest_answer_id: 5,
+        job_position_id: 3,
+      },
+      {
+        interest_answer_id: 5,
+        job_position_id: 4,
+      },
+      {
+        interest_answer_id: 6,
+        job_position_id: 3,
+      },
+      {
+        interest_answer_id: 7,
+        job_position_id: 4,
+      },
+      {
+        interest_answer_id: 8,
+        job_position_id: 5,
+      },
+      {
+        interest_answer_id: 9,
+        job_position_id: 5,
+      },
+      {
+        interest_answer_id: 10,
+        job_position_id: 6,
+      },
+      {
+        interest_answer_id: 11,
+        job_position_id: 6,
+      },
+      {
+        interest_answer_id: 12,
+        job_position_id: 7,
+      },
+      {
+        interest_answer_id: 13,
+        job_position_id: 7,
       },
     ];
     const continueSubjectsData = [
@@ -1946,5 +2066,7 @@ export default class extends BaseSeeder {
     await InterestQuestion.createMany(interestQuestionsData);
     await InterestAnswer.createMany(InterestAnswersData);
     await ContinueSubject.createMany(continueSubjectsData);
+    await JobPosition.createMany(jobPositionData);
+    await InterestAnswerJob.createMany(interestAnswersJobData);
   }
 }

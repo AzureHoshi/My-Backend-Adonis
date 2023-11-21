@@ -1,11 +1,11 @@
 import BaseSchema from "@ioc:Adonis/Lucid/Schema";
 
 export default class extends BaseSchema {
-  protected tableName = "interest_answers_jobs";
+  protected tableName = "interest_answer_jobs";
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments("interest_answers_job_id");
+      table.increments("interest_answer_job_id");
       table
         .integer("interest_answer_id")
         .unsigned()
@@ -14,9 +14,9 @@ export default class extends BaseSchema {
       table
         .integer("job_position_id")
         .unsigned()
-        .references("job_position.job_position_id")
+        .references("job_positions.job_position_id")
         .onDelete("CASCADE");
-      table.integer("score").unsigned().notNullable();
+      table.integer("interest_answers_job_score");
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
