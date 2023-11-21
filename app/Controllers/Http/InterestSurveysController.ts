@@ -11,8 +11,12 @@ export default class InterestSurveysController {
   public async index({ response }: HttpContextContract) {
     try {
       const interestSurveys = await InterestSurvey.query()
-        .preload("curriculum")
-        .preload("interestQuestions")
+        .preload("curriculum", (query) => {
+          query.where("is_deleted", false);
+        })
+        .preload("interestQuestions", (query) => {
+          query.where("is_deleted", false);
+        })
         .where("is_deleted", false)
         .orderBy("updated_at", "desc");
 
