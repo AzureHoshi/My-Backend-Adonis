@@ -22,6 +22,9 @@ export default class InterestQuestion extends BaseModel {
   public interest_question_title: string;
 
   @column()
+  public interest_question_type: number;
+
+  @column()
   public is_deleted: boolean;
 
   @column.dateTime({ autoCreate: true })

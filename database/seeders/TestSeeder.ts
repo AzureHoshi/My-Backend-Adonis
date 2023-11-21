@@ -1761,67 +1761,79 @@ export default class extends BaseSeeder {
         // อาชีพที่ 1
         interest_survey_id: 1,
         interest_question_title: "มีความในชอบการศึกษาหรือหาเทคโนโลยีใหม่ ๆ",
+        interest_question_type: 1,
       },
       {
         interest_survey_id: 1,
-        interest_question_title:
-          "มีการจัดการความคิดเชิงวิศวกรรม 1. ระบุปัญหา 2. รวบรวมข้อมูลและแนวคิดที่เกี่ยวข้องกับปัญหา 3. ออกแบบวิธีการแก้ปัญหา 4. วางแผนและดำเนินการ 5. ทดสอบ ประเมิน ปรับปรุงแก้ไข 6. นำเสอนวิธีแก้ปัญหา",
+        interest_question_title: "มีการจัดการความคิดเชิงวิศวกรรม",
+        interest_question_type: 1,
       },
       {
         // อาชีพที่ 2
         interest_survey_id: 1,
         interest_question_title:
           "มีความชอบในการออกแบบ และ วางแผนการทำงานต่าง ๆ",
+        interest_question_type: 1,
       },
       {
         interest_survey_id: 1,
         interest_question_title: "มีความชอบในการเขียนโค้ด การแก้ไขโจทย์ปัญหา",
+        interest_question_type: 1,
       },
       {
         // อาชีพที่ 3,4
         interest_survey_id: 1,
         interest_question_title: "มีทักษะ การวิเคราะห์ปัญหา และศึกษาปัญหา",
+        interest_question_type: 1,
       },
       {
         // อาชีพที่ 3
         interest_survey_id: 1,
         interest_question_title: "มีทักษะในการตรวจสอบและสังเกต ถึงข้อผิดพลาด",
+        interest_question_type: 1,
       },
       {
         // อาชีพที่ 4
         interest_survey_id: 1,
         interest_question_title:
           "มีความชอบในการออกแบบ และ วางแผน เพื่อแก้ไขปัญหา",
+        interest_question_type: 1,
       },
       {
         // อาชีพที่ 5
         interest_survey_id: 1,
         interest_question_title: "มีทักษะในการตรวจสอบและสังเกต ถึงความบกพร่อง",
+        interest_question_type: 1,
       },
       {
         interest_survey_id: 1,
         interest_question_title:
           "มีทักษะในการวิเคราะห์ว่า ควรใช้อะไร เหมาะกับสิ่งไหน เพื่อให้ตรงกับวัตถุประสงค์",
+        interest_question_type: 1,
       },
       {
         // อาชีพที่ 6
         interest_survey_id: 1,
         interest_question_title:
           "มีความชอบในการประกอบส่วนต่าง ๆ มารวมกันเป็นระบบเดียว",
+        interest_question_type: 1,
       },
       {
         interest_survey_id: 1,
         interest_question_title:
           "ชอบมองภาพรวม แต่ไม่สามารถระบุรายละเอียดทุกด้านของการทำงานได้",
+        interest_question_type: 1,
       },
       {
         // อาชีพที่ 7
         interest_survey_id: 1,
         interest_question_title: "มีความชอบเทคโนโลยีที่สามารถทำให้มีรายได้",
+        interest_question_type: 1,
       },
       {
         interest_survey_id: 1,
         interest_question_title: "มีทักษะ หรือ เทคนิคด้านการบริหารและการจัดการ",
+        interest_question_type: 1,
       },
     ];
     const jobPositionData = [
@@ -1854,55 +1866,42 @@ export default class extends BaseSeeder {
     const InterestAnswersData = [
       {
         interest_question_id: 1,
-        interest_answer_type: 1,
       },
       {
         interest_question_id: 2,
-        interest_answer_type: 1,
       },
       {
         interest_question_id: 3,
-        interest_answer_type: 1,
       },
       {
         interest_question_id: 4,
-        interest_answer_type: 1,
       },
       {
         interest_question_id: 5,
-        interest_answer_type: 1,
       },
       {
         interest_question_id: 6,
-        interest_answer_type: 1,
       },
       {
         interest_question_id: 7,
-        interest_answer_type: 1,
       },
       {
         interest_question_id: 8,
-        interest_answer_type: 1,
       },
       {
         interest_question_id: 9,
-        interest_answer_type: 1,
       },
       {
         interest_question_id: 10,
-        interest_answer_type: 1,
       },
       {
         interest_question_id: 11,
-        interest_answer_type: 1,
       },
       {
         interest_question_id: 12,
-        interest_answer_type: 1,
       },
       {
         interest_question_id: 13,
-        interest_answer_type: 1,
       },
     ];
     const interestAnswersJobData = [
