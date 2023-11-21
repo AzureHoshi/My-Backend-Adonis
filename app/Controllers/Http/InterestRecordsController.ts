@@ -6,6 +6,7 @@ const interestRecordSchema = schema.create({
   collegian_id: schema.number(),
   interest_question_id: schema.number(),
   interest_answer_id: schema.number(),
+  interest_record_score: schema.number(),
 });
 
 export default class InterestRecordsController {
@@ -14,8 +15,8 @@ export default class InterestRecordsController {
       .preload("collegian")
       .preload("interestQuestion")
       .preload("interestAnswer")
-      .where("interest_records.is_deleted", false)
-      .orderBy("interest_records.updated_at", "desc");
+      .where("is_deleted", false)
+      .orderBy("updated_at", "desc");
     return response.status(200).json({ data: interestRecords, status: 200 });
   }
 

@@ -13,8 +13,8 @@ export default class InterestSurveysController {
       const interestSurveys = await InterestSurvey.query()
         .preload("curriculum")
         .preload("interestQuestions")
-        .where("interest_surveys.is_deleted", false)
-        .orderBy("interest_surveys.updated_at", "desc");
+        .where("is_deleted", false)
+        .orderBy("updated_at", "desc");
 
       return response.status(200).json({ data: interestSurveys, status: 200 });
     } catch (error) {
@@ -29,10 +29,7 @@ export default class InterestSurveysController {
       const interestSurveys = await InterestSurvey.query()
         .preload("curriculum")
         .preload("interestQuestions", (query) => {
-          query
-            .where("is_deleted", false)
-            .preload("interest_answers")
-            .orderBy("interest_question_number", "asc");
+          query.where("is_deleted", false).preload("interest_answers");
         })
         .where("curriculum_id", params.id)
         .where("is_deleted", false)

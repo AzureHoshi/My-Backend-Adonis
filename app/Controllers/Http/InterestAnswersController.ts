@@ -5,14 +5,12 @@ import InterestAnswer from "App/Models/InterestAnswer";
 const interestAnswerSchema = schema.create({
   interest_question_id: schema.number(),
   interest_answer_title: schema.string({ trim: true }, [rules.maxLength(255)]),
-  interest_answer_number: schema.number(),
 });
 export default class InterestAnswersController {
   public async index({ response }: HttpContextContract) {
     const interestAnswers = await InterestAnswer.query()
       .preload("interestQuestion")
-      .where("interest_answers.is_deleted", false)
-      .orderBy("interest_answers.interest_answer_number", "asc");
+      .where("is_deleted", false);
     return response.status(200).json({ data: interestAnswers, status: 200 });
   }
 

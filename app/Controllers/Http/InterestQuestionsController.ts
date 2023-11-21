@@ -7,14 +7,12 @@ const interestQuestionSchema = schema.create({
   interest_question_title: schema.string({ trim: true }, [
     rules.maxLength(255),
   ]),
-  interest_question_number: schema.number(),
 });
 export default class InterestQuestionsController {
   public async index({ response }: HttpContextContract) {
     const interestQuestions = await InterestQuestion.query()
       .preload("interestSurvey")
-      .where("interest_questions.is_deleted", false)
-      .orderBy("interest_questions.interest_question_number", "asc");
+      .where("is_deleted", false);
     return response.status(200).json({ data: interestQuestions, status: 200 });
   }
 
