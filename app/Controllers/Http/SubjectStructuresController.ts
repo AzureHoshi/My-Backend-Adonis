@@ -12,9 +12,17 @@ export default class SubjectStructuresController {
         .preload("subject")
         .where("is_deleted", false);
 
-      return response
-        .status(200)
-        .json({ data: subjectStructures, status: 200 });
+      if (!subjectStructures) {
+        return response
+          .status(404)
+          .json({ message: "SubjectStructures not found", status: 404 });
+      } else {
+        return response.status(200).json({
+          data: subjectStructures,
+          status: 200,
+          message: "SubjectStructures retrieved successfully",
+        });
+      }
     } catch (error) {
       return response.status(400).json({ error: error, status: 400 });
     }
