@@ -38,8 +38,7 @@ export default class SubjectStructuresController {
         .whereHas("subject", (query) => {
           query.where("curriculum_id", params.id);
         })
-        .where("is_deleted", false)
-        .first();
+        .where("is_deleted", false);
 
       if (!subjectStructure) {
         return response
