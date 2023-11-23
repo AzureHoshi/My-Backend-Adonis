@@ -59,11 +59,8 @@ export default class SubjectsController {
 
   public async show({ params, response }: HttpContextContract) {
     try {
-      const id: any = params.id;
-
-      // ดึงข้อมูล subjects
       const subject = await Subject.query()
-        .where("subject_id", id)
+        .where("subject_id", params.id)
         .preload("curriculums")
         .preload("subject_groups")
         .firstOrFail();

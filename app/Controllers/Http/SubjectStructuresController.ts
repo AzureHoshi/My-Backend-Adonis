@@ -31,8 +31,8 @@ export default class SubjectStructuresController {
   public async store({ request, response }: HttpContextContract) {
     const storeSchema = schema.create({
       subject_category_id: schema.number(),
-      subject_type_id: schema.number(),
-      subject_group_id: schema.number(),
+      subject_type_id: schema.number.optional(),
+      subject_group_id: schema.number.optional(),
       subject_id: schema.number(),
     });
 
