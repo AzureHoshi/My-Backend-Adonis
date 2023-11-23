@@ -1,5 +1,6 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
+import InterestAnswer from "App/Models/InterestAnswer";
 import InterestQuestion from "App/Models/InterestQuestion";
 
 const interestQuestionSchema = schema.create({
@@ -25,7 +26,19 @@ export default class InterestQuestionsController {
       const interestQuestion: InterestQuestion = await InterestQuestion.create(
         payload
       );
-      return response.status(201).json({ data: interestQuestion, status: 201 });
+
+      await InterestAnswer.create({
+        interest_question_id: interestQuestion.interest_question_id,
+      });
+
+      const interestQuestionWithRelation = await InterestQuestion.query()
+        .preload("interest_answers")
+        .where("interest_question_id", interestQuestion.interest_question_id)
+        .firstOrFail();
+
+      return response
+        .status(201)
+        .json({ data: interestQuestionWithRelation, status: 201 });
     } catch (error) {
       return response
         .status(400)
