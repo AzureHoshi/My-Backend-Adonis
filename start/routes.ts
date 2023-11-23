@@ -54,6 +54,7 @@ Route.group(() => {
   Route.resource("study-plan-records", "StudyPlanRecordsController").apiOnly();
   Route.resource("continue-subjects", "ContinueSubjectsController").apiOnly();
   Route.resource("job-positions", "JobPositionsController").apiOnly();
+  Route.resource("subject-structures", "SubjectStructuresController").apiOnly();
 
   // ? custom route
   Route.get(
