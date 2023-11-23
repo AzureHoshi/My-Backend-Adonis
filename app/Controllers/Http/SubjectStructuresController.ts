@@ -28,6 +28,35 @@ export default class SubjectStructuresController {
     }
   }
 
+  public async show({ params, response }: HttpContextContract) {
+    try {
+      const subjectStructure = await SubjectStructure.query()
+        .preload("subjectCategory")
+        .preload("subjectType")
+        .preload("subjectGroup")
+        .preload("subject")
+        .whereHas("subject", (query) => {
+          query.where("curriculum_id", params.id);
+        })
+        .where("is_deleted", false)
+        .first();
+
+      if (!subjectStructure) {
+        return response
+          .status(404)
+          .json({ message: "SubjectStructure not found", status: 404 });
+      } else {
+        return response.status(200).json({
+          data: subjectStructure,
+          status: 200,
+          message: "SubjectStructure retrieved successfully",
+        });
+      }
+    } catch (error) {
+      return response.status(400).json({ error: error, status: 400 });
+    }
+  }
+
   public async store({ request, response }: HttpContextContract) {
     const storeSchema = schema.create({
       subject_category_id: schema.number(),
