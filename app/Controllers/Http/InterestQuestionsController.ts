@@ -27,18 +27,24 @@ export default class InterestQuestionsController {
         payload
       );
 
-      await InterestAnswer.create({
-        interest_question_id: interestQuestion.interest_question_id,
-      });
+      if (interestQuestion.interest_question_type === 1) {
+        await InterestAnswer.create({
+          interest_question_id: interestQuestion.interest_question_id,
+        });
 
-      const interestQuestionWithRelation = await InterestQuestion.query()
-        .preload("interest_answers")
-        .where("interest_question_id", interestQuestion.interest_question_id)
-        .firstOrFail();
+        const interestQuestionWithRelation = await InterestQuestion.query()
+          .preload("interest_answers")
+          .where("interest_question_id", interestQuestion.interest_question_id)
+          .firstOrFail();
 
-      return response
-        .status(201)
-        .json({ data: interestQuestionWithRelation, status: 201 });
+        return response
+          .status(201)
+          .json({ data: interestQuestionWithRelation, status: 201 });
+      } else {
+        return response
+          .status(201)
+          .json({ data: interestQuestion, status: 201 });
+      }
     } catch (error) {
       return response
         .status(400)
