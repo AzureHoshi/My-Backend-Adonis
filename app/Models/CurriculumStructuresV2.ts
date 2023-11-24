@@ -25,9 +25,6 @@ export default class CurriculumStructuresV2 extends BaseModel {
   public subject_group_id: number | null;
 
   @column()
-  public subject_id: number;
-
-  @column()
   public csv2_credit_total: number;
 
   @column()
@@ -58,11 +55,6 @@ export default class CurriculumStructuresV2 extends BaseModel {
     foreignKey: "subject_group_id",
   })
   public subjectGroup: BelongsTo<typeof SubjectGroup>;
-
-  @belongsTo(() => Subject, {
-    foreignKey: "subject_id",
-  })
-  public subject: BelongsTo<typeof Subject>;
 
   @belongsTo(() => Subject, {
     foreignKey: "subject_id",

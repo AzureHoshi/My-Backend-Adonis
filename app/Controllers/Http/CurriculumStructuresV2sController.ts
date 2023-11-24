@@ -85,7 +85,6 @@ export default class CurriculumStructuresV2sController {
       subject_category_id: schema.number.nullable(),
       subject_type_id: schema.number.nullable(),
       subject_group_id: schema.number.nullable(),
-      subject_id: schema.number(),
       csv2_credit_total: schema.number(),
     });
 
@@ -112,7 +111,6 @@ export default class CurriculumStructuresV2sController {
       subject_category_id: schema.number.nullable(),
       subject_type_id: schema.number.nullable(),
       subject_group_id: schema.number.nullable(),
-      subject_id: schema.number.optional(),
       csv2_credit_total: schema.number.optional(),
     });
 

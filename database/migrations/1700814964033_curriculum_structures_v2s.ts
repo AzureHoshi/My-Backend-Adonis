@@ -44,14 +44,6 @@ export default class extends BaseSchema {
         .inTable("subject_groups")
         .onDelete("CASCADE")
         .onUpdate("CASCADE");
-      table
-        .integer("subject_id")
-        .unsigned()
-        .notNullable()
-        .references("subject_id")
-        .inTable("subjects")
-        .onDelete("CASCADE")
-        .onUpdate("CASCADE");
       table.integer("csv2_credit_total").notNullable();
 
       /**
