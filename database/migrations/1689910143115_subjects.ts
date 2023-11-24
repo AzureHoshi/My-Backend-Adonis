@@ -20,7 +20,7 @@ export default class extends BaseSchema {
       table.string("subject_name_th").notNullable();
       table.string("subject_name_en").notNullable();
       table.integer("subject_credit").notNullable();
-      table.string("subject_description");
+      table.string("subject_description", 500);
       table.boolean("is_deleted").notNullable().defaultTo(false);
 
       /**
