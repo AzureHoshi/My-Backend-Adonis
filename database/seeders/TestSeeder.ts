@@ -2520,21 +2520,21 @@ export default class extends BaseSeeder {
         subject_category_id: 1,
         subject_type_id: 1,
         subject_group_id: 1,
-        credit_total: 12,
+        csv2_credit_total: 12,
       },
       {
         curriculum_id: 1,
         subject_category_id: 1,
         subject_type_id: 1,
         subject_group_id: 2,
-        credit_total: 3,
+        csv2_credit_total: 3,
       },
       {
         curriculum_id: 1,
         subject_category_id: 1,
         subject_type_id: 1,
         subject_group_id: 3,
-        credit_total: 9,
+        csv2_credit_total: 9,
       },
       {
         // 2
@@ -2542,14 +2542,14 @@ export default class extends BaseSeeder {
         subject_category_id: 1,
         subject_type_id: 2,
         subject_group_id: 4,
-        credit_total: 3,
+        csv2_credit_total: 3,
       },
       {
         curriculum_id: 1,
         subject_category_id: 1,
         subject_type_id: 2,
         subject_group_id: 5,
-        credit_total: 4,
+        csv2_credit_total: 4,
       },
       {
         // 3
@@ -2557,14 +2557,14 @@ export default class extends BaseSeeder {
         subject_category_id: 2,
         subject_type_id: 3,
         subject_group_id: 6,
-        credit_total: 10,
+        csv2_credit_total: 10,
       },
       {
         curriculum_id: 1,
         subject_category_id: 2,
         subject_type_id: 3,
         subject_group_id: 7,
-        credit_total: 22,
+        csv2_credit_total: 22,
       },
       {
         // 4
@@ -2572,35 +2572,35 @@ export default class extends BaseSeeder {
         subject_category_id: 2,
         subject_type_id: 4,
         subject_group_id: 8,
-        credit_total: 16,
+        csv2_credit_total: 16,
       },
       {
         curriculum_id: 1,
         subject_category_id: 2,
         subject_type_id: 4,
         subject_group_id: 9,
-        credit_total: 12,
+        csv2_credit_total: 12,
       },
       {
         curriculum_id: 1,
         subject_category_id: 2,
         subject_type_id: 4,
         subject_group_id: 10,
-        credit_total: 9,
+        csv2_credit_total: 9,
       },
       {
         curriculum_id: 1,
         subject_category_id: 2,
         subject_type_id: 4,
         subject_group_id: 11,
-        credit_total: 3,
+        csv2_credit_total: 3,
       },
       {
         curriculum_id: 1,
         subject_category_id: 2,
         subject_type_id: 4,
         subject_group_id: 12,
-        credit_total: 10,
+        csv2_credit_total: 10,
       },
       {
         // 5
@@ -2608,7 +2608,7 @@ export default class extends BaseSeeder {
         subject_category_id: 2,
         subject_type_id: 5,
         subject_group_id: null,
-        credit_total: 12,
+        csv2_credit_total: 12,
       },
     ];
 
