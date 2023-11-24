@@ -87,7 +87,7 @@ export default class SubjectStructuresController {
 
   public async update({ params, request, response }: HttpContextContract) {
     const updateSchema = schema.create({
-      subject_category_id: schema.number.optional(),
+      subject_category_id: schema.number.nullable(),
       subject_type_id: schema.number.nullable(),
       subject_group_id: schema.number.nullable(),
       subject_id: schema.number.optional(),
@@ -98,6 +98,10 @@ export default class SubjectStructuresController {
         schema: updateSchema,
       });
       console.log("test: ", payload);
+
+      if (payload.subject_category_id === undefined) {
+        payload.subject_category_id = null;
+      }
 
       if (payload.subject_type_id === undefined) {
         payload.subject_type_id = null;
