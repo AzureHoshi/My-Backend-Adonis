@@ -31,10 +31,18 @@ export default class SubjectStructuresController {
   public async show({ params, response }: HttpContextContract) {
     try {
       const subjectStructure = await SubjectStructure.query()
-        .preload("subjectCategory")
-        .preload("subjectType")
-        .preload("subjectGroup")
-        .preload("subject")
+        .preload("subjectCategory", (query) => {
+          query.where("is_deleted", false);
+        })
+        .preload("subjectType", (query) => {
+          query.where("is_deleted", false);
+        })
+        .preload("subjectGroup", (query) => {
+          query.where("is_deleted", false);
+        })
+        .preload("subject", (query) => {
+          query.where("is_deleted", false);
+        })
         .whereHas("subject", (query) => {
           query.where("curriculum_id", params.id);
         })

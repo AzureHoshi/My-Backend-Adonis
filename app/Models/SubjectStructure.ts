@@ -21,6 +21,9 @@ export default class SubjectStructure extends BaseModel {
   @column()
   public subject_id: number;
 
+  @column()
+  public is_deleted: boolean;
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;
 
