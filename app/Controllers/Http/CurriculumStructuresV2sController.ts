@@ -18,6 +18,9 @@ export default class CurriculumStructuresV2sController {
         .preload("subjectGroup", (query) => {
           query.where("is_deleted", false);
         })
+        .preload("subject", (query) => {
+          query.where("is_deleted", false);
+        })
         .where("is_deleted", false);
 
       if (!curriculumStructuresV2s) {
@@ -51,6 +54,9 @@ export default class CurriculumStructuresV2sController {
         .preload("subjectGroup", (query) => {
           query.where("is_deleted", false);
         })
+        .preload("subject", (query) => {
+          query.where("is_deleted", false);
+        })
         .whereHas("curriculum", (query) => {
           query.where("curriculum_id", params.id);
         })
@@ -79,6 +85,7 @@ export default class CurriculumStructuresV2sController {
       subject_category_id: schema.number.nullable(),
       subject_type_id: schema.number.nullable(),
       subject_group_id: schema.number.nullable(),
+      subject_id: schema.number(),
       csv2_credit_total: schema.number(),
     });
 
@@ -105,6 +112,7 @@ export default class CurriculumStructuresV2sController {
       subject_category_id: schema.number.nullable(),
       subject_type_id: schema.number.nullable(),
       subject_group_id: schema.number.nullable(),
+      subject_id: schema.number.optional(),
       csv2_credit_total: schema.number.optional(),
     });
 
