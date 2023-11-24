@@ -7,6 +7,8 @@ import SubjectGroup from "./SubjectGroup";
 import Subject from "./Subject";
 
 export default class CurriculumStructuresV2 extends BaseModel {
+  public static table = "curriculum_structures_v2";
+
   @column({ isPrimary: true })
   public curriculum_structures_v2_id: number;
 
