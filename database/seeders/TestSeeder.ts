@@ -16,6 +16,7 @@ import StudyPlanRecord from "App/Models/StudyPlanRecord";
 import Subject from "App/Models/Subject";
 import SubjectCategory from "App/Models/SubjectCategory";
 import SubjectGroup from "App/Models/SubjectGroup";
+import SubjectStructure from "App/Models/SubjectStructure";
 import SubjectType from "App/Models/SubjectType";
 
 export default class extends BaseSeeder {
@@ -142,38 +143,6 @@ export default class extends BaseSeeder {
         faculty_id: 3,
         collegian_group_id: 7,
         curriculum_name_th:
-          "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมอุตสาหการ",
-        curriculum_name_en:
-          "Bachelor of Engineering Program in lndustrial Engineering",
-        curriculum_short_name_th: "วศ.บ.(วิศวกรรมอุตสาหการ)",
-        curriculum_short_name_en: "B.Eng (lndustrial Engineering)",
-        curriculum_year: 2560,
-      },
-      {
-        faculty_id: 3,
-        collegian_group_id: 7,
-        curriculum_name_th: "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมโยธา",
-        curriculum_name_en:
-          "Bachelor of Engineering Program in Civil Engineering",
-        curriculum_short_name_th: "วศ.บ.(วิศวกรรมโยธา)",
-        curriculum_short_name_en: "B.Eng (Civil Engineering)",
-        curriculum_year: 2560,
-      },
-      {
-        faculty_id: 3,
-        collegian_group_id: 7,
-        curriculum_name_th:
-          "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมเครื่องกล",
-        curriculum_name_en:
-          "Bachelor of Engineering Program in Mechanical Engineering",
-        curriculum_short_name_th: "วศ.บ.(วิศวกรรมเครื่องกล)",
-        curriculum_short_name_en: "B.Eng (Mechanical Engineering)",
-        curriculum_year: 2560,
-      },
-      {
-        faculty_id: 3,
-        collegian_group_id: 7,
-        curriculum_name_th:
           "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์",
         curriculum_name_en:
           "Bachelor of Engineering Program in Computer Engineering",
@@ -184,93 +153,13 @@ export default class extends BaseSeeder {
       {
         faculty_id: 3,
         collegian_group_id: 7,
-        curriculum_name_th: "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมไฟฟ้า",
-        curriculum_name_en:
-          "Bachelor of Engineering Program in Electrical Engineering",
-        curriculum_short_name_th: "วศ.บ.(วิศวกรรมไฟฟ้า)",
-        curriculum_short_name_en: "B.Eng (Electrical Engineering)",
-        curriculum_year: 2560,
-      },
-      {
-        faculty_id: 3,
-        collegian_group_id: 7,
         curriculum_name_th:
-          "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมสิ่งแวดล้อม",
+          "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมซอฟต์แวร์",
         curriculum_name_en:
-          "Bachelor of Engineering Program in Environmental Engineering",
-        curriculum_short_name_th: "วศ.บ.(วิศวกรรมสิ่งแวดล้อม)",
-        curriculum_short_name_en: "B.Eng (Environmental Engineering)",
-        curriculum_year: 2560,
-      },
-      {
-        faculty_id: 3,
-        collegian_group_id: 7,
-        curriculum_name_th:
-          "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมแม่พิมพ์และเครื่องมือ",
-        curriculum_name_en:
-          "Bachelor of Engineering Program in Tools and Die Engineering",
-        curriculum_short_name_th: "วศ.บ.(วิศวกรรมแม่พิมพ์และเครื่องมือ)",
-        curriculum_short_name_en: "B.Eng (Tools and Die Engineering)",
-        curriculum_year: 2560,
-      },
-      {
-        faculty_id: 3,
-        collegian_group_id: 7,
-        curriculum_name_th:
-          "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมเหมืองแร่",
-        curriculum_name_en:
-          "Bachelor of Engineering Program in Mining Engineering",
-        curriculum_short_name_th: "วศ.บ.(วิศวกรรมเหมืองแร่)",
-        curriculum_short_name_en: "B.Eng (Mining Engineering)",
-        curriculum_year: 2560,
-      },
-      {
-        faculty_id: 3,
-        collegian_group_id: 7,
-        curriculum_name_th:
-          "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมเกษตรและชีวภาพ",
-        curriculum_name_en:
-          "Bachelor of Engineering Program in Agricultural and Biological Engineering",
-        curriculum_short_name_th: "วศ.บ.(วิศวกรรมเกษตรและชีวภาพ)",
-        curriculum_short_name_en:
-          "B.Eng (Agricultural and Biological Engineering)",
-        curriculum_year: 2560,
-      },
-      {
-        faculty_id: 3,
-        collegian_group_id: 7,
-        curriculum_name_th:
-          "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมอิเล็กทรอนิกส์และระบบควบคุมอัตโนมัติ",
-        curriculum_name_en:
-          "Bachelor of Engineering Program in Electrical Engineering and Automatic Control Systems",
-        curriculum_short_name_th:
-          "วศ.บ.(วิศวกรรมอิเล็กทรอนิกส์และระบบควบคุมอัตโนมัติ)",
-        curriculum_short_name_en:
-          "B.Eng (Electrical Engineering and Automatic Control Systems)",
-        curriculum_year: 2560,
-      },
-      {
-        faculty_id: 3,
-        collegian_group_id: 7,
-        curriculum_name_th:
-          "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมเมคคาทรอนิกส์",
-        curriculum_name_en:
-          "Bachelor of Engineering Program in Mechatronics Engineering",
-        curriculum_short_name_th: "วศ.บ.(วิศวกรรมเมคคาทรอนิกส์)",
-        curriculum_short_name_en: "B.Eng (Mechatronics Engineering)",
-        curriculum_year: 2560,
-      },
-      {
-        faculty_id: 3,
-        collegian_group_id: 7,
-        curriculum_name_th:
-          "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมและนวัตกรรมการผลิตอาหาร",
-        curriculum_name_en:
-          "Bachelor of Engineering Program in Food Prodiction Engineering and Innovation",
-        curriculum_short_name_th: "วศ.บ.(วิศวกรรมและนวัตกรรมการผลิตอาหาร)",
-        curriculum_short_name_en:
-          "B.Eng (Food Prodiction Engineering and Innovation)",
-        curriculum_year: 2560,
+          "Bachelor of Engineering Program in Software Engineering",
+        curriculum_short_name_th: "วศ.บ.(วิศวกรรมซอฟต์แวร์)",
+        curriculum_short_name_en: "B.Eng (Software Engineering)",
+        curriculum_year: 2566,
       },
     ];
     const subjectCategoryData = [
@@ -371,7 +260,7 @@ export default class extends BaseSeeder {
     const subjectData = [
       {
         // กลุ่มวิชาภาษาและการสื่อสาร
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 1,
         subject_code: "GEBLC101",
         subject_name_th: "ภาษาอังกฤษเพื่อการสื่อสารในชีวิตประจำวัน",
@@ -381,7 +270,7 @@ export default class extends BaseSeeder {
           "ศึกษาคำศัพท์ สำนวน โครงสร้างภาษาอังกฤษ พัฒนาทักษะการใช้ภาษาอังกฤษด้าน การฟัง พูด อ่าน เขียน เพื่อใช้ในการสื่อสารในชีวิตประจำวัน ในบริบททางสังคมและวัฒนธรรมต่างๆ ",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 1,
         subject_code: "GEBLC102",
         subject_name_th: "ภาษาอังกฤษเพื่อทักษะชีวิต",
@@ -391,7 +280,7 @@ export default class extends BaseSeeder {
           "ศึกษาคำศัพท์ สำนวน โครงสร้างภาษาอังกฤษ โดยเน้นหลักการฟัง การพูด การอ่าน การเขียน การสรุปความ และการนำเสนอในบริบททางวิชาการ",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 1,
         subject_code: "GEBLC103",
         subject_name_th: "ภาษาอังกฤษเชิงวิชาการ",
@@ -401,7 +290,7 @@ export default class extends BaseSeeder {
           "ศึกษาคำศัพท์ สำนวน โครงสร้างภาษาอังกฤษ โดยเน้นหลักการฟัง การพูด การอ่าน การเขียน การสรุปความ และการนำเสนอในบริบททางวิชาการ",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 1,
         subject_code: "GEBLC201",
         subject_name_th: "ศิลปะการใช้ภาษาไทย",
@@ -412,7 +301,7 @@ export default class extends BaseSeeder {
       },
       {
         // กลุ่มวิชาสุภาพ
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 2,
         subject_code: "GEBHT101",
         subject_name_th: "กิจกรรมเพื่อสุขภาพ",
@@ -423,7 +312,7 @@ export default class extends BaseSeeder {
       },
       {
         // กลุ่มวิชาบูรณาการ
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 3,
         subject_code: "GEBIN101",
         subject_name_th: "กระบวนการคิดและการแก้ปัญหา",
@@ -433,7 +322,7 @@ export default class extends BaseSeeder {
           "ศึกษาแนวคิด ทฤษฎี เทคนิคและกระบวนการพัฒนาการฝึกคิดแบบต่างๆ หลักการใช้ เหตุผล แรงบันดาลใจส่งเสริมความคิดโดยใช้ภูมิปัญญาท้องถิ่นและภูมิปัญญาไทยนวัตกรรมและเทคโนโลยีสมัยใหม่เป็นกรณีศึกษา",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 3,
         subject_code: "GEBIN102",
         subject_name_th: "นวัตกรรมและเทคโนโลยี",
@@ -443,7 +332,7 @@ export default class extends BaseSeeder {
           "ศึกษาการเปลี่ยนแปลงทางสังคมและวิวัฒนาการทางด้านวิทยาศาสตร์และเทคโนโลยี กระบวนการสร้างนวัตกรรมและเทคโนโลยี ความสัมพันธ์ระหว่างมนุษย์ สังคม นวัตกรรม เทคโนโลยีและสิ่งแวดล้อม ผลกระทบของนวัตกรรมและเทคโนโลยีต่อ สังคมและสิ่งแวดล้อม ประเด็นร่วมสมัยในด้านวิทยาศาสตร์ นวัตกรรม และเทคโนโลยี เพื่ออนาคต ฝึกออกแบบนวัตกรรม",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 3,
         subject_code: "GEBIN103",
         subject_name_th: "ศิลปะการใช้ชีวิต",
@@ -454,7 +343,7 @@ export default class extends BaseSeeder {
       },
       {
         // กลุ่มวิชาสังคมศาสตร์และมนุษย์ศาสตร์
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 4,
         subject_code: "GEBSO101",
         subject_name_th: "ปรัชญาเศรษฐกิจพอเพียงและภูมิปัญญาในการดำเนินชีวิต",
@@ -464,7 +353,7 @@ export default class extends BaseSeeder {
           "ศึกษาปรัชญาของเศรษฐกิจพอเพียงและการประยุกต์ใช้ หลักการทรงงานในพระบาท สมเด็จพระเจ้าอยู่หัวฯ โครงการอันเนื่องจากพระราชดำริ หลักธรรมาภิบาล ภูมิปัญญา การคิดและการบริหารจัดการชีวิตอย่างรู้เท่าทันการเปลี่ยนแปลงของสังคมไทยและ กระแสสังคมโลก การบูรณาการวัฒนธรรมที่หลากหลายสู่การดำเนินชีวิต การมีจิต สาธารณะและรักษ์สิ่งแวดล้อม การอยู่ร่วมกันในสังคมอย่างมีความสุขบนพื้นฐาน คุณธรรม จริยธรรม และหลักการของเศรษฐกิจพอเพียง",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 4,
         subject_code: "GEBSO102",
         subject_name_th: "การพัฒนาคุณภาพชีวิตและสังคม",
@@ -474,7 +363,7 @@ export default class extends BaseSeeder {
           "ศึกษาเกี่ยวกับปรัชญา คุณค่าแห่งความเป็นมนุษย์ และหลักธรรมในการดำรงชีวิต การ พัฒนาความคิด เจตคติ บทบาท หน้าที่ และความรับผิดชอบต่อตนเองและผู้อื่น การมี ส่วนร่วมในกิจกรรมทางสังคมและวัฒนธรรมไทย การมีจิตสำนึกต่อส่วนรวม ศึกษาวิธี จัดการกับภาวะอารมณ์ และสร้างสัมพันธภาพ การทํางานเป็นทีม การสร้างผลิตผลในการทำงาน และจรรยาบรรณวิชาชีพ",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 4,
         subject_code: "GEBSO103",
         subject_name_th: "สังคม เศรษฐกิจ การเมือง และกฎหมาย",
@@ -484,7 +373,7 @@ export default class extends BaseSeeder {
           "ศึกษาประวัติศาสตร์ไทย ระบบสังคม วัฒนธรรม เศรษฐกิจและการเมืองไทย แนวโน้ม การเปลี่ยนแปลงทางสังคม เศรษฐกิจ การบริหารจัดการ และพฤติกรรมการเมืองไทย วิเคราะห์สัมพันธภาพระหว่างการเมืองกับปัจจัยทางสังคม เศรษฐกิจสำรวจปัญหาที่ เกี่ยวข้องในยุคของการเปลี่ยนแปลง สังคมกับการเมืองและกฎหมาย บทบาท ความรับผิดชอบ การมีส่วนร่วมต่อสังคม",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 4,
         subject_code: "GEBSO104",
         subject_name_th: "มนุษยสัมพันธ์",
@@ -494,7 +383,7 @@ export default class extends BaseSeeder {
           "ศึกษาเกี่ยวกับธรรมชาติและพฤติกรรมของมนุษย์ ทฤษฎีที่เกี่ยวกับมนุษยสัมพันธ์ การใช้ ในชีวิตประจำวัน การทํางานและการเป็นผู้นำ พื้นฐานวัฒนธรรมไทยและสากล การสื่อสารเพื่อสร้างมนุษยสัมพันธ์ตาม",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 4,
         subject_code: "GEBSO105",
         subject_name_th: "ภูมิสังคมวัฒนธรรมอาเซียน",
@@ -504,7 +393,7 @@ export default class extends BaseSeeder {
           "ศึกษาข้อมูลทั่วไปเกี่ยวกับประเทศในกลุ่มอาเซียน ประวัติและความสำคัญของประชาคม อาเซียน ความร่วมมือของประเทศในกลุ่มอาเซียน ได้แก่ ด้านการเมืองและความมั่นคง ด้านเศรษฐกิจ ด้านสังคมและวัฒนธรรม ผลกระทบของการรวมกลุ่ม ตลอดจนปัญหาและ อุปสรรค",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 4,
         subject_code: "GEBSO106",
         subject_name_th: "จิตวิทยาเพื่อการดำเนินชีวิตและการทำงาน",
@@ -515,7 +404,7 @@ export default class extends BaseSeeder {
       },
       {
         // กลุ่มวิชาวิทยาศาสตร์และคณิตศาสตร์
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 5,
         subject_code: "GEBSC101",
         subject_name_th: "คณิตศาสตร์และสถิติในชีวิตประจำวัน",
@@ -525,7 +414,7 @@ export default class extends BaseSeeder {
           "ศึกษาเกี่ยวกับกระบวนการตัดสินโดยใช้ตรรกศาสตร์ คณิตศาสตร์การเงินและเบี้ยประกัน นำความรู้ทางคณิตศาสตร์และสถิติเพื่อใช้งานประจำวัน และนำโปรแกรมคอมพิวเตอร์มาช่วยประมวลผลทางคณิตศาสตร์และสถิติ",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 5,
         subject_code: "GEBSC102",
         subject_name_th: "เทคโนโลยีสารสนเทศที่จำเป็นในชีวิตประจำวัน",
@@ -535,7 +424,7 @@ export default class extends BaseSeeder {
           "ศึกษาความหมาย ความสำคัญ องค์ประกอบของเทคโนโลยีสารสนเทศ เครือข่าย อินเทอร์เน็ต สื่อสังคมออนไลน์ (Social Network) พาณิชย์อิเล็กทรอนิกส์ กฎหมาย การกระทำความผิดเกี่ยวกับคอมพิวเตอร์ การละเมิดลิขสิทธิ์ ทรัพย์สินทางปัญญา ภัย คุกคามความปลอดภัยในการใช้อินเทอร์เน็ต การสืบค้นข้อมูลทางอินเทอร์เน็ต การใช้ บริการโปรแกรมทางอินเทอร์เน็ต เทคโนโลยีสื่อประสมและการใช้โปรแกรมสำเร็จรูป เบื้องต้นที่จำเป็นในปัจจุบัน",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 5,
         subject_code: "GEBSC103",
         subject_name_th: "การคิดและการตัดสินใจเชิงวิทยาศาสตร์",
@@ -545,7 +434,7 @@ export default class extends BaseSeeder {
           "ศึกษาเกี่ยวกับกระบวนการคิด การแสวงหาความรู้ทางวิทยาศาสตร์ การวิเคราะห์ข้อมูล ข่าวสารและการให้เหตุผล กระบวนการตัดสินใจโดยใช้ตรรกศาสตร์ การประยุกต์ใช้ หลักการคิดทางวิทยาศาสตร์ในชีวิตประจำวัน",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 5,
         subject_code: "GEBSC104",
         subject_name_th:
@@ -557,7 +446,7 @@ export default class extends BaseSeeder {
           "ศึกษาและพัฒนาทักษะทางด้านการหาข้อมูล วิเคราะห์และสรุปผล โดยใช้กระบวนการทางด้านวิทยาศาสตร์เพื่อเตรียมความพร้อมให้กับผู้เรียนในการนำทักษะไปประยุกต์ใช้ใน การวิจัยหรือสร้างสรรค์นวัตกรรมต่อไป",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 5,
         subject_code: "GEBSC105",
         subject_name_th: "วิทยาศาสตร์เพื่อสุขภาพ",
@@ -567,7 +456,7 @@ export default class extends BaseSeeder {
           "ศึกษาเกี่ยวกับการพัฒนาวิทยาศาสตร์และเทคโนโลยี การใช้สารเคมีในชีวิตประจำวัน และผลกระทบของสารเคมีต่อสิ่งแวดล้อม อาหารเพื่อสุขภาพ โรคสำคัญที่มีผลกระทบ ทางสังคมและการป้องกัน แนวคิดการสร้างเสริมสุขภาพแบบองค์รวม ความก้าวหน้าทาง วิทยาศาสตร์ที่มีต่อมนุษย์ สภาพแวดล้อม สังคม การเมืองและวัฒนธรรม",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 5,
         subject_code: "GEBSC106",
         subject_name_th: "สิ่งแวดล้อมกับการพัฒนา",
@@ -578,7 +467,7 @@ export default class extends BaseSeeder {
       },
       {
         // กลุ่มวิชาพื้นฐานทางวิทยาศาสตร์และคณิตศาสตร์
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 6,
         subject_code: "FUNMA105",
         subject_name_th: "แคลคูลัส 1 สำหรับวิศวกร",
@@ -588,7 +477,7 @@ export default class extends BaseSeeder {
           "ศึกษาเกี่ยวกับฟังก์ชัน ลิมิตและความต่อเนื่อง การหาอนุพันธ์ของฟังก์ชันค่าจริง รูปแบบยังไม่กำหนด การประยุกต์ของอนุพันธ์ การหาปริพันธ์ของฟังก์ชันค่าจริง เทคนิคการหาปริพันธ์ การประยุกต์ของปริพันธ์จำกัดเขต",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 6,
         subject_code: "FUNMA106",
         subject_name_th: "แคลคูลัส 2 สำหรับวิศวกร",
@@ -598,7 +487,7 @@ export default class extends BaseSeeder {
           "ศึกษาเกี่ยวกับพิกัดเชิงขั้วและสมการอิงตัวแปรเสริม เวกเตอร์ในปริภูมิสามมิติ ฟังก์ชันค่าเวกเตอร์ของตัวแปรจริง การหาอนุพันธ์และการหาปริพันธ์ของฟังก์ชันค่า เวกเตอร์ของตัวแปรจริงและการประยุกต์ เส้น ระนาบ และผิวในปริภูมิสามมิติ แคลคูลัสของฟังก์ชันค่าจริงของสองตัวแปรและการประยุกต์ แคลคูลัสของฟังก์ชันค่าจริงของหลายตัวแปรและการประยุกต์",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 6,
         subject_code: "FUNSC101",
         subject_name_th: "ฟิสิกส์ 1 สำหรับวิศวกร",
@@ -608,7 +497,7 @@ export default class extends BaseSeeder {
           "ศึกษาเกี่ยวกับกลศาสตร์ของอนุภาคและวัตถุแข็งเกร็ง สมบัติของสสาร กลศาสตร์ ของไหล ความร้อน การสั่นและคลื่น โดยการสอนจะเน้นที่หลักการที่สำคัญทางฟิสิกส์ การสร้างทักษะในการวิเคราะห์และคำนวณแก้ปัญหาทางวิศวกรรม",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 6,
         subject_code: "FUNSC102",
         subject_name_th: "ปฏิบัติการฟิสิกส์ 1 สำหรับวิศวกร",
@@ -619,7 +508,7 @@ export default class extends BaseSeeder {
       },
       {
         // กลุ่มวิชาพื้นฐานทางวิศวกรรมศาสตร์
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 7,
         subject_code: "ENGCC301",
         subject_name_th: "เขียนแบบวิศวกรรม",
@@ -629,7 +518,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติการเขียนแบบพื้นฐานเบื้องต้น การมองภาพและการเขียนภาพออร์โธกราฟิกภาพช่ววยการเขียนภาพสามมิติ การกำหนดขนาดและพิกัดความเผื่อภาพตัด แผ่นคลี่ การสเก็ตภาพด้วยมือ การเขียนภาพแยกชิ้นและภาพประกอบ การ ใช้โปรแกรมคอมพิวเตอร์ช่วยในการเขียนแบบและออกแบบ",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 7,
         subject_code: "ENGCC302",
         subject_name_th: "กลศาสตร์วิศวกรรม",
@@ -639,7 +528,7 @@ export default class extends BaseSeeder {
           "ศึกษาหลักการเบื้องต้นของกลศาสตร์ แรงและโมเมนต์ของแรง ระบบแรงและผลลัพธ์ ของระบบแรง การสมดุลและการเขียนแผนภาพวัตถุอิสระ แรงภายใต้ของไหลที่อยู่นิ่ง แรงในชิ้นส่วนของโครงสร้าง โครงกรอบและเครื่องจักรกลคิเนแมติกส์และคิเนติกส์ ของอนุภาคและวัตถุเกร็ง กฎข้อที่สองของนิวตัน งานและพลังงาน การดลและโมเมนต์ตัม",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 7,
         subject_code: "ENGCC303",
         subject_name_th: "วัสดุวิศวกรรม",
@@ -649,7 +538,7 @@ export default class extends BaseSeeder {
           "ศึกษาเกี่ยวกับโครงสร้าง คุณสมบัติ กระบวนการผลิตและการประยุกต์ใช้วัสดุ วิศวกรรม เช่น โลหะ โพลิเมอร์ พลาสติก ยางมะตอย ไม้ คอนกรีต เซรามิค และวัสดุ เชิงประกอบ แผนภาพสมดุลเฟสและการแปลความหมาย การทดสอบสมบัติต่างๆ ของวัสดุวิศวกรรมและการแปลความหมายสมบัติทางกลและการเสียหายของวัสดุ",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 7,
         subject_code: "ENGCC304",
         subject_name_th: "การเขียนโปรแกรมคอมพิวเตอร์",
@@ -659,7 +548,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติเกี่ยวกับแนวคิดและองค์ประกอบของระบบคอมพิวเตอร์ ปฏิสัมพันธ์ (Interaction) ระหว่างฮาร์ดแวร์และซอฟต์แวร์ ภาษาที่ใช้เขียนโปรแกรม ในปัจจุบัน",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 7,
         subject_code: "ENGEE101",
         subject_name_th: "วงจรไฟฟ้า",
@@ -669,7 +558,7 @@ export default class extends BaseSeeder {
           "ศึกษาเกี่ยวกับองค์ประกอบวงจรไฟฟ้า การวิเคราะห์วงจรด้วยวิธีโนดและวิธีเมช ทฤษฎีวงจรไฟฟ้า ค่าความต้านทาน ค่าความเหนี่ยวนำและค่าความจุ วงจรอันดับหนึ่ง และวงจรอันดับสอง เฟสเซอร์ไดอะแกรม วงจรกำลังกระแสสลับ ระบบไฟฟ้าสามเฟส",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 7,
         subject_code: "ENGEE102",
         subject_name_th: "คณิตศาสตร์วิศวกรรมไฟฟ้า",
@@ -679,7 +568,7 @@ export default class extends BaseSeeder {
           "ศึกษาเกี่ยวกับการใช้งานของตัวแปรเชิงซ้อน การวิเคราะห์เวกเตอร์และการ ประยุกต์ใช้ ทฤษฎีของอนุกรมฟูเรียร์ การแปลงฟูเรียร์ และการนำไปใช้วิเคราะห์รูป คลื่นไฟฟ้า ทฤษฎีการแปลงลาปลาซ และการนำไปใช้วิเคราะห์วงจรไฟฟ้า",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 7,
         subject_code: "ENGEE105",
         subject_name_th: "การฝึกเบื้องต้นทางวิศวกรรม",
@@ -689,7 +578,7 @@ export default class extends BaseSeeder {
           "ฝึกปฏิบัติงานพื้นฐานทางด้านวิศวกรรม ที่เกี่ยวข้องกับเครื่องมือวัดเครื่องมือกลพื้นฐาน การเชื่อมประสาน เครื่องมือทั่วไป และหลักการปฏิบัติงานพื้นฐานทางด้านวิศวกรรมอย่างปลอดภัย",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 7,
         subject_code: "ENGEE106",
         subject_name_th: "เครื่องมือวัดและการวัดทางไฟฟ้า",
@@ -700,7 +589,7 @@ export default class extends BaseSeeder {
       },
       {
         // กลุ่มฮาร์ดแวร์และสถาปัตยกรรมคอมพิวเตอร์
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 8,
         subject_code: "ENGEL105",
         subject_name_th: "อิเล็กทรอนิกส์วิศวกรรม",
@@ -710,7 +599,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติเกี่ยวกับอุปกรณ์เซมิคอนดักเตอร์ คุณลักษณะทางกระแส-แรงดัน และคุณลักษณะทางความถี่ การวิเคราะห์และออกแบบวงจรไดโอด การวิเคราะห์และ การออกแบบของวงจรทรานซิสเตอร์แบบ บีเจที, MOS, CMOS และ BiCMOS, OPAMP และการประยุกต์ใช้งาน โมดูลแหล่งจ่ายไฟ",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 8,
         subject_code: "ENGEL106",
         subject_name_th: "วงจรดิจิทัล",
@@ -720,7 +609,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติเกี่ยวกับระบบตัวเลขและรหัส พีชคณิตบูลีน การลดทอนฟังก์ชัน ลอจิก การออกแบบวงจรลอจิกคอมไบเนชัน การออกแบบวงจรซีเควนเชียล หน่วย คำนวณและลอจิกด้านคณิตศาสตร์ในระบบดิจิทัล การแปลงสัญญาณดิจิทัลเป็นแอ นะล็อก และแอนะล็อกเป็นดิจิทัล การประยุกต์ใช้วงจรดิจิทัลในงานอุตสาหกรรม อุปกรณ์ดิจิทัลสมัยใหม่",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 8,
         subject_code: "ENGCE101",
         subject_name_th: "งานฝึกพื้นฐานทางวิศวกรรมคอมพิวเตอร์",
@@ -730,7 +619,7 @@ export default class extends BaseSeeder {
           "ฝึกปฏิบัติการพื้นฐานทางด้านวิศวกรรมคอมพิวเตอร์ ที่เกี่ยวกับเครื่องมือวัด เครื่องมือ กลพื้นฐาน เทคนิคการใช้อุปกรณ์ ความปลอดภัยในการปฏิบัติงาน จริยธรรมและ จรรยาบรรณทางวิชาชีพ",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 8,
         subject_code: "ENGCE102",
         subject_name_th: "คณิตศาสตร์พื้นฐานสำหรับวิศวกรรมคอมพิวเตอร์",
@@ -740,7 +629,7 @@ export default class extends BaseSeeder {
           "ศึกษาเกี่ยวกับคณิตศาสตร์พื้นฐานที่จำเป็นสำหรับงานทางวิศวกรรมคอมพิวเตอร์ ประกอบด้วยหัวข้อในวิยุตคณิต ได้แก่ ฟังก์ชัน ความสัมพันธ์ เซต พีชคณิตบูลีน ตรรกะลำดับที่หนึ่ง การพิสูจน์ทางคณิตศาสตร์ การนับเบื้องต้น การวนซ้ำ และการ เรียกซ้ำ หัวข้อในพีชคณิตเชิงเส้น ได้แก่ ฐาน ปริภูมิเวกเตอร์ การตั้งฉาก การเขียน ระบบสมการเชิงเส้นในรูปแบบเมทริกซ์ เมทริกซ์ผกผัน การแปลงเชิงเส้น และการแก้ ระบบสมการเชิงเส้นโดยใช้เมทริกซ์ และหัวข้อในเรื่องความน่าจะเป็นและสถิติ ได้แก่ ตัวแปรสุ่มวิยุต ตัวแปรสุ่มต่อเนื่อง ค่าคาดหมาย และกระบวนการสโตแคสติก รวมถึง การใช้ซอฟต์แวร์เชิงคณิตศาสตร์ และการประยุกต์ใช้เพื่อแก้ปัญหาในเชิงวิศวกรรม",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 8,
         subject_code: "ENGCE104",
         subject_name_th: "โครงสร้างและสถาปัตยกรรมคอมพิวเตอร์",
@@ -750,7 +639,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติการเกี่ยวกับ สถาปัตยกรรมของคอมพิวเตอร์ หน่วยประมวลผล ชุดคำสั่ง ระบบหน่วยความจำ หน่วยควบคุมการทำงานและระบบบัส การ จัดการข้อมูลตัวเลข การเชื่อมต่อและสื่อสารกับช่องรับส่งข้อมูล การใช้ อุปกรณ์สนันสนุน การวัดประสิทธิภาพ ตัวประมวลผลแบบหลายตัว การกระจายการ ทำงาน",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 8,
         subject_code: "ENGCE107",
         subject_name_th: "การออกแบบและการอินเตอร์เฟสไมโครคอนโทรลเลอร์",
@@ -761,7 +650,7 @@ export default class extends BaseSeeder {
       },
       {
         // กลุ่มโครงสร้างพื้นฐานของระบบ
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 9,
         subject_code: "ENGCE103",
         subject_name_th: "โครงสร้างข้อมูลและขั้นตอนวิธี",
@@ -771,7 +660,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติการเกี่ยวกับการแทนข้อมูล โครงสร้างและการออกแบบข้อมูล แบบอาร์เรย์ สแต็ก คิว ลิงค์ลิสต์ ต้นไม้ กราฟ การจัดเรียงข้อมูล การค้นหาข้อมูล วิเคราะห์ขั้นตอนวิธี",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 9,
         subject_code: "ENGCE105",
         subject_name_th: "ระบบปฏิบัติการ",
@@ -781,7 +670,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติการเกี่ยวกับระบบปฏิบัติการของคอมพิวเตอร์ ชนิดของ ระบบปฏิบัติการของคอมพิวเตอร์ การแบ่งปันทรัพยากร การจัดการหน่วยประมวลผล การจัดการโพรเซสและเทรด การจัดการหน่วยความจำ การจัดการอุปกรณ์ การแบ่ง ความจำและชุดคำสั่งเป็นส่วนและเป็นหน้า หน่วยความจำเสมือน ขั้นตอนของการจัด ตารางการประเมินผลการทำงาน ปัญหาการติดตาย การป้องกันแหล่งทรัพยากร ความมั่นคงและปลอดภัยของทรัพยากร การศึกษาตัวอย่างเป็นรายๆ",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 9,
         subject_code: "ENGCE106",
         subject_name_th: "การสื่อสารข้อมูลและเครือข่าย",
@@ -791,7 +680,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติเกี่ยวกับพื้นฐานของการสื่อสารข้อมูล สถาปัตยกรรมเครือข่าย คอมพิวเตอร์ เน้น Physical Datalink layer ทฤษฎีเครือข่ายท้องถิ่น เครือข่ายแบบ วงกว้าง เครือข่ายแบบเสมือน โปรโตคอล TCP/IP การอ้างแอดเดรสแบบ IP การทํา ซับเนต การค้นหาเส้นทางแบบต่างๆ การตั้งค่าอุปกรณ์โดยใช้เราท์เตอร์และสวิทช์ชิง ในการให้บริการสื่อสารข้อมูลแบบมีสายและไร้สาย โดยอาศัยโปรแกรมจำลองสถานการณ์",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 9,
         subject_code: "ENGCE109",
         subject_name_th: "เครือข่ายคอมพิวเตอร์",
@@ -802,7 +691,7 @@ export default class extends BaseSeeder {
       },
       {
         //  กลุ่มเทคโนโลยีและวิธีการทางซอฟต์แวร์
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 10,
         subject_code: "ENGCE108",
         subject_name_th: "การวิเคราะห์และออกแบบระบบ",
@@ -812,7 +701,7 @@ export default class extends BaseSeeder {
           "ศึกษาเกี่ยวกับ ระบบสารสนเทศ วงจรการพัฒนาระบบ วิธีวิเคราะห์ระบบ การศึกษา ความเป็นไปได้ของระบบ ระบบธุรกิจ แผนภาพแสดงการไหลของข้อมูล คำอธิบาย การประมวลผล ผังแสดงการตัดสินใจ แผนภาพแสดงความสัมพันธ์ของข้อมูล พจนานุกรมข้อมูล ผังโครงสร้าง การออกแบบส่วนรับข้อมูล การออกแบบส่วน แสดงผลข้อมูล การออกแบบส่วนติดต่อกับผู้ใช้ การบริหารโครงการ การทําเอกสารประกอบ",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 10,
         subject_code: "ENGCE110",
         subject_name_th: "ความมั่นคงปลอดภัยของคอมพิวเตอร์และข้อมูล",
@@ -822,7 +711,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติเกี่ยวกับ หลักการความมั่นคงปลอดภัยของข้อมูลในระบบ คอมพิวเตอร์ วิทยาการเข้ารหัสลับ การเข้าและถอดรหัสลับแบบต่างๆ อัลกอริทึมใน การเข้ารหัสลับ การระบุตัวตน การวิเคราะห์คุณลักษณะสมบัติของข้อมูลสำหรับลด ความซับซ้อนขบวนการเข้ารหัสลับ การลดเวลาและภาระการประมวลผลเข้ารหัสลับ การฝังสัญญาณลายน้ำ และความปลอดภัยในการสื่อสารข้อมูล รวมถึงความปลอดภัย ของข้อมูลในอินเทอร์เน็ตในทุกสรรพสิ่ง",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 10,
         subject_code: "ENGCE112",
         subject_name_th: "การออกแบบและพัฒนาซอฟต์แวร์",
@@ -833,7 +722,7 @@ export default class extends BaseSeeder {
       },
       {
         // กลุ่มเทคโนโลยีเพื่องานประยุกต์
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 11,
         subject_code: "ENGCE111",
         subject_name_th: "วิศวกรรมฐานข้อมูลและข้อมูลขนาดใหญ่เบื้องต้น",
@@ -844,7 +733,7 @@ export default class extends BaseSeeder {
       },
       {
         // กลุ่มฝึกวิชาชีพและโครงงาน
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 12,
         subject_code: "ENGCE113",
         subject_name_th: "การเตรียมโครงงานวิศวกรรมคอมพิวเตอร์",
@@ -854,7 +743,7 @@ export default class extends BaseSeeder {
           "ฝึกปฎิบัติการเกี่ยวกับการค้นคว้าบทความ งานวิจัย สิ่งประดิษฐ์ นวัฒกรรม หรืองานทางวิศวกรรมคอมพิวเตอร์ การตั้งชื่อโครงงาน วิธีการเขียนรายงาน ความเป็นมาของปัญหา วัตถุประสงค์ ขอบเขต ขั้นตอนและแผนการดำเนินงาน การจัดเตรียมวัสดุและอุปกรณ์ การรวบรวมและวิเคราะห์ข้อมูล การรายงานความก้าวหน้า และการนำเสนอโครงงาน",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 12,
         subject_code: "ENGCE114",
         subject_name_th: "โครงงานวิศวกรรมคอมพิวเตอร์",
@@ -864,7 +753,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฎิบัติการเกี่ยวกับการทบทวนชื่อโครงงาน ความเป็นมาของปัญหา วัตถุประสงค์ ขอบเขต การเตรียมโครงงานวิศวกรรมคอมพิวเตอร์ ศึกษาทฤษฎีที่เกี่ยวข้อง แนวทางการแก้ปัญหา ปฏิบัติการตามขั้นตอนและแผนการดำเนินงาน รวบรวมและวิเคราะห์ข้อมูล สรุปผล จัดทำรายงาน และนำเสนอโครงงานต่อคณะกรรมการสอบโครงงาน",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 12,
         subject_code: "ENGCE115",
         subject_name_th: "สหกิจศึกษาทางวิศวกรรมคอมพิวเตอร์",
@@ -875,7 +764,7 @@ export default class extends BaseSeeder {
       },
       {
         // กลุ่มวิชาเครือข่ายคอมพิวเตอร์
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 13,
         subject_code: "ENGCE130",
         subject_name_th: "การติดตั้งและบำรุงรักษาสายสัญญาณเครือข่ายคอมพิวเตอร์",
@@ -885,7 +774,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติการชนิดของสายแบบต่างในระบบเครือข่าย การต่อสายแบบต่างๆ ระบบจายสาย การออกแบบคู่สายสมาชิก การออกแบบการกระจ่ายสายเคเบิลเหนือศีรษะ และใต้ดิน การบํารุงรักษา งานทางสายตอนนอก สายเคเบิลเส้นใยแก้วนำแสง มาตรฐาน การติดตั้งสายสัญญาณแบบต่าง ๆ",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 13,
         subject_code: "ENGCE131",
         subject_name_th: "การสื่อสารเชิงดิจิทัล",
@@ -895,7 +784,7 @@ export default class extends BaseSeeder {
           "ศึกษาเกี่ยวกับระบบการสื่อสารข้อมูลเชิงดิจิทัล สื่อกลางและสัญญาณที่ใช้ในการส่งผ่านข้อมูล ทฤษฏีการสุ่มศัญญาณ ศัญญาณและระบบ มอดูเลทชั่น การวิเคราะห์การแปลง สัญญาณแบบฟูเรียร์ การเข้ารหัสข้อมูล ความปลอดภัยในการสื่อสารข้อมูล และการบีบอัดข้อมูล",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 13,
         subject_code: "ENGCE132",
         subject_name_th: "การคำนวณสมรรถนะสูงและสถาปัตยกรรมแบบคลาวด์",
@@ -905,7 +794,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติเกี่ยวกับ คลัสเตอร์คอมพิวเตอร์ การคำนวณสมรรถนะสูง การประมวลผลแบบขนาน การประมวลผลแบบคลาวด์ การให้บริการโครงสร้างพื้นฐาน การ ให้บริการแพลตฟอร์ม บริการระบบจัดเก็บข้อมูล และการประยุกต์ใช้บริการ",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 13,
         subject_code: "ENGCE133",
         subject_name_th: "การวัดทดสอบและประเมินประสิทธิภาพของระบบเครือข่าย",
@@ -915,7 +804,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติการติดตั้งและบำรุงรักษาระบบเครือข่ายเบื้องต้น มาตรฐาน กระบวนการบำรุงรักษาระบบ การวางแผนกระบวนการตรวจสอบ การเฝ้าระวังและแก้ไข ปัญหามาตรฐานการวัดประสิทธิภาพของสัญญาณ มาตรฐานการวัดประสิทธิภาพของ ระบบ การวิเคราะห์ข้อมูลการใช้งานระบบ การออกแบบระบบเครือข่ายพื้นฐานไปจนถึง ระบบเครือข่ายขนาดใหญ่ การจัดการระบบเครือข่ายให้มีเสถียรภาพและพร้อมในการใช้ งานอยู่ตลอดเวลา การประยุกต์ใช้แอปพลิเคชั่นสําหรับการดูและและบริหารจัดการระบบ",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 13,
         subject_code: "ENGCE134",
         subject_name_th: "การรักษาความปลอดภัยบนระบบเครือข่าย",
@@ -925,7 +814,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติการรักษาความปลอดภัย เครือข่ายทางกายภาพ กลไกขั้นตอนวิธีการ รักษาความปลอดภัยที่ใช้ภายในเราเตอร์ สวิทช์ การเข้ารหัส/ถอดรหัส การพิสูจน์การ ยืนยันตัวบุคคล การรักษาความปลอดภัย Datacenter ระบบตรวจจับ การบุกรุก การ โจมตี ความปลอดภัยของอินเทอร์เน็ต เครือข่าย มัลแวร์ และอื่น ๆ",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 13,
         subject_code: "ENGCE135",
         subject_name_th: "การออกแบบและวางแผนการจัดการระบบเครือข่าย",
@@ -935,7 +824,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติการ เกี่ยวกับการวางแผนและออกแบบระบบเครือข่ายคอมพิวเตอร์พฤติกรรมการสื่อสารของโปรแกรมประยุกต์ชนิดต่างๆการออกแบบโมเดลสำหรับที่อยู่และการตั้งชื่อ (Addressing, Namning) การเลือกใช้โปรโตคอลเลือกเส้นทาง (Routing Protocols) การออกแบบการบริหารจัดการความปลอดภัย การเลือกใช้เทคโนโลยีของอุปกรณ์เครือข่ายที่เหมาะสม การออกแบบและประมาณราคาระบบโครงข่ายเครือข่าย สำหรับองค์กร",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 13,
         subject_code: "ENGCE136",
         subject_name_th: "การใช้งานเครือข่ายโดยกำหนดจากซอฟต์แวร์",
@@ -945,7 +834,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติเกี่ยวกับ เทคโนโลยี SDN (Software defined Networking) สถาปัตยกรรม SDN แนวทางใหม่ในการออกแบบสร้างและบริหารจัดการระบบเครือข่าย แนวคิดพื้นฐานการทำงานของ SDN",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 13,
         subject_code: "ENGCE137",
         subject_name_th: "การดูแลระบบยูนิกซ์",
@@ -955,7 +844,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติการติดตั้ง พื้นฐานคำสั่ง Unix การประมวลผล Text การบริหาร จัดการระบบบัญชีผู้ใช้ การติดตั้ง Application การตั้งค่าระบบเครือข่าย การสร้างระบบ รักษาความปลอดภัยเบื้องต้น ทฤษฎีเทคโนโลยีการบริการบนระบบเครือข่ายโดยระบบ Unix แบบต่าง ๆ เช่น NIS, Quota, Network Storage, Disk Management",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 13,
         subject_code: "ENGCE138",
         subject_name_th: "การสื่อสารข้อมูลมัลติมีเดียบนระบบเครือข่าย",
@@ -966,7 +855,7 @@ export default class extends BaseSeeder {
       },
       {
         // กลุ่มวิชาระบบคอมพิวเตอร์
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 14,
         subject_code: "ENGCE150",
         subject_name_th: "อินเตอร์เน็ตในทุกสิ่ง",
@@ -976,7 +865,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติเกี่ยวกับเครือข่ายของวัตถุ อุปกรณ์ พาหนะ สิ่งปลูกสร้าง และสิ่งของอื่นๆ ที่มีวงจรอิเล็กทรอนิกส์ ซอฟต์แวร์ เซ็นเซอร์ และการเชื่อมต่อกับเครือข่ายที่ฝังตัวอยู่ การทําให้วัตถุเหล่านั้นสามารถเก็บบันทึกและแลกเปลี่ยนข้อมูลได้ การทําให้วัตถุสามารถรับรู้สภาพแวดล้อมและถูกควบคุมได้จากระยะไกลผ่านโครงสร้างพื้นฐานเครือข่ายที่มีอยู่แล้ว",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 14,
         subject_code: "ENGCE151",
         subject_name_th: "ทฤษฎีฟัซซีเซต",
@@ -986,7 +875,7 @@ export default class extends BaseSeeder {
           "ศึกษาเกี่ยวกับแนวคิดพื้นฐานทฤษฎีฟัซซีเซต การดำเนินการในฟัซซีเซต เลขคณิตเชิงฟัซซี ความสัมพันธ์ในรูปแบบฟัซซี ทฤษฎีความเป็นไปได้ ฟัซซีลอจิก การประยุกต์ใช้ฟัซซีเซต",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 14,
         subject_code: "ENGCE152",
         subject_name_th: "การออกแบบระบบดิจิทัล",
@@ -996,7 +885,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติ ทฤษฎีสวิตชิ่ง การออกแบบระบบดิจิทัล วงจรคอมบิเนชันลอจิก การออกแบบโมดูลของวงจร คอมบิเนชั่นลอจิก องค์ประกอบของหน่วยความจํา วงจรซีเควน เขียลลอจิก",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 14,
         subject_code: "ENGCE153",
         subject_name_th: "การสั่งงานด้วยอุปกรณ์พกพาอัจฉริยะเคลื่อนที่",
@@ -1006,7 +895,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปปฏิบัติเกี่ยวกับสถานปัตยกรรมของระบบปฏิบัติการที่ทำงานบนอุปกรณ์พกพาโมดูลเซ็นเซอร์ต่างๆ ที่ทำงานร่วมกัน การรับภาพจากกล้องที่อยู่บนตัวอุปกรณ์พกพา การเขียนโปรแกรมฝังตัวบนอุปกรณ์พกพาเพื่อสั่งงานผ่านโปรโตคอลต่างๆ ในรูปแบบไน้สาย เช่น WiFi, Bluetooth, NFC หรือ อื่นๆ สำหรับการควบคุมฮาร์ดแวร์ให้ทำงานตามเป้าประสงค์",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 14,
         subject_code: "ENGCE154",
         subject_name_th: "ปฏิบัติการฮาร์ดแวร์",
@@ -1016,7 +905,7 @@ export default class extends BaseSeeder {
           "ฝึกปฏิบัติการการในเนื้อหาที่เกี่ยวข้องกับการใช้งานเครื่องมือทางด้านวิศวกรรมคอมพิวเตอร์ ปฏิบัติการติดตั้ง ทดสอบใช้งาน และบํารุงรักษา อุปกรณ์ทางด้านวิศวกรรมคอมพิวเตอร์  และอุปกรณ์ทางด้านวิศวกรรมคอมพิวเตอร์ที่เกี่ยวข้องกับอินเทอร์เน็ตในทุกสรรพสิ่ง",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 14,
         subject_code: "ENGCE155",
         subject_name_th: "หัวข้อเฉพาะทางวิศวกรรมคอมพิวเตอร์",
@@ -1026,7 +915,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติ เรื่องเฉพาะทางวิศวกรรมคอมพิวเตอร์ในระดับปริญญาตรี หัวข้อเปลี่ยนแปลงไปในแต่ละภาคการศึกษา",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 14,
         subject_code: "ENGCE156",
         subject_name_th: "การโต้ตอบระหว่างคอมพิวเตอร์กับมนุษย์",
@@ -1036,7 +925,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติเกี่ยวกับการออกแบบและสร้างส่วนต่อประสานระหว่างหมุษย์กับคอมพิวเตอร์ สถาปัตยกรรมด้านฮาร์ดแวร์กับซอฟต์แวร์เพื่อสถานีงานส่วนบุคคลหลักการเขียนโปรแกรมเชิงวัตถุ การจัดการส่วนแสดงผลแบบปฏิสัมพัธ์และช่องหน้าต่าง",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 14,
         subject_code: "ENGCE157",
         subject_name_th: "ระบบสมองกลฝังตัวและอินเทอร์เน็ตในทุกสรรพสิ่ง",
@@ -1046,7 +935,7 @@ export default class extends BaseSeeder {
           "ศึกษาและปฏิบัติการเกี่ยวกับ สถาปัตยกรรมของระบบฝังตัว หลักการทํางานของ ระบบ ระบบปฏิบัติการของระบบฝังตัว การออกแบบระบบฝังตัวและการโปรแกรมการทํางานร่วมกันระหว่างระบบฝังตัวและระบบอื่นที่ถูกเชื่อมต่อ การสื่อสาร ระบบระหว่างระบบการประหยัดพลังงาน ความปลอดภัย เสถียรภาพ อินเทอร์เน็ตทุกสรรพสิ่ง กษาการประยุก งานทางด้าน อา เฟไอดี RFID) เครือข่ายไร้สาย (Wireless) เซ็นเซอร์ Sensor ล เ อ า เซ็นทรัลย (Wireless sensor network) เครือข่ายอินเทอร์เน็ต ระบบเครือข่ายแบบก้อนเมฆ (Cloud) เทคโนโลยีการสื่อสารระหว่างอุปกรณ์ต่ออุปกรณ์ ( M2M) โดยผ่าน โปรโตคอลการสื่อสารและการทํางานร่วมกันตามมาตรฐาน และระบบรักษาความปลอดภัยดิจิทัล",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 14,
         subject_code: "ENGCE158",
         subject_name_th: "การจัดการเทคโนโลยีและนวัตกรรม",
@@ -1056,7 +945,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติเกี่ยวกับ เทคโนโลยีสารสนเทศนวัตกรรมกลยุทธ์เพื่อการจัดการเทคโนโลยี และนวัตกรรมวัฏจักรชีวิตของเทคโนโลยี และนวัตกรรมการวางแผนเทคโนโลยี การพัฒนาเทคโนโลยีการควบคุม และการประเมินผลเทคโนโลยีการวางแผนนวัตกรรม การนํานวัตกรรมไปปฏิบัติ การควบคุม และการประเมินผลนวัตกรรมการแข่งขัน",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 14,
         subject_code: "ENGCE159",
         subject_name_th: "เทคโนโลยีสารสนเทศสำหรับวิศวกร",
@@ -1066,7 +955,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติการเรียนรู้ด้วยตนเองจากสื่ออิเล็กทรอนิกส์ ภายใต้การชี้แนะและควบคุมของอาจารย์เกี่ยวกับสถาปัตยกรรมของคอมพิวเตอร์ การจัดเก็บข้อมูลในระบบคอมพิวเตอร์ ประเภทของซอฟต์แวร์คอมพิวเตอร์ การติดตั้งและใช้งานซอฟต์แวร์การใช้ซอฟต์แวร์สําหรับสํานักงานทั่วไป เครือข่ายคอมพิวเตอร์ การใช้งานอินเทอร์เน็ตระบบสารสนเทศ และระบบจัดการฐานข้อมูล การดูแลบํารุงรักษาคอมพิวเตอร์เบื้องต้น และการประยุกต์ใช้งานคอมพิวเตอร์ด้านวิศวกรรม",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 14,
         subject_code: "ENGCE160",
         subject_name_th: "การโปรแกรมแบบขนานสำหรับระบบคลัสเตอร์คอมพิวเตอร์",
@@ -1076,7 +965,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติเกี่ยวกับโปรแกรมแบบขนาสำหรับระบบคลัสเตอร์คอมพิวเตอร์ การเขียนโปรแกรมบนระบบประมวลผลของคอมพิวเตอร์สมรรถนะสูง โมเคลการแกรมแบบขนาน การวัดสมรรถนะของโปรแกรมแบบขนาน การวัดสมรรถนะของคอมพิวเตอร์สมรรถนะสูง การโปรแกรมแบบส่งผ่านข้อความ การโปรแกรมเทรด การโปรแกรมบนหน่วยประมวลผลกราฟิก กรณีศึกษาและจำลองสถานการณ์จริง",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 14,
         subject_code: "ENGCE161",
         subject_name_th: "การประมวลผลสัญญาณดิจิทัล",
@@ -1086,7 +975,7 @@ export default class extends BaseSeeder {
           "ศึกษาและทบทวนเกี่ยวกับ การออกแบบวงจรกรองเวลาต่อเนื่องและการแทน การวิเคราะห์และออกแบบระบบและสัญญาณดิสครีต การแปลงแซด และการแปลงฟูริเยร์แบบดีสครีต โครงสร้างของระบบเวลาดีสครีต เทคนิคการออกแบบวงจรกรองแบบผลตอบสนองอิมพัลส์อนันต์และผลตอบสนองอิมพัลส์จํากัด การแปลงฮิลเบิร์ตแบบดิสครีต และการวิเคราะห์เซฟสตรัม สัญญาณสุ่ม",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 14,
         subject_code: "ENGCE162",
         subject_name_th: "สัญญาณและระบบ",
@@ -1097,7 +986,7 @@ export default class extends BaseSeeder {
       },
       {
         // กลุ่มวิชาวิศวกรรมซอฟต์แวร์
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 15,
         subject_code: "ENGCE170",
         subject_name_th: "การกำหนดความต้องการและการออกแบบทางซอฟต์แวร์",
@@ -1107,7 +996,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติ การจัดการความต้องการของผู้ใช้และการออกแบบซอฟแวร์ โดยมีเนื้อหาประกอบด้วย การเก็บรวบรวม การวิเคราะห์ การต่อรอง การระบุรายละเอียด การทดสอบ บริหารจัดการความต้องการ แนะนำวิธีการ เทคนิคและเครื่องมือในการบันทึกเอกสารความต้องการ กลยุทธ์การออกแบบสถาปัตยกรรม การออกแบบการปฏิสัมพันธ์กับมนุษย์ ออกแบบรายละเอียด และการประเมินผลการออกแบบ",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 15,
         subject_code: "ENGCE171",
         subject_name_th: "การตรวจสอบความสมเหตุสมผลและการทวนสอบซอฟต์แวร์",
@@ -1117,7 +1006,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติแนวคิดพื้นฐานเกี่ยวกับการทดสอบซอฟต์แวร์ กระบวนการและแบบจำลองสำหรับการทดสอบซอฟต์แวร์ การตรวจสอบและการยืนยันความถูกต้องของซอฟต์แวร์ การทดสอบระดับส่วนประกอบ การทดสอบการรวมส่วนประกอบของซอฟต์แวร์ การทดสอบระบบ และทดสอบการยอมรับของผู้ใช้ การทดสอบเชิงไม่เป็นฟังก์ชัน เทคนิคการทบทวน การประมาณการทดสอบ เทคนิคการสร้างและตรวจสอบข้อมูลการทดสอบ เทคนิคดูแลและควบคุมการทดสอบ เครื่องมือที่ใช้ในการทดสอบซอฟร์แวร์ การางแผนการทดสอบ การวิเคราะห์ปัญหาและการจัดทำรายงาน รวมถึงการใช้เทคนิคต่างๆ ในการทดสอบเพื่อให้แน่ใจว่าส่วนประกอบของซอฟต์แวร์หรือระบบตอบสนองความต้องการของผู้ออกแบบ และตรงตามความคาดหวังของผู้มีส่วนได้ส่วนเสีย",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 15,
         subject_code: "ENGCE172",
         subject_name_th: "กระบวนการซอฟต์แวร์และการประกันคุณภาพ",
@@ -1127,7 +1016,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติการวิเคราห์แบบจำลองของกระบวนการการพัฒนาซอฟต์แวร์แบบจำลองและมาตรฐานของวัฏจักร กระบวนการพัฒนา สภาพแวดล้อมและกรอบของการปรับปรุงกระบวนการผลิต การนำกระบวนการผลิตไปใช้ในองค์กร โครงการ ทีม และบุคคล ในแบบต่างๆกัน การวัดและการวิเคราะห์กระวนการพัฒนาซอฟต์แวร์ ประโยนช์ที่ได้ต่อธุรกิจ ศึกษาแนวคิดเกี่ยวกับคุณภาพซอฟต์แวร์ วิธีการประกันคุณภาพซอฟต์แวร์ การวางแผนและการทำการประกันคุณภาพซอฟต์แวร์และกลยุทธ์ มาตรฐานคุณภาพ วิธีการพิชญพิจารณ์ การทบทวน การตรวจสอบดูการทำงาน และการตรวจตราอย่างละเอียด การแบ่งระดับหน่วยและการทดสอบระดับหน่วย ความน่าเชื่อถือของซอฟต์แวร์ การจัดการความรับผิดชอบในการประกันคุณภาพ และกรณีศึกษา",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 15,
         subject_code: "ENGCE173",
         subject_name_th: "การวิเคราะห์และออกแบบเชิงวัตถุ",
@@ -1137,7 +1026,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติเกี่ยวกับ การวิเคราะห์และออกแบบ ตามแนวความคิด และ หลักการเชิงวัตถุ ด้วยภาษาโมเดลยูอ็มเอล (UML) เพื่อวิเคราะห์และออกแบบความสัมพันธ์รหว่างคลาสและวัตถุ การสือทอดคุณสมบัติ การนำคลาสกลับมาใช้ การวิเคราะห์ความต้องการโดยใช้แบบจำลองยูสเคส (Use Case) การวิเคราะห์เพื่อหาวัตถุจากแบบจำลองยูสเคส การเขียนโมเดลทางสถิติ โมเดลแบบไดนามิก และการออกแบบแบบแผน",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 15,
         subject_code: "ENGCE174",
         subject_name_th: "การเขียนโปรแกรมเชิงวัตถุ",
@@ -1147,7 +1036,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติ องค์ประกอบของการเขียนโปรแกรมตามแนวคิดเชิงวัตถุ เช่น สิ่งที่เป็นนามธรรม โมดุล การนำโค้ดกลับมาใช้ซ้ำ อ็อบเจ็กต์ คลาส การส่งผ่านข้อความระหว่างวัตถุ เมธอด อินเทอร์เฟส การห่อหุ้ม โพลืมอร์ฟิซึม การสืบทอดคุณสมบัติ เป็นต้น ฝึกปฏิบัติการเขียนโปรแกรมด้วยเครื่องมือที่ง่ายต่อการสร้างโปรแกรม และบำรุงรักษาโปรแกรม เพื่อศึกษาการเรียกใช้งานไลบรารีฟังก์ชันและเอพีไอของภาษาคอมพวเตอร์ที่สนับสนุนการเขียนโปรแกรมเชิงวัตถึ โดยการใช้ส่วนติดต่อประสานโปรแกรมประยุกต์ (API)",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 15,
         subject_code: "ENGCE175",
         subject_name_th: "การบริหารจัดการโครงการซอฟต์แวร์",
@@ -1157,7 +1046,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติ เกี่ยวกับ องค์ความรู้และฝึกทักษะที่เกี่ยวข้องกับการวางแผนโครงการด้านซอฟต์แวร์ การวิเคราะห์ต้นทุนของซอฟต์แวร์ การวางแผนการจัดการและวิธีการที่นำไปสู่เป้าหมาย การใช้หลักการและเทคนิคการบริหารโครงการในสถานการณ์จริง การวางแผนการบิรหารความเสี่ยงโครงการซอฟต์แวร์ ได้แก่ การระบุควมเสี่ยง การวิเคราะห์ความเสี่ยง จัดลำดับความสำคัญความเสี่ยง การวางแผน การจัดการแก้ไขความเสี่ยง และการตวจสอบความเสี่ยง การตรวจสอบโครงการซอฟต์แวร์และการควบคุมด้วยทฤษฎีมาตรวัดซอฟต์แวร์และโมเดล ตัวชี้วัดผลิตภัณฑ์ซอฟต์แวร์ ตัวชี้วัดกระบวนการซอฟต์แวร์และวิธีการที่แตกต่างกันในการเก็บรวบรวมข้อมูล การรวบรวมและการประเมินผล",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 15,
         subject_code: "ENGCE176",
         subject_name_th: "การเขียนโปรแกรมบนเว็บ",
@@ -1167,7 +1056,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติการเกี่ยวกับ เทคโนโลยีของอินเทอร์เน็ต โพรโตคอล HTTP กลไกจัดการการร้องขอในเว็บเซิร์ฟเวอร์ การเขียนโปรแกรมแบบ CGI และการสร้างหน้าเว็บแบบพลวัต การใช้งานคุกกี้ การติดต่อเชื่อมโยงกับฐานข้อมูล การปรับแต่งประสิทธิภาพและความปลอดภัยในการใช้งาน การเขียนโปรแกรมในฝั่งของ Client เช่น HTML, CSS, JavaScript และ ฝั่งของ Server เช่น PHP, ASP, JSP, AJAX เป็นต้น",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 15,
         subject_code: "ENGCE177",
         subject_name_th: "หัวข้อความก้าวล้ำในงานวิศวกรรมซอฟต์แวร์",
@@ -1177,7 +1066,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติ ให้สามารถเห็นคุณค่า และตระหนักถึงความจำเป็นที่จะต้องเรียนรู้ทฤษฏีใหม่ๆ แบบจำลอง เทคนิค และเทคโนโลยีต่างๆ ที่เกี่ยวข้องกับวิศวกรรมซอฟต์แวร์ฝึกปฏิบัติด้วยเครื่องมือและเทคนิคที่ทำให้การพัฒนาระบบซอฟต์แวร์ และการประยุกต์ใช้จากงานวิจัยสู่ นวัตกรรมใหม่ๆ อย่างมืออาชีพ",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 15,
         subject_code: "ENGCE178",
         subject_name_th: "ปัญญาประดิษฐ์และการเรียนรู้ของเครื่อง",
@@ -1187,7 +1076,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติเกี่ยวกับ การเรียนรู้ของเครื่องและทฤษฎีการเรียนรู้ การเรียนรู้แบบมีผู้สอน การแบ่งประเภท การถดถอย ค่าผิดปกติ ซัพพอร์ตเวกเตอร์แมชชีน การเลือกแบบจําลองและคุณลักษณะ การลดขนาดมิติของข้อมูล ต้นไม้ตัดสินใจ การเรียนรู้แบบไม่มีผู้สอน การจัดกลุ่ม การเรียนรู้แบบเสริมกําลัง ข่ายงานประสาทเทียม การเรียนรู้เชิงลึก",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 15,
         subject_code: "ENGCE179",
         subject_name_th: "คอมพิวเตอร์กราฟฟิก",
@@ -1197,7 +1086,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติ ระบบคอมพิวเตอร์กราฟิกเบื้องต้น โดยมีเนื้อหาประกอบด้วยอุปกรณ์ อินพุต-เอาต์พุต การหาทางเดินของจุดจากภาพ การแปลงใน 2 มิติ การเลื่อนที่การเชื่อมต่อ การหมุน การสะท้อน การตัดเล็ม หลักการกำหนดกรอบหน้าต่าง อัลกอริทึมการคลิป การแปลงจากวินโดว์ไปยังวิวพอร์ท หลักการประมวลผลใน 3 มิติ การแสดงภาพใน 3 มิติ การแปลงใน 3 มิติ การมองใน 3 มิติ และการโปรแกรมงานคอมพิวเตอร์กราฟิกส์",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 15,
         subject_code: "ENGCE180",
         subject_name_th: "การประมวลผลภาพดิจิทัล และการมองเห็นโดยคอมพิวเตอร์",
@@ -1207,7 +1096,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติโมเดลการมองเห็นภาพของมนุษย์หลักการของการเก็บข้อมูลภาพในระบบดิจิตอล การปรับปรุงคุณภาพของภาพ การหาขอบและเส้น การแบ่งพื้นที่ภาพ การใช้ฟิลเตอร์แบบเชิงเส้น แบบไม่เป็นเชิงเส้น เพื่อแก้ปัญหาต่างๆในการประมวลผลภาพ การประมวลผลภาพสี การบีบอัดข้อมูลภาพ การมองเห็นโดยคอมพิวเตอร์",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 15,
         subject_code: "ENGCE181",
         subject_name_th: "การทำเหมืองข้อมูลและระบบสารสนเทศทางธุรกิจ",
@@ -1217,7 +1106,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติ ความรู้เบื้องต้นเกี่ยวกับ การทําเหมืองข้อมูล และการเรียนรู้ เครื่องแนวคิด อินสแตนซ์ และ ลักษณะวิธีการจําแนก ต้นไม้ ตัดสินใจการประเมินผล และความน่าเชื่อถือ และการประเมินผล มีลิฟท์ และค่าใช้จ่าย การจัดเตรียม ข้อมูลสําหรับการ ค้นพบความรู้ การจัดกลุ่ม กฎ สมาคม การแสดง, การสรุป และ การตรวจสอบการ เบี่ยงเบน การประยุกต์ใช้งานสําหรับระบบข้อมูลทางการตลาด การวิเคราะห์ข้อมูลและ การประยุกต์ใช้งานในด้านอื่นๆ",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 15,
         subject_code: "ENGCE182",
         subject_name_th: "การพัฒนาโปรแกรมประยุกต์และเกมสำหรับอุปกรณ์เคลื่อนที่",
@@ -1227,7 +1116,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติเกี่ยวกับ สถาปัตยกรรมฮาร์ดแวร์และซอฟต์แวร์ คุณลักษณะและข้อจํากัดของอุปกรณ์เคลื่อนที่ ระบบปฏิบัติการและสภาพแวดล้อมในการพัฒนา ศึกษาเครื่องมือและภาษาที่ใช้สําหรับพัฒนาโปรแกรมประยุกต์ การติดต่อกับผู้ใช้ การสื่อสารกับ ระบบภายนอก พัฒนาโปรแกรมประยุกต์และเกมบนอุปกรณ์เคลื่อนที่ การจําลองเพื่อทดสอบและแก้ไขบนระบบคอมพิวเตอร์",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 15,
         subject_code: "ENGCE183",
         subject_name_th: "การประมวลผลแบบคลาวด์",
@@ -1237,7 +1126,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติเกี่ยวกับหลัการและเทคโนโลยีในการประมวลผลแบบคลาวด์ โครงสร้างพื้นฐานคลาวด์ การจำลองหน่วยประมวลผลและหน่วยความจำ (เวอร์ชวลไลเซซั่น) เมฆเก็บข้อมูล ระบบไฟล์แบบกระจาย ฐานข้อมูลแบบ NoSQL โมเดลการเขียนโปรแกรมแบบ MapReduce ปฏิบัติการใช้บริการคลาด์สาธาธารณะ เช่น Amazon Web Service ในการเช่าและบริหารทรัพยากรสำหรับการประมวลผล การ deploy โปรแกรมประยุกต์บนบริการคลาวด์ การพัฒนาบริการบนเว็บเพื่อประมวลผลและเรียกค้นข้อมูลขนาดใหญ่",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 15,
         subject_code: "ENGCE184",
         subject_name_th: "การพัฒนาโปรแกรมบนระบบคลาวด์",
@@ -1247,7 +1136,7 @@ export default class extends BaseSeeder {
           "ศึกษาและฝึกปฏิบัติเกี่ยวกับ ความรู้พื้นฐานเกี่ยวกับคลาวด์คอมพิวติ้ง การพัฒนาซอฟต์แวร์ที่มีรูปแบบการให้บริการผ่านเครือข่ายอินเทอร์เน็ตบนคลาวด์ การเลือกใช้เครื่องมือและทรัพยากรสำหรับการพัฒนาซอฟต์แวร์บนคลาวด์ การพัฒนาทักษะการเขียนโปรแกรมและการพัฒนาซอฟต์แวร์บนอุปกรณ์เคลื่อนที่โดยการทำงานร่วมกับฟังก์ชันหลักของระบบคลาวด์",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 15,
         subject_code: "ENGCE185",
         subject_name_th: "ปฏิบัติการซอฟต์แวร์",
@@ -1257,7 +1146,7 @@ export default class extends BaseSeeder {
           "ฝึกปฏิบัติการในเนื้อหาที่เกี่ยวข้องกับทางด้านวิศวกรรมคอมพิวเตอร์ซอฟต์แวร์ อาทิ เช่น ระบบปฏิบัติการ ซอฟต์แวร์เพื่อใช้ในการทํางานทางด้านวิศวกรรมคอมพิวเตอร์ ซอฟต์แวร์ที่เกี่ยวข้องกับการใช้งานด้านอินเทอร์เน็ตในทุกสรรพสิ่ง",
       },
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         subject_group_id: 15,
         subject_code: "ENGCE186",
         subject_name_th: "สถาปัตยกรรมซอฟต์แวร์",
@@ -1419,7 +1308,7 @@ export default class extends BaseSeeder {
     ];
     const studyPlanData = [
       {
-        curriculum_id: 4,
+        curriculum_id: 1,
         study_plan_name: "แผนการศึกษาแนะนำ มคอ.2 หลักสูตร 2560",
         study_plan_total_credit: 130,
       },
@@ -1752,7 +1641,7 @@ export default class extends BaseSeeder {
     ];
     const interestSurveyData = [
       {
-        curriculum_id: 4,
+        curriculum_id: 2,
         interest_survey_version: 1,
       },
     ];
@@ -2078,6 +1967,551 @@ export default class extends BaseSeeder {
         subject_id: 86,
       },
     ];
+    const subjectStructuresData = [
+      {
+        // 1
+        subject_category_id: 1,
+        subject_type_id: 1,
+        subject_group_id: 1,
+        subject_id: 1,
+      },
+      {
+        subject_category_id: 1,
+        subject_type_id: 1,
+        subject_group_id: 1,
+        subject_id: 2,
+      },
+      {
+        subject_category_id: 1,
+        subject_type_id: 1,
+        subject_group_id: 1,
+        subject_id: 3,
+      },
+      {
+        subject_category_id: 1,
+        subject_type_id: 1,
+        subject_group_id: 1,
+        subject_id: 4,
+      },
+      {
+        // 2
+        subject_category_id: 1,
+        subject_type_id: 1,
+        subject_group_id: 2,
+        subject_id: 5,
+      },
+      {
+        // 3
+        subject_category_id: 1,
+        subject_type_id: 1,
+        subject_group_id: 3,
+        subject_id: 6,
+      },
+      {
+        subject_category_id: 1,
+        subject_type_id: 1,
+        subject_group_id: 3,
+        subject_id: 7,
+      },
+      {
+        subject_category_id: 1,
+        subject_type_id: 1,
+        subject_group_id: 3,
+        subject_id: 8,
+      },
+      {
+        // 4
+        subject_category_id: 1,
+        subject_type_id: 2,
+        subject_group_id: 4,
+        subject_id: 9,
+      },
+      {
+        subject_category_id: 1,
+        subject_type_id: 2,
+        subject_group_id: 4,
+        subject_id: 10,
+      },
+      {
+        subject_category_id: 1,
+        subject_type_id: 2,
+        subject_group_id: 4,
+        subject_id: 11,
+      },
+      {
+        subject_category_id: 1,
+        subject_type_id: 2,
+        subject_group_id: 4,
+        subject_id: 12,
+      },
+      {
+        subject_category_id: 1,
+        subject_type_id: 2,
+        subject_group_id: 4,
+        subject_id: 13,
+      },
+      {
+        subject_category_id: 1,
+        subject_type_id: 2,
+        subject_group_id: 4,
+        subject_id: 14,
+      },
+      {
+        // 5
+        subject_category_id: 1,
+        subject_type_id: 2,
+        subject_group_id: 5,
+        subject_id: 15,
+      },
+      {
+        subject_category_id: 1,
+        subject_type_id: 2,
+        subject_group_id: 5,
+        subject_id: 16,
+      },
+      {
+        subject_category_id: 1,
+        subject_type_id: 2,
+        subject_group_id: 5,
+        subject_id: 17,
+      },
+      {
+        subject_category_id: 1,
+        subject_type_id: 2,
+        subject_group_id: 5,
+        subject_id: 18,
+      },
+      {
+        subject_category_id: 1,
+        subject_type_id: 2,
+        subject_group_id: 5,
+        subject_id: 19,
+      },
+      {
+        subject_category_id: 1,
+        subject_type_id: 2,
+        subject_group_id: 5,
+        subject_id: 20,
+      },
+      {
+        // 6
+        subject_category_id: 2,
+        subject_type_id: 3,
+        subject_group_id: 6,
+        subject_id: 21,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 3,
+        subject_group_id: 6,
+        subject_id: 22,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 3,
+        subject_group_id: 6,
+        subject_id: 23,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 3,
+        subject_group_id: 6,
+        subject_id: 24,
+      },
+      {
+        // 7
+        subject_category_id: 2,
+        subject_type_id: 3,
+        subject_group_id: 7,
+        subject_id: 25,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 3,
+        subject_group_id: 7,
+        subject_id: 26,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 3,
+        subject_group_id: 7,
+        subject_id: 27,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 3,
+        subject_group_id: 7,
+        subject_id: 28,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 3,
+        subject_group_id: 7,
+        subject_id: 29,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 3,
+        subject_group_id: 7,
+        subject_id: 30,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 3,
+        subject_group_id: 7,
+        subject_id: 31,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 3,
+        subject_group_id: 7,
+        subject_id: 32,
+      },
+      {
+        // 8
+        subject_category_id: 2,
+        subject_type_id: 4,
+        subject_group_id: 8,
+        subject_id: 33,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 4,
+        subject_group_id: 8,
+        subject_id: 34,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 4,
+        subject_group_id: 8,
+        subject_id: 35,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 4,
+        subject_group_id: 8,
+        subject_id: 36,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 4,
+        subject_group_id: 8,
+        subject_id: 37,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 4,
+        subject_group_id: 8,
+        subject_id: 38,
+      },
+      {
+        // 9
+        subject_category_id: 2,
+        subject_type_id: 4,
+        subject_group_id: 9,
+        subject_id: 39,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 4,
+        subject_group_id: 9,
+        subject_id: 40,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 4,
+        subject_group_id: 9,
+        subject_id: 41,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 4,
+        subject_group_id: 9,
+        subject_id: 42,
+      },
+      {
+        // 10
+        subject_category_id: 2,
+        subject_type_id: 4,
+        subject_group_id: 10,
+        subject_id: 43,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 4,
+        subject_group_id: 10,
+        subject_id: 44,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 4,
+        subject_group_id: 10,
+        subject_id: 45,
+      },
+      {
+        // 11
+        subject_category_id: 2,
+        subject_type_id: 4,
+        subject_group_id: 11,
+        subject_id: 46,
+      },
+      {
+        // 12
+        subject_category_id: 2,
+        subject_type_id: 4,
+        subject_group_id: 12,
+        subject_id: 47,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 4,
+        subject_group_id: 12,
+        subject_id: 48,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 4,
+        subject_group_id: 12,
+        subject_id: 49,
+      },
+      {
+        // 13
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 13,
+        subject_id: 50,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 13,
+        subject_id: 51,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 13,
+        subject_id: 52,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 13,
+        subject_id: 53,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 13,
+        subject_id: 54,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 13,
+        subject_id: 55,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 13,
+        subject_id: 56,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 13,
+        subject_id: 57,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 13,
+        subject_id: 58,
+      },
+      {
+        // 14
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 14,
+        subject_id: 59,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 14,
+        subject_id: 60,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 14,
+        subject_id: 61,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 14,
+        subject_id: 62,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 14,
+        subject_id: 63,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 14,
+        subject_id: 64,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 14,
+        subject_id: 65,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 14,
+        subject_id: 66,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 14,
+        subject_id: 67,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 14,
+        subject_id: 68,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 14,
+        subject_id: 69,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 14,
+        subject_id: 70,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 14,
+        subject_id: 71,
+      },
+      {
+        // 15
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 15,
+        subject_id: 72,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 15,
+        subject_id: 73,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 15,
+        subject_id: 74,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 15,
+        subject_id: 75,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 15,
+        subject_id: 76,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 15,
+        subject_id: 77,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 15,
+        subject_id: 78,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 15,
+        subject_id: 79,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 15,
+        subject_id: 80,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 15,
+        subject_id: 81,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 15,
+        subject_id: 82,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 15,
+        subject_id: 83,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 15,
+        subject_id: 84,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 15,
+        subject_id: 85,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 15,
+        subject_id: 86,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 15,
+        subject_id: 87,
+      },
+      {
+        subject_category_id: 2,
+        subject_type_id: 5,
+        subject_group_id: 15,
+        subject_id: 88,
+      },
+    ];
 
     await Faculty.createMany(facultyData);
     await CollegianGroup.createMany(collegianGroupData);
@@ -2097,5 +2531,6 @@ export default class extends BaseSeeder {
     await ContinueSubject.createMany(continueSubjectsData);
     await JobPosition.createMany(jobPositionData);
     await InterestAnswerJob.createMany(interestAnswersJobData);
+    await SubjectStructure.createMany(subjectStructuresData);
   }
 }
