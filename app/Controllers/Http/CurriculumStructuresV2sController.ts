@@ -18,9 +18,6 @@ export default class CurriculumStructuresV2sController {
         .preload("subjectGroup", (query) => {
           query.where("is_deleted", false);
         })
-        .preload("subject", (query) => {
-          query.where("is_deleted", false);
-        })
         .where("is_deleted", false);
 
       if (!curriculumStructuresV2s) {
@@ -52,9 +49,6 @@ export default class CurriculumStructuresV2sController {
           query.where("is_deleted", false);
         })
         .preload("subjectGroup", (query) => {
-          query.where("is_deleted", false);
-        })
-        .preload("subject", (query) => {
           query.where("is_deleted", false);
         })
         .whereHas("curriculum", (query) => {
