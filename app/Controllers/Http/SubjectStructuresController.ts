@@ -88,13 +88,25 @@ export default class SubjectStructuresController {
   public async update({ params, request, response }: HttpContextContract) {
     const updateSchema = schema.create({
       subject_category_id: schema.number.optional(),
-      subject_type_id: schema.number.optional(),
-      subject_group_id: schema.number.optional(),
+      subject_type_id: schema.number.nullable(),
+      subject_group_id: schema.number.nullable(),
       subject_id: schema.number.optional(),
     });
 
     try {
-      const payload = await request.validate({ schema: updateSchema });
+      const payload = await request.validate({
+        schema: updateSchema,
+      });
+      console.log("test: ", payload);
+
+      if (payload.subject_type_id === undefined) {
+        payload.subject_type_id = null;
+      }
+
+      if (payload.subject_group_id === undefined) {
+        payload.subject_group_id = null;
+      }
+
       const subjectStructure: any = await SubjectStructure.find(params.id);
 
       if (!subjectStructure) {
@@ -111,9 +123,11 @@ export default class SubjectStructuresController {
         });
       }
     } catch (error) {
-      return response
-        .status(400)
-        .json({ error: "Incorrect or incomplete information", status: 400 });
+      return response.status(400).json({
+        error: "Incorrect or incomplete information",
+        message: error,
+        status: 400,
+      });
     }
   }
 

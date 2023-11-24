@@ -10,13 +10,13 @@ export default class SubjectStructure extends BaseModel {
   public subject_structure_id: number;
 
   @column()
-  public subject_category_id: number;
+  public subject_category_id: number | null;
 
   @column()
-  public subject_type_id: number;
+  public subject_type_id: number | null;
 
   @column()
-  public subject_group_id: number;
+  public subject_group_id: number | null;
 
   @column()
   public subject_id: number;
