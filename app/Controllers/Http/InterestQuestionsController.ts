@@ -35,6 +35,13 @@ export default class InterestQuestionsController {
       });
 
       if (payload.interest_question_type === 1) {
+        if (!payload.job_position_id) {
+          return response.status(400).json({
+            message: "job_position_id is required",
+            status: 400,
+          });
+        }
+
         const interestQuestion: InterestQuestion =
           await InterestQuestion.create(payload);
 
