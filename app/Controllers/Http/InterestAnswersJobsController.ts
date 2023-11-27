@@ -83,12 +83,10 @@ export default class InterestAnswersJobsController {
           .status(404)
           .json({ message: "Interest Answer Job not found", status: 404 });
       } else if (interestAnswerJob.is_deleted) {
-        return response
-          .status(400)
-          .json({
-            message: "Interest Answer Job already deleted",
-            status: 400,
-          });
+        return response.status(400).json({
+          message: "Interest Answer Job already deleted",
+          status: 400,
+        });
       } else {
         await interestAnswerJob.merge({ is_deleted: true });
         await interestAnswerJob.save();
@@ -100,7 +98,7 @@ export default class InterestAnswersJobsController {
     } catch (error) {
       return response
         .status(500)
-        .json({ message: "Internal server error", status: 500 });
+        .json({ message: "Internal server error", error: error, status: 500 });
     }
   }
 }
