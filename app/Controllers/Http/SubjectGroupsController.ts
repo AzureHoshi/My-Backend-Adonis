@@ -3,7 +3,7 @@ import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import SubjectGroup from "App/Models/SubjectGroup";
 
 const subjectGroupSchema = schema.create({
-  subject_type_id: schema.number(),
+  subject_type_id: schema.number.optional(),
   subject_group_name: schema.string([rules.maxLength(255)]),
 });
 
@@ -35,9 +35,8 @@ export default class SubjectGroupsController {
 
   public async update({ params, request, response }: HttpContextContract) {
     try {
-      const id = params.id;
       const payload = await request.validate({ schema: subjectGroupSchema });
-      const subjectGroup: any = await SubjectGroup.find(id);
+      const subjectGroup: any = await SubjectGroup.find(params.id);
       if (!subjectGroup) {
         return response
           .status(404)
@@ -48,7 +47,7 @@ export default class SubjectGroupsController {
         return response.status(200).json({
           data: subjectGroup,
           status: 200,
-          message: `SubjectGroup updated byId ${id} success`,
+          message: `SubjectGroup updated byId ${params.id} success`,
         });
       }
     } catch (error) {

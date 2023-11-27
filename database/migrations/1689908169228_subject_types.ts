@@ -9,6 +9,7 @@ export default class extends BaseSchema {
       table
         .integer("subject_category_id")
         .unsigned()
+        .nullable()
         .references("subject_categories.subject_category_id")
         .onDelete("CASCADE");
       table.string("subject_type_name").notNullable();

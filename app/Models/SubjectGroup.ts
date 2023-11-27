@@ -15,7 +15,7 @@ export default class SubjectGroup extends BaseModel {
   public subject_group_id: number;
 
   @column()
-  public subject_type_id: number;
+  public subject_type_id: number | null;
 
   @column()
   public subject_group_name: string;

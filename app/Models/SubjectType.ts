@@ -15,7 +15,7 @@ export default class SubjectType extends BaseModel {
   public subject_type_id: number;
 
   @column()
-  public subject_category_id: number;
+  public subject_category_id: number | null;
 
   @column()
   public subject_type_name: string;

@@ -3,7 +3,7 @@ import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import SubjectType from "App/Models/SubjectType";
 
 const subjectTypeSchema = schema.create({
-  subject_category_id: schema.number(),
+  subject_category_id: schema.number.optional(),
   subject_type_name: schema.string([rules.maxLength(255)]),
 });
 export default class SubjectTypesController {
