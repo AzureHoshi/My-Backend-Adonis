@@ -36,7 +36,11 @@ export default class InterestSurveysController {
           query
             .where("is_deleted", false)
             .preload("interest_answers", (query) => {
-              query.where("is_deleted", false).preload("interest_answers_job");
+              query
+                .where("is_deleted", false)
+                .preload("interest_answers_job", (query) => {
+                  query.where("is_deleted", false).preload("jobPosition");
+                });
             });
         })
         .where("curriculum_id", params.id)
