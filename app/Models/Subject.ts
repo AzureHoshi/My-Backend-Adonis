@@ -12,7 +12,7 @@ export default class Subject extends BaseModel {
   public curriculum_id: number;
 
   @column()
-  public subject_group_id: number;
+  public subject_group_id: number | null;
 
   @column()
   public subject_code: string;

@@ -4,16 +4,6 @@ import Competency from "App/Models/Competency";
 import CompetencySub from "App/Models/CompetencySub";
 import Subject from "App/Models/Subject";
 
-const subjectSchema = schema.create({
-  curriculum_id: schema.number(),
-  subject_group_id: schema.number(),
-  subject_code: schema.string({ trim: true }, [rules.maxLength(255)]),
-  subject_name_th: schema.string({ trim: true }, [rules.maxLength(255)]),
-  subject_name_en: schema.string({ trim: true }, [rules.maxLength(255)]),
-  subject_credit: schema.number.optional(),
-  subject_description: schema.string({ trim: true }, [rules.maxLength(255)]),
-});
-
 export default class SubjectsController {
   public async index({ response }: HttpContextContract) {
     try {
@@ -147,7 +137,19 @@ export default class SubjectsController {
 
   public async store({ request, response }: HttpContextContract) {
     try {
-      const payload = await request.validate({ schema: subjectSchema });
+      const storeSchema = schema.create({
+        curriculum_id: schema.number(),
+        subject_group_id: schema.number.optional(),
+        subject_code: schema.string({ trim: true }, [rules.maxLength(255)]),
+        subject_name_th: schema.string({ trim: true }, [rules.maxLength(255)]),
+        subject_name_en: schema.string({ trim: true }, [rules.maxLength(255)]),
+        subject_credit: schema.number.optional(),
+        subject_description: schema.string({ trim: true }, [
+          rules.maxLength(255),
+        ]),
+      });
+
+      const payload = await request.validate({ schema: storeSchema });
       const subject: Subject = await Subject.create(payload);
       return response.status(201).json({ data: subject, status: 201 });
     } catch (error) {
@@ -159,9 +161,20 @@ export default class SubjectsController {
 
   public async update({ params, request, response }: HttpContextContract) {
     try {
-      const id: any = params.id;
-      const payload = await request.validate({ schema: subjectSchema });
-      const subject: any = await Subject.find(id);
+      const updateSchema = schema.create({
+        curriculum_id: schema.number.optional(),
+        subject_group_id: schema.number.optional(),
+        subject_code: schema.string({ trim: true }, [rules.maxLength(255)]),
+        subject_name_th: schema.string({ trim: true }, [rules.maxLength(255)]),
+        subject_name_en: schema.string({ trim: true }, [rules.maxLength(255)]),
+        subject_credit: schema.number.optional(),
+        subject_description: schema.string({ trim: true }, [
+          rules.maxLength(255),
+        ]),
+      });
+
+      const payload = await request.validate({ schema: updateSchema });
+      const subject: any = await Subject.find(params.id);
       if (!subject) {
         return response
           .status(404)
@@ -172,7 +185,7 @@ export default class SubjectsController {
         return response.status(200).json({
           data: subject,
           status: 200,
-          message: `Subject updated byId ${id} success`,
+          message: `Subject updated byId ${params.id} success`,
         });
       }
     } catch (error) {
