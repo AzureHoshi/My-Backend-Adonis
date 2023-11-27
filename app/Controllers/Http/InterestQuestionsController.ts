@@ -1,6 +1,7 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import InterestAnswer from "App/Models/InterestAnswer";
+import InterestAnswerJob from "App/Models/InterestAnswersJob";
 import InterestQuestion from "App/Models/InterestQuestion";
 
 const interestQuestionSchema = schema.create({
@@ -20,35 +21,67 @@ export default class InterestQuestionsController {
 
   public async store({ request, response }: HttpContextContract) {
     try {
-      const payload = await request.validate({
-        schema: interestQuestionSchema,
+      const storeSchema = schema.create({
+        interest_survey_id: schema.number(),
+        interest_question_title: schema.string({ trim: true }, [
+          rules.maxLength(255),
+        ]),
+        interest_question_type: schema.number(),
+        job_position_id: schema.number.optional(),
       });
-      const interestQuestion: InterestQuestion = await InterestQuestion.create(
-        payload
-      );
 
-      if (interestQuestion.interest_question_type === 1) {
-        await InterestAnswer.create({
+      const payload = await request.validate({
+        schema: storeSchema,
+      });
+
+      if (payload.interest_question_type === 1) {
+        const interestQuestion: InterestQuestion =
+          await InterestQuestion.create(payload);
+
+        const interestAnswer = await InterestAnswer.create({
           interest_question_id: interestQuestion.interest_question_id,
         });
 
+        await InterestAnswerJob.create({
+          interest_answer_id: interestAnswer.interest_answer_id,
+          job_position_id: payload.job_position_id,
+        });
+
         const interestQuestionWithRelation = await InterestQuestion.query()
-          .preload("interest_answers")
+          .preload("interest_answers", (query) => {
+            query
+              .where("is_deleted", false)
+              .preload("interest_answers_job", (query) => {
+                query.where("is_deleted", false).preload("jobPosition");
+              });
+          })
           .where("interest_question_id", interestQuestion.interest_question_id)
           .firstOrFail();
 
         return response
           .status(201)
           .json({ data: interestQuestionWithRelation, status: 201 });
-      } else {
+      } else if (payload.interest_question_type === 2) {
+        const interestQuestion: InterestQuestion =
+          await InterestQuestion.create({
+            interest_survey_id: payload.interest_survey_id,
+            interest_question_title: payload.interest_question_title,
+            interest_question_type: payload.interest_question_type,
+          });
+
         return response
           .status(201)
           .json({ data: interestQuestion, status: 201 });
+      } else {
+        return response.status(400).json({
+          message: "Incorrect or incomplete information",
+          status: 400,
+        });
       }
     } catch (error) {
       return response
-        .status(400)
-        .json({ error: "Incorrect or incomplete information", status: 400 });
+        .status(500)
+        .json({ message: "Internal server error", status: 500 });
     }
   }
 
