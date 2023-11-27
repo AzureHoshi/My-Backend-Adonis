@@ -42,6 +42,10 @@ Route.group(() => {
   Route.resource("interest-questions", "InterestQuestionsController").apiOnly();
   Route.resource("interest-answers", "InterestAnswersController").apiOnly();
   Route.resource("interest-records", "InterestRecordsController").apiOnly();
+  Route.resource(
+    "interest-answers-jobs",
+    "InterestAnswersJobsController"
+  ).apiOnly();
   Route.resource("competencies", "CompetenciesController").apiOnly();
   Route.resource("competency-subs", "CompetencySubsController").apiOnly();
   Route.resource("feedbacks", "FeedbacksController").apiOnly();
