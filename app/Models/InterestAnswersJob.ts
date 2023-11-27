@@ -4,8 +4,10 @@ import InterestAnswer from "./InterestAnswer";
 import JobPosition from "./JobPosition";
 
 export default class InterestAnswerJob extends BaseModel {
+  table: string = "interest_answers_jobs";
+
   @column({ isPrimary: true })
-  public interest_answers_job_id: number;
+  public interest_answer_job_id: number;
 
   @column()
   public interest_answer_id: number;
@@ -14,7 +16,7 @@ export default class InterestAnswerJob extends BaseModel {
   public job_position_id: number;
 
   @column()
-  public interest_answers_job_score: number;
+  public interest_answer_job_score: number;
 
   @column()
   public is_deleted: boolean;

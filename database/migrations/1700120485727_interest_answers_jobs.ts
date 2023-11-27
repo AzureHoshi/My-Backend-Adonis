@@ -16,7 +16,7 @@ export default class extends BaseSchema {
         .unsigned()
         .references("job_positions.job_position_id")
         .onDelete("CASCADE");
-      table.integer("interest_answers_job_score");
+      table.integer("interest_answer_job_score");
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
