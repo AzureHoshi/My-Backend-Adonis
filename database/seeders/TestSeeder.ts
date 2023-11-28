@@ -1,4 +1,6 @@
 import BaseSeeder from "@ioc:Adonis/Lucid/Seeder";
+
+// import models
 import CollegianGroup from "App/Models/CollegianGroup";
 import Competency from "App/Models/Competency";
 import CompetencySub from "App/Models/CompetencySub";
@@ -20,32 +22,13 @@ import SubjectGroup from "App/Models/SubjectGroup";
 import SubjectStructure from "App/Models/SubjectStructure";
 import SubjectType from "App/Models/SubjectType";
 
+// import json
+import facultyData from "./json/faculties";
+
 export default class extends BaseSeeder {
   public async run() {
     // Write your database queries inside the run method
 
-    const facultyData = [
-      {
-        faculty_name_th: "คณะบริหารธุรกิจและศิลปศาสตร์",
-        faculty_name_en: "Faculty of Business Administration and Liberal Arts",
-      },
-      {
-        faculty_name_th: "คณะวิทยาศาสตร์และเทคโนโลยีการเกษตร",
-        faculty_name_en: "Faculty of Sciences and Agricultural Technology",
-      },
-      {
-        faculty_name_th: "คณะวิศวกรรมศาสตร์",
-        faculty_name_en: "Faculty of Engineering",
-      },
-      {
-        faculty_name_th: "คณะศิลปกรรมกรรมและสถาปัตยกรรมศาสตร์",
-        faculty_name_en: "Faculty of Fine Arts and Architecture",
-      },
-      {
-        faculty_name_th: "วิทยาลัยเทคโนโลยีและสหวิทยาการ",
-        faculty_name_en: "College of Integrated Science and Technology",
-      },
-    ];
     const collegianGroupData = [
       {
         collegian_group_name_th: "บริหารธุรกิจบัณฑิต",
@@ -1882,92 +1865,7 @@ export default class extends BaseSeeder {
         job_position_id: 8,
       },
     ];
-    const continueSubjectsData = [
-      {
-        // level 1
-        parent_id: null,
-        subject_id: 28,
-      },
-      {
-        // level 2
-        parent_id: 28,
-        subject_id: 39,
-      },
-      {
-        parent_id: 28,
-        subject_id: 65,
-      },
 
-      {
-        parent_id: 28,
-        subject_id: 69,
-      },
-
-      {
-        parent_id: 28,
-        subject_id: 75,
-      },
-      {
-        parent_id: 28,
-        subject_id: 76,
-      },
-      {
-        // level 3
-        parent_id: 39,
-        subject_id: 40,
-      },
-      {
-        parent_id: 39,
-        subject_id: 46,
-      },
-      {
-        parent_id: 39,
-        subject_id: 45,
-      },
-      {
-        parent_id: 39,
-        subject_id: 81,
-      },
-      {
-        // level 4
-        parent_id: 40,
-        subject_id: 52,
-      },
-      {
-        // level 4
-        parent_id: 46,
-        subject_id: 43,
-      },
-      {
-        // level 4
-        parent_id: 45,
-        subject_id: 72,
-      },
-      {
-        parent_id: 45,
-        subject_id: 73,
-      },
-      {
-        parent_id: 45,
-        subject_id: 74,
-      },
-      {
-        parent_id: 45,
-        subject_id: 77,
-      },
-      {
-        parent_id: 45,
-        subject_id: 78,
-      },
-      {
-        parent_id: 45,
-        subject_id: 83,
-      },
-      {
-        parent_id: 45,
-        subject_id: 86,
-      },
-    ];
     const subjectStructuresData = [
       {
         // 1
@@ -2612,6 +2510,188 @@ export default class extends BaseSeeder {
       },
     ];
 
+    // Continuesubject
+    // const continueSubjectsData = [
+    //   {
+    //     // level 1
+    //     parent_id: null,
+    //     subject_id: 28,
+    //   },
+    //   {
+    //     // level 2
+    //     parent_id: 28,
+    //     subject_id: 39,
+    //   },
+    //   {
+    //     parent_id: 28,
+    //     subject_id: 65,
+    //   },
+
+    //   {
+    //     parent_id: 28,
+    //     subject_id: 69,
+    //   },
+
+    //   {
+    //     parent_id: 28,
+    //     subject_id: 75,
+    //   },
+    //   {
+    //     parent_id: 28,
+    //     subject_id: 76,
+    //   },
+    //   {
+    //     // level 3
+    //     parent_id: 39,
+    //     subject_id: 40,
+    //   },
+    //   {
+    //     parent_id: 39,
+    //     subject_id: 46,
+    //   },
+    //   {
+    //     parent_id: 39,
+    //     subject_id: 45,
+    //   },
+    //   {
+    //     parent_id: 39,
+    //     subject_id: 81,
+    //   },
+    //   {
+    //     // level 4
+    //     parent_id: 40,
+    //     subject_id: 52,
+    //   },
+    //   {
+    //     // level 4
+    //     parent_id: 46,
+    //     subject_id: 43,
+    //   },
+    //   {
+    //     // level 4
+    //     parent_id: 45,
+    //     subject_id: 72,
+    //   },
+    //   {
+    //     parent_id: 45,
+    //     subject_id: 73,
+    //   },
+    //   {
+    //     parent_id: 45,
+    //     subject_id: 74,
+    //   },
+    //   {
+    //     parent_id: 45,
+    //     subject_id: 77,
+    //   },
+    //   {
+    //     parent_id: 45,
+    //     subject_id: 78,
+    //   },
+    //   {
+    //     parent_id: 45,
+    //     subject_id: 83,
+    //   },
+    //   {
+    //     parent_id: 45,
+    //     subject_id: 86,
+    //   },
+    // ];
+
+    const continueSubjectCE60Data = [
+      { parent_id: null, subject_id: 1 },
+      { parent_id: null, subject_id: 2 },
+      { parent_id: null, subject_id: 3 },
+      { parent_id: null, subject_id: 4 },
+      { parent_id: null, subject_id: 5 },
+      { parent_id: null, subject_id: 6 },
+      { parent_id: null, subject_id: 7 },
+      { parent_id: null, subject_id: 8 },
+      { parent_id: null, subject_id: 9 },
+      { parent_id: null, subject_id: 10 },
+      { parent_id: null, subject_id: 11 },
+      { parent_id: null, subject_id: 12 },
+      { parent_id: null, subject_id: 13 },
+      { parent_id: null, subject_id: 14 },
+      { parent_id: null, subject_id: 15 },
+      { parent_id: null, subject_id: 16 },
+      { parent_id: null, subject_id: 17 },
+      { parent_id: null, subject_id: 18 },
+      { parent_id: null, subject_id: 19 },
+      { parent_id: null, subject_id: 20 },
+      { parent_id: null, subject_id: 21 },
+      { parent_id: 21, subject_id: 22 },
+      { parent_id: 21, subject_id: 29 },
+      { parent_id: 21, subject_id: 30 },
+      { parent_id: 30, subject_id: 70 },
+      { parent_id: 30, subject_id: 71 },
+      { parent_id: null, subject_id: 23 },
+      { parent_id: 23, subject_id: 24 },
+      { parent_id: 23, subject_id: 26 },
+      { parent_id: null, subject_id: 25 },
+      { parent_id: null, subject_id: 27 },
+      { parent_id: null, subject_id: 28 },
+      { parent_id: 28, subject_id: 39 },
+      { parent_id: 28, subject_id: 65 },
+      { parent_id: 28, subject_id: 69 },
+      { parent_id: 28, subject_id: 75 },
+      { parent_id: 28, subject_id: 76 },
+      { parent_id: 39, subject_id: 40 },
+      { parent_id: 39, subject_id: 46 },
+      { parent_id: 39, subject_id: 45 },
+      { parent_id: 39, subject_id: 81 },
+      { parent_id: 40, subject_id: 52 },
+      { parent_id: 46, subject_id: 43 },
+      { parent_id: 45, subject_id: 72 },
+      { parent_id: 45, subject_id: 73 },
+      { parent_id: 45, subject_id: 74 },
+      { parent_id: 45, subject_id: 77 },
+      { parent_id: 45, subject_id: 78 },
+      { parent_id: 45, subject_id: 83 },
+      { parent_id: 45, subject_id: 86 },
+      { parent_id: null, subject_id: 31 },
+      { parent_id: null, subject_id: 32 },
+      { parent_id: null, subject_id: 33 },
+      { parent_id: null, subject_id: 34 },
+      { parent_id: 34, subject_id: 38 },
+      { parent_id: 34, subject_id: 61 },
+      { parent_id: 34, subject_id: 66 },
+      { parent_id: 38, subject_id: 62 },
+      { parent_id: null, subject_id: 35 },
+      { parent_id: null, subject_id: 36 },
+      { parent_id: 36, subject_id: 60 },
+      { parent_id: 36, subject_id: 80 },
+      { parent_id: 36, subject_id: 82 },
+      { parent_id: null, subject_id: 37 },
+      { parent_id: 37, subject_id: 52 },
+      { parent_id: 37, subject_id: 69 },
+      { parent_id: null, subject_id: 41 },
+      { parent_id: 41, subject_id: 42 },
+      { parent_id: 41, subject_id: 53 },
+      { parent_id: 41, subject_id: 59 },
+      { parent_id: 42, subject_id: 54 },
+      { parent_id: 42, subject_id: 55 },
+      { parent_id: 42, subject_id: 56 },
+      { parent_id: 42, subject_id: 58 },
+      { parent_id: null, subject_id: 44 },
+      { parent_id: 44, subject_id: 54 },
+      { parent_id: null, subject_id: 47 },
+      { parent_id: 47, subject_id: 48 },
+      { parent_id: null, subject_id: 49 },
+      { parent_id: null, subject_id: 50 },
+      { parent_id: null, subject_id: 51 },
+      { parent_id: null, subject_id: 57 },
+      { parent_id: null, subject_id: 63 },
+      { parent_id: null, subject_id: 64 },
+      { parent_id: null, subject_id: 67 },
+      { parent_id: null, subject_id: 68 },
+      { parent_id: null, subject_id: 79 },
+      { parent_id: null, subject_id: 84 },
+      { parent_id: null, subject_id: 85 },
+      { parent_id: null, subject_id: 87 },
+      { parent_id: null, subject_id: 88 },
+    ];
+
     await Faculty.createMany(facultyData);
     await CollegianGroup.createMany(collegianGroupData);
     await Curriculum.createMany(curriculumData);
@@ -2627,7 +2707,7 @@ export default class extends BaseSeeder {
     await InterestSurvey.createMany(interestSurveyData);
     await InterestQuestion.createMany(interestQuestionsData);
     await InterestAnswer.createMany(InterestAnswersData);
-    await ContinueSubject.createMany(continueSubjectsData);
+    await ContinueSubject.createMany(continueSubjectCE60Data);
     await JobPosition.createMany(jobPositionData);
     await InterestAnswerJob.createMany(interestAnswersJobData);
     await SubjectStructure.createMany(subjectStructuresData);

@@ -32,4 +32,9 @@ export default class ContinueSubject extends BaseModel {
     foreignKey: "subject_id",
   })
   public subjects: BelongsTo<typeof Subject>;
+
+  @hasMany(() => ContinueSubject, {
+    foreignKey: "parent_id",
+  })
+  public parent: HasMany<typeof ContinueSubject>;
 }
