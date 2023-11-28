@@ -142,12 +142,14 @@ export default class ContinueSubjectsController {
             return {
               ...item.$attributes,
               subjects: item.subjects,
+              parent: item.parent,
               children: children,
             };
           } else {
             return {
               ...item.$attributes,
               subjects: item.subjects,
+              parent: item.parent,
               children: [],
             };
           }
@@ -164,7 +166,9 @@ export default class ContinueSubjectsController {
           .json({ data: dataWithChildren, status: 200 });
       }
     } catch (error) {
-      return response.status(500).json({ message: "Internal Server Error" });
+      return response
+        .status(500)
+        .json({ message: "Internal Server Error", error: error });
     }
   }
 
