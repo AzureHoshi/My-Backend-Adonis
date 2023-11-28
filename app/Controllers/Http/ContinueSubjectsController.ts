@@ -2,9 +2,46 @@ import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema } from "@ioc:Adonis/Core/Validator";
 import ContinueSubject from "App/Models/ContinueSubject";
 
-const tree = async (data: any, level: number) => {
+// ! แบบเดิม
+// const tree = async (data: any, level: number) => {
+//   const result = await Promise.all(
+//     data.map(async (item: any) => {
+//       const children = await ContinueSubject.query()
+//         .preload("subjects")
+//         .where("parent_id", item.subject_id)
+//         .where("is_deleted", false);
+
+//       if (children.length > 0) {
+//         return {
+//           ...item.$attributes,
+//           level: level,
+//           subjects: item.subjects,
+//           children: await tree(children, level + 1),
+//         };
+//       } else {
+//         return {
+//           ...item.$attributes,
+//           level: level,
+//           subjects: item.subjects,
+//         };
+//       }
+//     })
+//   );
+
+//   return result;
+// };
+
+const tree = async (data: any, level: number, existingNodes: Set<number>) => {
   const result = await Promise.all(
     data.map(async (item: any) => {
+      // ตรวจสอบว่าหน่วยงานนี้มีอยู่ในต้นไม้แล้วหรือไม่
+      if (existingNodes.has(item.subject_id)) {
+        return null; // ถ้ามีอยู่แล้วให้ไม่ดึงข้อมูลนี้
+      }
+
+      // เพิ่มหน่วยงานลงในเซ็ตเพื่อที่จะตรวจสอบในการเรียกต่อไป
+      existingNodes.add(item.subject_id);
+
       const children = await ContinueSubject.query()
         .preload("subjects")
         .where("parent_id", item.subject_id)
@@ -15,7 +52,7 @@ const tree = async (data: any, level: number) => {
           ...item.$attributes,
           level: level,
           subjects: item.subjects,
-          children: await tree(children, level + 1),
+          children: await tree(children, level + 1, existingNodes),
         };
       } else {
         return {
@@ -27,7 +64,10 @@ const tree = async (data: any, level: number) => {
     })
   );
 
-  return result;
+  // กรองออกจาก Array ที่มีค่าเป็น null
+  const filteredResult = result.filter((item) => item !== null);
+
+  return filteredResult;
 };
 
 interface ResultStructure {
@@ -89,7 +129,8 @@ export default class ContinueSubjectsController {
         .whereNull("parent_id")
         .where("is_deleted", false);
 
-      const result = await tree(data, 1);
+      // const result = await tree(data, 1);
+      const result = await tree(data, 1, new Set());
 
       return response.status(200).json({ data: result, status: 200 });
     } catch (error) {
@@ -106,7 +147,8 @@ export default class ContinueSubjectsController {
         .where("is_deleted", false);
 
       // Construct the tree
-      const dataTree = await tree(dataParentNull, 1);
+      // const dataTree = await tree(dataParentNull, 1);
+      const dataTree = await tree(dataParentNull, 1, new Set());
 
       // Find the specific continue_subject_id
       const result = getByContinueSubjectId(dataTree, parseInt(params.id, 10));
@@ -182,7 +224,8 @@ export default class ContinueSubjectsController {
         .whereNull("parent_id")
         .where("is_deleted", false);
 
-      const result = await tree(data, 1);
+      // const result = await tree(data, 1);
+      const result = await tree(data, 1, new Set());
 
       return response.status(200).json({ data: result, status: 200 });
     } catch (error) {
