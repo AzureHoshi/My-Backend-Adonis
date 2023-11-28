@@ -42,11 +42,8 @@ export default class InterestQuestionsController {
           });
         }
 
-        const interestQuestion = await InterestQuestion.create({
-          interest_survey_id: payload.interest_survey_id,
-          interest_question_title: payload.interest_question_title,
-          interest_question_type: payload.interest_question_type,
-        });
+        const interestQuestion: InterestQuestion =
+          await InterestQuestion.create(payload);
 
         const interestAnswer = await InterestAnswer.create({
           interest_question_id: interestQuestion.interest_question_id,
