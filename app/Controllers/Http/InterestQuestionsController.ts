@@ -88,7 +88,7 @@ export default class InterestQuestionsController {
     } catch (error) {
       return response
         .status(500)
-        .json({ message: "Internal server error", status: 500 });
+        .json({ message: "Internal server error", error: error, status: 500 });
     }
   }
 
