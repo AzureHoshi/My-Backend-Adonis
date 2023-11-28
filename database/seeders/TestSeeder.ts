@@ -49,216 +49,49 @@ export default class extends BaseSeeder {
       },
     ];
 
+    const facultyData = [
+      {
+        faculty_name_th: "คณะบริหารธุรกิจและศิลปศาสตร์",
+        faculty_name_en: "Faculty of Business Administration and Liberal Arts",
+      },
+      {
+        faculty_name_th: "คณะวิทยาศาสตร์และเทคโนโลยีการเกษตร",
+        faculty_name_en: "Faculty of Sciences and Agricultural Technology",
+      },
+      {
+        faculty_name_th: "คณะวิศวกรรมศาสตร์",
+        faculty_name_en: "Faculty of Engineering",
+      },
+      {
+        faculty_name_th: "คณะศิลปกรรมกรรมและสถาปัตยกรรมศาสตร์",
+        faculty_name_en: "Faculty of Fine Arts and Architecture",
+      },
+      {
+        faculty_name_th: "วิทยาลัยเทคโนโลยีและสหวิทยาการ",
+        faculty_name_en: "College of Integrated Science and Technology",
+      },
+    ];
+
     const collegianGroupData = [
       {
-        collegian_group_name_th: "บริหารธุรกิจบัณฑิต",
-        collegian_group_name_en: "Bachelor of  Business Administration",
-        collegian_group_short_name_th: "บธ.บ.",
-        collegian_group_short_name_en: "B.B.A.",
+        faculty_name_th: "คณะบริหารธุรกิจและศิลปศาสตร์",
+        faculty_name_en: "Faculty of Business Administration and Liberal Arts",
       },
       {
-        collegian_group_name_th: "ศิลปศาสตรบัณฑิต",
-        collegian_group_name_en: "Bachelor of  Arts",
-        collegian_group_short_name_th: "ศศ.บ.",
-        collegian_group_short_name_en: "B.A.",
+        faculty_name_th: "คณะวิทยาศาสตร์และเทคโนโลยีการเกษตร",
+        faculty_name_en: "Faculty of Sciences and Agricultural Technology",
       },
       {
-        collegian_group_name_th: "บัญชีบัณฑิต",
-        collegian_group_name_en: "Bachelor of  Accountancy",
-        collegian_group_short_name_th: "บช.บ.",
-        collegian_group_short_name_en: "B.Acc.",
+        faculty_name_th: "คณะวิศวกรรมศาสตร์",
+        faculty_name_en: "Faculty of Engineering",
       },
       {
-        collegian_group_name_th: "วิทยาศาสตรบัณฑิต",
-        collegian_group_name_en: "Bachelor of  Science",
-        collegian_group_short_name_th: "วท.บ.",
-        collegian_group_short_name_en: "B.Sc.",
+        faculty_name_th: "คณะศิลปกรรมกรรมและสถาปัตยกรรมศาสตร์",
+        faculty_name_en: "Faculty of Fine Arts and Architecture",
       },
       {
-        collegian_group_name_th: "คหกรรมศาสตรบัณฑิต",
-        collegian_group_name_en: "Bachelor of  Home Economics ",
-        collegian_group_short_name_th: "คศ.บ.",
-        collegian_group_short_name_en: "B.H.E.",
-      },
-      {
-        collegian_group_name_th: "เทคโนโลยีบัณฑิต",
-        collegian_group_name_en: "Bachelor of  Technology",
-        collegian_group_short_name_th: "ทล.บ.",
-        collegian_group_short_name_en: "B.T.",
-      },
-      {
-        collegian_group_name_th: "วิศวกรรมศาสตรบัณฑิต",
-        collegian_group_name_en: "Bachelor of  Engineering",
-        collegian_group_short_name_th: "วศ.บ.",
-        collegian_group_short_name_en: "B.Eng",
-      },
-      {
-        collegian_group_name_th: "วิศวกรรมศาสตรบัณฑิต ต่อเนื่อง",
-        collegian_group_name_en:
-          "Bachelor of  Engineering (Continuing Program)",
-        collegian_group_short_name_th: "วศ.บ. (ต่อเนื่อง)",
-        collegian_group_short_name_en: "B.Eng (Continuing Program)",
-      },
-      {
-        collegian_group_name_th: "อุตสาหกรรมศาสตรบัณฑิต",
-        collegian_group_name_en: "Bachelor of  Industrial Technology",
-        collegian_group_short_name_th: "อส.บ.",
-        collegian_group_short_name_en: "B.Ind.Tech.",
-      },
-      {
-        collegian_group_name_th: "ครุศาสตร์อุตสาหกรรมบัณฑิต",
-        collegian_group_name_en: "Bachelor of Science in Technical Education",
-        collegian_group_short_name_th: "ค.อ.บ.",
-        collegian_group_short_name_en: "B.S.Tech.Ed.",
-      },
-      {
-        collegian_group_name_th: "เทคโนโลยีบัณฑิต",
-        collegian_group_name_en: "Bachelor of  Technology",
-        collegian_group_short_name_th: "ทล.บ.",
-        collegian_group_short_name_en: "B.Tech.",
-      },
-      {
-        collegian_group_name_th: "ศิลปบัณฑิต",
-        collegian_group_name_en: "Bachelor of  Fine Arts",
-        collegian_group_short_name_th: "ศ.บ.",
-        collegian_group_short_name_en: "B.F.A.",
-      },
-      {
-        collegian_group_name_th: "ศิลปกรรมศาสตรบัณฑิต",
-        collegian_group_name_en: "Bachelor of  Fine and Applied Arts",
-        collegian_group_short_name_th: "ศป.บ.",
-        collegian_group_short_name_en: "B.F.A.",
-      },
-      {
-        collegian_group_name_th: "ศิลปบัณฑิต",
-        collegian_group_name_en: "Bachelor of  Fine Arts",
-        collegian_group_short_name_th: "ศล.บ.",
-        collegian_group_short_name_en: "B.F.A.",
-      },
-      {
-        collegian_group_name_th: "สถาปัตยกรรมศาสตรบัณฑิต",
-        collegian_group_name_en: "Bachelor of  Architecture",
-        collegian_group_short_name_th: "สถ.บ.",
-        collegian_group_short_name_en: "B.Arch.",
-      },
-    ];
-    const curriculumData = [
-      {
-        faculty_id: 3,
-        collegian_group_id: 7,
-        curriculum_name_th:
-          "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์",
-        curriculum_name_en:
-          "Bachelor of Engineering Program in Computer Engineering",
-        curriculum_short_name_th: "วศ.บ.(วิศวกรรมคอมพิวเตอร์)",
-        curriculum_short_name_en: "B.Eng (Computer Engineering)",
-        curriculum_year: 2560,
-      },
-      {
-        faculty_id: 3,
-        collegian_group_id: 7,
-        curriculum_name_th:
-          "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมซอฟต์แวร์",
-        curriculum_name_en:
-          "Bachelor of Engineering Program in Software Engineering",
-        curriculum_short_name_th: "วศ.บ.(วิศวกรรมซอฟต์แวร์)",
-        curriculum_short_name_en: "B.Eng (Software Engineering)",
-        curriculum_year: 2566,
-      },
-    ];
-    const subjectCategoryData = [
-      {
-        subject_category_name: "หมวดวิชาศึกษาทั่วไป",
-      },
-      {
-        subject_category_name: "หมวดวิชาเฉพาะ",
-      },
-      {
-        subject_category_name: "หมวดวิชาเลือกเสรี",
-      },
-    ];
-    const subjectTypeData = [
-      {
-        subject_category_id: 1,
-        subject_type_name: "วิชาศึกษาทั่วไปบังคับ",
-      },
-      {
-        subject_category_id: 1,
-        subject_type_name: "วิชาศึกษาทั่วไปเลือก",
-      },
-      {
-        subject_category_id: 2,
-        subject_type_name: "วิชาแกน",
-      },
-      {
-        subject_category_id: 2,
-        subject_type_name: "วิชาเฉพาะด้าน",
-      },
-      {
-        subject_category_id: 2,
-        subject_type_name: "วิชาเลือก",
-      },
-    ];
-    const subjectGroupData = [
-      {
-        subject_type_id: 1,
-        subject_group_name: "กลุ่มวิชาภาษาและการสื่อสาร",
-      },
-      {
-        subject_type_id: 1,
-        subject_group_name: "กลุ่มวิชาสุภาพ",
-      },
-      {
-        subject_type_id: 1,
-        subject_group_name: "กลุ่มวิชาบูรณาการ",
-      },
-      {
-        subject_type_id: 2,
-        subject_group_name: "กลุ่มวิชาบูรณาการ",
-      },
-      {
-        subject_type_id: 2,
-        subject_group_name: "กลุ่มวิชาวิทยาศาสตร์และคณิตศาสตร์",
-      },
-      {
-        subject_type_id: 3,
-        subject_group_name: "กลุ่มวิชาพื้นฐานทางวิทยาศาสตร์และคณิตศาสตร์",
-      },
-      {
-        subject_type_id: 3,
-        subject_group_name: "กลุ่มวิชาพื้นฐานทางวิศวกรรมศาสตร์",
-      },
-      {
-        subject_type_id: 4,
-        subject_group_name: "กลุ่มฮาร์ดแวร์และสถาปัตยกรรมคอมพิวเตอร์",
-      },
-      {
-        subject_type_id: 4,
-        subject_group_name: "กลุ่มโครงสร้างพื้นฐานของระบบ",
-      },
-      {
-        subject_type_id: 4,
-        subject_group_name: "กลุ่มเทคโนโลยีและวิธีการทางซอฟต์แวร์",
-      },
-      {
-        subject_type_id: 4,
-        subject_group_name: "กลุ่มเทคโนโลยีเพื่องานประยุกต์",
-      },
-      {
-        subject_type_id: 4,
-        subject_group_name: "กลุ่มฝึกวิชาชีพและโครงงาน",
-      },
-      {
-        subject_type_id: 5,
-        subject_group_name: "กลุ่มวิชาเครือข่ายคอมพิวเตอร์",
-      },
-      {
-        subject_type_id: 5,
-        subject_group_name: "กลุ่มวิชาระบบคอมพิวเตอร์",
-      },
-      {
-        subject_type_id: 5,
-        subject_group_name: "กลุ่มวิชาวิศวกรรมซอฟต์แวร์",
+        faculty_name_th: "วิทยาลัยเทคโนโลยีและสหวิทยาการ",
+        faculty_name_en: "College of Integrated Science and Technology",
       },
     ];
     const subjectData = [
