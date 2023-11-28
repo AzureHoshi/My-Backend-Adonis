@@ -163,7 +163,7 @@ export default class SubjectsController {
     try {
       const updateSchema = schema.create({
         curriculum_id: schema.number.optional(),
-        subject_group_id: schema.number.optional(),
+        subject_group_id: schema.number.nullable(),
         subject_code: schema.string({ trim: true }, [rules.maxLength(255)]),
         subject_name_th: schema.string({ trim: true }, [rules.maxLength(255)]),
         subject_name_en: schema.string({ trim: true }, [rules.maxLength(255)]),
@@ -174,6 +174,10 @@ export default class SubjectsController {
       });
 
       const payload = await request.validate({ schema: updateSchema });
+      if (payload.subject_group_id === null) {
+        payload.subject_group_id = null;
+      }
+
       const subject: any = await Subject.find(params.id);
       if (!subject) {
         return response
