@@ -174,6 +174,7 @@ export default class SubjectsController {
       });
 
       const payload = await request.validate({ schema: updateSchema });
+
       if (payload.subject_group_id === null) {
         payload.subject_group_id = null;
       }
@@ -193,9 +194,11 @@ export default class SubjectsController {
         });
       }
     } catch (error) {
-      return response
-        .status(400)
-        .json({ error: "Incorrect or incomplete information", status: 400 });
+      return response.status(400).json({
+        message: "Incorrect or incomplete information",
+        error: error,
+        status: 400,
+      });
     }
   }
 
