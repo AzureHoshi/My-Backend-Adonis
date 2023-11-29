@@ -5,90 +5,90 @@ export default class extends BaseSeeder {
   public async run() {
     // Write your database queries inside the run method
 
-    const continueSubjectsData = [
-      {
-        // level 1
-        parent_id: null,
-        subject_id: 28,
-      },
-      {
-        // level 2
-        parent_id: 28,
-        subject_id: 39,
-      },
-      {
-        parent_id: 28,
-        subject_id: 65,
-      },
-      {
-        parent_id: 28,
-        subject_id: 69,
-      },
-      {
-        parent_id: 28,
-        subject_id: 75,
-      },
-      {
-        parent_id: 28,
-        subject_id: 76,
-      },
-      {
-        // level 3
-        parent_id: 39,
-        subject_id: 40,
-      },
-      {
-        parent_id: 39,
-        subject_id: 46,
-      },
-      {
-        parent_id: 39,
-        subject_id: 45,
-      },
-      {
-        parent_id: 39,
-        subject_id: 81,
-      },
-      {
-        // level 4
-        parent_id: 40,
-        subject_id: 52,
-      },
-      {
-        // level 4
-        parent_id: 46,
-        subject_id: 43,
-      },
-      {
-        // level 4
-        parent_id: 45,
-        subject_id: 72,
-      },
-      {
-        parent_id: 45,
-        subject_id: 73,
-      },
-      {
-        parent_id: 45,
-        subject_id: 74,
-      },
-      {
-        parent_id: 45,
-        subject_id: 77,
-      },
-      {
-        parent_id: 45,
-        subject_id: 78,
-      },
-      {
-        parent_id: 45,
-        subject_id: 83,
-      },
-      {
-        parent_id: 45,
-        subject_id: 86,
-      },
-    ];
+    // const continueSubjectsData = [
+    //   {
+    //     // level 1
+    //     parent_id: null,
+    //     subject_id: 28,
+    //   },
+    //   {
+    //     // level 2
+    //     parent_id: 28,
+    //     subject_id: 39,
+    //   },
+    //   {
+    //     parent_id: 28,
+    //     subject_id: 65,
+    //   },
+    //   {
+    //     parent_id: 28,
+    //     subject_id: 69,
+    //   },
+    //   {
+    //     parent_id: 28,
+    //     subject_id: 75,
+    //   },
+    //   {
+    //     parent_id: 28,
+    //     subject_id: 76,
+    //   },
+    //   {
+    //     // level 3
+    //     parent_id: 39,
+    //     subject_id: 40,
+    //   },
+    //   {
+    //     parent_id: 39,
+    //     subject_id: 46,
+    //   },
+    //   {
+    //     parent_id: 39,
+    //     subject_id: 45,
+    //   },
+    //   {
+    //     parent_id: 39,
+    //     subject_id: 81,
+    //   },
+    //   {
+    //     // level 4
+    //     parent_id: 40,
+    //     subject_id: 52,
+    //   },
+    //   {
+    //     // level 4
+    //     parent_id: 46,
+    //     subject_id: 43,
+    //   },
+    //   {
+    //     // level 4
+    //     parent_id: 45,
+    //     subject_id: 72,
+    //   },
+    //   {
+    //     parent_id: 45,
+    //     subject_id: 73,
+    //   },
+    //   {
+    //     parent_id: 45,
+    //     subject_id: 74,
+    //   },
+    //   {
+    //     parent_id: 45,
+    //     subject_id: 77,
+    //   },
+    //   {
+    //     parent_id: 45,
+    //     subject_id: 78,
+    //   },
+    //   {
+    //     parent_id: 45,
+    //     subject_id: 83,
+    //   },
+    //   {
+    //     parent_id: 45,
+    //     subject_id: 86,
+    //   },
+    // ];
 
     const continueSubjectCE60Data = [
       { parent_id: null, subject_id: 1 },

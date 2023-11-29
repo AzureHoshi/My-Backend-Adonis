@@ -9,7 +9,6 @@ import {
 } from "@ioc:Adonis/Lucid/Orm";
 import InterestQuestion from "./InterestQuestion";
 import InterestRecord from "./InterestRecord";
-import JobPosition from "./JobPosition";
 import InterestAnswerJob from "./InterestAnswersJob";
 
 export default class InterestAnswer extends BaseModel {
