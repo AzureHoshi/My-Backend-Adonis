@@ -1,5 +1,11 @@
 import { DateTime } from "luxon";
-import { BaseModel, BelongsTo, belongsTo, column } from "@ioc:Adonis/Lucid/Orm";
+import {
+  BaseModel,
+  BelongsTo,
+  belongsTo,
+  column,
+  hasMany,
+} from "@ioc:Adonis/Lucid/Orm";
 import Collegian from "./Collegian";
 import InterestQuestion from "./InterestQuestion";
 import InterestAnswer from "./InterestAnswer";
@@ -9,10 +15,7 @@ export default class InterestRecord extends BaseModel {
   public interest_record_id: number;
 
   @column()
-  public collegian_id: number;
-
-  @column()
-  public interest_question_id: number;
+  public collegian_code: string;
 
   @column()
   public interest_answer_id: number;
@@ -30,11 +33,6 @@ export default class InterestRecord extends BaseModel {
     foreignKey: "collegian_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
   })
   public collegian: BelongsTo<typeof Collegian>;
-
-  @belongsTo(() => InterestQuestion, {
-    foreignKey: "interest_question_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
-  })
-  public interestQuestion: BelongsTo<typeof InterestQuestion>;
 
   @belongsTo(() => InterestAnswer, {
     foreignKey: "interest_answer_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum

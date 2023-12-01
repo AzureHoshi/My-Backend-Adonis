@@ -6,18 +6,7 @@ export default class extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments("interest_record_id").primary().unsigned();
-      table
-        .integer("collegian_id")
-        .unsigned()
-        .references("collegian_id")
-        .inTable("collegians")
-        .onDelete("CASCADE");
-      table
-        .integer("interest_question_id")
-        .unsigned()
-        .references("interest_question_id")
-        .inTable("interest_questions")
-        .onDelete("CASCADE");
+      table.string("collegian_code", 20).notNullable();
       table
         .integer("interest_answer_id")
         .unsigned()
