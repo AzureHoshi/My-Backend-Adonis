@@ -15,57 +15,62 @@ export default class InterestRecordsController {
   }
 
   public async store({ request, response }: HttpContextContract) {
-    const storeManySchema = schema.create({
-      interest_records: schema.array().members(
-        schema.object().members({
-          collegian_code: schema.string(),
-          interest_answer_id: schema.number(),
-        })
-      ),
-    });
-
     try {
+      const storeManySchema = schema.create({
+        interest_records: schema.array().members(
+          schema.object().members({
+            collegian_code: schema.string(),
+            interest_answer_id: schema.number(),
+          })
+        ),
+      });
+
       const payload = await request.validate({ schema: storeManySchema });
 
-      const interestRecords = InterestRecord.createMany(
-        payload.interest_records
+      const maxCountWithCollegianCode = await InterestRecord.query()
+        .where("collegian_code", payload.interest_records[0].collegian_code)
+        .where("is_deleted", false)
+        .max("interest_record_count");
+
+      console.log(
+        "maxCountWithCollegianCode",
+        maxCountWithCollegianCode[0].$extras["max(`interest_record_count`)"]
       );
 
-      return response.status(201).json({ data: interestRecords, status: 201 });
+      const maxCount =
+        maxCountWithCollegianCode[0].$extras["max(`interest_record_count`)"];
+
+      if (maxCount === null) {
+        const interestRecords = await InterestRecord.createMany(
+          payload.interest_records
+        );
+
+        return response.status(201).json({
+          data: interestRecords,
+          status: 201,
+          message: "InterestRecord created success",
+        });
+      } else {
+        const interestRecords = await InterestRecord.createMany(
+          payload.interest_records.map((item) => {
+            return {
+              ...item,
+              interest_record_count: maxCount + 1,
+            };
+          })
+        );
+
+        return response.status(201).json({
+          data: interestRecords,
+          status: 201,
+          message: "InterestRecord created success",
+        });
+      }
     } catch (error) {
       return response.status(400).json({
         message: "Incorrect or incomplete information",
         status: 400,
       });
-    }
-  }
-
-  public async update({ params, request, response }: HttpContextContract) {
-    try {
-      const updateSchema = schema.create({
-        collegian_code: schema.string.optional(),
-        interest_answer_id: schema.number.optional(),
-      });
-
-      const payload = await request.validate({ schema: updateSchema });
-      const interestRecord: any = await InterestRecord.find(params.id);
-      if (!interestRecord) {
-        return response
-          .status(404)
-          .json({ message: "InterestRecord not found", status: 404 });
-      } else {
-        interestRecord.merge(payload);
-        await interestRecord.save();
-        return response.status(200).json({
-          data: interestRecord,
-          status: 200,
-          message: `InterestRecord updated byId ${params.id} success`,
-        });
-      }
-    } catch (error) {
-      return response
-        .status(400)
-        .json({ message: "Incorrect or incomplete information", status: 400 });
     }
   }
 
@@ -106,6 +111,11 @@ export default class InterestRecordsController {
       });
 
       const payload = await request.validate({ schema: chartDonutSchema });
+
+      const interestRecords = await InterestRecord.query().where(
+        "collegian_code",
+        payload.collegian_code
+      );
 
       return response.status(200).json({
         data: payload,

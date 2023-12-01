@@ -21,6 +21,12 @@ export default class InterestRecord extends BaseModel {
   public interest_answer_id: number;
 
   @column()
+  public interest_record_score: number | null;
+
+  @column()
+  public interest_record_count: number;
+
+  @column()
   public is_deleted: boolean;
 
   @column.dateTime({ autoCreate: true })

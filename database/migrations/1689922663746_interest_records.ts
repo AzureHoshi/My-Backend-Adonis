@@ -13,8 +13,10 @@ export default class extends BaseSchema {
         .references("interest_answer_id")
         .inTable("interest_answers")
         .onDelete("CASCADE");
-      table.boolean("is_deleted").notNullable().defaultTo(false);
+      table.integer("interest_record_score");
+      table.integer("interest_record_count").defaultTo(1);
 
+      table.boolean("is_deleted").notNullable().defaultTo(false);
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
