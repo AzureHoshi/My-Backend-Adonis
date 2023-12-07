@@ -1,7 +1,5 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
-import Competency from "App/Models/Competency";
-import CompetencySub from "App/Models/CompetencySub";
 import Subject from "App/Models/Subject";
 
 export default class SubjectsController {
@@ -9,41 +7,33 @@ export default class SubjectsController {
     try {
       // ดึงข้อมูล subjects
       const subjects = await Subject.query()
-        .preload("curriculums")
         .preload("subject_groups")
+        .preload("subject_structures", (query) => {
+          query
+            .where("is_deleted", false)
+            .preload("subjectCategory")
+            .preload("subjectType")
+            .preload("subjectGroup");
+        })
+        .preload("competencies", (query) => {
+          query
+            .where("is_deleted", false)
+            .preload("competency_subs", (query) => {
+              query.where("is_deleted", false);
+            });
+        })
         .where("is_deleted", false)
         .orderBy("updatedAt", "desc");
 
-      // ดึงข้อมูล competencies โดยเช็ค subject_id ของแต่ละ subject
-      const subjectWithCompetency = await Promise.all(
-        subjects.map(async (subject) => {
-          const competencies = await Competency.query()
-            .where("subject_id", subject.subject_id)
-            .where("is_deleted", false);
+      if (!subjects) {
+        return response.status(404).json({ message: "Subject not found" });
+      }
 
-          // เพิ่มการดึงข้อมูล competency_sub จาก CompetencySub
-          const competenciesWithSub = await Promise.all(
-            competencies.map(async (competency) => {
-              const competencySub = await CompetencySub.query()
-                .where("competency_id", competency.competency_id)
-                .where("is_deleted", false);
-              return {
-                ...competency.toJSON(),
-                competency_sub: competencySub,
-              };
-            })
-          );
-
-          return {
-            ...subject.toJSON(),
-            competencies: competenciesWithSub,
-          };
-        })
-      );
-
-      return response.status(200).json({ data: subjectWithCompetency });
+      return response.status(200).json({ data: subjects });
     } catch (error) {
-      return response.status(500).json({ message: "Internal Server Error" });
+      return response
+        .status(500)
+        .json({ message: "Internal Server Error", error: error });
     }
   }
 
@@ -51,85 +41,65 @@ export default class SubjectsController {
     try {
       const subject = await Subject.query()
         .where("subject_id", params.id)
-        .preload("curriculums")
         .preload("subject_groups")
+        .preload("subject_structures", (query) => {
+          query
+            .where("is_deleted", false)
+            .preload("subjectCategory")
+            .preload("subjectType")
+            .preload("subjectGroup");
+        })
+        .preload("competencies", (query) => {
+          query
+            .where("is_deleted", false)
+            .preload("competency_subs", (query) => {
+              query.where("is_deleted", false);
+            });
+        })
+        .where("is_deleted", false)
         .firstOrFail();
 
       // ถ้าไม่พบข้อมูล subjects
       if (!subject) {
-        return response
-          .status(404)
-          .json({ message: "Subject not found", status: 404 });
+        return response.status(404).json({ message: "Subject not found" });
       }
 
-      // ดึงข้อมูล competencies โดยเช็ค subject_id ของแต่ละ subject
-      const competencies = await Competency.query()
-        .where("subject_id", subject.subject_id)
-        .where("is_deleted", false);
-
-      const competenciesWithSub = await Promise.all(
-        competencies.map(async (competency) => {
-          const competencySub = await CompetencySub.query()
-            .where("competency_id", competency.competency_id)
-            .where("is_deleted", false);
-          return {
-            ...competency.toJSON(),
-            competency_sub: competencySub,
-          };
-        })
-      );
-
-      // สร้างข้อมูลที่รวมทั้ง subjects และ competencies
-      const subjectWithCompetency = {
-        ...subject.toJSON(),
-        competencies: competenciesWithSub,
-      };
-
-      return response.status(200).json({ data: subjectWithCompetency });
+      return response.status(200).json({ data: subject });
     } catch (error) {
-      return response.status(500).json({ message: "Internal Server Error" });
+      return response
+        .status(500)
+        .json({ message: "Internal Server Error", error: error });
     }
   }
 
   public async showByCurriculum({ params, response }: HttpContextContract) {
     try {
       // ดึงข้อมูล subjects
-      const id: any = params.id;
       const subjects = await Subject.query()
-        .preload("curriculums")
         .preload("subject_groups")
+        .preload("subject_structures", (query) => {
+          query
+            .where("is_deleted", false)
+            .preload("subjectCategory")
+            .preload("subjectType")
+            .preload("subjectGroup");
+        })
+        .preload("competencies", (query) => {
+          query
+            .where("is_deleted", false)
+            .preload("competency_subs", (query) => {
+              query.where("is_deleted", false);
+            });
+        })
+        .where("curriculum_id", params.id)
         .where("is_deleted", false)
-        .where("curriculum_id", id)
         .orderBy("updatedAt", "desc");
 
-      // ดึงข้อมูล competencies โดยเช็ค subject_id ของแต่ละ subject
-      const subjectWithCompetency = await Promise.all(
-        subjects.map(async (subject) => {
-          const competencies = await Competency.query()
-            .where("subject_id", subject.subject_id)
-            .where("is_deleted", false);
+      if (!subjects) {
+        return response.status(404).json({ message: "Subject not found" });
+      }
 
-          // เพิ่มการดึงข้อมูล competency_sub จาก CompetencySub
-          const competenciesWithSub = await Promise.all(
-            competencies.map(async (competency) => {
-              const competencySub = await CompetencySub.query()
-                .where("competency_id", competency.competency_id)
-                .where("is_deleted", false);
-              return {
-                ...competency.toJSON(),
-                competency_sub: competencySub,
-              };
-            })
-          );
-
-          return {
-            ...subject.toJSON(),
-            competencies: competenciesWithSub,
-          };
-        })
-      );
-
-      return response.status(200).json({ data: subjectWithCompetency });
+      return response.status(200).json({ data: subjects });
     } catch (error) {
       return response.status(500).json({ message: "Internal Server Error" });
     }
