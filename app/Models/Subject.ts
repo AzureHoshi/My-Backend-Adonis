@@ -11,6 +11,7 @@ import SubjectGroup from "./SubjectGroup";
 import Curriculum from "./Curriculum";
 import Competency from "./Competency";
 import SubjectStructure from "./SubjectStructure";
+import ContinueSubject from "./ContinueSubject";
 
 export default class Subject extends BaseModel {
   @column({ isPrimary: true })
@@ -65,4 +66,10 @@ export default class Subject extends BaseModel {
     foreignKey: "subject_id",
   })
   public subject_structures: HasMany<typeof SubjectStructure>;
+
+  @hasMany(() => ContinueSubject, {
+    foreignKey: "subject_id",
+    localKey: "subject_id",
+  })
+  public continue_subjects: HasMany<typeof ContinueSubject>;
 }

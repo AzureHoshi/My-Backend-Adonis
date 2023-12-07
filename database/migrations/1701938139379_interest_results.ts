@@ -1,20 +1,20 @@
 import BaseSchema from "@ioc:Adonis/Lucid/Schema";
 
 export default class extends BaseSchema {
-  protected tableName = "interest_records";
+  protected tableName = "interest_results";
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments("interest_record_id").primary().unsigned();
-      table.string("collegian_code", 20).notNullable();
+      table.increments("interest_result_id");
+      table.string("collegian_code", 13).notNullable();
       table
-        .integer("interest_answer_id")
+        .integer("job_position_id")
         .unsigned()
-        .references("interest_answer_id")
-        .inTable("interest_answers")
-        .onDelete("CASCADE");
-      table.integer("interest_record_score");
-      table.integer("interest_record_count").defaultTo(1);
+        .references("job_position_id")
+        .inTable("job_positions")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
+      table.integer("interest_result_percent").notNullable();
 
       table.boolean("is_deleted").notNullable().defaultTo(false);
       /**

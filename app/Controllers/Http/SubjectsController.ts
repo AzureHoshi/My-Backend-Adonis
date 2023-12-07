@@ -22,6 +22,9 @@ export default class SubjectsController {
               query.where("is_deleted", false);
             });
         })
+        .preload("continue_subjects", (query) => {
+          query.where("is_deleted", false).preload("parent");
+        })
         .where("is_deleted", false)
         .orderBy("updatedAt", "desc");
 
@@ -55,6 +58,9 @@ export default class SubjectsController {
             .preload("competency_subs", (query) => {
               query.where("is_deleted", false);
             });
+        })
+        .preload("continue_subjects", (query) => {
+          query.where("is_deleted", false).preload("parent");
         })
         .where("is_deleted", false)
         .firstOrFail();
@@ -90,6 +96,9 @@ export default class SubjectsController {
             .preload("competency_subs", (query) => {
               query.where("is_deleted", false);
             });
+        })
+        .preload("continue_subjects", (query) => {
+          query.where("is_deleted", false).preload("parent");
         })
         .where("curriculum_id", params.id)
         .where("is_deleted", false)

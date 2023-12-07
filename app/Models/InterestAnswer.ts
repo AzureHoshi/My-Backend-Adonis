@@ -8,7 +8,6 @@ import {
   hasMany,
 } from "@ioc:Adonis/Lucid/Orm";
 import InterestQuestion from "./InterestQuestion";
-import InterestRecord from "./InterestRecord";
 import InterestAnswerJob from "./InterestAnswersJob";
 
 export default class InterestAnswer extends BaseModel {
@@ -34,9 +33,6 @@ export default class InterestAnswer extends BaseModel {
     foreignKey: "interest_question_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
   })
   public interestQuestion: BelongsTo<typeof InterestQuestion>;
-
-  @hasMany(() => InterestRecord)
-  public feedback_answers: HasMany<typeof InterestRecord>;
 
   @hasMany(() => InterestAnswerJob, {
     foreignKey: "interest_answer_id",

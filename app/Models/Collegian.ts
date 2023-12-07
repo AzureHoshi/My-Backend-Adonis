@@ -9,7 +9,6 @@ import {
 } from "@ioc:Adonis/Lucid/Orm";
 import CollegianGroup from "./CollegianGroup";
 import StudyRecord from "./StudyRecord";
-import InterestRecord from "./InterestRecord";
 
 export default class Collegian extends BaseModel {
   @column({ isPrimary: true })
@@ -55,7 +54,4 @@ export default class Collegian extends BaseModel {
 
   @hasMany(() => StudyRecord)
   public curriculums: HasMany<typeof StudyRecord>;
-
-  @hasMany(() => InterestRecord)
-  public interest_records: HasMany<typeof InterestRecord>;
 }

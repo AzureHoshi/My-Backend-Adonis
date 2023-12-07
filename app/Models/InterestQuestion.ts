@@ -9,7 +9,6 @@ import {
 } from "@ioc:Adonis/Lucid/Orm";
 import InterestSurvey from "./InterestSurvey";
 import InterestAnswer from "./InterestAnswer";
-import InterestRecord from "./InterestRecord";
 
 export default class InterestQuestion extends BaseModel {
   @column({ isPrimary: true })
@@ -40,9 +39,6 @@ export default class InterestQuestion extends BaseModel {
 
   @hasMany(() => InterestAnswer)
   public feedback_answers: HasMany<typeof InterestAnswer>;
-
-  @hasMany(() => InterestRecord)
-  public interest_records: HasMany<typeof InterestRecord>;
 
   @hasMany(() => InterestAnswer, {
     foreignKey: "interest_question_id",
