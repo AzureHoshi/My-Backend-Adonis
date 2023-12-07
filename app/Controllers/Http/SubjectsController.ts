@@ -174,8 +174,7 @@ export default class SubjectsController {
 
   public async destroy({ params, response }: HttpContextContract) {
     try {
-      const id: any = params.id;
-      const subject: any = await Subject.find(id);
+      const subject: any = await Subject.find(params.id);
       if (!subject) {
         return response
           .status(404)
@@ -194,7 +193,7 @@ export default class SubjectsController {
       return response.status(200).json({
         data: subject,
         status: 200,
-        message: `Subject deleted byId ${id} success`,
+        message: `Subject deleted byId ${params.id} success`,
       });
     } catch (error) {
       return response
