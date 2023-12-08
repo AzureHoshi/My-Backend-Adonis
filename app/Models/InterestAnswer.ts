@@ -36,6 +36,7 @@ export default class InterestAnswer extends BaseModel {
 
   @hasMany(() => InterestAnswerJob, {
     foreignKey: "interest_answer_id",
+    localKey: "interest_answer_id",
   })
   public interest_answers_job: HasMany<typeof InterestAnswerJob>;
 }

@@ -41,7 +41,6 @@ Route.group(() => {
   Route.resource("interest-surveys", "InterestSurveysController").apiOnly();
   Route.resource("interest-questions", "InterestQuestionsController").apiOnly();
   Route.resource("interest-answers", "InterestAnswersController").apiOnly();
-  Route.resource("interest-records", "InterestRecordsController").apiOnly();
   Route.resource(
     "interest-answers-jobs",
     "InterestAnswersJobsController"
@@ -78,6 +77,10 @@ Route.group(() => {
   Route.get(
     "continue-subjects-curriculum/:id",
     "ContinueSubjectsController.showByCurriculum"
+  );
+  Route.post(
+    "interest-results",
+    "InterestResultsController.resultInterestSurvey"
   );
 
   // ? สำหรับทดสอบการอัพโหลดไฟล์
