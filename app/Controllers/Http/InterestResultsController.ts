@@ -109,8 +109,11 @@ export default class InterestResultsController {
 
       return response.status(200).json({ data: resultJob, status: 200 });
     } catch (error) {
-      console.error(error.messages);
-      throw error; // Re-throw
+      return response.status(400).json({
+        message: "Something went wrong",
+        error: error.messages || error.message,
+        status: 400,
+      });
     }
   }
 }
