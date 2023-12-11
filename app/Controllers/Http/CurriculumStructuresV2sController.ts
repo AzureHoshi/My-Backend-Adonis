@@ -20,8 +20,6 @@ export default class CurriculumStructuresV2sController {
         })
         .where("is_deleted", false);
 
-      console.log("curriculumStructuresV2s", curriculumStructuresV2s);
-
       if (!curriculumStructuresV2s) {
         return response
           .status(404)
