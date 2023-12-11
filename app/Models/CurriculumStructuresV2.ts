@@ -25,7 +25,7 @@ export default class CurriculumStructuresV2 extends BaseModel {
   public subject_group_id: number | null;
 
   @column()
-  public csv2_credit_total: number;
+  public credit_total: number;
 
   @column()
   public is_deleted: boolean; // 0 = false, 1 = true

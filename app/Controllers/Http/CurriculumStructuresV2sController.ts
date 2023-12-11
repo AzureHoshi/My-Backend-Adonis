@@ -20,6 +20,8 @@ export default class CurriculumStructuresV2sController {
         })
         .where("is_deleted", false);
 
+      console.log("curriculumStructuresV2s", curriculumStructuresV2s);
+
       if (!curriculumStructuresV2s) {
         return response
           .status(404)
@@ -79,7 +81,7 @@ export default class CurriculumStructuresV2sController {
       subject_category_id: schema.number.nullable(),
       subject_type_id: schema.number.nullable(),
       subject_group_id: schema.number.nullable(),
-      csv2_credit_total: schema.number(),
+      credit_total: schema.number(),
     });
 
     try {
@@ -105,7 +107,7 @@ export default class CurriculumStructuresV2sController {
       subject_category_id: schema.number.nullable(),
       subject_type_id: schema.number.nullable(),
       subject_group_id: schema.number.nullable(),
-      csv2_credit_total: schema.number.optional(),
+      credit_total: schema.number.optional(),
     });
 
     try {
