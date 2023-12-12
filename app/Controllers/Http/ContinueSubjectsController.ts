@@ -169,8 +169,9 @@ export default class ContinueSubjectsController {
     try {
       const data = await ContinueSubject.query()
         .preload("subjects")
-        .preload("parent")
-        .preload("subjectStructure")
+        .preload("parent", (query) => {
+          query.preload("subject_structures").where("is_deleted", false);
+        })
         .where("subject_id", params.id)
         .where("is_deleted", false);
 
@@ -186,7 +187,6 @@ export default class ContinueSubjectsController {
               ...item.$attributes,
               subjects: item.subjects,
               parent: item.parent,
-              subjectStructure: item.subjectStructure,
               children: children,
             };
           } else {
@@ -194,7 +194,6 @@ export default class ContinueSubjectsController {
               ...item.$attributes,
               subjects: item.subjects,
               parent: item.parent,
-              subjectStructure: item.subjectStructure,
               children: [],
             };
           }
