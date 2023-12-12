@@ -2,6 +2,7 @@ import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema } from "@ioc:Adonis/Core/Validator";
 import InterestAnswer from "App/Models/InterestAnswer";
 import InterestAnswerJob from "App/Models/InterestAnswersJob";
+import InterestResult from "App/Models/InterestResult";
 
 // ใน interface หรือ type สำหรับ response payload
 interface ResultJob {
@@ -17,9 +18,9 @@ export default class InterestResultsController {
   }: HttpContextContract) {
     try {
       const storeManySchema = schema.create({
+        collegian_code: schema.string(),
         interest_results: schema.array().members(
           schema.object().members({
-            collegian_code: schema.string(),
             question_type: schema.number(),
             interest_answer_id: schema.number(),
             interest_question_score: schema.number.nullable(),
@@ -107,7 +108,55 @@ export default class InterestResultsController {
         }
       });
 
-      return response.status(200).json({ data: resultJob, status: 200 });
+      const filteredResultJob = resultJob.filter((item) => item.value !== 0);
+
+      const maxCountResult = await InterestResult.query()
+        .where("collegian_code", payload.collegian_code)
+        .max("interest_result_count as max_count");
+
+      // max_count จะมีค่าเป็น null ถ้าไม่มีข้อมูล
+      if (maxCountResult.length > 0) {
+        const maxCount = maxCountResult[0].$extras.max_count || 0;
+        console.log("Maximum count:", maxCount);
+        const result = await InterestResult.createMany(
+          filteredResultJob
+            .filter((item) => item.value !== 0) // กรองเฉพาะ item ที่ value ไม่เป็น 0
+            .map((item) => ({
+              collegian_code: payload.collegian_code,
+              job_position_id: item.id,
+              interest_result_percent: item.value || 0,
+              interest_result_count: maxCount + 1,
+            }))
+        );
+
+        return response.status(200).json({
+          dataChart: filteredResultJob,
+          dataResult: result,
+          maxCount: maxCount,
+          status: 200,
+        });
+      } else {
+        console.log("No data found.");
+        const result = await InterestResult.createMany(
+          filteredResultJob
+            .filter((item) => item.value !== 0) // กรองเฉพาะ item ที่ value ไม่เป็น 0
+            .map((item) => ({
+              collegian_code: payload.collegian_code,
+              job_position_id: item.id,
+              interest_result_percent: item.value || 1,
+              interest_result_count: 1,
+            }))
+        );
+
+        return response.status(200).json({
+          dataChart: filteredResultJob,
+          dataResult: result,
+          maxCount: 1,
+          status: 200,
+        });
+      }
+
+      // Create the result record
     } catch (error) {
       return response.status(400).json({
         message: "Something went wrong",

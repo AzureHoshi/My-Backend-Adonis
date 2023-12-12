@@ -15,6 +15,7 @@ export default class extends BaseSchema {
         .onDelete("CASCADE")
         .onUpdate("CASCADE");
       table.integer("interest_result_percent").notNullable();
+      table.integer("interest_result_count").notNullable().defaultTo(1);
 
       table.boolean("is_deleted").notNullable().defaultTo(false);
       /**

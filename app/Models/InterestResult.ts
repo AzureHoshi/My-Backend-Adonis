@@ -15,6 +15,9 @@ export default class InterestResult extends BaseModel {
   public interest_result_percent: number;
 
   @column()
+  public interest_result_count: number;
+
+  @column()
   public is_deleted: boolean;
 
   @column.dateTime({ autoCreate: true })
