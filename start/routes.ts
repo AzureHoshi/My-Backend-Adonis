@@ -82,6 +82,14 @@ Route.group(() => {
     "interest-results",
     "InterestResultsController.resultInterestSurvey"
   );
+  Route.post(
+    "simulation-result-subject",
+    "SimulationsController.simulationResultBySubject"
+  );
+  Route.post(
+    "simulation-result-job",
+    "SimulationsController.simulationResultByJob"
+  );
 
   // ? สำหรับทดสอบการอัพโหลดไฟล์
   Route.group(() => {
