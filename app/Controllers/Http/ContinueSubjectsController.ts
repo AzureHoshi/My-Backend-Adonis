@@ -186,7 +186,7 @@ export default class ContinueSubjectsController {
               ...item.$attributes,
               subjects: item.subjects,
               parent: item.parent,
-              continueSubjects: item.subjectStructure,
+              subjectStructure: item.subjectStructure,
               children: children,
             };
           } else {
@@ -194,7 +194,7 @@ export default class ContinueSubjectsController {
               ...item.$attributes,
               subjects: item.subjects,
               parent: item.parent,
-              continueSubjects: item.subjectStructure,
+              subjectStructure: item.subjectStructure,
               children: [],
             };
           }
