@@ -8,6 +8,7 @@ import {
 } from "@ioc:Adonis/Lucid/Orm";
 import Subject from "./Subject";
 import { belongsTo } from "@ioc:Adonis/Lucid/Orm";
+import SubjectStructure from "./SubjectStructure";
 
 export default class ContinueSubject extends BaseModel {
   @column({ isPrimary: true })
@@ -39,9 +40,9 @@ export default class ContinueSubject extends BaseModel {
   })
   public parent: BelongsTo<typeof Subject>;
 
-  @hasMany(() => ContinueSubject, {
+  @hasMany(() => SubjectStructure, {
     foreignKey: "subject_id",
     localKey: "subject_id",
   })
-  public continueSubjects: HasMany<typeof ContinueSubject>;
+  public subjectStructure: HasMany<typeof SubjectStructure>;
 }

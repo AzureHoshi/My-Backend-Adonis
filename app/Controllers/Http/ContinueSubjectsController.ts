@@ -170,7 +170,7 @@ export default class ContinueSubjectsController {
       const data = await ContinueSubject.query()
         .preload("subjects")
         .preload("parent")
-        .preload("continueSubjects")
+        .preload("subjectStructure")
         .where("subject_id", params.id)
         .where("is_deleted", false);
 
