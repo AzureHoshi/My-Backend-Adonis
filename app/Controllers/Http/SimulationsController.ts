@@ -57,16 +57,31 @@ export default class SimulationsController {
       // จัดเรียง uniqueJobIds ตามจำนวนครั้งที่ปรากฏ จากมากไปหาน้อย
       uniqueJobIds.sort((a, b) => countByJobId[b] - countByJobId[a]);
 
-      const jobData = await JobPosition.query()
+      const dataJob = await JobPosition.query()
         .where("is_deleted", false)
         .whereIn("job_position_id", uniqueJobIds);
 
-      const sortedJobData = sortBy(jobData, (job) =>
+      const dataJobWithSubjects = await Promise.all(
+        dataJob.map(async (job) => {
+          const subjects = await Subject.query()
+            .where("is_deleted", false)
+            .whereHas("subject_job_related", (query) => {
+              query.where("job_position_id", job.job_position_id);
+            });
+
+          return {
+            ...job.$attributes,
+            subjects: subjects.map((subject) => subject),
+          };
+        })
+      );
+
+      const sortedDataJob = sortBy(dataJobWithSubjects, (job) =>
         uniqueJobIds.indexOf(job.job_position_id)
       );
 
       return response.status(200).json({
-        data: sortedJobData,
+        data: sortedDataJob,
         status: 200,
       });
     } catch (error) {
@@ -154,6 +169,9 @@ export default class SimulationsController {
           return {
             job_position_id: job.job_position_id,
             job_position_name: job.job_position_name,
+            is_deleted: job.is_deleted,
+            createdAt: job.createdAt,
+            updatedAt: job.updatedAt,
             subjects: subjects.map((subject) => subject),
           };
         })
