@@ -4,14 +4,13 @@ import { sortBy } from "lodash";
 
 import JobPosition from "App/Models/JobPosition";
 import SubjectJobRelated from "App/Models/SubjectJobRelated";
+import Subject from "App/Models/Subject";
 
 export default class SimulationsController {
   public async simulationResultBySubject({
     request,
     response,
   }: HttpContextContract) {
-    console.log("test", request.body().subject_id);
-
     try {
       const dataSchema = schema.create({
         subject_id: schema.array().members(schema.number()),
@@ -24,8 +23,6 @@ export default class SimulationsController {
       const dataJobWithSubject = await SubjectJobRelated.query()
         .where("is_deleted", false)
         .whereIn("subject_id", payload.subject_id);
-
-      console.log(dataJobWithSubject);
 
       const jobIds: number[] = [];
       const countByJobId: Record<number, number> = {};
@@ -52,9 +49,6 @@ export default class SimulationsController {
       // จัดเรียง uniqueJobIds ตามจำนวนครั้งที่ปรากฏ จากมากไปหาน้อย
       uniqueJobIds.sort((a, b) => countByJobId[b] - countByJobId[a]);
 
-      console.log(uniqueJobIds);
-      console.log(countByJobId);
-
       const jobData = await JobPosition.query()
         .where("is_deleted", false)
         .whereIn("job_position_id", uniqueJobIds);
@@ -69,6 +63,90 @@ export default class SimulationsController {
       });
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  public async simulationResultByJob({
+    request,
+    response,
+  }: HttpContextContract) {
+    try {
+      const dataSchema = schema.create({
+        job_position_id: schema.number(),
+      });
+
+      const payload = await request.validate({
+        schema: dataSchema,
+      });
+
+      const dataSubjectWithJobID = await Subject.query().whereHas(
+        "subject_job_related",
+        (query) => {
+          query.where("job_position_id", payload.job_position_id);
+        }
+      );
+
+      if (dataSubjectWithJobID.length === 0) {
+        // subjectJobRelated not found
+        return response.status(404).json({
+          status: 404,
+          message: "subjectJobRelated not found",
+        });
+      }
+
+      const subjectIds = dataSubjectWithJobID.map(
+        (subject) => subject.subject_id
+      );
+
+      const dataJobWithSubject = await SubjectJobRelated.query()
+        .where("is_deleted", false)
+        .where(function (query) {
+          query
+            .where("job_position_id", payload.job_position_id)
+            .orWhereIn("subject_id", subjectIds);
+        });
+
+      const uniqueJobIds: number[] = [];
+      const countByJobId: Record<number, number> = {};
+
+      // Count occurrences of job_position_id and accumulate uniqueJobIds
+      dataJobWithSubject.forEach((item) => {
+        if (item.job_position_id !== payload.job_position_id) {
+          countByJobId[item.job_position_id] =
+            (countByJobId[item.job_position_id] || 0) + 1;
+
+          if (!uniqueJobIds.includes(item.job_position_id)) {
+            uniqueJobIds.push(item.job_position_id);
+          }
+        }
+      });
+
+      // Sort uniqueJobIds by the count of occurrences
+      uniqueJobIds.sort((a, b) => countByJobId[b] - countByJobId[a]);
+
+      console.log("uniqueJobIds", uniqueJobIds);
+      console.log("countByJobId", countByJobId);
+
+      let dataJobPosition = await JobPosition.query()
+        .where("is_deleted", false)
+        .whereIn("job_position_id", uniqueJobIds);
+
+      // Sort dataJobPosition based on the count from countByJobId
+      dataJobPosition = dataJobPosition.sort(
+        (a, b) =>
+          countByJobId[b.job_position_id] - countByJobId[a.job_position_id]
+      );
+
+      return response.status(200).json({
+        dataSubjects: dataSubjectWithJobID,
+        dataJobPosition: dataJobPosition,
+        status: 200,
+      });
+    } catch (error) {
+      return response.status(500).json({
+        status: 500,
+        message: error.message,
+      });
     }
   }
 }

@@ -82,6 +82,8 @@ Route.group(() => {
     "interest-results",
     "InterestResultsController.resultInterestSurvey"
   );
+
+  // ? for simulation
   Route.post(
     "simulation-result-subject",
     "SimulationsController.simulationResultBySubject"

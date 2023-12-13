@@ -12,6 +12,7 @@ import Curriculum from "./Curriculum";
 import Competency from "./Competency";
 import SubjectStructure from "./SubjectStructure";
 import ContinueSubject from "./ContinueSubject";
+import SubjectJobRelated from "./SubjectJobRelated";
 
 export default class Subject extends BaseModel {
   @column({ isPrimary: true })
@@ -72,4 +73,10 @@ export default class Subject extends BaseModel {
     localKey: "subject_id",
   })
   public continue_subjects: HasMany<typeof ContinueSubject>;
+
+  @hasMany(() => SubjectJobRelated, {
+    foreignKey: "subject_id",
+    localKey: "subject_id",
+  })
+  public subject_job_related: HasMany<typeof SubjectJobRelated>;
 }
