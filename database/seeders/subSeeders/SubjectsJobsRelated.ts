@@ -1,5 +1,5 @@
 import BaseSeeder from "@ioc:Adonis/Lucid/Seeder";
-import SubjectsJobsRelated from "App/Models/SubjectsJobsRelated";
+import SubjectJobRelated from "App/Models/SubjectJobRelated";
 
 export default class extends BaseSeeder {
   public async run() {
@@ -140,6 +140,6 @@ export default class extends BaseSeeder {
       },
     ];
 
-    await SubjectsJobsRelated.createMany(subjectsJobsRelatedSE66Data);
+    await SubjectJobRelated.createMany(subjectsJobsRelatedSE66Data);
   }
 }
