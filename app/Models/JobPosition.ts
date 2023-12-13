@@ -1,5 +1,13 @@
 import { DateTime } from "luxon";
-import { BaseModel, column } from "@ioc:Adonis/Lucid/Orm";
+import {
+  BaseModel,
+  HasMany,
+  HasManyThrough,
+  column,
+  hasManyThrough,
+} from "@ioc:Adonis/Lucid/Orm";
+import SubjectJobRelated from "./SubjectJobRelated";
+import Subject from "./Subject";
 
 export default class JobPosition extends BaseModel {
   @column({ isPrimary: true })
@@ -16,4 +24,11 @@ export default class JobPosition extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
+
+  @hasManyThrough([() => Subject, () => SubjectJobRelated])
+  public subjectJobRelated: HasManyThrough<
+    typeof Subject,
+    typeof SubjectJobRelated
+  >;
+  public subjects: HasMany<typeof Subject>;
 }

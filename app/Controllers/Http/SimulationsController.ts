@@ -142,15 +142,36 @@ export default class SimulationsController {
         .where("is_deleted", false)
         .whereIn("job_position_id", uniqueJobIds);
 
+      // Fetch subjects for each job position
+      const dataJobPositionWithSubjects = await Promise.all(
+        dataJobPosition.map(async (job) => {
+          const subjects = await Subject.query()
+            .where("is_deleted", false)
+            .whereHas("subject_job_related", (query) => {
+              query.where("job_position_id", job.job_position_id);
+            });
+
+          return {
+            job_position_id: job.job_position_id,
+            job_position_name: job.job_position_name,
+            subjects: subjects.map((subject) => subject),
+          };
+        })
+      );
+
+      console.log("dataJobPositionWithSubjects", dataJobPositionWithSubjects);
+
       // Sort dataJobPosition based on the count from countByJobId
-      dataJobPosition = dataJobPosition.sort(
+      const dataJobPositionResult = dataJobPositionWithSubjects.sort(
         (a, b) =>
           countByJobId[b.job_position_id] - countByJobId[a.job_position_id]
       );
 
       return response.status(200).json({
-        dataSubjects: dataSubjectWithJobID,
-        dataJobPosition: dataJobPosition,
+        dataSubjects: dataSubjectWithJobID.map(
+          (subject) => subject.$attributes
+        ),
+        dataJobPosition: dataJobPositionResult,
         status: 200,
       });
     } catch (error) {
