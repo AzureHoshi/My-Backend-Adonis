@@ -24,6 +24,14 @@ export default class SimulationsController {
         .where("is_deleted", false)
         .whereIn("subject_id", payload.subject_id);
 
+      if (dataJobWithSubject.length === 0) {
+        // subjectJobRelated not found
+        return response.status(404).json({
+          status: 404,
+          message: "subjectJobRelated not found",
+        });
+      }
+
       const jobIds: number[] = [];
       const countByJobId: Record<number, number> = {};
 
@@ -62,7 +70,10 @@ export default class SimulationsController {
         status: 200,
       });
     } catch (error) {
-      console.log(error);
+      return response.status(500).json({
+        status: 500,
+        message: error.message,
+      });
     }
   }
 
