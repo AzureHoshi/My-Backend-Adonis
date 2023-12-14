@@ -26,9 +26,9 @@ export default class SimulationsController {
 
       if (dataJobWithSubject.length === 0) {
         // subjectJobRelated not found
-        return response.status(404).json({
-          status: 404,
-          message: "subjectJobRelated not found",
+        return response.status(200).json({
+          data: [],
+          status: 200,
         });
       }
 
@@ -114,9 +114,10 @@ export default class SimulationsController {
 
       if (dataSubjectWithJobID.length === 0) {
         // subjectJobRelated not found
-        return response.status(404).json({
-          status: 404,
-          message: "subjectJobRelated not found",
+        return response.status(200).json({
+          dataSubjects: [],
+          dataJobPosition: [],
+          status: 200,
         });
       }
 

@@ -7,6 +7,7 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments("job_position_id");
       table.string("job_position_name", 255).notNullable();
+      table.text("job_position_description").nullable();
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
