@@ -115,8 +115,7 @@ export default class SimulationsController {
       if (dataSubjectWithJobID.length === 0) {
         // subjectJobRelated not found
         return response.status(200).json({
-          dataSubjects: [],
-          dataJobPosition: [],
+          data: [],
           status: 200,
         });
       }
@@ -133,7 +132,7 @@ export default class SimulationsController {
             .orWhereIn("subject_id", subjectIds);
         });
 
-      const uniqueJobIds: number[] = [];
+      const uniqueJobIds: number[] = [payload.job_position_id];
       const countByJobId: Record<number, number> = {};
 
       // Count occurrences of job_position_id and accumulate uniqueJobIds
@@ -150,9 +149,6 @@ export default class SimulationsController {
 
       // Sort uniqueJobIds by the count of occurrences
       uniqueJobIds.sort((a, b) => countByJobId[b] - countByJobId[a]);
-
-      console.log("uniqueJobIds", uniqueJobIds);
-      console.log("countByJobId", countByJobId);
 
       let dataJobPosition = await JobPosition.query()
         .where("is_deleted", false)
@@ -178,19 +174,21 @@ export default class SimulationsController {
         })
       );
 
-      console.log("dataJobPositionWithSubjects", dataJobPositionWithSubjects);
-
       // Sort dataJobPosition based on the count from countByJobId
-      const dataJobPositionResult = dataJobPositionWithSubjects.sort(
-        (a, b) =>
-          countByJobId[b.job_position_id] - countByJobId[a.job_position_id]
-      );
+      const dataJobPositionResult = dataJobPositionWithSubjects.sort((a, b) => {
+        if (a.job_position_id === payload.job_position_id) {
+          return -1; // Move payload.job_position_id to the beginning
+        } else if (b.job_position_id === payload.job_position_id) {
+          return 1; // Move payload.job_position_id to the beginning
+        } else {
+          return (
+            countByJobId[b.job_position_id] - countByJobId[a.job_position_id]
+          );
+        }
+      });
 
       return response.status(200).json({
-        dataSubjects: dataSubjectWithJobID.map(
-          (subject) => subject.$attributes
-        ),
-        dataJobPosition: dataJobPositionResult,
+        data: dataJobPositionResult,
         status: 200,
       });
     } catch (error) {
