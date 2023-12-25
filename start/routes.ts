@@ -62,6 +62,10 @@ Route.group(() => {
     "curriculum-structures-v2",
     "CurriculumStructuresV2sController"
   ).apiOnly();
+  Route.resource(
+    "subject-job-relateds",
+    "SubjectJobRelatedsController"
+  ).apiOnly();
 
   // ? custom route
   Route.get(
