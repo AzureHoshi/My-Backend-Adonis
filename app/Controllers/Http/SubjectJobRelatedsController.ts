@@ -34,9 +34,17 @@ export default class SubjectJobRelatedsController {
 
       const subjectJobRelated = await SubjectJobRelated.create(payload);
 
+      const subject = await SubjectJobRelated.query()
+        .preload("subject")
+        .preload("job_position")
+        .where(
+          "subject_job_related_id",
+          subjectJobRelated.subject_job_related_id
+        );
+
       return response.status(201).json({
         message: "SubjectJobRelated created successfully",
-        data: subjectJobRelated,
+        data: subject,
       });
     } catch (error) {
       return response.status(500).json({
