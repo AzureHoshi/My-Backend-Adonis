@@ -9,7 +9,8 @@ export default class SubjectJobRelatedsController {
       const subjectJobRelated = await SubjectJobRelated.query()
         .preload("subject")
         .preload("job_position")
-        .where("is_deleted", false);
+        .where("is_deleted", false)
+        .orderBy("created_at", "desc");
 
       return response.status(200).json({
         message: "SubjectJobRelated retrieved successfully",
