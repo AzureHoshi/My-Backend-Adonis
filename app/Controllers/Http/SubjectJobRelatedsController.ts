@@ -62,9 +62,12 @@ export default class SubjectJobRelatedsController {
 
       const payload = await request.validate({ schema: updateSchema });
 
-      const subjectJobRelated = await SubjectJobRelated.findOrFail(
-        request.params().id
-      );
+      const subjectJobRelated = await SubjectJobRelated.query()
+        .where("is_deleted", false)
+        .where("subject_job_related_id", request.params().id)
+        .preload("subject")
+        .preload("job_position")
+        .firstOrFail();
 
       if (!subjectJobRelated) {
         return response.status(404).json({
