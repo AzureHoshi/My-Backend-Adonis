@@ -12,8 +12,8 @@ export default class SubjectJobRelatedsController {
         .where("is_deleted", false);
 
       return response.status(200).json({
-        data: subjectJobRelated,
         message: "SubjectJobRelated retrieved successfully",
+        data: subjectJobRelated,
       });
     } catch (error) {
       return response.status(500).json({
@@ -34,8 +34,8 @@ export default class SubjectJobRelatedsController {
       const subjectJobRelated = await SubjectJobRelated.create(payload);
 
       return response.status(201).json({
-        data: subjectJobRelated,
         message: "SubjectJobRelated created successfully",
+        data: subjectJobRelated,
       });
     } catch (error) {
       return response.status(500).json({
@@ -101,8 +101,8 @@ export default class SubjectJobRelatedsController {
         await subjectJobRelated.save();
 
         return response.status(200).json({
-          data: subjectJobRelated,
           message: "SubjectJobRelated deleted successfully",
+          data: subjectJobRelated,
         });
       }
     } catch (error) {
