@@ -1,3 +1,114 @@
-// import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
+import { schema } from "@ioc:Adonis/Core/Validator";
 
-export default class SubjectJobRelatedsController {}
+import SubjectJobRelated from "App/Models/SubjectJobRelated";
+
+export default class SubjectJobRelatedsController {
+  public async index({ response }: HttpContextContract) {
+    try {
+      const subjectJobRelated = await SubjectJobRelated.query()
+        .preload("subject")
+        .preload("job_position")
+        .where("is_deleted", false);
+
+      return response.status(200).json({
+        data: subjectJobRelated,
+        message: "SubjectJobRelated retrieved successfully",
+      });
+    } catch (error) {
+      return response.status(500).json({
+        message: error.message,
+      });
+    }
+  }
+
+  public async store({ request, response }: HttpContextContract) {
+    try {
+      const storeSchema = schema.create({
+        subject_id: schema.number(),
+        job_position_id: schema.number(),
+      });
+
+      const payload = await request.validate({ schema: storeSchema });
+
+      const subjectJobRelated = await SubjectJobRelated.create(payload);
+
+      return response.status(201).json({
+        data: subjectJobRelated,
+        message: "SubjectJobRelated created successfully",
+      });
+    } catch (error) {
+      return response.status(500).json({
+        message: error.message,
+      });
+    }
+  }
+
+  public async update({ request, response }: HttpContextContract) {
+    try {
+      const updateSchema = schema.create({
+        subject_id: schema.number(),
+        job_position_id: schema.number(),
+      });
+
+      const payload = await request.validate({ schema: updateSchema });
+
+      const subjectJobRelated = await SubjectJobRelated.findOrFail(
+        request.params().id
+      );
+
+      if (!subjectJobRelated) {
+        return response.status(404).json({
+          message: "SubjectJobRelated not found",
+        });
+      } else if (subjectJobRelated.is_deleted) {
+        return response.status(200).json({
+          message: "SubjectJobRelated already deleted",
+        });
+      } else {
+        subjectJobRelated.subject_id = payload.subject_id;
+        subjectJobRelated.job_position_id = payload.job_position_id;
+        await subjectJobRelated.save();
+
+        return response.status(200).json({
+          data: subjectJobRelated,
+          message: "SubjectJobRelated updated successfully",
+        });
+      }
+    } catch (error) {
+      return response.status(500).json({
+        message: error.message,
+      });
+    }
+  }
+
+  public async destroy({ request, response }: HttpContextContract) {
+    try {
+      const subjectJobRelated = await SubjectJobRelated.findOrFail(
+        request.params().id
+      );
+
+      if (!subjectJobRelated) {
+        return response.status(404).json({
+          message: "SubjectJobRelated not found",
+        });
+      } else if (subjectJobRelated.is_deleted) {
+        return response.status(200).json({
+          message: "SubjectJobRelated already deleted",
+        });
+      } else {
+        subjectJobRelated.is_deleted = true;
+        await subjectJobRelated.save();
+
+        return response.status(200).json({
+          data: subjectJobRelated,
+          message: "SubjectJobRelated deleted successfully",
+        });
+      }
+    } catch (error) {
+      return response.status(500).json({
+        message: error.message,
+      });
+    }
+  }
+}
