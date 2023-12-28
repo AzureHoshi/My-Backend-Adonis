@@ -1,5 +1,7 @@
 import { DateTime } from "luxon";
-import { BaseModel, column } from "@ioc:Adonis/Lucid/Orm";
+import { BaseModel, BelongsTo, column } from "@ioc:Adonis/Lucid/Orm";
+import { belongsTo } from "@ioc:Adonis/Lucid/Orm";
+import JobPosition from "./JobPosition";
 
 export default class InterestResult extends BaseModel {
   @column({ isPrimary: true })
@@ -25,4 +27,9 @@ export default class InterestResult extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
+
+  @belongsTo(() => JobPosition, {
+    foreignKey: "job_position_id",
+  })
+  public jobPosition: BelongsTo<typeof JobPosition>;
 }

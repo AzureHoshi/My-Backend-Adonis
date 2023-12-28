@@ -66,6 +66,7 @@ Route.group(() => {
     "subject-job-relateds",
     "SubjectJobRelatedsController"
   ).apiOnly();
+  Route.resource("interest-results", "InterestResultsController").apiOnly();
 
   // ? custom route
   Route.get(
@@ -81,10 +82,6 @@ Route.group(() => {
   Route.get(
     "continue-subjects-curriculum/:id",
     "ContinueSubjectsController.showByCurriculum"
-  );
-  Route.post(
-    "interest-results",
-    "InterestResultsController.resultInterestSurvey"
   );
 
   // ? for simulation
