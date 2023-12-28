@@ -288,7 +288,7 @@ export default class InterestResultsController {
 
   public async show({ params, response }: HttpContextContract) {
     try {
-      const result = await InterestResult.query()
+      const results = await InterestResult.query()
         .where("collegian_code", params.id)
         .where(
           "interest_result_count",
@@ -301,14 +301,20 @@ export default class InterestResultsController {
           query.where("is_deleted", false);
         });
 
-      if (!result) {
+      if (!results) {
         return response.status(404).json({
           message: "Not found",
           status: 404,
         });
       } else {
+        const labels = results.map(
+          (result) => result.jobPosition.job_position_name
+        );
+        const data = results.map((result) => result.interest_result_percent);
+
         return response.status(200).json({
-          data: result,
+          labels: labels,
+          data: data,
           status: 200,
         });
       }
