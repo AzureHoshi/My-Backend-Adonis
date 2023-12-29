@@ -11,7 +11,7 @@ export default class StudyPlanRecord extends BaseModel {
   public study_plan_id: number;
 
   @column()
-  public subject_id: number;
+  public subject_id: number | null;
 
   @column()
   public study_plan_record_elective_course: string;
