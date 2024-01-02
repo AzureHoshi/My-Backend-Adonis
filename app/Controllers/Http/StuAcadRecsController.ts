@@ -41,7 +41,7 @@ export default class StuAcadRecsController {
   public async store({ request, response }: HttpContextContract) {
     try {
       const validationSchema = schema.create({
-        std_code: schema.string({ trim: true }, [rules.maxLength(13)]),
+        collegian_code: schema.string({ trim: true }, [rules.maxLength(13)]),
         subject_id: schema.number(),
         stu_acad_rec_year: schema.number(),
         stu_acad_rec_semester: schema.number(),
@@ -54,7 +54,7 @@ export default class StuAcadRecsController {
       });
 
       const checkForDuplicate = await StuAcadRec.query().where({
-        std_code: validatedData.std_code,
+        collegian_code: validatedData.collegian_code,
         subject_id: validatedData.subject_id,
         stu_acad_rec_year: validatedData.stu_acad_rec_year,
         stu_acad_rec_semester: validatedData.stu_acad_rec_semester,
@@ -79,7 +79,7 @@ export default class StuAcadRecsController {
   public async update({ params, request, response }: HttpContextContract) {
     try {
       const validationSchema = schema.create({
-        std_code: schema.string({ trim: true }, [rules.maxLength(13)]),
+        collegian_code: schema.string({ trim: true }, [rules.maxLength(13)]),
         subject_id: schema.number(),
         stu_acad_rec_year: schema.number(),
         stu_acad_rec_semester: schema.number(),

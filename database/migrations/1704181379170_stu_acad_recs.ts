@@ -10,7 +10,7 @@ export default class extends BaseSchema {
         .primary()
         .unique()
         .comment("รหัสข้อมูลแผนการศึกษานักศึกษา");
-      table.string("std_code", 13).comment("รหัสนักศึกษา");
+      table.string("collegian_code", 13).comment("รหัสนักศึกษา");
       table
         .integer("subject_id")
         .unsigned()

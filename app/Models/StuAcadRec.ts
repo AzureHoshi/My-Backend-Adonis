@@ -7,7 +7,7 @@ export default class StuAcadRec extends BaseModel {
   public stu_acad_rec_id: number;
 
   @column()
-  public std_code: string;
+  public collegian_code: string;
 
   @column()
   public subject_id: number;
