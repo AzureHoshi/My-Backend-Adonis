@@ -20,7 +20,7 @@ export default class StuAcadRecsController {
   public async show({ params, response }: HttpContextContract) {
     try {
       const stuAcadRec = await StuAcadRec.query()
-        .where("std_code", params.id)
+        .where("collegian_code", params.id)
         .where("is_deleted", false)
         .preload("subject");
 

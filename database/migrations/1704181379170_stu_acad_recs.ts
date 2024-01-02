@@ -9,6 +9,7 @@ export default class extends BaseSchema {
         .increments("stu_acad_rec_id")
         .primary()
         .unique()
+        .notNullable()
         .comment("รหัสข้อมูลแผนการศึกษานักศึกษา");
       table.string("collegian_code", 13).comment("รหัสนักศึกษา");
       table
@@ -28,18 +29,13 @@ export default class extends BaseSchema {
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
       table
-        .integer("subject_id")
-        .unsigned()
-        .references("subjects.subject_id")
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
+        .timestamp("created_at", { useTz: true })
+        .notNullable()
+        .defaultTo(this.raw("CURRENT_TIMESTAMP"));
       table
-        .integer("job_position_id")
-        .unsigned()
-        .references("job_positions.job_position_id")
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
-      table.boolean("is_deleted").defaultTo(false);
+        .timestamp("updated_at", { useTz: true })
+        .notNullable()
+        .defaultTo(this.raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
     });
   }
 
