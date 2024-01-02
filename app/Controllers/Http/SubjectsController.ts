@@ -114,6 +114,45 @@ export default class SubjectsController {
     }
   }
 
+  // ? ยังไม่ได้ใช้
+  // public async showByCollegeCode({ params, response }: HttpContextContract) {
+  //   try {
+  //     // ดึงข้อมูล subjects
+  //     const subjects = await Subject.query()
+  //       .preload("subject_groups")
+  //       .preload("subject_structures", (query) => {
+  //         query
+  //           .where("is_deleted", false)
+  //           .preload("subjectCategory")
+  //           .preload("subjectType")
+  //           .preload("subjectGroup");
+  //       })
+  //       .preload("competencies", (query) => {
+  //         query
+  //           .where("is_deleted", false)
+  //           .preload("competency_subs", (query) => {
+  //             query.where("is_deleted", false);
+  //           });
+  //       })
+  //       .preload("continue_subjects", (query) => {
+  //         query.where("is_deleted", false).preload("parent");
+  //       })
+  //       .whereHas("curriculum", (query) => {
+  //         query.whereHas("college", (query) => {
+  //           query.where("college_code", params.college_code);
+  //         });
+  //       })
+  //       .where("is_deleted", false)
+  //       .orderBy("updatedAt", "desc");
+
+  //     if (!subjects) {
+  //       return response.status(404).json({ message: "Subject not found" });
+  //     }
+
+  //     return response.status(200).json({ data: subjects });
+  //   }
+  // }
+
   public async store({ request, response }: HttpContextContract) {
     try {
       const storeSchema = schema.create({
