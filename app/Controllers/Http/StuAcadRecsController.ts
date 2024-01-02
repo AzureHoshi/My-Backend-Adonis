@@ -46,7 +46,7 @@ export default class StuAcadRecsController {
         stu_acad_rec_year: schema.number(),
         stu_acad_rec_semester: schema.number(),
         stu_acad_rec_grade: schema.string({ trim: true }, [rules.maxLength(2)]),
-        stu_acad_rec_elective: schema.boolean(),
+        stu_acad_rec_elective: schema.boolean.optional(),
       });
 
       const validatedData = await request.validate({
@@ -84,7 +84,7 @@ export default class StuAcadRecsController {
         stu_acad_rec_year: schema.number(),
         stu_acad_rec_semester: schema.number(),
         stu_acad_rec_grade: schema.string({ trim: true }, [rules.maxLength(2)]),
-        stu_acad_rec_elective: schema.boolean(),
+        stu_acad_rec_elective: schema.boolean.optional(),
       });
 
       const validateData = await request.validate({
