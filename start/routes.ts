@@ -67,6 +67,7 @@ Route.group(() => {
     "SubjectJobRelatedsController"
   ).apiOnly();
   Route.resource("interest-results", "InterestResultsController").apiOnly();
+  Route.resource("stu-acad-recs", "StuAcadRecsController").apiOnly();
 
   // ? custom route
   Route.get(
