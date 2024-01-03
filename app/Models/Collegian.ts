@@ -1,57 +1,40 @@
 import { DateTime } from "luxon";
-import {
-  BaseModel,
-  BelongsTo,
-  HasMany,
-  belongsTo,
-  column,
-  hasMany,
-} from "@ioc:Adonis/Lucid/Orm";
-import CollegianGroup from "./CollegianGroup";
-import StudyRecord from "./StudyRecord";
+import { BaseModel, column } from "@ioc:Adonis/Lucid/Orm";
 
 export default class Collegian extends BaseModel {
   @column({ isPrimary: true })
-  public collegian_id: number;
+  public col_id: number;
 
   @column()
-  public collegian_group_id: number;
+  public prefix: string;
 
   @column()
-  public collegian_code: string;
+  public col_first_name: string;
 
   @column()
-  public collegian_fname_th: string;
+  public col_last_name: string;
 
   @column()
-  public collegian_lname_th: string;
+  public col_code: string;
 
   @column()
-  public collegian_fname_en: string;
+  public col_email: string;
 
   @column()
-  public collegian_lname_en: string;
+  public col_status: string;
 
   @column()
-  public collegian_email: string;
+  public curriculum: string;
 
   @column()
-  public collegian_tel: string;
+  public section: string;
 
   @column()
-  public is_deleted: boolean;
+  public col_birthday: Date;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
-
-  @belongsTo(() => CollegianGroup, {
-    foreignKey: "collegian_group_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
-  })
-  public collegian_groups: BelongsTo<typeof CollegianGroup>;
-
-  @hasMany(() => StudyRecord)
-  public curriculums: HasMany<typeof StudyRecord>;
 }
