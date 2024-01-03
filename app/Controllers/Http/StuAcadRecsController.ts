@@ -61,9 +61,16 @@ export default class StuAcadRecsController {
       });
 
       if (checkForDuplicate.length > 0) {
-        return response.status(400).json({
-          message: "This student already has this subject in this semester",
-        });
+        if (checkForDuplicate[0].is_deleted) {
+          checkForDuplicate[0].is_deleted = false;
+          await checkForDuplicate[0].save();
+
+          return response.status(201).json({ data: checkForDuplicate[0] });
+        } else {
+          return response.status(400).json({
+            message: "This student academic record is already exist",
+          });
+        }
       } else {
         const stuAcadRec = await StuAcadRec.create(validatedData);
 
