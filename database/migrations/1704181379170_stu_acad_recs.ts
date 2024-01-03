@@ -22,7 +22,7 @@ export default class extends BaseSchema {
       table.integer("stu_acad_rec_year").comment("ปีการศึกษา");
       table.integer("stu_acad_rec_semester").comment("ภาคการศึกษา");
       table.string("stu_acad_rec_grade", 2).comment("เกรด");
-      table.boolean("stu_acad_rec_elective").comment("เลือกเอง");
+      table.boolean("stu_acad_rec_elective").defaultTo(0).comment("วิชาเลือก");
 
       table.boolean("is_deleted").defaultTo(0).comment("สถานะการลบ");
       /**
