@@ -22,7 +22,9 @@ export default class StuAcadRecsController {
       const stuAcadRec = await StuAcadRec.query()
         .where("collegian_code", params.id)
         .where("is_deleted", false)
-        .preload("subject");
+        .preload("subject")
+        .preload("continue_subject")
+        .preload("subject_structure");
 
       if (!stuAcadRec || stuAcadRec.length === 0) {
         return response

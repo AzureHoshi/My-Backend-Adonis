@@ -1,6 +1,8 @@
 import { DateTime } from "luxon";
 import { BaseModel, BelongsTo, belongsTo, column } from "@ioc:Adonis/Lucid/Orm";
 import Subject from "./Subject";
+import ContinueSubject from "./ContinueSubject";
+import SubjectStructure from "./SubjectStructure";
 
 export default class StuAcadRec extends BaseModel {
   @column({ isPrimary: true })
@@ -37,4 +39,14 @@ export default class StuAcadRec extends BaseModel {
     foreignKey: "subject_id",
   })
   public subject: BelongsTo<typeof Subject>;
+
+  @belongsTo(() => ContinueSubject, {
+    foreignKey: "subject_id",
+  })
+  public continue_subject: BelongsTo<typeof ContinueSubject>;
+
+  @belongsTo(() => SubjectStructure, {
+    foreignKey: "subject_id",
+  })
+  public subject_structure: BelongsTo<typeof SubjectStructure>;
 }
