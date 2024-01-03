@@ -56,13 +56,20 @@ export default class StuAcadRecsController {
       const checkForDuplicate = await StuAcadRec.query().where({
         collegian_code: validatedData.collegian_code,
         subject_id: validatedData.subject_id,
-        stu_acad_rec_year: validatedData.stu_acad_rec_year,
-        stu_acad_rec_semester: validatedData.stu_acad_rec_semester,
       });
 
       if (checkForDuplicate.length > 0) {
         if (checkForDuplicate[0].is_deleted) {
           checkForDuplicate[0].is_deleted = false;
+          checkForDuplicate[0].stu_acad_rec_year =
+            validatedData.stu_acad_rec_year;
+          checkForDuplicate[0].stu_acad_rec_semester =
+            validatedData.stu_acad_rec_semester;
+          checkForDuplicate[0].stu_acad_rec_grade =
+            validatedData.stu_acad_rec_grade;
+          checkForDuplicate[0].stu_acad_rec_elective =
+            validatedData.stu_acad_rec_elective || false;
+
           await checkForDuplicate[0].save();
 
           return response.status(201).json({ data: checkForDuplicate[0] });
