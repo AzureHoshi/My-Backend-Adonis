@@ -43,7 +43,7 @@ export default class StuAcadRec extends BaseModel {
   @belongsTo(() => ContinueSubject, {
     foreignKey: "subject_id",
   })
-  public continue_subject: BelongsTo<typeof ContinueSubject>;
+  public continue_subjects: BelongsTo<typeof ContinueSubject>;
 
   @belongsTo(() => SubjectStructure, {
     foreignKey: "subject_id",
