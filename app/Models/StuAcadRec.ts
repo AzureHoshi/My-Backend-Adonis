@@ -49,6 +49,7 @@ export default class StuAcadRec extends BaseModel {
 
   @hasMany(() => ContinueSubject, {
     foreignKey: "subject_id",
+    localKey: "subject_id",
   })
   public continue_subjects: HasMany<typeof ContinueSubject>;
 
