@@ -23,7 +23,7 @@ export default class StuAcadRecsController {
         .where("collegian_code", params.id)
         .where("is_deleted", false)
         .preload("subject")
-        .preload("continue_subject")
+        .preload("continue_subjects")
         .preload("subject_structure");
 
       if (!stuAcadRec || stuAcadRec.length === 0) {
