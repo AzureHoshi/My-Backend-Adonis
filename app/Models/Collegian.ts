@@ -32,6 +32,9 @@ export default class Collegian extends BaseModel {
   @column()
   public col_birthday: Date;
 
+  @column()
+  public is_deleted: boolean;
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;
 
