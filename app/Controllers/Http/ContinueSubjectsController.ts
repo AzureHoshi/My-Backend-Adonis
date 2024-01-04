@@ -212,7 +212,7 @@ export default class ContinueSubjectsController {
     } catch (error) {
       return response
         .status(500)
-        .json({ message: "Internal Server Error", error: error });
+        .json({ message: "Internal Server Error", error: error.message });
     }
   }
 
@@ -260,7 +260,7 @@ export default class ContinueSubjectsController {
         return response.status(500).json({
           message: "Internal Server Error",
           status: 500,
-          error: error.message,
+          error: error,
         });
       }
     }

@@ -5,7 +5,7 @@ export default class extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments("subject_id").primary().unsigned();
+      table.increments("subject_id").primary().unsigned().notNullable();
       table
         .integer("curriculum_id")
         .unsigned()
