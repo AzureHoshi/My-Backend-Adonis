@@ -28,8 +28,12 @@ export default class StuAcadRecsController {
 
       if (!stuAcadRec || stuAcadRec.length === 0) {
         return response
-          .status(404)
-          .json({ message: "Student academic record not found", data: [] });
+          .status(200)
+          .json({
+            message: "Student academic record not found",
+            data: [],
+            status: 200,
+          });
       } else {
         return response.status(200).json({ data: stuAcadRec });
       }

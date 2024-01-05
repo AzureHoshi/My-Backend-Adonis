@@ -309,10 +309,10 @@ export default class InterestResultsController {
         });
 
       if (results.length === 0) {
-        return response.status(404).json({
+        return response.status(200).json({
           message: "Not found",
           data: [],
-          status: 404,
+          status: 200,
         });
       } else {
         const labels = results.map(
