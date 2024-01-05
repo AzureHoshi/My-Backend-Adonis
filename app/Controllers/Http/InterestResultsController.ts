@@ -315,6 +315,7 @@ export default class InterestResultsController {
         return response.status(200).json({
           labels: labels,
           data: data,
+          count: results[0].interest_result_count,
           status: 200,
         });
       }
