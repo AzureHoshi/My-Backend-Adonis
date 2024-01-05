@@ -248,7 +248,7 @@ export default class InterestResultsController {
       // max_count จะมีค่าเป็น null ถ้าไม่มีข้อมูล
       if (maxCountResult.length > 0) {
         const maxCount = maxCountResult[0].$extras.max_count || 0;
-        InterestResult.createMany(
+        await InterestResult.createMany(
           top3ResultJob.map((item) => ({
             collegian_code: payload.collegian_code,
             job_position_id: item.id,
