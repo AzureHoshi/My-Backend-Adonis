@@ -20,6 +20,7 @@ export default class extends BaseSchema {
       table.string("curriculum", 255).comment("หลักสูตร");
       table.string("section", 255).comment("กลุ่ม");
       table.date("col_birthday").comment("วันเกิด");
+      table.string("password", 255).comment("รหัสผ่าน");
       table.boolean("is_deleted").defaultTo(0).comment("สถานะการลบ");
 
       /**

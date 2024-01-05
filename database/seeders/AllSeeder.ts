@@ -11,7 +11,6 @@ import Competency from "./subSeeders/Competency";
 import CompetencySub from "./subSeeders/CompetencySub";
 import StudyPlan from "./subSeeders/StudyPlan";
 import StudyPlanRecord from "./subSeeders/StudyPlanRecord";
-import Feedback from "./subSeeders/Feedback";
 import InterestSurvey from "./subSeeders/InterestSurvey";
 import InterestQuestion from "./subSeeders/InterestQuestion";
 import InterestAnswer from "./subSeeders/InterestAnswer";
@@ -37,7 +36,6 @@ export default class extends BaseSeeder {
     await new CompetencySub(this.client).run();
     await new StudyPlan(this.client).run();
     await new StudyPlanRecord(this.client).run();
-    await new Feedback(this.client).run();
     await new InterestSurvey(this.client).run();
     await new InterestQuestion(this.client).run();
     await new InterestAnswer(this.client).run();

@@ -6,15 +6,8 @@ export default class extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments("feedback_record_id");
-      table
-        .integer("feedback_id")
-        .unsigned()
-        .references("feedbacks.feedback_id");
-      table
-        .integer("collegian_id")
-        .unsigned()
-        .references("collegians.collegian_id");
-      table.string("feedback_record_answer", 255).notNullable();
+      table.integer("collegian_code");
+      table.text("feedback_record_answer").notNullable();
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
