@@ -244,24 +244,15 @@ export default class InterestResultsController {
       const maxCountResult = await InterestResult.query()
         .where("collegian_code", payload.collegian_code)
         .max("interest_result_count as max_count");
+      const maxCount = maxCountResult[0].$extras.max_count;
+
+      console.log("maxCountResult", maxCount);
 
       // max_count จะมีค่าเป็น null ถ้าไม่มีข้อมูล
-      if (maxCountResult.length > 0) {
-        const maxCount = maxCountResult[0].$extras.max_count || 0;
-        await InterestResult.createMany(
-          top3ResultJob.map((item) => ({
-            collegian_code: payload.collegian_code,
-            job_position_id: item.id,
-            interest_result_percent: item.value || 0,
-            interest_result_count: maxCount + 1,
-          }))
-        );
-        return response.status(200).json({
-          message: "send survey success",
-          maxCount: maxCount,
-          status: 200,
-        });
-      } else {
+      if (maxCount === null) {
+        console.log("No data found.");
+        console.log("count", maxCount);
+
         await InterestResult.createMany(
           top3ResultJob.map((item) => ({
             collegian_code: payload.collegian_code,
@@ -273,6 +264,22 @@ export default class InterestResultsController {
         return response.status(200).json({
           message: "send survey success",
           maxCount: 1,
+          status: 200,
+        });
+      } else {
+        console.log("Maximum count:", maxCount);
+
+        await InterestResult.createMany(
+          top3ResultJob.map((item) => ({
+            collegian_code: payload.collegian_code,
+            job_position_id: item.id,
+            interest_result_percent: item.value || 0,
+            interest_result_count: maxCount + 1,
+          }))
+        );
+        return response.status(200).json({
+          message: "send survey success",
+          maxCount: maxCount + 1,
           status: 200,
         });
       }
@@ -300,8 +307,6 @@ export default class InterestResultsController {
         .preload("jobPosition", (query) => {
           query.where("is_deleted", false);
         });
-
-      console.log("results", results);
 
       if (results.length === 0) {
         return response.status(404).json({
