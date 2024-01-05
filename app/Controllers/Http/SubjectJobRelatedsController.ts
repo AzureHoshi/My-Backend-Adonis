@@ -1,6 +1,5 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema } from "@ioc:Adonis/Core/Validator";
-
 import SubjectJobRelated from "App/Models/SubjectJobRelated";
 
 export default class SubjectJobRelatedsController {
@@ -9,6 +8,7 @@ export default class SubjectJobRelatedsController {
       const subjectJobRelated = await SubjectJobRelated.query()
         .preload("subject")
         .preload("job_position")
+        .preload("subject_structures")
         .where("is_deleted", false)
         .orderBy("created_at", "desc");
 
@@ -37,10 +37,12 @@ export default class SubjectJobRelatedsController {
       const subject = await SubjectJobRelated.query()
         .preload("subject")
         .preload("job_position")
+        .preload("subject_structures")
         .where(
           "subject_job_related_id",
           subjectJobRelated.subject_job_related_id
-        );
+        )
+        .where("is_deleted", false);
 
       return response.status(201).json({
         message: "SubjectJobRelated created successfully",

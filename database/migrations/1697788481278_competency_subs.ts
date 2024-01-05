@@ -13,7 +13,7 @@ export default class extends BaseSchema {
         .inTable("competencies")
         .onDelete("CASCADE");
       table.string("competency_sub_name", 255).notNullable();
-      table.string("competency_sub_description", 255);
+      table.text("competency_sub_description");
       table.boolean("is_deleted").notNullable().defaultTo(false);
 
       /**

@@ -1,7 +1,15 @@
 import { DateTime } from "luxon";
-import { BaseModel, BelongsTo, belongsTo, column } from "@ioc:Adonis/Lucid/Orm";
+import {
+  BaseModel,
+  BelongsTo,
+  HasMany,
+  belongsTo,
+  column,
+  hasMany,
+} from "@ioc:Adonis/Lucid/Orm";
 import Subject from "./Subject";
 import JobPosition from "./JobPosition";
+import SubjectStructure from "./SubjectStructure";
 
 export default class SubjectJobRelated extends BaseModel {
   @column({ isPrimary: true })
@@ -31,4 +39,10 @@ export default class SubjectJobRelated extends BaseModel {
     foreignKey: "job_position_id",
   })
   public job_position: BelongsTo<typeof JobPosition>;
+
+  @hasMany(() => SubjectStructure, {
+    foreignKey: "subject_id",
+    localKey: "subject_id",
+  })
+  public subject_structures: HasMany<typeof SubjectStructure>;
 }
