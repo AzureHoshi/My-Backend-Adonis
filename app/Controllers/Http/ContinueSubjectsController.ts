@@ -1,6 +1,8 @@
 import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema } from "@ioc:Adonis/Core/Validator";
+import { BelongsTo } from "@ioc:Adonis/Lucid/Orm";
 import ContinueSubject from "App/Models/ContinueSubject";
+import Subject from "App/Models/Subject";
 
 // ! แบบเดิม
 // const tree = async (data: any, level: number) => {
@@ -175,28 +177,41 @@ export default class ContinueSubjectsController {
         .where("subject_id", params.id)
         .where("is_deleted", false);
 
-      const dataWithChildren = await Promise.all(
+      const dataWithChildren: Array<{
+        subjects: BelongsTo<typeof Subject>;
+        parent: {
+          parent_id: any;
+        };
+        children: ContinueSubject[];
+      }> = await Promise.all(
         data.map(async (item) => {
-          const children = await ContinueSubject.query()
+          const children: ContinueSubject[] = await ContinueSubject.query()
             .preload("subjects")
             .where("parent_id", item.subject_id)
             .where("is_deleted", false);
 
-          if (children.length > 0) {
-            return {
-              ...item.$attributes,
-              subjects: item.subjects,
-              parent: item.parent,
-              children: children,
-            };
-          } else {
-            return {
-              ...item.$attributes,
-              subjects: item.subjects,
-              parent: item.parent,
-              children: [],
-            };
+          let parentIds = null as any;
+
+          if (item.parent_id !== null) {
+            const parentSubject = await ContinueSubject.query()
+              .where("subject_id", item.parent_id)
+              .where("is_deleted", false);
+
+            parentIds = parentSubject.map((parent) => parent.parent_id);
+            console.log("parentSubject", parentIds);
           }
+
+          const dataItem = {
+            ...item.$attributes,
+            subjects: item.subjects,
+            parent: {
+              ...item.parent.$attributes,
+              parent_id: parentIds,
+            },
+            children: children,
+          };
+
+          return dataItem;
         })
       );
 
@@ -239,12 +254,42 @@ export default class ContinueSubjectsController {
 
   public async store({ request, response }: HttpContextContract) {
     const storeSchema = schema.create({
-      parent_id: schema.number.optional(),
+      parent_id: schema.number.nullable(),
       subject_id: schema.number(),
     });
 
     try {
       const payload = await request.validate({ schema: storeSchema });
+
+      const checkParentIdNull = await ContinueSubject.query()
+        .whereNull("parent_id")
+        .where("subject_id", payload.subject_id)
+        .where("is_deleted", false);
+
+      if (checkParentIdNull.length > 0) {
+        const continueSubject = await ContinueSubject.updateOrCreate(
+          { continue_subject_id: checkParentIdNull[0].continue_subject_id }, // ถ้ามี parent_id ที่เป็น null ให้ update ข้อมูลนั้น
+          payload
+        );
+
+        return response
+          .status(201)
+          .json({ data: continueSubject, status: 201 });
+      }
+      const parentIdValue =
+        payload.parent_id !== undefined ? payload.parent_id : null;
+
+      const checkDuplicate = await ContinueSubject.query()
+        .where("parent_id", parentIdValue as any)
+        .where("subject_id", payload.subject_id)
+        .where("is_deleted", false);
+
+      if (checkDuplicate.length > 0) {
+        return response.status(400).json({
+          message: "ContinueSubject already exists",
+          status: 400,
+        });
+      }
 
       const continueSubject = await ContinueSubject.create(payload);
 
