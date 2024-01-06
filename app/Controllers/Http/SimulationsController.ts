@@ -5,6 +5,8 @@ import { sortBy } from "lodash";
 import JobPosition from "App/Models/JobPosition";
 import SubjectJobRelated from "App/Models/SubjectJobRelated";
 import Subject from "App/Models/Subject";
+import SimulationsJobRec from "App/Models/SimulationsJobRec";
+import SimulationsSubjectRec from "App/Models/SimulationsSubjectRec";
 
 export default class SimulationsController {
   public async simulationResultBySubject({
@@ -14,6 +16,7 @@ export default class SimulationsController {
     try {
       const dataSchema = schema.create({
         subject_id: schema.array().members(schema.number()),
+        collegian_code: schema.string.optional(),
       });
 
       const payload = await request.validate({
@@ -80,6 +83,22 @@ export default class SimulationsController {
         uniqueJobIds.indexOf(job.job_position_id)
       );
 
+      if (!payload.collegian_code) {
+        await SimulationsSubjectRec.createMany(
+          payload.subject_id.map((subject_id) => ({
+            collegian_code: "guest",
+            subject_id,
+          }))
+        );
+      } else {
+        await SimulationsSubjectRec.createMany(
+          payload.subject_id.map((subject_id) => ({
+            collegian_code: payload.collegian_code,
+            subject_id,
+          }))
+        );
+      }
+
       return response.status(200).json({
         data: sortedDataJob,
         status: 200,
@@ -99,6 +118,7 @@ export default class SimulationsController {
     try {
       const dataSchema = schema.create({
         job_position_id: schema.number(),
+        collegian_code: schema.string.optional(),
       });
 
       const payload = await request.validate({
@@ -186,6 +206,18 @@ export default class SimulationsController {
           );
         }
       });
+
+      if (!payload.collegian_code) {
+        await SimulationsJobRec.create({
+          collegian_code: "guest",
+          job_position_id: payload.job_position_id,
+        });
+      } else {
+        await SimulationsJobRec.create({
+          collegian_code: payload.collegian_code,
+          job_position_id: payload.job_position_id,
+        });
+      }
 
       return response.status(200).json({
         data: dataJobPositionResult,
