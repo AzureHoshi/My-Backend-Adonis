@@ -298,9 +298,9 @@ export default class InterestResultsController {
       const results = await InterestResult.query()
         .where("collegian_code", params.id)
         .where(
-          "interest_result_count",
+          "interest_result_count", // ให้แสดงเฉพาะค่าสูงสุด
           InterestResult.query()
-            .from("interest_results")
+            .where("collegian_code", params.id)
             .max("interest_result_count")
         )
         .orderBy("interest_result_percent", "desc")
