@@ -179,9 +179,7 @@ export default class ContinueSubjectsController {
 
       const dataWithChildren: Array<{
         subjects: BelongsTo<typeof Subject>;
-        parent: {
-          parent_id: any;
-        };
+        parent: any;
         children: ContinueSubject[];
       }> = await Promise.all(
         data.map(async (item) => {
@@ -201,13 +199,20 @@ export default class ContinueSubjectsController {
             console.log("parentSubject", parentIds);
           }
 
+          console.log("item", item.parent);
+
+          const parent =
+            item.parent === null
+              ? null
+              : {
+                  ...item.parent.$attributes,
+                  parent_id: parentIds,
+                };
+
           const dataItem = {
             ...item.$attributes,
             subjects: item.subjects,
-            parent: {
-              ...item.parent.$attributes,
-              parent_id: parentIds,
-            },
+            parent: parent,
             children: children,
           };
 
