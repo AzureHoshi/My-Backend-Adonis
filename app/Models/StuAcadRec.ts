@@ -10,6 +10,7 @@ import {
 import Subject from "./Subject";
 import ContinueSubject from "./ContinueSubject";
 import SubjectStructure from "./SubjectStructure";
+import Competency from "./Competency";
 
 export default class StuAcadRec extends BaseModel {
   @column({ isPrimary: true })
@@ -57,4 +58,10 @@ export default class StuAcadRec extends BaseModel {
     foreignKey: "subject_id",
   })
   public subject_structure: BelongsTo<typeof SubjectStructure>;
+
+  @hasMany(() => Competency, {
+    foreignKey: "subject_id",
+    localKey: "subject_id",
+  })
+  public competencies: HasMany<typeof Competency>;
 }

@@ -24,16 +24,15 @@ export default class StuAcadRecsController {
         .where("is_deleted", false)
         .preload("subject")
         .preload("continue_subjects")
-        .preload("subject_structure");
+        .preload("subject_structure")
+        .preload("competencies");
 
       if (!stuAcadRec || stuAcadRec.length === 0) {
-        return response
-          .status(404)
-          .json({
-            message: "Student academic record not found",
-            data: [],
-            status: 404,
-          });
+        return response.status(404).json({
+          message: "Student academic record not found",
+          data: [],
+          status: 404,
+        });
       } else {
         return response.status(200).json({ data: stuAcadRec });
       }
