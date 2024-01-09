@@ -71,6 +71,7 @@ Route.group(() => {
   Route.resource("ylos", "YlosController").apiOnly();
   Route.resource("ylo-descriptions", "YloDescriptionsController").apiOnly();
   Route.resource("plos", "PlosController").apiOnly();
+  Route.resource("ylo_plos", "YloPlosController").apiOnly();
 
   // ? custom route
   Route.get(
