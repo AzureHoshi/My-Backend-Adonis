@@ -16,11 +16,11 @@ export default class extends BaseSchema {
         .onDelete("CASCADE")
         .comment("FK");
       table
-        .integer("student_id")
+        .integer("subject_id")
         .notNullable()
         .unsigned()
-        .references("student_id")
-        .inTable("students")
+        .references("subject_id")
+        .inTable("subjects")
         .onUpdate("CASCADE")
         .onDelete("CASCADE")
         .comment("FK");

@@ -11,6 +11,9 @@ export default class YloDescription extends BaseModel {
   @column()
   public ylo_description: string;
 
+  @column()
+  public is_deleted: boolean;
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;
 

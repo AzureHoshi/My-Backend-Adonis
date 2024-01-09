@@ -68,6 +68,8 @@ Route.group(() => {
   ).apiOnly();
   Route.resource("interest-results", "InterestResultsController").apiOnly();
   Route.resource("stu-acad-recs", "StuAcadRecsController").apiOnly();
+  Route.resource("ylos", "YlosController").apiOnly();
+  Route.resource("ylo-descriptions", "YloDescriptionsController").apiOnly();
 
   // ? custom route
   Route.get(

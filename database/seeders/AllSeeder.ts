@@ -20,6 +20,12 @@ import SubjectStructure from "./subSeeders/SubjectStructure";
 import CurriculumStructuresV2 from "./subSeeders/CurriculumStructuresV2";
 import ContinueSubject from "./subSeeders/ContinueSubject";
 import SubjectsJobsRelated from "./subSeeders/SubjectsJobsRelated";
+import Ylo from "./subSeeders/Ylo";
+import YloDescription from "./subSeeders/YloDescription";
+import Plo from "./subSeeders/Plo";
+import YloPlo from "./subSeeders/YloPlo";
+import SubPlo from "./subSeeders/SubPlo";
+import SubPloMapping from "./subSeeders/SubPloMapping";
 
 export default class extends BaseSeeder {
   public async run() {
@@ -45,5 +51,11 @@ export default class extends BaseSeeder {
     await new CurriculumStructuresV2(this.client).run();
     await new ContinueSubject(this.client).run();
     await new SubjectsJobsRelated(this.client).run();
+    await new Ylo(this.client).run();
+    await new YloDescription(this.client).run();
+    await new Plo(this.client).run();
+    await new YloPlo(this.client).run();
+    await new SubPlo(this.client).run();
+    await new SubPloMapping(this.client).run();
   }
 }
