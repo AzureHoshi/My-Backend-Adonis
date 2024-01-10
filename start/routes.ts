@@ -68,7 +68,7 @@ Route.group(() => {
   ).apiOnly();
   Route.resource("interest-results", "InterestResultsController").apiOnly();
   Route.resource("stu-acad-recs", "StuAcadRecsController").apiOnly();
-  Route.resource("ylos", "YlosController").apiOnly();
+  Route.resource("ylos", "YlOsController").apiOnly();
   Route.resource("ylo-descriptions", "YloDescriptionsController").apiOnly();
   Route.resource("plos", "PlosController").apiOnly();
   Route.resource("ylo_plos", "YloPlosController").apiOnly();
