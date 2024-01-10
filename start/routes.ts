@@ -70,7 +70,7 @@ Route.group(() => {
   Route.resource("stu-acad-recs", "StuAcadRecsController").apiOnly();
   Route.resource("ylos", "YlOsController").apiOnly();
   Route.resource("ylo-descriptions", "YloDescriptionsController").apiOnly();
-  Route.resource("plos", "PlosController").apiOnly();
+  Route.resource("plos", "PlOsController").apiOnly();
   Route.resource("ylo_plos", "YloPlosController").apiOnly();
   Route.resource("sub-plos", "SubPlosController").apiOnly();
   Route.resource("sub-plo-mappings", "SubPloMappingsController").apiOnly();
