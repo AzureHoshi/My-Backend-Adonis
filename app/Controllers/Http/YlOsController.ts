@@ -7,13 +7,11 @@ export default class YlOsController {
     try {
       const ylos = await Ylo.query()
         .where("is_deleted", 0)
-        .preload("ylo_description")
-        .whereHas("ylo_description", (query) => {
+        .preload("ylo_description", (query) => {
           query.where("is_deleted", 0);
         })
-        .preload("plos")
-        .whereHas("plos", (query) => {
-          query.where("is_deleted", 0);
+        .preload("plos", (query) => {
+          query.from("plos").where("plos.is_deleted", 0);
         });
 
       return response.status(200).json({
