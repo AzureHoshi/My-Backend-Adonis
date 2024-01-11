@@ -6,9 +6,15 @@ export default class YlOsController {
   public async index({ response }: HttpContextContract) {
     try {
       const ylos = await Ylo.query()
+        .where("is_deleted", false)
         .preload("ylo_description")
+        .whereHas("ylo_description", (query) => {
+          query.where("is_deleted", false);
+        })
         .preload("plos")
-        .where("is_deleted", false);
+        .whereHas("plos", (query) => {
+          query.where("is_deleted", false);
+        });
 
       return response.status(200).json({
         message: "YLOs fetched successfully",
@@ -67,7 +73,7 @@ export default class YlOsController {
           id: params.id,
         });
       } else if (ylo.is_deleted) {
-        return response.status(400).json({
+        return response.status(200).json({
           message: "YLO already deleted",
           id: params.id,
         });
