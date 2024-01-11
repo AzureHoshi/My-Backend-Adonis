@@ -6,14 +6,14 @@ export default class YlOsController {
   public async index({ response }: HttpContextContract) {
     try {
       const ylos = await Ylo.query()
-        .where("is_deleted", false)
+        .where("is_deleted", 0)
         .preload("ylo_description")
         .whereHas("ylo_description", (query) => {
-          query.where("is_deleted", false);
+          query.where("is_deleted", 0);
         })
         .preload("plos")
         .whereHas("plos", (query) => {
-          query.where("is_deleted", false);
+          query.where("is_deleted", 0);
         });
 
       return response.status(200).json({
