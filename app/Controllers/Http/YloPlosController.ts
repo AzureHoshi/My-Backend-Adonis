@@ -62,8 +62,6 @@ export default class YloPlosController {
         .where("is_deleted", false)
         .first();
 
-      console.log(yloPlo.);
-
       if (!yloPlo) {
         return response.status(404).json({
           message: "YLO-PLO not found",
