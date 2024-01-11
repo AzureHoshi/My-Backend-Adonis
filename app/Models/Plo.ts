@@ -12,7 +12,7 @@ import YloPlo from "./YloPlo";
 import Ylo from "./Ylo";
 
 export default class Plo extends BaseModel {
-  table = "plos";
+  public static table = "plos";
 
   @column({ isPrimary: true })
   public plo_id: number;
@@ -43,5 +43,5 @@ export default class Plo extends BaseModel {
     throughForeignKey: "ylo_id",
     throughLocalKey: "ylo_id",
   })
-  public ylos: HasManyThrough<typeof Ylo, typeof YloPlo>;
+  public ylos: HasManyThrough<typeof Ylo>;
 }

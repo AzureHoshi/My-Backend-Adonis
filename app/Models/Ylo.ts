@@ -12,6 +12,8 @@ import Plo from "./Plo";
 import YloPlo from "./YloPlo";
 
 export default class Ylo extends BaseModel {
+  public static table = "ylos";
+
   @column({ isPrimary: true })
   public ylo_id: number;
 

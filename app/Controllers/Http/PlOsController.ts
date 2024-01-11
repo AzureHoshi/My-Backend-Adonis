@@ -6,9 +6,13 @@ export default class PlOsController {
   public async index({ response }: HttpContextContract) {
     try {
       const plos = await Plo.query()
-        .preload("sub_plos")
-        .preload("ylos")
-        .where("is_deleted", false);
+        .where("plos.is_deleted", false) // Specify the table for is_deleted
+        .preload("sub_plos", (query) => {
+          query.where("sub_plos.is_deleted", false); // Specify the table for is_deleted
+        })
+        .preload("ylos", (query) => {
+          query.from("ylos").where("ylos.is_deleted", false); // Specify the table for is_deleted
+        });
 
       return response.status(200).json({
         message: "PLOs fetched successfully",
