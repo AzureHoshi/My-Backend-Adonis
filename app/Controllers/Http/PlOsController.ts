@@ -55,7 +55,7 @@ export default class PlOsController {
           id: params.id,
         });
       } else if (plo.is_deleted) {
-        return response.status(400).json({
+        return response.status(200).json({
           message: "PLO already deleted",
           id: params.id,
         });

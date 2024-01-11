@@ -36,7 +36,7 @@ export default class YloPlosController {
           id: params.id,
         });
       } else if (yloPlo.is_deleted) {
-        return response.status(400).json({
+        return response.status(200).json({
           message: "YLO-PLO already deleted",
           id: params.id,
         });

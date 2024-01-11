@@ -40,7 +40,7 @@ export default class SubPlosController {
           id: params.id,
         });
       } else if (subPlo.is_deleted) {
-        return response.status(400).json({
+        return response.status(200).json({
           message: "Sub PLO already deleted",
           id: params.id,
         });

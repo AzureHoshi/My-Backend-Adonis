@@ -38,7 +38,7 @@ export default class YloDescriptionsController {
           id: params.id,
         });
       } else if (yloDescription.is_deleted) {
-        return response.status(400).json({
+        return response.status(200).json({
           message: "YLO description already deleted",
           id: params.id,
         });

@@ -39,7 +39,7 @@ export default class SubPloMappingsController {
           id: params.id,
         });
       } else if (subPloMapping.is_deleted) {
-        return response.status(400).json({
+        return response.status(200).json({
           message: "Sub PLO Mapping already deleted",
           id: params.id,
         });
