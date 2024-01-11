@@ -2,6 +2,11 @@ import { DateTime } from "luxon";
 import { BaseModel, column } from "@ioc:Adonis/Lucid/Orm";
 
 export default class YloPlo extends BaseModel {
+  public static table = "ylo_plos";
+
+  @column({ isPrimary: true })
+  public ylo_plo_id: number;
+
   @column()
   public ylo_id: number;
 

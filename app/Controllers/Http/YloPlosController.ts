@@ -12,12 +12,33 @@ export default class YloPlosController {
     try {
       const payload = await request.validate({ schema: storeYloPloSchema });
 
-      const yloPlo = await YloPlo.create(payload);
+      const yloPlo = await YloPlo.query()
+        .where("ylo_id", payload.ylo_id)
+        .where("plo_id", payload.plo_id)
+        .where("is_deleted", false)
+        .first();
 
-      return response.status(201).json({
-        message: "YLO-PLO created successfully",
-        data: yloPlo,
-      });
+      if (!yloPlo) {
+        const newYloPlo = await YloPlo.create(payload);
+
+        return response.status(201).json({
+          message: "YLO-PLO created successfully",
+          data: newYloPlo,
+        });
+      } else if (yloPlo.is_deleted) {
+        yloPlo.is_deleted = false;
+        await yloPlo.save();
+
+        return response.status(201).json({
+          message: "YLO-PLO created successfully",
+          data: yloPlo,
+        });
+      } else {
+        return response.status(200).json({
+          message: "YLO-PLO already exists",
+          data: yloPlo,
+        });
+      }
     } catch (error) {
       return response.status(400).json({
         message: "Something went wrong",
@@ -35,33 +56,35 @@ export default class YloPlosController {
     try {
       const payload = await request.validate({ schema: deleteYloPloSchema });
 
-      const data = await YloPlo.query()
+      const yloPlo = await YloPlo.query()
         .where("ylo_id", payload.ylo_id)
         .where("plo_id", payload.plo_id)
         .where("is_deleted", false)
         .first();
 
-      if (!data) {
+      console.log(yloPlo.);
+
+      if (!yloPlo) {
         return response.status(404).json({
           message: "YLO-PLO not found",
         });
-      } else if (data.is_deleted) {
+      } else if (yloPlo.is_deleted) {
         return response.status(200).json({
           message: "YLO-PLO already deleted",
         });
       } else {
-        data.is_deleted = true;
-        await data.save();
+        yloPlo.is_deleted = true;
+        await yloPlo.save();
 
         return response.status(200).json({
           message: "YLO-PLO deleted successfully",
-          data: data,
+          data: yloPlo,
         });
       }
     } catch (error) {
       return response.status(400).json({
         message: "Something went wrong",
-        error: error.messages,
+        error: error,
       });
     }
   }

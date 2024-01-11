@@ -6,6 +6,11 @@ export default class extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table
+        .increments("ylo_plo_id")
+        .primary()
+        .notNullable()
+        .comment("รหัสข้อมูลผลการเรียน");
+      table
         .integer("ylo_id")
         .notNullable()
         .unsigned()

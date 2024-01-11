@@ -65,7 +65,6 @@ Route.group(() => {
   Route.resource("ylos", "YlOsController").apiOnly();
   Route.resource("ylo-descriptions", "YloDescriptionsController").apiOnly();
   Route.resource("plos", "PlOsController").apiOnly();
-  Route.resource("ylo_plos", "YloPlosController").apiOnly();
   Route.resource("sub-plos", "SubPlosController").apiOnly();
   Route.resource("sub-plo-mappings", "SubPloMappingsController").apiOnly();
 
@@ -84,6 +83,8 @@ Route.group(() => {
     "continue-subjects-curriculum/:id",
     "ContinueSubjectsController.showByCurriculum"
   );
+  Route.post("ylo-plos", "YloPlosController.store");
+  Route.delete("ylo-plos", "YloPlosController.destroy");
 
   // ? for simulation
   Route.post(
