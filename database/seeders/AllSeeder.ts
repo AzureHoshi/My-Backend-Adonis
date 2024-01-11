@@ -31,6 +31,9 @@ export default class extends BaseSeeder {
   public async run() {
     // Write your database queries inside the run method
 
+    const startTime = new Date();
+    console.log("Running seeders...");
+
     await new FacultySeeder(this.client).run();
     await new CollegianGroup(this.client).run();
     await new Curriculum(this.client).run();
@@ -57,5 +60,16 @@ export default class extends BaseSeeder {
     await new YloPlo(this.client).run();
     await new SubPlo(this.client).run();
     await new SubPloMapping(this.client).run();
+
+    const endTime = new Date();
+    const executionTimeInMillis = endTime.getTime() - startTime.getTime();
+    const executionTimeInSeconds = executionTimeInMillis / 1000;
+
+    const minutes = Math.floor(executionTimeInSeconds / 60);
+    const seconds = Math.round(executionTimeInSeconds % 60);
+
+    console.log(
+      `Seeders executed in ${minutes} minutes and ${seconds} seconds.`
+    );
   }
 }
