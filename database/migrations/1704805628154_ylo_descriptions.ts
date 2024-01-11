@@ -16,7 +16,11 @@ export default class extends BaseSchema {
         .onDelete("CASCADE");
       table.string("ylo_description").notNullable().comment("รายละเอียด YLO");
 
-      table.boolean("is_deleted").defaultTo(false).comment("ลบแล้วหรือยัง");
+      table
+        .boolean("is_deleted")
+        .notNullable()
+        .defaultTo(false)
+        .comment("ลบแล้วหรือยัง");
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

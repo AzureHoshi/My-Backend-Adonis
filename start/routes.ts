@@ -33,11 +33,6 @@ Route.group(() => {
   Route.resource("subject-groups", "SubjectGroupsController").apiOnly();
   Route.resource("subjects", "SubjectsController").apiOnly();
   Route.resource("collegians", "CollegiansController").apiOnly();
-  Route.resource("study-records", "StudyRecordsController").apiOnly();
-  Route.resource(
-    "collegian-feedbacks",
-    "CollegianFeedbacksController"
-  ).apiOnly(); //done
   Route.resource("interest-surveys", "InterestSurveysController").apiOnly();
   Route.resource("interest-questions", "InterestQuestionsController").apiOnly();
   Route.resource("interest-answers", "InterestAnswersController").apiOnly();
@@ -47,7 +42,6 @@ Route.group(() => {
   ).apiOnly();
   Route.resource("competencies", "CompetenciesController").apiOnly();
   Route.resource("competency-subs", "CompetencySubsController").apiOnly();
-  Route.resource("feedbacks", "FeedbacksController").apiOnly();
   Route.resource("feedback-records", "FeedbackRecordsController").apiOnly();
   Route.resource(
     "curriculum-structures",
@@ -100,10 +94,4 @@ Route.group(() => {
     "simulation-result-job",
     "SimulationsController.simulationResultByJob"
   );
-
-  // ? สำหรับทดสอบการอัพโหลดไฟล์
-  Route.group(() => {
-    Route.get("download", "FileUploadsController.download");
-    Route.post("upload", "FileUploadsController.upload");
-  }).prefix("/test");
 }).prefix("/api/v1");

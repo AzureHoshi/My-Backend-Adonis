@@ -8,7 +8,11 @@ export default class extends BaseSchema {
       table.increments("ylo_id").primary();
       table.integer("ylo_year").notNullable().comment("ปี");
 
-      table.boolean("is_deleted").defaultTo(false).comment("ลบแล้วหรือยัง");
+      table
+        .boolean("is_deleted")
+        .notNullable()
+        .defaultTo(false)
+        .comment("ลบแล้วหรือยัง");
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
