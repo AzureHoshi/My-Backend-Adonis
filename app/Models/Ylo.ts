@@ -41,9 +41,4 @@ export default class Ylo extends BaseModel {
     throughLocalKey: "plo_id",
   })
   public plos: HasManyThrough<typeof Plo>;
-
-  @hasMany(() => YloPlo, {
-    foreignKey: "ylo_id",
-  })
-  public ylo_plos: HasMany<typeof YloPlo>;
 }
