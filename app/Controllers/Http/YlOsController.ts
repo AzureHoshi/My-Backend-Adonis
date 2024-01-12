@@ -12,6 +12,9 @@ export default class YlOsController {
         })
         .preload("plos", (query) => {
           query.from("plos").where("plos.is_deleted", 0);
+        })
+        .preload("ylo_plos", (query) => {
+          query.from("ylo_plos").where("ylo_plos.is_deleted", 0);
         });
 
       return response.status(200).json({
