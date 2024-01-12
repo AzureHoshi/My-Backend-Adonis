@@ -25,6 +25,9 @@ export default class SubjectsController {
         .preload("continue_subjects", (query) => {
           query.where("is_deleted", false).preload("parent");
         })
+        .preload("sub_plo_mappings", (query) => {
+          query.where("is_deleted", false);
+        })
         .where("is_deleted", false)
         .orderBy("updatedAt", "desc");
 
@@ -61,6 +64,9 @@ export default class SubjectsController {
         })
         .preload("continue_subjects", (query) => {
           query.where("is_deleted", false).preload("parent");
+        })
+        .preload("sub_plo_mappings", (query) => {
+          query.where("is_deleted", false);
         })
         .where("is_deleted", false)
         .firstOrFail();
@@ -99,6 +105,9 @@ export default class SubjectsController {
         })
         .preload("continue_subjects", (query) => {
           query.where("is_deleted", false).preload("parent");
+        })
+        .preload("sub_plo_mappings", (query) => {
+          query.where("is_deleted", false);
         })
         .where("curriculum_id", params.id)
         .where("is_deleted", false)
