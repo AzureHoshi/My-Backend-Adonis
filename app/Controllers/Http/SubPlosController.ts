@@ -30,6 +30,40 @@ export default class SubPlosController {
     }
   }
 
+  public async update({ request, params, response }: HttpContextContract) {
+    const updateSubPloSchema = schema.create({
+      sub_plo_title: schema.string(),
+      sub_plo_description: schema.string(),
+    });
+
+    try {
+      const payload = await request.validate({ schema: updateSubPloSchema });
+
+      const subPlo = await SubPlo.findOrFail(params.id);
+
+      if (!subPlo) {
+        return response.status(400).json({
+          message: "Sub PLO not found",
+          id: params.id,
+        });
+      } else {
+        subPlo.sub_plo_title = payload.sub_plo_title;
+        subPlo.sub_plo_description = payload.sub_plo_description;
+        await subPlo.save();
+
+        return response.status(200).json({
+          message: "Sub PLO updated successfully",
+          data: subPlo,
+        });
+      }
+    } catch (error) {
+      return response.status(400).json({
+        message: "Something went wrong",
+        error: error.messages,
+      });
+    }
+  }
+
   public async destroy({ params, response }: HttpContextContract) {
     try {
       const subPlo = await SubPlo.findOrFail(params.id);

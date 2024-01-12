@@ -49,18 +49,13 @@ export default class YloPlosController {
 
   public async destroy({ request, response }: HttpContextContract) {
     const deleteYloPloSchema = schema.create({
-      ylo_id: schema.number(),
-      plo_id: schema.number(),
+      ylo_plp_id: schema.number(),
     });
 
     try {
       const payload = await request.validate({ schema: deleteYloPloSchema });
 
-      const yloPlo = await YloPlo.query()
-        .where("ylo_id", payload.ylo_id)
-        .where("plo_id", payload.plo_id)
-        .where("is_deleted", false)
-        .first();
+      const yloPlo = await YloPlo.findOrFail(payload.ylo_plp_id);
 
       if (!yloPlo) {
         return response.status(404).json({
