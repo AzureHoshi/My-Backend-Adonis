@@ -48,6 +48,8 @@ export default class YloPlosController {
   }
 
   public async destroy({ request, response }: HttpContextContract) {
+    console.log("YloPlosController -> destroy -> request", request);
+
     const deleteYloPloSchema = schema.create({
       ylo_plo_id: schema.number(),
     });
