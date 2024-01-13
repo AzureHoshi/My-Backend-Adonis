@@ -67,6 +67,7 @@ Route.group(() => {
   Route.resource("plos", "PlOsController").apiOnly();
   Route.resource("sub-plos", "SubPlosController").apiOnly();
   Route.resource("sub-plo-mappings", "SubPloMappingsController").apiOnly();
+  Route.resource("job-competencies", "JobCompetenciesController").apiOnly();
 
   // ? custom route
   Route.get(
