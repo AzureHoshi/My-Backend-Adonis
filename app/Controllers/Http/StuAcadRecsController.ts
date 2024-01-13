@@ -26,7 +26,13 @@ export default class StuAcadRecsController {
         .preload("continue_subjects")
         .preload("subject_structure")
         .preload("competencies")
-        .preload("sub_plo_mappings");
+        .preload("sub_plo_mappings", (sub_plo_mapping_query) => {
+          sub_plo_mapping_query
+            .preload("sub_plo", (sub_plo_query) => {
+              sub_plo_query.preload("plo").where("is_deleted", false);
+            })
+            .where("is_deleted", false);
+        });
 
       if (!stuAcadRec || stuAcadRec.length === 0) {
         return response.status(404).json({

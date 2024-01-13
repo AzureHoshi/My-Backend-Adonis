@@ -1,5 +1,13 @@
 import { DateTime } from "luxon";
-import { BaseModel, column } from "@ioc:Adonis/Lucid/Orm";
+import {
+  BaseModel,
+  HasMany,
+  HasOne,
+  column,
+  hasMany,
+  hasOne,
+} from "@ioc:Adonis/Lucid/Orm";
+import SubPlo from "./SubPlo";
 
 export default class SubPloMapping extends BaseModel {
   @column({ isPrimary: true })
@@ -19,4 +27,10 @@ export default class SubPloMapping extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
+
+  @hasOne(() => SubPlo, {
+    foreignKey: "sub_plo_id",
+    localKey: "sub_plo_id",
+  })
+  public sub_plo: HasOne<typeof SubPlo>;
 }
