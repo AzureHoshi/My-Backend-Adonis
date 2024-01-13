@@ -5,7 +5,11 @@ import JobPosition from "App/Models/JobPosition";
 export default class JobPositionsController {
   public async index({ response }: HttpContextContract) {
     try {
-      const jobPositions = await JobPosition.query().where("is_deleted", false);
+      const jobPositions = await JobPosition.query()
+        .where("is_deleted", false)
+        .preload("job_competencies", (query) => {
+          query.where("is_deleted", false);
+        });
 
       return response.status(200).json({ data: jobPositions, status: 200 });
     } catch (error) {
