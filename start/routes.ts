@@ -95,4 +95,9 @@ Route.group(() => {
     "simulation-result-job",
     "SimulationsController.simulationResultByJob"
   );
+
+  // * login
+  Route.post("login", "AuthController.login");
+  Route.post("logout", "AuthController.logout");
+  Route.post("register", "AuthController.register");
 }).prefix("/api/v1");

@@ -15,6 +15,7 @@ export default class extends BaseSchema {
       table.string("name").notNullable();
       table.string("type").notNullable();
       table.string("token", 64).notNullable().unique();
+      table.timestamp("expires_at", { useTz: true }).nullable();
 
       /**
        * Uses timestampz for PostgreSQL and DATETIME2 for MSSQL
