@@ -55,7 +55,7 @@ export default class YloPlosController {
     try {
       const payload = await request.validate({ schema: deleteYloPloSchema });
 
-      const yloPlo = await YloPlo.findOrFail(payload.ylo_plp_id);
+      const yloPlo = await YloPlo.findOrFail(payload.ylo_plo_id);
 
       if (!yloPlo) {
         return response.status(404).json({
