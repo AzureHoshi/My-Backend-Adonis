@@ -11,6 +11,7 @@ import Subject from "./Subject";
 import ContinueSubject from "./ContinueSubject";
 import SubjectStructure from "./SubjectStructure";
 import Competency from "./Competency";
+import SubPloMapping from "./SubPloMapping";
 
 export default class StuAcadRec extends BaseModel {
   @column({ isPrimary: true })
@@ -64,4 +65,10 @@ export default class StuAcadRec extends BaseModel {
     localKey: "subject_id",
   })
   public competencies: HasMany<typeof Competency>;
+
+  @hasMany(() => SubPloMapping, {
+    foreignKey: "subject_id",
+    localKey: "subject_id",
+  })
+  public sub_plo_mappings: HasMany<typeof SubPloMapping>;
 }

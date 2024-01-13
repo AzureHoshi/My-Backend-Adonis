@@ -25,7 +25,8 @@ export default class StuAcadRecsController {
         .preload("subject")
         .preload("continue_subjects")
         .preload("subject_structure")
-        .preload("competencies");
+        .preload("competencies")
+        .preload("sub_plo_mappings");
 
       if (!stuAcadRec || stuAcadRec.length === 0) {
         return response.status(404).json({
