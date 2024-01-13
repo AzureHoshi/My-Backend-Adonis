@@ -15,7 +15,10 @@ export default class JobCompetenciesController {
 
       const jobCompetency = await JobCompetency.create(payload);
 
-      return response.created(jobCompetency);
+      return response.created({
+        data: jobCompetency,
+        message: "job competency created",
+      });
     } catch (error) {
       return response.badRequest(error);
     }
@@ -33,19 +36,22 @@ export default class JobCompetenciesController {
       const jobCompetency = await JobCompetency.findOrFail(params.id);
 
       if (!jobCompetency) {
-        return response.notFound({
+        return response.status(200).json({
           message: "Job Competency not found",
         });
       } else if (jobCompetency.is_deleted) {
-        return response.badRequest({
-          message: "Job Competency is deleted",
+        return response.status(200).json({
+          message: "Job Competency already deleted",
         });
       } else {
         jobCompetency.merge(payload);
 
         await jobCompetency.save();
 
-        return response.ok(jobCompetency);
+        return response.ok({
+          data: jobCompetency,
+          message: "Job Competency updated",
+        });
       }
     } catch (error) {
       return response.badRequest(error);
@@ -57,12 +63,12 @@ export default class JobCompetenciesController {
       const jobCompetency = await JobCompetency.findOrFail(params.id);
 
       if (!jobCompetency) {
-        return response.notFound({
+        return response.status(200).json({
           message: "Job Competency not found",
         });
       } else if (jobCompetency.is_deleted) {
-        return response.badRequest({
-          message: "Job Competency is deleted",
+        return response.status(200).json({
+          message: "Job Competency already deleted",
         });
       } else {
         jobCompetency.is_deleted = true;
@@ -70,7 +76,7 @@ export default class JobCompetenciesController {
         await jobCompetency.save();
 
         return response.ok({
-          message: "Job Competency deleted",
+          message: "Job Competency byId " + params.id + " deleted",
         });
       }
     } catch (error) {
