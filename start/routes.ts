@@ -99,5 +99,6 @@ Route.group(() => {
   // * login
   Route.post("login", "AuthController.login");
   Route.post("logout", "AuthController.logout");
-  Route.post("register", "AuthController.register");
+  Route.get("check-login", "AuthController.checkLogin").middleware("auth");
+  Route.get("/user", "AuthController.show").middleware("auth");
 }).prefix("/api/v1");

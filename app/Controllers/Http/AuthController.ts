@@ -22,8 +22,6 @@ export default class AuthController {
 
       const user = await User.query().where("email", email).firstOrFail();
 
-      console.log("user", user);
-
       if (!(await Hash.verify(user.password, password))) {
         return response.unauthorized("Invalid credentials");
       }
@@ -45,30 +43,34 @@ export default class AuthController {
   }
 
   public async logout({ auth, response }: HttpContextContract) {
-    await auth.use("api").revoke();
-
-    return response.noContent();
-  }
-
-  public async register({ request, response }: HttpContextContract) {
-    const registerSchema = schema.create({
-      email: schema.string({}, [
-        rules.email(),
-        rules.unique({ table: "users", column: "email" }),
-      ]),
-      password: schema.string({}, [rules.minLength(8)]),
-    });
-
     try {
-      const { email, password } = await request.validate({
-        schema: registerSchema,
-      });
+      const user = auth.user; // เพิ่มบรรทัดนี้เพื่อรับข้อมูลผู้ใช้งานที่ทำการ logout
+      await auth.use("api").revoke();
 
-      const user = await User.create({ email, password });
-
-      return response.json({ user });
+      return response.ok({ revoked: true, user: user }); // เพิ่มข้อมูลผู้ใช้งานในการตอบกลับ
     } catch (error) {
       return response.badRequest(error.messages);
     }
+  }
+
+  public async checkLogin({ auth, response }: HttpContextContract) {
+    try {
+      // Assuming your user model is called 'User'
+      const user = await auth.use("api").authenticate();
+
+      if (user) {
+        return response.ok({ loggedIn: true, user });
+      } else {
+        return response.ok({ loggedIn: false });
+      }
+    } catch (error) {
+      return response.badRequest(error.message);
+    }
+  }
+
+  public async show({ auth, response }: HttpContextContract) {
+    const user = auth.use("api").user;
+
+    return response.ok({ user });
   }
 }

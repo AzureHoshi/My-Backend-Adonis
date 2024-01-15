@@ -3,9 +3,12 @@ import User from "App/Models/User";
 
 export default class extends BaseSeeder {
   public async run() {
-    await User.create({
-      email: "user@example.com",
-      password: "password",
-    });
+    await User.createMany([
+      {
+        email: "user@example.com",
+        password: "password",
+      },
+      { email: "user2@example.com", password: "password" },
+    ]);
   }
 }

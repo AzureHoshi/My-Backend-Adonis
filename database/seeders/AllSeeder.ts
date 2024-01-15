@@ -26,6 +26,7 @@ import Plo from "./subSeeders/Plo";
 import YloPlo from "./subSeeders/YloPlo";
 import SubPlo from "./subSeeders/SubPlo";
 import SubPloMapping from "./subSeeders/SubPloMapping";
+import User from "./User";
 
 export default class extends BaseSeeder {
   public async run() {
@@ -60,6 +61,7 @@ export default class extends BaseSeeder {
     await new YloPlo(this.client).run();
     await new SubPlo(this.client).run();
     await new SubPloMapping(this.client).run();
+    await new User(this.client).run();
 
     const endTime = new Date();
     const executionTimeInMillis = endTime.getTime() - startTime.getTime();
