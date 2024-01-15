@@ -9,72 +9,97 @@ export default class extends BaseSeeder {
       {
         job_position_id: 1,
         job_com_description:
-          "ความรู้เกี่ยวกับภาษาคอมพิวเตอร์และกรอบงาน (Framework) ต่าง ๆ",
+          "ทักษะการออกแบบและการพัฒนาซอฟต์แวร์ (Software Design and Development)",
       },
       {
         job_position_id: 1,
-        job_com_description: "ทักษะในการเขียนโปรแกรม (Coding)",
+        job_com_description: "ทักษะการทดสอบซอฟต์แวร์ (Software Testing)",
+      },
+      {
+        job_position_id: 1,
+        job_com_description: "ทักษะการจัดการซอฟต์แวร์ (Software Management)",
       },
       {
         job_position_id: 2,
-        job_com_description: "ทักษะในการเขียนโปรแกรม (Coding)",
+        job_com_description:
+          "ทักษะการเขียนโค้ดในภาษาโปรแกรมมิ่งเฉพาะ (Programming Languages)",
       },
       {
         job_position_id: 2,
-        job_com_description: "ทักษะการแก้ปัญหา (Problem Solving)",
+        job_com_description: "ทักษะการเขียนโค้ดแบบ Agile (Agile Programming)",
+      },
+      {
+        job_position_id: 2,
+        job_com_description:
+          "ทักษะการใช้เครื่องมือและเทคโนโลยีในการพัฒนาซอฟต์แวร์ (Software Development Tools and Technologies)",
       },
       {
         job_position_id: 3,
         job_com_description:
-          "ความรู้เกี่ยวกับกระบวนการพัฒนาระบบสารสนเทศ (System Development Process)",
+          "ทักษะการวิเคราะห์ระบบสารสนเทศ (Information System Analysis)",
       },
       {
         job_position_id: 3,
-        job_com_description: "ทักษะการคิดวิเคราะห์ (Critical Thinking)",
+        job_com_description:
+          "ทักษะการออกแบบระบบสารสนเทศ (Information System Design)",
+      },
+      {
+        job_position_id: 3,
+        job_com_description:
+          "ทักษะการวางแผนและบริหารโครงการระบบสารสนเทศ (Information System Project Planning and Management)",
       },
       {
         job_position_id: 4,
         job_com_description:
-          "ความรู้เกี่ยวกับการวิเคราะห์และออกแบบระบบ (System Analysis and Design)",
+          "ทักษะการวิเคราะห์และออกแบบระบบ (System Analysis and Design)",
       },
       {
         job_position_id: 4,
-        job_com_description: "ทักษะการคิดวิเคราะห์ (Critical Thinking)",
-      },
-      {
-        job_position_id: 5,
         job_com_description:
-          "ความรู้เกี่ยวกับกระบวนการพัฒนาซอฟต์แวร์ (Software Development Process)",
+          "ทักษะการเขียนเอกสารเชิงเทคนิค (Technical Documentation)",
+      },
+      {
+        job_position_id: 4,
+        job_com_description: "ทักษะการสื่อสารกับผู้ใช้ (User Communication)",
       },
       {
         job_position_id: 5,
-        job_com_description: "ทักษะในการทดสอบซอฟต์แวร์ (Software Testing)",
+        job_com_description: "ทักษะการทดสอบซอฟต์แวร์ (Software Testing)",
+      },
+      {
+        job_position_id: 5,
+        job_com_description: "ทักษะการเขียนกรณีทดสอบ (Test Case Writing)",
+      },
+      {
+        job_position_id: 5,
+        job_com_description: "ทักษะการเขียนรายงานทดสอบ (Test Report Writing)",
       },
       {
         job_position_id: 6,
         job_com_description:
-          "ความรู้เกี่ยวกับการออกแบบและสถาปัตยกรรมซอฟต์แวร์ (Software Design and Architecture)",
+          "ทักษะการออกแบบสถาปัตยกรรมซอฟต์แวร์ (Software Architecture Design)",
       },
       {
         job_position_id: 6,
         job_com_description:
-          "ความรู้เกี่ยวกับเครือข่ายคอมพิวเตอร์ (Computer Network)",
+          "ทักษะการเขียนเอกสารสถาปัตยกรรมซอฟต์แวร์ (Software Architecture Documentation)",
+      },
+      {
+        job_position_id: 6,
+        job_com_description:
+          "ทักษะการสื่อสารกับทีมพัฒนาซอฟต์แวร์ (Software Development Team Communication)",
       },
       {
         job_position_id: 7,
-        job_com_description: "ทักษะทางธุรกิจ (Business Skills)",
+        job_com_description: "ทักษะการวางแผนธุรกิจ (Business Planning)",
       },
       {
         job_position_id: 7,
-        job_com_description: "ทักษะทางการเงิน (Financial Skills)",
+        job_com_description: "ทักษะการระดมทุน (Fundraising)",
       },
       {
-        job_position_id: 8,
-        job_com_description: "ทักษะทางจิตวิญญาณ (Spiritual Skills)",
-      },
-      {
-        job_position_id: 8,
-        job_com_description: "ทักษะทางโลก (Worldly Skills)",
+        job_position_id: 7,
+        job_com_description: "ทักษะการตลาดและการขาย (Marketing and Sales)",
       },
     ];
 
