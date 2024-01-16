@@ -30,26 +30,49 @@ export default class AuthController {
         expiresIn: "1 days",
       });
 
-      response.cookie("token", token.token, {
-        httpOnly: true,
-        sameSite: "strict",
-        secure: Env.get("NODE_ENV") === "production", // ควรเป็น `true` ใน Production
-      });
-
       return response.json({ token: token.toJSON() });
     } catch (error) {
       return response.badRequest(error.messages);
     }
   }
 
-  public async logout({ auth, response }: HttpContextContract) {
+  public async logout({ auth, request, response }: HttpContextContract) {
     try {
-      const user = auth.user; // เพิ่มบรรทัดนี้เพื่อรับข้อมูลผู้ใช้งานที่ทำการ logout
+      // Retrieve the Authorization header from the request
+      const authorizationHeader = request.header("Authorization");
+
+      // Check if the Authorization header is present
+      if (!authorizationHeader) {
+        return response.badRequest("Missing Authorization header");
+      }
+
+      // Extract the token from the Authorization header
+      const [, token] = authorizationHeader.split(" ");
+
+      console.log("Received token:", token);
+
+      // Revoke the user's token using the extracted token
       await auth.use("api").revoke();
 
-      return response.ok({ revoked: true, user: user }); // เพิ่มข้อมูลผู้ใช้งานในการตอบกลับ
+      console.log("Token revoked");
+
+      // Clear the user's authentication state
+      await auth.use("api").logout();
+
+      console.log("User logged out");
+
+      // Remove the token cookie from the response
+
+      console.log("Token cookie removed");
+
+      return response.ok({ message: "Logout successful" });
     } catch (error) {
-      return response.badRequest(error.messages);
+      console.error("Logout error:", error);
+
+      return response.badRequest({
+        message: "Logout failed",
+        error: error.messages || "Unknown error",
+      });
     }
   }
 
