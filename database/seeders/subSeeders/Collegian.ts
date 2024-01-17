@@ -14,6 +14,7 @@ export default class extends BaseSeeder {
         col_email: "Prachaya_ma63@live.rmutl.ac.th",
         col_status: "ปกติ",
         curriculum: "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์",
+        curriculum_id: 2,
         section: "วศ.บ.วิศวกรรมคอมพิวเตอร์ เทียบโอน",
         col_birthday: new Date("1998-10-13"),
       },

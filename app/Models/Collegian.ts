@@ -1,5 +1,6 @@
 import { DateTime } from "luxon";
-import { BaseModel, column } from "@ioc:Adonis/Lucid/Orm";
+import { BaseModel, BelongsTo, belongsTo, column } from "@ioc:Adonis/Lucid/Orm";
+import Curriculum from "./Curriculum";
 
 export default class Collegian extends BaseModel {
   @column({ isPrimary: true })
@@ -30,6 +31,9 @@ export default class Collegian extends BaseModel {
   public curriculum: string;
 
   @column()
+  public curriculum_id: number;
+
+  @column()
   public section: string;
 
   @column()
@@ -46,4 +50,10 @@ export default class Collegian extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
+
+  @belongsTo(() => Curriculum, {
+    foreignKey: "curriculum_id",
+    localKey: "curriculum_id",
+  })
+  public curriculumData: BelongsTo<typeof Curriculum>;
 }

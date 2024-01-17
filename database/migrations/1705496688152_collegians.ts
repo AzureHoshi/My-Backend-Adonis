@@ -26,6 +26,14 @@ export default class extends BaseSchema {
       table.string("col_email", 255).comment("อีเมล");
       table.string("col_status", 255).comment("สถานะนักศึกษา");
       table.string("curriculum", 255).comment("หลักสูตร");
+      table
+        .integer("curriculum_id")
+        .unsigned()
+        .references("curriculum_id")
+        .inTable("curriculums")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE")
+        .comment("รหัสหลักสูตร");
       table.string("section", 255).comment("กลุ่ม");
       table.date("col_birthday").comment("วันเกิด");
       table.boolean("is_deleted").defaultTo(0).comment("สถานะการลบ");

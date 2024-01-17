@@ -104,7 +104,9 @@ export default class AuthController {
       // preloaded user from collegians table
       const userData = await User.query()
         .where("user_id", user.user_id)
-        .preload("collegian")
+        .preload("collegian", (query) => {
+          query.preload("curriculumData");
+        })
         .firstOrFail();
 
       if (user) {
