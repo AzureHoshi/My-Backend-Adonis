@@ -11,6 +11,14 @@ export default class extends BaseSchema {
         .unique()
         .notNullable()
         .comment("รหัสนักศึกษา");
+      table
+        .integer("user_id")
+        .unsigned()
+        .references("user_id")
+        .inTable("users")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE")
+        .comment("รหัสผู้ใช้");
       table.enum("prefix", ["นาย", "นางสาว", "นาง"]).comment("คำนำหน้า");
       table.string("col_first_name", 255).comment("ชื่อ");
       table.string("col_last_name", 255).comment("นามสกุล");
@@ -20,7 +28,6 @@ export default class extends BaseSchema {
       table.string("curriculum", 255).comment("หลักสูตร");
       table.string("section", 255).comment("กลุ่ม");
       table.date("col_birthday").comment("วันเกิด");
-      table.string("password", 255).comment("รหัสผ่าน");
       table.boolean("is_deleted").defaultTo(0).comment("สถานะการลบ");
 
       /**

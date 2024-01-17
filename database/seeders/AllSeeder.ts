@@ -26,6 +26,8 @@ import Plo from "./subSeeders/Plo";
 import YloPlo from "./subSeeders/YloPlo";
 import SubPlo from "./subSeeders/SubPlo";
 import SubPloMapping from "./subSeeders/SubPloMapping";
+import User from "./User";
+import Collegian from "./subSeeders/Collegian";
 import JobCompetency from "./subSeeders/JobCompetency";
 
 export default class extends BaseSeeder {
@@ -61,7 +63,6 @@ export default class extends BaseSeeder {
     await new YloPlo(this.client).run();
     await new SubPlo(this.client).run();
     await new SubPloMapping(this.client).run();
-    await new JobCompetency(this.client).run();
 
     const endTime = new Date();
     const executionTimeInMillis = endTime.getTime() - startTime.getTime();
