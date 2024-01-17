@@ -27,7 +27,7 @@ export default class AuthController {
       }
 
       const token = await auth.use("api").generate(user, {
-        expiresIn: "1 mins",
+        expiresIn: "1 hour",
       });
 
       return response.json({ token: token.toJSON() });
