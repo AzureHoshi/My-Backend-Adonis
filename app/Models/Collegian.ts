@@ -6,6 +6,9 @@ export default class Collegian extends BaseModel {
   public col_id: number;
 
   @column()
+  public user_id: number;
+
+  @column()
   public prefix: string;
 
   @column()

@@ -6,6 +6,7 @@ export default class extends BaseSeeder {
     // Write your database queries inside the run method
     const collegianData = [
       {
+        user_id: 1,
         prefix: "นาย",
         col_first_name: "ปรัชญา",
         col_last_name: "มาลาพุ่ม",

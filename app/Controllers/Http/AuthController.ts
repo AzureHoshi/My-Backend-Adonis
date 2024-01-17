@@ -27,7 +27,7 @@ export default class AuthController {
       }
 
       const token = await auth.use("api").generate(user, {
-        expiresIn: "1 days",
+        expiresIn: "1 mins",
       });
 
       return response.json({ token: token.toJSON() });
@@ -95,5 +95,25 @@ export default class AuthController {
     const user = auth.use("api").user;
 
     return response.ok({ user });
+  }
+
+  public async getUserData({ auth, response }: HttpContextContract) {
+    try {
+      const user = await auth.use("api").authenticate();
+
+      // preloaded user from collegians table
+      const userData = await User.query()
+        .where("user_id", user.user_id)
+        .preload("collegian")
+        .firstOrFail();
+
+      if (user) {
+        return response.ok({ data: userData.collegian });
+      } else {
+        return response.badRequest({ message: "User not found" });
+      }
+    } catch (error) {
+      return response.badRequest(error.message);
+    }
   }
 }
