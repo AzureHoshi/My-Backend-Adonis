@@ -19,6 +19,7 @@ export default class extends BaseSeeder {
         col_birthday: new Date("1998-10-13"),
       },
       {
+        user_id: 2,
         prefix: "นาย",
         col_first_name: "ทศพร",
         col_last_name: "ทวีคุณ",
@@ -30,6 +31,7 @@ export default class extends BaseSeeder {
         col_birthday: new Date("1998-11-17"),
       },
       {
+        user_id: 3,
         prefix: "นาย",
         col_first_name: "อาณัติ",
         col_last_name: "คำสุวรรณ์",

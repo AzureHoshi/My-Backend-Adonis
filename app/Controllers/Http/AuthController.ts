@@ -91,12 +91,6 @@ export default class AuthController {
     }
   }
 
-  public async show({ auth, response }: HttpContextContract) {
-    const user = auth.use("api").user;
-
-    return response.ok({ user });
-  }
-
   public async getUserData({ auth, response }: HttpContextContract) {
     try {
       const user = await auth.use("api").authenticate();

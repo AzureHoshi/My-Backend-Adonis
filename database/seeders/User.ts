@@ -9,6 +9,7 @@ export default class extends BaseSeeder {
         password: "password",
       },
       { email: "user2@example.com", password: "password" },
+      { email: "user3@example.com", password: "password" },
     ]);
   }
 }
