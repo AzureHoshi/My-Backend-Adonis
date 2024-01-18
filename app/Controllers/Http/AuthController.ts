@@ -30,7 +30,17 @@ export default class AuthController {
         expiresIn: "1 hour",
       });
 
-      return response.json({ token: token.toJSON() });
+      const userWithCollegian = await User.query()
+        .where("user_id", user.user_id)
+        .preload("collegian", (query) => {
+          query.select(["col_first_name", "col_last_name", "col_code"]);
+        })
+        .firstOrFail();
+
+      return response.json({
+        token: token.toJSON(),
+        user: userWithCollegian.collegian,
+      });
     } catch (error) {
       return response.badRequest(error.messages);
     }
