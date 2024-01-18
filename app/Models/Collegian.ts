@@ -36,8 +36,8 @@ export default class Collegian extends BaseModel {
   @column()
   public section: string;
 
-  @column()
-  public col_birthday: Date;
+  @column.date() // Assuming you want a DATE type without time
+  public col_birthday: DateTime;
 
   @column()
   public password: string;
