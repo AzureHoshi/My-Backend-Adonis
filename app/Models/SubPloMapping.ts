@@ -1,12 +1,5 @@
 import { DateTime } from "luxon";
-import {
-  BaseModel,
-  HasMany,
-  HasOne,
-  column,
-  hasMany,
-  hasOne,
-} from "@ioc:Adonis/Lucid/Orm";
+import { BaseModel, HasOne, column, hasOne } from "@ioc:Adonis/Lucid/Orm";
 import SubPlo from "./SubPlo";
 
 export default class SubPloMapping extends BaseModel {
