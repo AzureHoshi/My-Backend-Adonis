@@ -29,6 +29,7 @@ import SubPloMapping from "./subSeeders/SubPloMapping";
 import JobCompetency from "./subSeeders/JobCompetency";
 import User from "./User";
 import Collegian from "./subSeeders/Collegian";
+import Admin from "./Admin";
 
 export default class extends BaseSeeder {
   public async run() {
@@ -66,6 +67,7 @@ export default class extends BaseSeeder {
     await new JobCompetency(this.client).run();
     await new User(this.client).run();
     await new Collegian(this.client).run();
+    await new Admin(this.client).run();
 
     const endTime = new Date();
     const executionTimeInMillis = endTime.getTime() - startTime.getTime();

@@ -1,26 +1,25 @@
 import BaseSchema from "@ioc:Adonis/Lucid/Schema";
 
 export default class extends BaseSchema {
-  protected tableName = "users";
+  protected tableName = "admins";
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments("user_id").primary();
-      table.string("email", 255).notNullable().unique();
-      table.string("password", 180).notNullable();
+      table.increments("admin_id").primary();
       table
-        .string("remember_me_token")
-        .nullable()
-        .comment("token for remember me");
-      table
-        .tinyint("role")
-        .notNullable()
-        .defaultTo(0)
-        .comment("0 = student, 1 = admin");
+        .integer("user_id")
+        .unsigned()
+        .references("users.user_id")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE")
+        .comment("user_id from users table");
+      table.string("admin_first_name", 255).comment("ชื่อ");
+      table.string("admin_last_name", 255).comment("นามสกุล");
+      table.string("admin_code", 13).comment("รหัส");
       table.boolean("is_deleted").defaultTo(false);
 
       /**
-       * Uses timestampz for PostgreSQL and DATETIME2 for MSSQL
+       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
       table
         .timestamp("created_at", { useTz: true })

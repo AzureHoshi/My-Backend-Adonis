@@ -4,10 +4,11 @@ import {
   column,
   beforeSave,
   BaseModel,
-  belongsTo,
-  BelongsTo,
+  hasOne,
+  HasOne,
 } from "@ioc:Adonis/Lucid/Orm";
 import Collegian from "./Collegian";
+import Admin from "./Admin";
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -22,16 +23,29 @@ export default class User extends BaseModel {
   @column()
   public rememberMeToken: string | null;
 
+  @column()
+  public role: number;
+
+  @column()
+  public is_deleted: boolean;
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
 
-  @belongsTo(() => Collegian, {
+  @hasOne(() => Collegian, {
     foreignKey: "user_id",
+    localKey: "user_id",
   })
-  public collegian: BelongsTo<typeof Collegian>;
+  public collegian: HasOne<typeof Collegian>;
+
+  @hasOne(() => Admin, {
+    foreignKey: "user_id",
+    localKey: "user_id",
+  })
+  public admin: HasOne<typeof Admin>;
 
   @beforeSave()
   public static async hashPassword(user: User) {

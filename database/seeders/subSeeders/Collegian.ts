@@ -1,5 +1,6 @@
 import BaseSeeder from "@ioc:Adonis/Lucid/Seeder";
 import Collegian from "App/Models/Collegian";
+import { DateTime } from "luxon";
 
 export default class extends BaseSeeder {
   public async run() {
@@ -16,7 +17,7 @@ export default class extends BaseSeeder {
         curriculum: "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์",
         curriculum_id: 2,
         section: "วศ.บ.วิศวกรรมคอมพิวเตอร์ เทียบโอน",
-        col_birthday: new Date("1998-10-13"),
+        col_birthday: DateTime.fromJSDate(new Date("1998-11-17")),
       },
       {
         user_id: 2,
@@ -28,7 +29,7 @@ export default class extends BaseSeeder {
         col_status: "ปกติ",
         curriculum: "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์",
         section: "วศ.บ.วิศวกรรมคอมพิวเตอร์ เทียบโอน",
-        col_birthday: new Date("1998-11-17"),
+        col_birthday: DateTime.fromJSDate(new Date("1998-09-08")),
       },
       {
         user_id: 3,
@@ -40,7 +41,7 @@ export default class extends BaseSeeder {
         col_status: "ปกติ",
         curriculum: "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์",
         section: "วศ.บ.วิศวกรรมคอมพิวเตอร์ เทียบโอน",
-        col_birthday: new Date("1998-09-08"),
+        col_birthday: DateTime.fromJSDate(new Date("1998-11-17")),
       },
     ];
 

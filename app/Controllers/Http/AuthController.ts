@@ -17,10 +17,16 @@ export default class AuthController {
         schema: loginSchema,
       });
 
-      console.log("email", email);
-      console.log("password", password);
+      const user = await User.query()
+        .where("email", email)
+        .where("is_deleted", false)
+        .firstOrFail();
 
-      const user = await User.query().where("email", email).firstOrFail();
+      if (!user) {
+        return response.badRequest("User not found");
+      } else if (user.is_deleted) {
+        return response.badRequest("User is deleted");
+      }
 
       if (!(await Hash.verify(user.password, password))) {
         return response.unauthorized("Invalid credentials");
@@ -30,19 +36,39 @@ export default class AuthController {
         expiresIn: "1 hour",
       });
 
-      const userWithCollegian = await User.query()
-        .where("user_id", user.user_id)
-        .preload("collegian", (query) => {
-          query.select(["col_first_name", "col_last_name", "col_code"]);
-        })
-        .firstOrFail();
+      if (user.is_deleted) {
+        return response.badRequest("User is deleted");
+      } else if (user.role === 0) {
+        const userWithCollegian = await User.query()
+          .where("user_id", user.user_id)
+          .preload("collegian", (query) => {
+            query.select(["col_first_name", "col_last_name", "col_code"]);
+          })
+          .firstOrFail();
 
-      return response.json({
-        token: token.toJSON(),
-        user: userWithCollegian.collegian,
-      });
+        return response.ok({
+          token,
+          user: userWithCollegian.collegian,
+          role: user.role,
+        });
+      } else if (user.role === 1) {
+        const userWithAdmin = await User.query()
+          .where("user_id", user.user_id)
+          .preload("admin", (query) => {
+            query.select(["admin_first_name", "admin_last_name", "admin_code"]);
+          })
+          .firstOrFail();
+
+        return response.ok({
+          token,
+          user: userWithAdmin.admin,
+          role: user.role,
+        });
+      }
     } catch (error) {
-      return response.badRequest(error.messages);
+      console.log("error", error);
+
+      return response.badRequest(error);
     }
   }
 
@@ -81,7 +107,7 @@ export default class AuthController {
 
       return response.badRequest({
         message: "Logout failed",
-        error: error.messages || "Unknown error",
+        error: error,
       });
     }
   }
@@ -105,21 +131,27 @@ export default class AuthController {
     try {
       const user = await auth.use("api").authenticate();
 
-      // preloaded user from collegians table
-      const userData = await User.query()
-        .where("user_id", user.user_id)
-        .preload("collegian", (query) => {
-          query.preload("curriculumData");
-        })
-        .firstOrFail();
+      if (user.role === 0) {
+        const userData = await User.query()
+          .where("user_id", user.user_id)
+          .preload("collegian", (query) => {
+            query.preload("curriculumData");
+          })
+          .firstOrFail();
 
-      if (user) {
         return response.ok({ data: userData.collegian });
+      } else if (user.role === 1) {
+        const userData = await User.query()
+          .where("user_id", user.user_id)
+          .preload("admin")
+          .firstOrFail();
+
+        return response.ok({ data: userData.admin });
       } else {
         return response.badRequest({ message: "User not found" });
       }
     } catch (error) {
-      return response.badRequest(error.message);
+      return response.badRequest(error);
     }
   }
 }
