@@ -122,7 +122,7 @@ export default class AuthController {
         return response.ok({ loggedIn: false });
       }
     } catch (error) {
-      return response.badRequest(error.message);
+      return response.badRequest(error);
     }
   }
 
