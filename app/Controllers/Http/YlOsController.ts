@@ -83,6 +83,86 @@ export default class YlOsController {
     }
   }
 
+  public async show({ params, response }: HttpContextContract) {
+    try {
+      // Fetch ylos
+      const ylos = await Ylo.query()
+        .where("curriculum_id", params.id)
+        .where("is_deleted", 0)
+        .preload("ylo_description", (yloDesQuery) => {
+          yloDesQuery.where("is_deleted", 0);
+        })
+        .preload("plos", (ploQuery) => {
+          ploQuery.where("plos.is_deleted", 0);
+        });
+
+      // Fetch yloPlos
+      const yloPlos = await YloPlo.query().where("is_deleted", 0);
+
+      // Map ylos to the desired structure
+      const formattedYlos = ylos.map((ylo) => {
+        // Map ylo descriptions
+        const yloDescriptions = ylo.ylo_description.map((description) => ({
+          ylo_des_id: description.ylo_des_id,
+          ylo_id: description.ylo_id,
+          ylo_description: description.ylo_description,
+          is_deleted: description.is_deleted,
+          created_at: description.createdAt,
+          updated_at: description.updatedAt,
+        }));
+
+        // Map plos and add ylo_plos
+        const plosWithYloPlos = ylo.plos.map((plo) => {
+          const matchingYloPlo = yloPlos.find(
+            (yloPlo) =>
+              yloPlo.ylo_id === ylo.ylo_id && yloPlo.plo_id === plo.plo_id
+          );
+
+          return {
+            plo_id: plo.plo_id,
+            plo_name: plo.plo_name,
+            plo_description: plo.plo_description,
+            is_deleted: plo.is_deleted,
+            created_at: plo.createdAt,
+            updated_at: plo.updatedAt,
+            ylo_plos: matchingYloPlo
+              ? {
+                  ylo_plo_id: matchingYloPlo.ylo_plo_id,
+                  ylo_id: matchingYloPlo.ylo_id,
+                  plo_id: matchingYloPlo.plo_id,
+                  is_deleted: matchingYloPlo.is_deleted,
+                  created_at: matchingYloPlo.createdAt,
+                  updated_at: matchingYloPlo.updatedAt,
+                }
+              : null,
+          };
+        });
+
+        // Return the formatted ylo object
+        return {
+          ylo_id: ylo.ylo_id,
+          curriculum_id: ylo.curriculum_id,
+          ylo_year: ylo.ylo_year,
+          is_deleted: ylo.is_deleted,
+          created_at: ylo.createdAt,
+          updated_at: ylo.updatedAt,
+          ylo_description: yloDescriptions,
+          plos: plosWithYloPlos,
+        };
+      });
+
+      return response.status(200).json({
+        message: "YLOs retrieved successfully",
+        data: formattedYlos,
+      });
+    } catch (error) {
+      return response.status(400).json({
+        message: "Something went wrong",
+        error: error.message,
+      });
+    }
+  }
+
   public async store({ request, response }: HttpContextContract) {
     const storeYloSchema = schema.create({
       ylo_year: schema.number(),
