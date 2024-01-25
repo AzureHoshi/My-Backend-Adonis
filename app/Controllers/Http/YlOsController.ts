@@ -61,6 +61,7 @@ export default class YlOsController {
         // Return the formatted ylo object
         return {
           ylo_id: ylo.ylo_id,
+          curriculum_id: ylo.curriculum_id,
           ylo_year: ylo.ylo_year,
           is_deleted: ylo.is_deleted,
           created_at: ylo.createdAt,
@@ -85,6 +86,7 @@ export default class YlOsController {
   public async store({ request, response }: HttpContextContract) {
     const storeYloSchema = schema.create({
       ylo_year: schema.number(),
+      curriculum_id: schema.number(),
       ylo_description: schema.array().members(schema.string()),
     });
 

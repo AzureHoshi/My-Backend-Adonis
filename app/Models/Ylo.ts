@@ -18,6 +18,9 @@ export default class Ylo extends BaseModel {
   public ylo_id: number;
 
   @column()
+  public curriculum_id: number;
+
+  @column()
   public ylo_year: number;
 
   @column()
