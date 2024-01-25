@@ -1,6 +1,5 @@
 import BaseSeeder from "@ioc:Adonis/Lucid/Seeder";
 import Ylo from "App/Models/Ylo";
-import Curriculum from "./Curriculum";
 
 export default class extends BaseSeeder {
   public async run() {
