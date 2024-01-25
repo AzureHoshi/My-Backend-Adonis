@@ -173,7 +173,10 @@ export default class YlOsController {
     try {
       const payload = await request.validate({ schema: storeYloSchema });
 
-      const ylo = await Ylo.create({ ylo_year: payload.ylo_year });
+      const ylo = await Ylo.create({
+        ylo_year: payload.ylo_year,
+        curriculum_id: payload.curriculum_id,
+      });
 
       const yloDescriptions = payload.ylo_description.map((description) => ({
         ylo_id: ylo.ylo_id,
