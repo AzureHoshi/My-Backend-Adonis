@@ -153,4 +153,41 @@ export default class AuthController {
       return response.badRequest(error);
     }
   }
+
+  public async register({ request, response }: HttpContextContract) {
+    const registerSchema = schema.create({
+      email: schema.string({}, [rules.email()]),
+      password: schema.string({}, [rules.minLength(8)]),
+      role: schema.number(),
+      first_name: schema.string(),
+      last_name: schema.string(),
+      curriculum_id: schema.number(),
+    });
+
+    try {
+      const payload = await request.validate({
+        schema: registerSchema,
+      });
+
+      const user = await User.create({
+        email: payload.email,
+        password: payload.password,
+        role: payload.role,
+      });
+
+      const collegian = await user.related("collegian").create({
+        col_first_name: payload.first_name,
+        col_last_name: payload.last_name,
+        curriculum_id: payload.curriculum_id,
+      });
+
+      return response.ok({
+        message: "User created",
+        dataUser: user,
+        dataCollegian: collegian,
+      });
+    } catch (error) {
+      return response.badRequest(error);
+    }
+  }
 }

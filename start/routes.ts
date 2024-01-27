@@ -102,4 +102,5 @@ Route.group(() => {
   Route.post("logout", "AuthController.logout").middleware("auth");
   Route.get("check-login", "AuthController.checkLogin").middleware("auth");
   Route.get("get-user-data", "AuthController.getUserData").middleware("auth");
+  Route.post("register", "AuthController.register");
 }).prefix("/api/v1");
