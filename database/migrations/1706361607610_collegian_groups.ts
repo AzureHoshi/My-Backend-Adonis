@@ -9,6 +9,7 @@ export default class extends BaseSchema {
       table
         .integer("curriculum_id")
         .unsigned()
+        .nullable()
         .references("curriculum_id")
         .inTable("curriculums")
         .onUpdate("CASCADE")
