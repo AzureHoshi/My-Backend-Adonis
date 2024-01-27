@@ -16,6 +16,7 @@ const collegianGroupSchema = schema.create({
 export default class CollegianGroupsController {
   public async index({ response }: HttpContextContract) {
     const collegianGroups = await CollegianGroup.query()
+      .whereNotNull("curriculum_id") // กรองเฉพาะ CollegianGroup ที่ curriculum_id ไม่เป็น null
       .preload("curriculum", (curriculumQuery) => {
         curriculumQuery.where("is_deleted", false);
       })
