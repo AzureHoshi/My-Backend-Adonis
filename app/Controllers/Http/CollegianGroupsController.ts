@@ -16,7 +16,6 @@ const collegianGroupSchema = schema.create({
 export default class CollegianGroupsController {
   public async index({ response }: HttpContextContract) {
     const collegianGroups = await CollegianGroup.query()
-      .whereNotNull("curriculum_id")
       .where("is_deleted", 0)
       .orderBy("updatedAt", "desc")
       .preload("curriculum", (curriculumQuery) => {
