@@ -1,11 +1,21 @@
 import { DateTime } from "luxon";
-import { BaseModel, HasMany, column, hasMany } from "@ioc:Adonis/Lucid/Orm";
+import {
+  BaseModel,
+  HasMany,
+  HasOne,
+  column,
+  hasMany,
+  hasOne,
+} from "@ioc:Adonis/Lucid/Orm";
 import Curriculum from "./Curriculum";
 import Collegian from "./Collegian";
 
 export default class CollegianGroup extends BaseModel {
   @column({ isPrimary: true })
   public collegian_group_id: number;
+
+  @column()
+  public curriculum_id: number;
 
   @column()
   public collegian_group_name_th: string;
@@ -28,8 +38,10 @@ export default class CollegianGroup extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
 
-  @hasMany(() => Curriculum)
-  public curriculums: HasMany<typeof Curriculum>;
+  @hasOne(() => Curriculum, {
+    foreignKey: "curriculum_id",
+  })
+  public curriculum: HasOne<typeof Curriculum>;
 
   @hasMany(() => Collegian)
   public collegians: HasMany<typeof Collegian>;

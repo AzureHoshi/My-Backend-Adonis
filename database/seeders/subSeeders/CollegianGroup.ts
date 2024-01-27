@@ -46,6 +46,7 @@ export default class extends BaseSeeder {
         collegian_group_name_en: "Bachelor of  Engineering",
         collegian_group_short_name_th: "วศ.บ.",
         collegian_group_short_name_en: "B.Eng",
+        curriculum_id: 2,
       },
       {
         collegian_group_name_th: "วิศวกรรมศาสตรบัณฑิต ต่อเนื่อง",
@@ -53,6 +54,7 @@ export default class extends BaseSeeder {
           "Bachelor of  Engineering (Continuing Program)",
         collegian_group_short_name_th: "วศ.บ. (ต่อเนื่อง)",
         collegian_group_short_name_en: "B.Eng (Continuing Program)",
+        curriculum_id: 1,
       },
       {
         collegian_group_name_th: "อุตสาหกรรมศาสตรบัณฑิต",

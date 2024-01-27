@@ -7,7 +7,6 @@ export default class extends BaseSeeder {
     const curriculumData = [
       {
         faculty_id: 3,
-        collegian_group_id: 7,
         curriculum_name_th:
           "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์",
         curriculum_name_en:
@@ -18,7 +17,6 @@ export default class extends BaseSeeder {
       },
       {
         faculty_id: 3,
-        collegian_group_id: 7,
         curriculum_name_th:
           "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมซอฟต์แวร์",
         curriculum_name_en:

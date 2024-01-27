@@ -3,6 +3,7 @@ import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import CollegianGroup from "App/Models/CollegianGroup";
 
 const collegianGroupSchema = schema.create({
+  curriculum_id: schema.number(),
   collegian_group_name_th: schema.string([rules.maxLength(255)]),
   collegian_group_name_en: schema.string([rules.maxLength(255)]),
   collegian_group_short_name_th: schema.string.optional({ trim: true }, [

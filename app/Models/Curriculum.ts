@@ -23,9 +23,6 @@ export default class Curriculum extends BaseModel {
   public faculty_id: number;
 
   @column()
-  public collegian_group_id: number;
-
-  @column()
   public curriculum_name_th: string;
 
   @column()
@@ -54,10 +51,10 @@ export default class Curriculum extends BaseModel {
   })
   public faculty: BelongsTo<typeof Faculty>;
 
-  @belongsTo(() => CollegianGroup, {
+  @hasMany(() => CollegianGroup, {
     foreignKey: "collegian_group_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
   })
-  public collegian_groups: BelongsTo<typeof CollegianGroup>;
+  public collegian_groups: HasMany<typeof CollegianGroup>;
 
   @hasMany(() => StudyPlan)
   public study_plans: HasMany<typeof StudyPlan>;

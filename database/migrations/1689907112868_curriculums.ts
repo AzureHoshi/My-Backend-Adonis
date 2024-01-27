@@ -12,12 +12,6 @@ export default class extends BaseSchema {
         .unsigned()
         .references("faculty_id")
         .inTable("faculties");
-      table
-        .integer("collegian_group_id")
-        .notNullable()
-        .unsigned()
-        .references("collegian_group_id")
-        .inTable("collegian_groups");
       table.string("curriculum_name_th").notNullable();
       table.string("curriculum_name_en").notNullable();
       table.string("curriculum_short_name_th");

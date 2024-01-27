@@ -6,6 +6,14 @@ export default class extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments("collegian_group_id").primary().unsigned();
+      table
+        .integer("curriculum_id")
+        .unsigned()
+        .references("curriculum_id")
+        .inTable("curriculums")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE")
+        .comment("รหัสหลักสูตร");
       table.string("collegian_group_name_th").notNullable();
       table.string("collegian_group_name_en").notNullable();
       table.string("collegian_group_short_name_th");

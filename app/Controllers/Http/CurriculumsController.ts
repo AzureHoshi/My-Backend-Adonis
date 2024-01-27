@@ -5,7 +5,6 @@ import Subject from "App/Models/Subject";
 
 const curriculumSchema = schema.create({
   faculty_id: schema.number(),
-  collegian_group_id: schema.number(),
   curriculum_name_th: schema.string([rules.maxLength(255)]),
   curriculum_name_en: schema.string([rules.maxLength(255)]),
   curriculum_short_name_th: schema.string.optional({ trim: true }, [
