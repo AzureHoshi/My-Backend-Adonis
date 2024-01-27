@@ -39,8 +39,8 @@ export default class extends BaseSeeder {
     console.log("Running seeders...");
 
     await new FacultySeeder(this.client).run();
-    await new CollegianGroup(this.client).run();
     await new Curriculum(this.client).run();
+    await new CollegianGroup(this.client).run();
     await new SubjectCategory(this.client).run();
     await new SubjectType(this.client).run();
     await new SubjectGroup(this.client).run();
