@@ -16,12 +16,13 @@ const collegianGroupSchema = schema.create({
 export default class CollegianGroupsController {
   public async index({ response }: HttpContextContract) {
     const collegianGroups = await CollegianGroup.query()
-      .whereNotNull("curriculum_id") // กรองเฉพาะ CollegianGroup ที่ curriculum_id ไม่เป็น null
+      .whereNotNull("curriculum_id")
+      .where("is_deleted", 0)
+      .orderBy("updatedAt", "desc")
       .preload("curriculum", (curriculumQuery) => {
         curriculumQuery.where("is_deleted", false);
-      })
-      .where("is_deleted", 0)
-      .orderBy("updatedAt", "desc");
+      });
+
     return response.status(200).json({ data: collegianGroups, status: 200 });
   }
 
