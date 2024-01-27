@@ -40,6 +40,7 @@ export default class CollegianGroup extends BaseModel {
 
   @hasOne(() => Curriculum, {
     foreignKey: "curriculum_id",
+    localKey: "curriculum_id",
   })
   public curriculum: HasOne<typeof Curriculum>;
 
