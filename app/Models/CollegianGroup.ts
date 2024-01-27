@@ -15,7 +15,7 @@ export default class CollegianGroup extends BaseModel {
   public collegian_group_id: number;
 
   @column()
-  public curriculum_id: number;
+  public curriculum_id: number | null;
 
   @column()
   public collegian_group_name_th: string;
