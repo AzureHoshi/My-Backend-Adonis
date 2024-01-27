@@ -190,4 +190,14 @@ export default class AuthController {
       return response.badRequest(error);
     }
   }
+
+  public async index({ response }: HttpContextContract) {
+    try {
+      const users = await User.query().preload("collegian");
+
+      return response.ok(users);
+    } catch (error) {
+      return response.badRequest(error);
+    }
+  }
 }
