@@ -1,5 +1,5 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
-import { schema } from "@ioc:Adonis/Core/Validator";
+import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import InterestAnswer from "App/Models/InterestAnswer";
 import InterestAnswerJob from "App/Models/InterestAnswersJob";
 import InterestResult from "App/Models/InterestResult";
@@ -158,7 +158,9 @@ export default class InterestResultsController {
           schema.object().members({
             question_type: schema.number(),
             interest_answer_id: schema.number(),
-            interest_question_score: schema.number.nullable(),
+            interest_question_score: schema.number.nullable([
+              rules.range(1, 5), // Define a custom validation rule for the range 1 to 5
+            ]),
           })
         ),
       });

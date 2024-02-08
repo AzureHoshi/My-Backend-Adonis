@@ -1,6 +1,6 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import InterestAnswerJob from "App/Models/InterestAnswersJob";
-import { schema } from "@ioc:Adonis/Core/Validator";
+import { schema, rules } from "@ioc:Adonis/Core/Validator";
 
 export default class InterestAnswersJobsController {
   public async store({ request, response }: HttpContextContract) {
@@ -8,7 +8,7 @@ export default class InterestAnswersJobsController {
       const storeSchema = schema.create({
         interest_answer_id: schema.number(),
         job_position_id: schema.number(),
-        interest_answers_job_score: schema.number.optional(),
+        interest_answers_job_score: schema.number.optional([rules.range(1, 5)]),
       });
 
       const payload = await request.validate({ schema: storeSchema });
