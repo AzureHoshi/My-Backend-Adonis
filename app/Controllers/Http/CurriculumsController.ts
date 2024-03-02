@@ -81,9 +81,18 @@ export default class CurriculumsController {
 
     try {
       const payload = await request.validate({ schema: storeSchema });
+      const payloadReDate = {
+        faculty_id: payload.faculty_id,
+        curriculum_name_th: payload.curriculum_name_th,
+        curriculum_name_en: payload.curriculum_name_en,
+        curriculum_short_name_th: payload.curriculum_short_name_th,
+        curriculum_short_name_en: payload.curriculum_short_name_en,
+        curriculum_year: payload.curriculum_year,
+        is_deleted: false,
+      };
 
       if (!payload.ref_curriculum_id) {
-        const curriculum: Curriculum = await Curriculum.create(payload);
+        const curriculum: Curriculum = await Curriculum.create(payloadReDate);
         return response.status(201).json({ data: curriculum, status: 201 });
       } else {
         const ref_curriculum: any = await Curriculum.find(
@@ -110,7 +119,7 @@ export default class CurriculumsController {
             status: 404,
           });
         } else {
-          const curriculum: Curriculum = await Curriculum.create(payload);
+          const curriculum: Curriculum = await Curriculum.create(payloadReDate);
 
           const subjectsWithNewCurriculumId =
             await subjectsWithCurriculumId.map((subject) => {
