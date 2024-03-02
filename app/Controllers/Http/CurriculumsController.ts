@@ -20,13 +20,14 @@ export default class CurriculumsController {
   public async index({ response }: HttpContextContract) {
     const curriculums = await Curriculum.query()
       .preload("faculty") // แสดงข้อมูลของ faculties ที่เกี่ยวข้อง
-      .whereHas("faculty", (facultyQuery) => {
-        facultyQuery.where("is_deleted", false);
-      })
-      .preload("collegian_groups") // แสดงข้อมูลของ collegian_groups ที่เกี่ยวข้อง
-      .whereHas("collegian_groups", (collegianGroupsQuery) => {
-        collegianGroupsQuery.where("is_deleted", false);
-      })
+      .preload(
+        "collegian_groups",
+        (
+          collegianGroupsQuery // แสดงข้อมูลของ collegian_groups ที่เกี่ยวข้อง
+        ) => {
+          collegianGroupsQuery.where("is_deleted", false);
+        }
+      ) // แสดงข้อมูลของ collegian_groups ที่เกี่ยวข้อง
       .where("curriculums.is_deleted", false)
       .orderBy("curriculums.updated_at", "desc");
     return response.status(200).json({ data: curriculums, status: 200 });
