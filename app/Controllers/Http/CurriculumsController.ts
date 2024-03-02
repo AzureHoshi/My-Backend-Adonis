@@ -23,10 +23,10 @@ export default class CurriculumsController {
       .whereHas("faculty", (facultyQuery) => {
         facultyQuery.where("is_deleted", false);
       })
-      .preload("collegian_groups") // แสดงข้อมูลของ collegian_groups ที่เกี่ยวข้อง
-      .whereHas("collegian_groups", (collegianGroupsQuery) => {
-        collegianGroupsQuery.where("is_deleted", false);
-      })
+      // .preload("collegian_groups") // แสดงข้อมูลของ collegian_groups ที่เกี่ยวข้อง
+      // .whereHas("collegian_groups", (collegianGroupsQuery) => {
+      //   collegianGroupsQuery.where("is_deleted", false);
+      // })
       .where("curriculums.is_deleted", false)
       .orderBy("curriculums.updated_at", "desc");
     return response.status(200).json({ data: curriculums, status: 200 });
@@ -64,11 +64,24 @@ export default class CurriculumsController {
   }
 
   public async store({ request, response }: HttpContextContract) {
-    try {
-      const { ref_curriculum_id } = request.all();
-      const payload = await request.validate({ schema: curriculumSchema });
+    const storeSchema = schema.create({
+      faculty_id: schema.number(),
+      curriculum_name_th: schema.string([rules.maxLength(255)]),
+      curriculum_name_en: schema.string([rules.maxLength(255)]),
+      curriculum_short_name_th: schema.string.optional({ trim: true }, [
+        rules.maxLength(255),
+      ]),
+      curriculum_short_name_en: schema.string.optional({ trim: true }, [
+        rules.maxLength(255),
+      ]),
+      curriculum_year: schema.number(),
+      ref_curriculum_id: schema.number.optional(),
+    });
 
-      if (!ref_curriculum_id) {
+    try {
+      const payload = await request.validate({ schema: storeSchema });
+
+      if (!payload.ref_curriculum_id) {
         const curriculum: Curriculum = await Curriculum.create(payload);
         return response.status(201).json({ data: curriculum, status: 201 });
       } else {
@@ -77,7 +90,7 @@ export default class CurriculumsController {
         // );
 
         const subjectsWithCurriculumId = await Subject.query()
-          .where("curriculum_id", ref_curriculum_id)
+          .where("curriculum_id", payload.ref_curriculum_id)
           .where("is_deleted", false);
 
         if (
