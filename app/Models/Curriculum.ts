@@ -53,6 +53,7 @@ export default class Curriculum extends BaseModel {
 
   @hasMany(() => CollegianGroup, {
     foreignKey: "curriculum_id", // ระบุคีย์ตรีที่ถูกต้องใน Model Curriculum
+    localKey: "curriculum_id", // ระบุคีย์ตรีที่ถูกต้องใน Model CollegianGroup
   })
   public collegian_groups: HasMany<typeof CollegianGroup>;
 
