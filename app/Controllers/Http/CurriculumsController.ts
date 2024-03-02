@@ -86,9 +86,16 @@ export default class CurriculumsController {
         const curriculum: Curriculum = await Curriculum.create(payload);
         return response.status(201).json({ data: curriculum, status: 201 });
       } else {
-        // const ref_curriculum: any = await Curriculum.find(
-        //   payload.ref_curriculum_id
-        // );
+        const ref_curriculum: any = await Curriculum.find(
+          payload.ref_curriculum_id
+        );
+
+        if (!ref_curriculum) {
+          return response.status(404).json({
+            message: "Curriculum not found",
+            status: 404,
+          });
+        }
 
         const subjectsWithCurriculumId = await Subject.query()
           .where("curriculum_id", payload.ref_curriculum_id)
